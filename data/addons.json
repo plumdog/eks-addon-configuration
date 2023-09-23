@@ -1,0 +1,18 @@
+[
+  "aws-ebs-csi-driver",
+  "vpc-cni",
+  "coredns",
+  "upbound_universal-crossplane",
+  "factorhouse_kpow",
+  "kube-proxy",
+  "haproxy-technologies_kubernetes-ingress-ee",
+  "dynatrace_dynatrace-operator",
+  "adot",
+  "teleport_teleport",
+  "aws-guardduty-agent",
+  "aws-efs-csi-driver",
+  "tetrate-io_istio-distro",
+  "kasten_k10",
+  "kubecost_kubecost",
+  "datree_engine-pro"
+]

@@ -1,0 +1,155 @@
+{
+  "$id": "http://example.com/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "examples": [
+    {
+      "affinity": {},
+      "kubeRBACProxy": {
+        "enabled": true,
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "5m",
+            "memory": "64Mi"
+          }
+        }
+      },
+      "manager": {
+        "env": {},
+        "resources": {
+          "limits": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "64Mi"
+          }
+        }
+      },
+      "nodeSelector": {},
+      "replicaCount": 1,
+      "tolerations": []
+    }
+  ],
+  "properties": {
+    "affinity": {
+      "properties": {},
+      "title": "The affinity Schema",
+      "type": "object"
+    },
+    "kubeRBACProxy": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "additionalProperties": false,
+          "properties": {
+            "limits": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The limits Schema",
+              "type": "object"
+            },
+            "requests": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The requests Schema",
+              "type": "object"
+            }
+          },
+          "title": "The resources Schema",
+          "type": "object"
+        }
+      },
+      "title": "The kubeRBACProxy Schema",
+      "type": "object"
+    },
+    "manager": {
+      "additionalProperties": false,
+      "properties": {
+        "env": {
+          "properties": {},
+          "title": "The env Schema",
+          "type": "object"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "properties": {
+            "limits": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The limits Schema",
+              "type": "object"
+            },
+            "requests": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The requests Schema",
+              "type": "object"
+            }
+          },
+          "title": "The resources Schema",
+          "type": "object"
+        }
+      },
+      "title": "The manager Schema",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "properties": {},
+      "title": "The nodeSelector Schema",
+      "type": "object"
+    },
+    "replicaCount": {
+      "title": "The replicaCount Schema",
+      "type": "integer"
+    },
+    "tolerations": {
+      "items": {},
+      "title": "The tolerations Schema",
+      "type": "array"
+    }
+  },
+  "title": "Root Schema",
+  "type": "object"
+}

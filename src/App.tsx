@@ -1,26 +1,135 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import AddonViewer from './AddonViewer';
+import AddonNavigation from './AddonNavigation';
+import AddonVersionNavigation from './AddonVersionNavigation';
+
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Drawer from '@mui/material/Drawer';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+
+const drawerWidth = 240;
+
+const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            EKS Addon Configuration
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar />
+        <Divider />
+        { sidebar }
+      </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+        <Toolbar />
+        { children }
+      </Box>
+    </Box>
+  );
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [addons, setAddons] = useState<Array<string> | null>(null);
+
+    useEffect(() => {
+        if (!addons) {
+            fetch(process.env.PUBLIC_URL + '/data/addons.json').then((response) => {
+                response.json().then((data) => {
+                    setAddons(data.sort());
+                });
+            });
+        }
+    });
+
+    const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
+    const [selectedAddonData, setSelectedAddonData] = useState<any | null>(null);
+    const [selectedAddonVersion, setSelectedAddonVersion] = useState<string | null>(null);
+    const [selectedAddonVersionConfiguration, setSelectedAddonVersionConfiguration] = useState<any | null>(null);    
+
+    useEffect(() => {
+        if (selectedAddonName && !selectedAddonData) {
+            fetch(process.env.PUBLIC_URL + `/data/${selectedAddonName}/addon.json`).then((response) => {
+                response.json().then((data) => {
+                    setSelectedAddonData(data);
+                    if (!selectedAddonVersion) {
+                        const firstVersion = data.addonVersions[0];
+                        if (firstVersion) {
+                            setSelectedAddonVersion(firstVersion.addonVersion);
+                        }
+                    }
+                    
+                });
+            });
+        }
+    });
+
+    const handleAddonSelect = (addonName: string) => {
+        setSelectedAddonData(null);
+        setSelectedAddonVersion(null);
+        setSelectedAddonVersionConfiguration(null);
+        setSelectedAddonName(addonName);
+    };
+
+    const handleAddonVersionSelect = (addonVersion: string) => {
+        setSelectedAddonVersion(addonVersion);
+        setSelectedAddonVersionConfiguration(null);
+    };
+
+    useEffect(() => {
+        if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
+            fetch(process.env.PUBLIC_URL + `/data/${selectedAddonName}/configurations/${selectedAddonVersion}.json`).then((response) => {
+                response.json().then((data) => {
+                    setSelectedAddonVersionConfiguration(data);
+                });
+            });
+        }
+    });
+
+    return (
+        <div className="App">
+            <MainLayout sidebar={<AddonNavigation
+                addons={addons}
+                onSelectAddon={handleAddonSelect}
+                selectedAddon={selectedAddonName}
+            />}>
+            { selectedAddonName && selectedAddonData && <AddonVersionNavigation
+                addon={selectedAddonData}
+                onSelectAddonVersion={handleAddonVersionSelect}
+                selectedAddonVersion={selectedAddonVersion}
+            /> }
+
+            { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} addonName={selectedAddonName} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
+
+        </MainLayout>
+            
+        </div>
+    );
+};
 
 export default App;

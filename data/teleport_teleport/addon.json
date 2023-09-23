@@ -1,0 +1,56 @@
+{
+  "addonName": "teleport_teleport",
+  "type": "policy-management",
+  "addonVersions": [
+    {
+      "addonVersion": "v10.3.1-eksbuild.0",
+      "architecture": [
+        "amd64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.21",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.20",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    }
+  ],
+  "publisher": "teleport",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "3bda70bb-566f-4976-806c-f96faef18b26",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=3bda70bb-566f-4976-806c-f96faef18b26"
+  }
+}
