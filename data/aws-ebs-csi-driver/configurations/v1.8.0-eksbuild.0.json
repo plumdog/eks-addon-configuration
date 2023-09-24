@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Please upgrade to AWS EBS CSI Driver version v1.10.0 or higher for configuration support",
+  "type": "object"
+}
