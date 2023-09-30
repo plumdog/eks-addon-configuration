@@ -11,6 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
+const data = require("./data.json");
+
 const drawerWidth = 240;
 
 const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
@@ -55,17 +57,7 @@ const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
 };
 
 function App() {
-    const [addons, setAddons] = useState<Array<string> | null>(null);
-
-    useEffect(() => {
-        if (!addons) {
-            fetch(process.env.PUBLIC_URL + '/data/addons.json').then((response) => {
-                response.json().then((data) => {
-                    setAddons(data.sort());
-                });
-            });
-        }
-    });
+    const addons = data["./addons.json"].sort();
 
     const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
     const [selectedAddonData, setSelectedAddonData] = useState<any | null>(null);
@@ -74,18 +66,14 @@ function App() {
 
     useEffect(() => {
         if (selectedAddonName && !selectedAddonData) {
-            fetch(process.env.PUBLIC_URL + `/data/${selectedAddonName}/addon.json`).then((response) => {
-                response.json().then((data) => {
-                    setSelectedAddonData(data);
-                    if (!selectedAddonVersion) {
-                        const firstVersion = data.addonVersions[0];
-                        if (firstVersion) {
-                            setSelectedAddonVersion(firstVersion.addonVersion);
-                        }
-                    }
-                    
-                });
-            });
+            const addonData = data[`./${selectedAddonName}/addon.json`];
+            setSelectedAddonData(addonData);
+            if (!selectedAddonVersion) {
+                const firstVersion = addonData.addonVersions[0];
+                if (firstVersion) {
+                    setSelectedAddonVersion(firstVersion.addonVersion);
+                }
+            }
         }
     });
 
@@ -103,11 +91,7 @@ function App() {
 
     useEffect(() => {
         if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
-            fetch(process.env.PUBLIC_URL + `/data/${selectedAddonName}/configurations/${selectedAddonVersion}.json`).then((response) => {
-                response.json().then((data) => {
-                    setSelectedAddonVersionConfiguration(data);
-                });
-            });
+            setSelectedAddonVersionConfiguration(data[`./${selectedAddonName}/configurations/${selectedAddonVersion}.json`]);
         }
     });
 
