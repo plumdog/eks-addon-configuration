@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddonViewer from './AddonViewer';
 import AddonNavigation from './AddonNavigation';
 import AddonVersionNavigation from './AddonVersionNavigation';
+import Homepage from './Homepage';
 
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -102,6 +103,8 @@ function App() {
                 onSelectAddon={handleAddonSelect}
                 selectedAddon={selectedAddonName}
             />}>
+            { !selectedAddonName && <Homepage /> }
+
             { selectedAddonName && selectedAddonData && <AddonVersionNavigation
                 addon={selectedAddonData}
                 onSelectAddonVersion={handleAddonVersionSelect}
