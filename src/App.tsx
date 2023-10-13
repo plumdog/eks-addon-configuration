@@ -76,7 +76,7 @@ function App() {
                 }
             }
         }
-    });
+    }, [selectedAddonName, selectedAddonData, selectedAddonVersion]);
 
     const handleAddonSelect = (addonName: string) => {
         setSelectedAddonData(null);
@@ -94,7 +94,7 @@ function App() {
         if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
             setSelectedAddonVersionConfiguration(data[`./${selectedAddonName}/configurations/${selectedAddonVersion}.json`]);
         }
-    });
+    }, [selectedAddonName, selectedAddonVersion, selectedAddonVersionConfiguration]);
 
     return (
         <div className="App">
