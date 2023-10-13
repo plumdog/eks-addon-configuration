@@ -4,8 +4,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import type { Addon } from './dataSchemas';
 
-const AddonVersionNavigation = ({ addon, onSelectAddonVersion, selectedAddonVersion }: { addon: any, onSelectAddonVersion: Function, selectedAddonVersion: string | null }) => {
+const AddonVersionNavigation = ({ addon, onSelectAddonVersion, selectedAddonVersion }: { addon: Addon, onSelectAddonVersion: Function, selectedAddonVersion: string | null }) => {
   const handleAddonVersionSelect = (addonVersionName: string) => {
     onSelectAddonVersion(addonVersionName);
   };
