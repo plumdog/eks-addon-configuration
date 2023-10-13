@@ -58,7 +58,10 @@ const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
 };
 
 function App() {
-    const addons = data["./addons.json"].sort();
+    const addons = [];
+    for (const addonName of data["./addons.json"].sort()) {
+        addons.push(data[`./${addonName}/addon.json`]);
+    }
 
     const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
     const [selectedAddonData, setSelectedAddonData] = useState<any | null>(null);
