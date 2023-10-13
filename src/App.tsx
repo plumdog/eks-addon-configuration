@@ -12,11 +12,20 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-const data = require("./data.json");
+import {
+    rootSchema,
+    addonListSchema,
+    addonSchema,
+    addonVersionConfigurationSchema,
+    Addon,
+    AddonVersionConfiguration
+} from './dataSchemas';
+
+const data = rootSchema.parse(require("./data.json"));
 
 const drawerWidth = 240;
 
-const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
+const MainLayout = ({ children, sidebar }: {children: Array<React.ReactNode>, sidebar: React.ReactNode}) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -58,19 +67,19 @@ const MainLayout = ({ children, sidebar }: {children: any, sidebar: any}) => {
 };
 
 function App() {
-    const addons = [];
-    for (const addonName of data["./addons.json"].sort()) {
-        addons.push(data[`./${addonName}/addon.json`]);
+    const addons: Array<Addon> = [];
+    for (const addonName of addonListSchema.parse(data["./addons.json"]).sort()) {
+        addons.push(addonSchema.parse(data[`./${addonName}/addon.json`]));
     }
 
     const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
-    const [selectedAddonData, setSelectedAddonData] = useState<any | null>(null);
+    const [selectedAddonData, setSelectedAddonData] = useState<Addon | null>(null);
     const [selectedAddonVersion, setSelectedAddonVersion] = useState<string | null>(null);
-    const [selectedAddonVersionConfiguration, setSelectedAddonVersionConfiguration] = useState<any | null>(null);    
+    const [selectedAddonVersionConfiguration, setSelectedAddonVersionConfiguration] = useState<AddonVersionConfiguration | null>(null);
 
     useEffect(() => {
         if (selectedAddonName && !selectedAddonData) {
-            const addonData = data[`./${selectedAddonName}/addon.json`];
+            const addonData = addonSchema.parse(data[`./${selectedAddonName}/addon.json`]);
             setSelectedAddonData(addonData);
             if (!selectedAddonVersion) {
                 const firstVersion = addonData.addonVersions[0];
@@ -95,7 +104,7 @@ function App() {
 
     useEffect(() => {
         if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
-            setSelectedAddonVersionConfiguration(data[`./${selectedAddonName}/configurations/${selectedAddonVersion}.json`]);
+            setSelectedAddonVersionConfiguration(addonVersionConfigurationSchema.parse(data[`./${selectedAddonName}/configurations/${selectedAddonVersion}.json`]));
         }
     }, [selectedAddonName, selectedAddonVersion, selectedAddonVersionConfiguration]);
 
@@ -117,7 +126,7 @@ function App() {
             { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} addonName={selectedAddonName} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
 
         </MainLayout>
-            
+
         </div>
     );
 };

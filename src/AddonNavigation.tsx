@@ -5,10 +5,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
+import type { Addon } from './dataSchemas';
 
-const AddonNavigation = ({ addons, onSelectAddon, selectedAddon }: { addons: Array<any> | null, onSelectAddon: Function, selectedAddon: string | null }) => {
+const AddonNavigation = ({ addons, onSelectAddon, selectedAddon }: { addons: Array<Addon> | null, onSelectAddon: Function, selectedAddon: string | null }) => {
 
-  const addonsByOwner: Record<string, any> = {};
+  const addonsByOwner: Record<string, Array<Addon>> = {};
   for (const addon of addons ?? []) {
       const owner: string = addon.owner;
       const group = addonsByOwner[owner] ?? [];
@@ -30,7 +31,7 @@ const AddonNavigation = ({ addons, onSelectAddon, selectedAddon }: { addons: Arr
                 {Object.entries(addonsByOwner).map(([ownerName, group]) => (
                     <div>
                         <ListSubheader key={ownerName}>{ownerName}</ListSubheader>
-                        {(group ?? []).map((addon: any) => (
+                        {(group ?? []).map((addon: Addon) => (
                             <ListItem
                                 key={addon.addonName}
                                 button

@@ -8,12 +8,13 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
+import type { Addon, AddonVersionConfiguration } from './dataSchemas';
 
-const AddonViewer = ({ addonName, data, selectedAddonVersion, selectedAddonVersionConfiguration }: { addonName: string, data: any, selectedAddonVersion: string | null, selectedAddonVersionConfiguration: any }) => {
+const AddonViewer = ({ addonName, data, selectedAddonVersion, selectedAddonVersionConfiguration }: { addonName: string, data: Addon, selectedAddonVersion: string | null, selectedAddonVersionConfiguration: AddonVersionConfiguration }) => {
 
   const [tab, setTab] = React.useState('1');
 
-  const handleChangeTab = (event: any, newValue: any) => {
+  const handleChangeTab = (event: unknown, newValue: string) => {
       setTab(newValue);
   };
 
