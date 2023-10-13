@@ -13,4 +13,4 @@ jobs:
         node-version: 18.x
     - run: npm install -g npm@9
     - run: npm ci
-    - run: npm run lint
+    - run: npm run -- lint --max-warnings 0
