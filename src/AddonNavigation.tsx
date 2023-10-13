@@ -18,7 +18,7 @@ const AddonNavigation = ({ addons, onSelectAddon, selectedAddon }: { addons: Arr
               <ListItemText primary="Home" />
           </ListItem>
           <Divider />
-        {(addons ?? []) .map((addon) => (
+        {(addons ?? []).map((addon) => (
           <ListItem
             key={addon}
             button
