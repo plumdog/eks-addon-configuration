@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const rootSchema = z.record(z.unknown())
+export const rootSchema = z.record(z.unknown());
 
 export type Root = z.infer<typeof rootSchema>;
 
@@ -25,7 +25,7 @@ type Literal = z.infer<typeof literalSchema>;
 type Json = Literal | { [key: string]: Json } | Json[];
 
 export const jsonSchema: z.ZodType<Json> = z.lazy(() =>
-  z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)])
+    z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)])
 );
 
 export const addonVersionConfigurationSchema = jsonSchema;

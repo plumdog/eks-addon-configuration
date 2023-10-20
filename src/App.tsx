@@ -21,54 +21,55 @@ import {
     AddonVersionConfiguration
 } from './dataSchemas';
 
-const data = rootSchema.parse(require("./data.json"));
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const data = rootSchema.parse(require('./data.json'));
 
 const drawerWidth = 240;
 
 const MainLayout = ({ children, sidebar }: {children: Array<React.ReactNode>, sidebar: React.ReactNode}) => {
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+            >
+                <Toolbar>
+                    <Typography variant="h6" noWrap component="div">
             EKS Addon Configuration
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar />
-        <Divider />
-        { sidebar }
-      </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-        <Toolbar />
-        { children }
-      </Box>
-    </Box>
-  );
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                sx={{
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                        boxSizing: 'border-box',
+                    },
+                }}
+                variant="permanent"
+                anchor="left"
+            >
+                <Toolbar />
+                <Divider />
+                { sidebar }
+            </Drawer>
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+            >
+                <Toolbar />
+                { children }
+            </Box>
+        </Box>
+    );
 };
 
 function App() {
     const addons: Array<Addon> = [];
-    for (const addonName of addonListSchema.parse(data["./addons.json"]).sort()) {
+    for (const addonName of addonListSchema.parse(data['./addons.json']).sort()) {
         addons.push(addonSchema.parse(data[`./${addonName}/addon.json`]));
     }
 
@@ -115,20 +116,20 @@ function App() {
                 onSelectAddon={handleAddonSelect}
                 selectedAddon={selectedAddonName}
             />}>
-            { !selectedAddonName && <Homepage /> }
+                { !selectedAddonName && <Homepage /> }
 
-            { selectedAddonName && selectedAddonData && <AddonVersionNavigation
-                addon={selectedAddonData}
-                onSelectAddonVersion={handleAddonVersionSelect}
-                selectedAddonVersion={selectedAddonVersion}
-            /> }
+                { selectedAddonName && selectedAddonData && <AddonVersionNavigation
+                    addon={selectedAddonData}
+                    onSelectAddonVersion={handleAddonVersionSelect}
+                    selectedAddonVersion={selectedAddonVersion}
+                /> }
 
-            { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} addonName={selectedAddonName} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
+                { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} addonName={selectedAddonName} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
 
-        </MainLayout>
+            </MainLayout>
 
         </div>
     );
-};
+}
 
 export default App;

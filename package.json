@@ -30,7 +30,7 @@
     "build-local": "PUBLIC_URL=/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**\""
+    "lint": "eslint \"src/**\" \".*.{js,json}\""
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +51,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.51.0",
+    "eslint-plugin-react": "^7.33.2"
   }
 }

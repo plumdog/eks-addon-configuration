@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import type { Addon, AddonVersionConfiguration } from './dataSchemas';
 
-const AddonViewer = ({ addonName, data, selectedAddonVersion, selectedAddonVersionConfiguration }: { addonName: string, data: Addon, selectedAddonVersion: string | null, selectedAddonVersionConfiguration: AddonVersionConfiguration }) => {
+const AddonViewer = ({ data, selectedAddonVersion, selectedAddonVersionConfiguration }: { data: Addon, selectedAddonVersion: string | null, selectedAddonVersionConfiguration: AddonVersionConfiguration }) => {
 
     return (
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
