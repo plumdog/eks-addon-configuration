@@ -91,7 +91,7 @@ function App() {
         }
     }, [selectedAddonName, selectedAddonData, selectedAddonVersion]);
 
-    const handleAddonSelect = (addonName: string) => {
+    const handleAddonSelect = (addonName: string | null) => {
         setSelectedAddonData(null);
         setSelectedAddonVersion(null);
         setSelectedAddonVersionConfiguration(null);
@@ -124,7 +124,7 @@ function App() {
                     selectedAddonVersion={selectedAddonVersion}
                 /> }
 
-                { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} addonName={selectedAddonName} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
+                { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
 
             </MainLayout>
 
