@@ -1,1 +1,4 @@
 src/data.json
+*.svg
+package-lock.json
+node_modules

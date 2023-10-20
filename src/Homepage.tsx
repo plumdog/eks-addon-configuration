@@ -18,6 +18,6 @@ const Homepage = () => {
             <MuiMarkdown>{homepageMd}</MuiMarkdown>
         </Box>
     );
-}
+};
 
 export default Homepage;
