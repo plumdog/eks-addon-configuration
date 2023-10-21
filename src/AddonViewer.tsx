@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import JsonView from '@uiw/react-json-view';
 import type { Addon, AddonVersionConfiguration } from './dataSchemas';
@@ -37,7 +37,12 @@ const ValidateResultViewer = ({ result }: { result: ValidateResult | null }) => 
     if (result.type === 'invalid') {
         return <Alert severity="error">
             Invalid, see errors below<br />
-            <JsonView value={JSON.parse(result.message)} shortenTextAfterLength={0} />
+            <JsonView
+                value={JSON.parse(result.message)}
+                shortenTextAfterLength={0}
+                displayDataTypes={false}
+                displayObjectSize={false}
+            />
         </Alert>;
     }
     if (result.type === 'valid') {
@@ -51,8 +56,8 @@ const ValidateResultViewer = ({ result }: { result: ValidateResult | null }) => 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getValidator = (schema: AddonVersionConfiguration): { validator: any, strictModeFailureMessage: string | null } => {
     const ajv = new Ajv2019();
-    ajv.addMetaSchema(draft7MetaSchema);
     ajv.addMetaSchema(draft6MetaSchema);
+    ajv.addMetaSchema(draft7MetaSchema, 'https://json-schema.org/draft-07/schema');
     let validator;
     try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,8 +66,8 @@ const getValidator = (schema: AddonVersionConfiguration): { validator: any, stri
         const ajvNonStrict = new Ajv2019({
             strict: false,
         });
-        ajvNonStrict.addMetaSchema(draft7MetaSchema);
         ajvNonStrict.addMetaSchema(draft6MetaSchema);
+        ajvNonStrict.addMetaSchema(draft7MetaSchema, 'https://json-schema.org/draft-07/schema');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         validator = ajvNonStrict.compile(schema as any);
         return {
@@ -133,38 +138,55 @@ const JSONSchemaValidator = ({ schema }: { schema: AddonVersionConfiguration }) 
     };
 
     const pretty = () => {
+        let parsedInput;
         try {
-            const parsedInput = JSON.parse(input);
-            setInput(JSON.stringify(parsedInput, null, 2));
+            parsedInput = JSON.parse(input);
+            
         } catch (error) {
             setResult({
                 type: 'bad_json',
                 message: String(error),
             });
+            return;
+        }
+        setInput(JSON.stringify(parsedInput, null, 2));
+        if (result && result.type === 'bad_json') {
+            setResult(null);
         }
     };
 
     return (
-        <div>
-            <CodeEditor
-                value={input}
-                language="json"
-                aria-label="JSON input"
-                placeholder="JSON input"
-                onChange={(event) => setInput(event.target.value)}
-                style={{
-                    fontSize: 12,
-                    fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                }}
-                padding={15}
-            />
-            <button onClick={validate}>Validate</button>
-            <button onClick={pretty}>Pretty</button>
-            <Stack sx={{ width: '100%' }} spacing={2}>
-                <ValidateResultViewer result={result} />
-                { schemaStrictWarning && <Alert severity="info">Schema not parsable in strict mode: { schemaStrictWarning }</Alert> }
-            </Stack>
-        </div>
+        <Box m={1}>
+            <Box m={2}>
+                <CodeEditor
+                    value={input}
+                    language="json"
+                    aria-label="JSON input"
+                    placeholder="JSON input"
+                    onChange={(event) => setInput(event.target.value)}
+                    style={{
+                        fontSize: 12,
+                        fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                    }}
+                    padding={15}
+                />
+            </Box>
+
+            <Box m={2}>
+
+                <Stack spacing={2} direction="row">
+                    <Button variant="contained" onClick={validate}>Validate</Button>
+                    <Button variant="contained" onClick={pretty}>Pretty</Button>
+                </Stack>
+            </Box>
+
+            <Box m={2}>
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <ValidateResultViewer result={result} />
+                    { schemaStrictWarning && <Alert severity="info">Schema not parsable in strict mode: { schemaStrictWarning }</Alert> }
+                </Stack>
+            </Box>
+        </Box>
     );
 };
 
@@ -175,26 +197,27 @@ const AddonViewer = ({ data, selectedAddonVersion, selectedAddonVersionConfigura
             <Typography variant="h2">
                 { data.addonName }
             </Typography>
-            <List>
-                <ListItem>
-                    Type: { data.type }
-                </ListItem>
-                <ListItem>
-                    Publisher: { data.publisher }
-                </ListItem>
-                <ListItem>
-                    Owner: { data.owner }
-                </ListItem>
-            </List>
+            <Stack direction="row" spacing={1}>
+                <Chip label={'Type: ' + data.type} />
+                <Chip label={'Publisher: ' + data.publisher} />
+                <Chip label={'Owner: ' + data.owner} />
+                { selectedAddonVersion && <Chip label={'Version: ' + selectedAddonVersion} /> }
+            </Stack>
+
+            <br />
+
             <Divider />
 
             { selectedAddonVersion && selectedAddonVersionConfiguration && <div>
-                <p>Version: { selectedAddonVersion }</p>
-
                 <JSONSchemaValidator schema={selectedAddonVersionConfiguration} />
 
-                <Box sx={{ width: '100%', typography: 'body1' }}>
-                    <JsonView value={selectedAddonVersionConfiguration as object} shortenTextAfterLength={0} />
+                <Box m={3}>
+                    <JsonView
+                        value={selectedAddonVersionConfiguration as object}
+                        shortenTextAfterLength={0}
+                        displayDataTypes={false}
+                        displayObjectSize={false}
+                    />
                 </Box>
             </div>
             }
