@@ -36,9 +36,6 @@ jobs:
         git diff --quiet && exit 0 || git commit -m "Update JSONSchema data" && git push
 
     - name: Create Pull Request
-      uses: actions/checkout@v2
-      with:
-        ref: main
       run: |
         hub pull-request -b main -h $GITHUB_REPOSITORY:main -F "Update JSONSchema data" -f
 
