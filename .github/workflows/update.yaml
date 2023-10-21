@@ -1,0 +1,49 @@
+name: Daily JSONSchema Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  update-jsonschema:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        echo $AWS_ACCESS_KEY_ID > aws-credentials
+        echo $AWS_SECRET_ACCESS_KEY >> aws-credentials
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+        aws configure set default.region us-east-1
+
+    - name: Run JSONSchema update script
+      run: |
+        chmod +x ./scripts/get_jsonschema.sh
+        ./scripts/get_jsonschema.sh
+
+    - name: Create and push changes
+      run: |
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git diff --quiet && exit 0 || git commit -m "Update JSONSchema data" && git push
+
+    - name: Create Pull Request
+      uses: actions/checkout@v2
+      with:
+        ref: main
+      run: |
+        hub pull-request -b main -h $GITHUB_REPOSITORY:main -F "Update JSONSchema data" -f
+
+    - name: Auto-merge Pull Request
+      uses: Octokit/request-action@v2.x
+      with:
+        route: POST /repos/${{ github.repository }}/pulls/${{ steps.create-pull-request.outputs.id }}/merge
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
