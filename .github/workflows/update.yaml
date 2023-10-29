@@ -32,8 +32,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
-        add-paths:
-          - ./data/
+        add-paths: |
+          ./data/
         commit-message: git commit -m "Update addon data"
         branch: auto/update-addon-data
         delete-branch: true
