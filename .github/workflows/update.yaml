@@ -28,17 +28,17 @@ jobs:
         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
         aws configure set default.region us-east-1
 
-    # - name: 'Setup jq'
-    #   uses: dcarbone/install-jq-action@v2
-    #   with:
-    #     version: '1.7'
-    #     force: 'true'
+    - name: 'Setup jq'
+      uses: dcarbone/install-jq-action@v2
+      with:
+        version: '1.7'
+        force: 'true'
 
     - name: Run JSONSchema update script
       run: |
         jq --version
         chmod +x ./scripts/get_jsonschema.sh
-        # ./scripts/get_jsonschema.sh
+        ./scripts/get_jsonschema.sh
         date -Isecond > ./data/date.txt
 
     - name: Create Pull Request
