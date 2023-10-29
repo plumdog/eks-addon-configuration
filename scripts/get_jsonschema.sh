@@ -6,47 +6,49 @@ script_dir="$(dirname "$(readlink -f "$0")")"
 project_dir="$(dirname "$script_dir")"
 data_dir="$project_dir/data/"
 
-rm -rf "$data_dir"
-mkdir -p "$data_dir"
+date -Isecond > "$data_dir/date.txt"
 
-addons="$(aws eks describe-addon-versions --region us-east-1 --query addons --output json)"
+# rm -rf "$data_dir"
+# mkdir -p "$data_dir"
 
-aws eks describe-addon-versions --region us-east-1 --query addons --output json | jq 'map(.addonName)' > "$data_dir/addons.json"
+# addons="$(aws eks describe-addon-versions --region us-east-1 --query addons --output json)"
 
-function writeAddonVersionConfiguration() {
-    addonName="$1"
-    addonVersion="$2"
-    configurationsDir="$3"
-    aws eks describe-addon-configuration --region us-east-1 --addon-name "$addonName" --addon-version "$addonVersion" --query configurationSchema --output text | jq . > "$configurationsDir/$addonVersion.json"
-}
+# aws eks describe-addon-versions --region us-east-1 --query addons --output json | jq 'map(.addonName)' > "$data_dir/addons.json"
 
-for addonBase64 in $(echo "$addons" | jq -r '.[] | @base64'); do
-    addon="$(echo "$addonBase64" | base64 --decode | jq .)"
-    addonName="$(echo "$addon" | jq -r '.addonName')"
-    addonDir="$data_dir/$addonName/"
-    mkdir -p "$addonDir"
-    echo "$addon" > "$addonDir/addon.json"
+# function writeAddonVersionConfiguration() {
+#     addonName="$1"
+#     addonVersion="$2"
+#     configurationsDir="$3"
+#     aws eks describe-addon-configuration --region us-east-1 --addon-name "$addonName" --addon-version "$addonVersion" --query configurationSchema --output text | jq . > "$configurationsDir/$addonVersion.json"
+# }
 
-    configurationsDir="$addonDir/configurations"
-    mkdir -p "$configurationsDir"
+# for addonBase64 in $(echo "$addons" | jq -r '.[] | @base64'); do
+#     addon="$(echo "$addonBase64" | base64 --decode | jq .)"
+#     addonName="$(echo "$addon" | jq -r '.addonName')"
+#     addonDir="$data_dir/$addonName/"
+#     mkdir -p "$addonDir"
+#     echo "$addon" > "$addonDir/addon.json"
 
-    for addonVersionBase64 in $(echo "$addon" | jq -r '.addonVersions[] | .addonVersion | @base64'); do
-        addonVersion="$(echo "$addonVersionBase64" | base64 -d)"
-        writeAddonVersionConfiguration "$addonName" "$addonVersion" "$configurationsDir" &
-    done
-done
+#     configurationsDir="$addonDir/configurations"
+#     mkdir -p "$configurationsDir"
 
-while true; do
-    jobs_remaining="$(jobs -r | wc -l)"
-    if [[ $jobs_remaining == 0 ]]; then
-        break
-    fi
+#     for addonVersionBase64 in $(echo "$addon" | jq -r '.addonVersions[] | .addonVersion | @base64'); do
+#         addonVersion="$(echo "$addonVersionBase64" | base64 -d)"
+#         writeAddonVersionConfiguration "$addonName" "$addonVersion" "$configurationsDir" &
+#     done
+# done
 
-    echo "$jobs_remaining jobs remaining"
-    sleep 1
-    wait -n
-done
+# while true; do
+#     jobs_remaining="$(jobs -r | wc -l)"
+#     if [[ $jobs_remaining == 0 ]]; then
+#         break
+#     fi
 
-wait
+#     echo "$jobs_remaining jobs remaining"
+#     sleep 1
+#     wait -n
+# done
 
-(cd "$data_dir" && find . -name '*.json' | while read filepath; do cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
+# wait
+
+# (cd "$data_dir" && find . -name '*.json' | while read filepath; do cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
