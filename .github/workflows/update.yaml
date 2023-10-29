@@ -32,6 +32,7 @@ jobs:
       run: |
         chmod +x ./scripts/get_jsonschema.sh
         ./scripts/get_jsonschema.sh
+        date -Isecond > ./data/date.txt
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
