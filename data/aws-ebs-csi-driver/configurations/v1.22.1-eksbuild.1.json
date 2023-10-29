@@ -1,0 +1,446 @@
+{
+  "$defs": {
+    "extraVolumeTags": {
+      "patternProperties": {
+        "^.*$": {
+          "maxLength": 256,
+          "minLength": 0,
+          "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters of the AWS EBS CSI Driver",
+  "properties": {
+    "controller": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalArgs": {
+          "default": [],
+          "description": "Additional arguments passed to the controller pod",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "affinity": {
+          "default": {
+            "affinity": {
+              "nodeAffinity": {
+                "preferredDuringSchedulingIgnoredDuringExecution": [
+                  {
+                    "preference": {
+                      "matchExpressions": [
+                        {
+                          "key": "eks.amazonaws.com/compute-type",
+                          "operator": "NotIn",
+                          "values": [
+                            "fargate"
+                          ]
+                        }
+                      ]
+                    },
+                    "weight": 1
+                  }
+                ]
+              },
+              "podAntiAffinity": {
+                "preferredDuringSchedulingIgnoredDuringExecution": [
+                  {
+                    "podAffinityTerm": {
+                      "labelSelector": {
+                        "matchExpressions": [
+                          {
+                            "key": "app",
+                            "operator": "In",
+                            "values": [
+                              "ebs-csi-controller"
+                            ]
+                          }
+                        ]
+                      },
+                      "topologyKey": "kubernetes.io/hostname"
+                    },
+                    "weight": 100
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Affinity of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "extraVolumeTags": {
+          "$ref": "#/$defs/extraVolumeTags",
+          "default": {},
+          "description": "Additional tags to be added to all EBS volumes"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format for the driver container on the controller pod",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "type": "string"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "Node selector of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": null,
+          "description": "Annotations applied to the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "40Mi"
+            }
+          },
+          "description": "Resource requests/limits of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "sdkDebugLog": {
+          "default": false,
+          "description": "Enables debug logging of the AWS SDK via --aws-sdk-debug-log=true",
+          "type": "boolean"
+        },
+        "serviceAccount": {
+          "additionalProperties": false,
+          "properties": {
+            "annotations": {
+              "default": null,
+              "description": "Additional annotations added to the ebs-csi-controller-sa service account",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "CriticalAddonsOnly",
+              "operator": "Exists"
+            },
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the controller pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "volumeModificationFeature": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": false,
+              "description": "Enable modification of volume type, iops, etc via volume-modifier-for-k8s sidecar",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "customLabels": {
+      "default": null,
+      "description": "Custom labels added to Kubernetes objects",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalArgs": {
+          "default": [],
+          "description": "Additional arguments passed to the node pod",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "affinity": {
+          "default": {
+            "nodeAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": {
+                "nodeSelectorTerms": [
+                  {
+                    "matchExpressions": [
+                      {
+                        "key": "eks.amazonaws.com/compute-type",
+                        "operator": "NotIn",
+                        "values": [
+                          "fargate"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Affinity of the node pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "kubeletPath": {
+          "default": "/var/lib/kubelet",
+          "description": "Kubelet path of the node",
+          "type": "string"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format for the driver container on the node pod",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "type": "string"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "Node selector of the node pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": null,
+          "description": "Annotations applied to the node pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "40Mi"
+            }
+          },
+          "description": "Resource requests/limits of the node pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "serviceAccount": {
+          "additionalProperties": false,
+          "properties": {
+            "annotations": {
+              "default": null,
+              "description": "Additional annotations added to the ebs-csi-node-sa service account",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "tolerateAllTaints": {
+          "default": true,
+          "description": "Node pods will tolerate all taints",
+          "type": "boolean"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the node pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "volumeAttachLimit": {
+          "default": null,
+          "description": "Overrides the maximum number of volumes that can be attached per node (for all nodes)",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "proxy": {
+      "additionalProperties": false,
+      "properties": {
+        "http_proxy": {
+          "default": "",
+          "description": "Value of HTTP_PROXY and HTTPS_PROXY environment variables",
+          "type": "string"
+        },
+        "no_proxy": {
+          "default": "",
+          "description": "Value of NO_PROXY environment variable",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sidecars": {
+      "additionalProperties": false,
+      "properties": {
+        "attacher": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the attacher container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "livenessProbe": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the livenessprobe container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "nodeDriverRegistrar": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the node-driver-registrar container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "provisioner": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the provisioner container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "resizer": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the resizer container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "snapshotter": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the snapshotter container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "forceEnable": {
+              "default": true,
+              "description": "Enables/disables the external-snapshotter sidecar",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "volumemodifier": {
+          "additionalProperties": false,
+          "properties": {
+            "additionalArgs": {
+              "default": [],
+              "description": "Additional arguments passed to the volumemodifier container",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
