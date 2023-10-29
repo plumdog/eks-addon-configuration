@@ -29,19 +29,18 @@ jobs:
         chmod +x ./scripts/get_jsonschema.sh
         ./scripts/get_jsonschema.sh
 
-    - name: Create and push changes
-      run: |
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git add .
-        git diff --quiet && exit 0 || git commit -m "Update JSONSchema data" && git push
-
     - name: Create Pull Request
-      run: |
-        hub pull-request -b main -h $GITHUB_REPOSITORY:main -F "Update JSONSchema data" -f
-
-    - name: Auto-merge Pull Request
-      uses: Octokit/request-action@v2.x
+      uses: peter-evans/create-pull-request@v5
       with:
-        route: POST /repos/${{ github.repository }}/pulls/${{ steps.create-pull-request.outputs.id }}/merge
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        add-paths:
+          - ./data/
+        commit-message: git commit -m "Update addon data"
+        branch: auto/update-addon-data
+        delete-branch: true
+        branch-suffix: timestamp
+        title: Update addon data
+
+    - name: Enable Pull Request Automerge
+      run: gh pr merge --merge --auto "1"
+      env:
+        GH_TOKEN: ${{ secrets.PAT }}
