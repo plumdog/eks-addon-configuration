@@ -36,6 +36,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       id: create-pull-request
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
       with:
         add-paths: |
           ./data/
