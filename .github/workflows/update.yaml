@@ -29,7 +29,7 @@ jobs:
         aws configure set default.region us-east-1
 
     - name: 'Setup jq'
-      uses: dcarbone/install-jq-action@v2
+      uses: dcarbone/install-jq-action@v2.0.2
       with:
         version: '1.7'
         force: 'true'
