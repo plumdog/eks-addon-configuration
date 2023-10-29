@@ -31,3 +31,22 @@ export const jsonSchema: z.ZodType<Json> = z.lazy(() =>
 export const addonVersionConfigurationSchema = jsonSchema;
 
 export type AddonVersionConfiguration = z.infer<typeof addonVersionConfigurationSchema>;
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const data = rootSchema.parse(require('./data.json'));
+
+export const getAddons = (): Array<Addon> => {
+    const addons: Array<Addon> = [];
+    for (const addonName of addonListSchema.parse(data['./addons.json']).sort()) {
+        addons.push(addonSchema.parse(data[`./${addonName}/addon.json`]));
+    }
+    return addons;
+};
+
+export const getAddon = (addonName: string): Addon => {
+    return addonSchema.parse(data[`./${addonName}/addon.json`]);
+};
+
+export const getAddonVersionConfiguration = (addonName: string, addonVersion: string): AddonVersionConfiguration => {
+    return addonVersionConfigurationSchema.parse(data[`./${addonName}/configurations/${addonVersion}.json`]);
+};

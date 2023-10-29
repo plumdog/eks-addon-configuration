@@ -13,16 +13,12 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import {
-    rootSchema,
-    addonListSchema,
-    addonSchema,
-    addonVersionConfigurationSchema,
     Addon,
-    AddonVersionConfiguration
+    AddonVersionConfiguration,
+    getAddons,
+    getAddon,
+    getAddonVersionConfiguration,
 } from './dataSchemas';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const data = rootSchema.parse(require('./data.json'));
 
 const drawerWidth = 240;
 
@@ -68,10 +64,7 @@ const MainLayout = ({ children, sidebar }: {children: Array<React.ReactNode>, si
 };
 
 function App() {
-    const addons: Array<Addon> = [];
-    for (const addonName of addonListSchema.parse(data['./addons.json']).sort()) {
-        addons.push(addonSchema.parse(data[`./${addonName}/addon.json`]));
-    }
+    const addons = getAddons();
 
     const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
     const [selectedAddonData, setSelectedAddonData] = useState<Addon | null>(null);
@@ -80,7 +73,7 @@ function App() {
 
     useEffect(() => {
         if (selectedAddonName && !selectedAddonData) {
-            const addonData = addonSchema.parse(data[`./${selectedAddonName}/addon.json`]);
+            const addonData = getAddon(selectedAddonName);
             setSelectedAddonData(addonData);
             if (!selectedAddonVersion) {
                 const firstVersion = addonData.addonVersions[0];
@@ -105,7 +98,7 @@ function App() {
 
     useEffect(() => {
         if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
-            setSelectedAddonVersionConfiguration(addonVersionConfigurationSchema.parse(data[`./${selectedAddonName}/configurations/${selectedAddonVersion}.json`]));
+            setSelectedAddonVersionConfiguration(getAddonVersionConfiguration(selectedAddonName, selectedAddonVersion));
         }
     }, [selectedAddonName, selectedAddonVersion, selectedAddonVersionConfiguration]);
 
