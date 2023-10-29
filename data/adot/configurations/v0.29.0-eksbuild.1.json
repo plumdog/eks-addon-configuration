@@ -1,0 +1,69 @@
+{
+  "$id": "http://example.com/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "examples": [
+    {
+      "manager": {
+        "resources": {
+          "limits": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "64Mi"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "manager": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "additionalProperties": false,
+          "properties": {
+            "limits": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The limits Schema",
+              "type": "object"
+            },
+            "requests": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The requests Schema",
+              "type": "object"
+            }
+          },
+          "title": "The resources Schema",
+          "type": "object"
+        }
+      },
+      "title": "The manager Schema",
+      "type": "object"
+    }
+  },
+  "title": "Root Schema",
+  "type": "object"
+}

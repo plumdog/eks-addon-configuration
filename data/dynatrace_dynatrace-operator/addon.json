@@ -1,0 +1,50 @@
+{
+  "addonName": "dynatrace_dynatrace-operator",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.8.2-eksbuild.0",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.21",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    }
+  ],
+  "publisher": "dynatrace",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "6f9d8708-95c6-46cf-94db-6717b8dbda17",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=6f9d8708-95c6-46cf-94db-6717b8dbda17"
+  }
+}
