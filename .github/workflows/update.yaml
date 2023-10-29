@@ -38,7 +38,7 @@ jobs:
       with:
         add-paths: |
           ./data/
-        commit-message: git commit -m "Update addon data"
+        commit-message: Update addon data
         branch: auto/update-addon-data
         delete-branch: true
         branch-suffix: timestamp
