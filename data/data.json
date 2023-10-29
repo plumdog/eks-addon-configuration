@@ -1,1 +1,91 @@
-null
+{
+  "./haproxy-technologies_kubernetes-ingress-ee/configurations/v1.30.0-eksbuild.0.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for haproxy-technologies_kubernetes-ingress-ee",
+    "type": "object"
+  },
+  "./haproxy-technologies_kubernetes-ingress-ee/addon.json": {
+    "addonName": "haproxy-technologies_kubernetes-ingress-ee",
+    "type": "ingress-controller",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.30.0-eksbuild.0",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      }
+    ],
+    "publisher": "HAProxy Technologies",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "b4274687-d917-418e-b943-0f6efc8c1c9b",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=b4274687-d917-418e-b943-0f6efc8c1c9b"
+    }
+  },
+  "./addons.json": [
+    "haproxy-technologies_kubernetes-ingress-ee",
+    "solo-io_istio-distro",
+    "dynatrace_dynatrace-operator",
+    "kubecost_kubecost",
+    "kasten_k10",
+    "aws-guardduty-agent",
+    "tetrate-io_istio-distro",
+    "vpc-cni",
+    "coredns",
+    "aws-ebs-csi-driver",
+    "teleport_teleport",
+    "adot",
+    "factorhouse_kpow",
+    "datree_engine-pro",
+    "aws-efs-csi-driver",
+    "upbound_universal-crossplane",
+    "kube-proxy"
+  ]
+}
