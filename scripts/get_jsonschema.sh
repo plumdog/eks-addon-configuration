@@ -33,9 +33,7 @@ for addonBase64 in $(echo "$addons" | jq -r '.[] | @base64'); do
     for addonVersionBase64 in $(echo "$addon" | jq -r '.addonVersions[] | .addonVersion | @base64'); do
         addonVersion="$(echo "$addonVersionBase64" | base64 -d)"
         writeAddonVersionConfiguration "$addonName" "$addonVersion" "$configurationsDir" &
-        break
     done
-    break
 done
 
 while true; do
