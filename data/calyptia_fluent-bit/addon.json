@@ -1,0 +1,64 @@
+{
+  "addonName": "calyptia_fluent-bit",
+  "type": "observability",
+  "addonVersions": [
+    {
+      "addonVersion": "v22.10.5-eksbuild.0",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    }
+  ],
+  "publisher": "Calyptia Inc",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "3272d83c-c8c9-4fab-b514-c275791b5f6f",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=3272d83c-c8c9-4fab-b514-c275791b5f6f"
+  }
+}
