@@ -7,6 +7,39 @@ import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
 import type { Addon } from './dataSchemas';
 
+interface AddonOwnerGroup {
+    owner: string,
+    addons: Array<Addon>,
+}
+
+const groupAddonsByOwner = (addons: Array<Addon>): Array<AddonOwnerGroup> => {
+
+    const grouped: Record<string, Array<Addon>> = {};
+    for (const addon of addons) {
+        const owner: string = addon.owner;
+        const group = grouped[owner] ?? [];
+        group.push(addon);
+        grouped[owner] = group;
+    }
+
+    const addonsByOwner: Array<AddonOwnerGroup> = [];
+    for (const [groupName, addons] of Object.entries(grouped)) {
+        addonsByOwner.push({
+            owner: groupName,
+            addons,
+        });
+    }
+
+    addonsByOwner.sort((groupA: AddonOwnerGroup, groupB: AddonOwnerGroup): number => {
+        if (groupA.owner === groupB.owner) {
+            return 0;
+        }
+        return (groupA.owner < groupB.owner) ? -1 : 1;
+    });
+
+    return addonsByOwner;
+};
+
 const AddonNavigation = ({
     addons,
     onSelectAddon,
@@ -16,13 +49,7 @@ const AddonNavigation = ({
     onSelectAddon: (addonName: string | null) => void,
     selectedAddon: string | null,
 }) => {
-    const addonsByOwner: Record<string, Array<Addon>> = {};
-    for (const addon of addons ?? []) {
-        const owner: string = addon.owner;
-        const group = addonsByOwner[owner] ?? [];
-        group.push(addon);
-        addonsByOwner[owner] = group;
-    }
+    const addonsByOwner = groupAddonsByOwner(addons ?? []);
 
     return (
         <Drawer variant="permanent" anchor="left" className="sidebar">
@@ -35,10 +62,10 @@ const AddonNavigation = ({
                     <ListItemText primary="Home" />
                 </ListItem>
                 <Divider />
-                {Object.entries(addonsByOwner).map(([ownerName, group]) => (
-                    <div key={ownerName}>
-                        <ListSubheader key={ownerName}>{ownerName}</ListSubheader>
-                        {(group ?? []).map((addon: Addon) => (
+                {addonsByOwner.map((addonOwnerGroup) => (
+                    <div key={addonOwnerGroup.owner}>
+                        <ListSubheader key={addonOwnerGroup.owner}>{addonOwnerGroup.owner}</ListSubheader>
+                        {(addonOwnerGroup.addons).map((addon: Addon) => (
                             <ListItem
                                 key={addon.addonName}
                                 button
