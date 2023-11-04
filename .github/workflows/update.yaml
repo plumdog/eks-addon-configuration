@@ -22,8 +22,6 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        echo $AWS_ACCESS_KEY_ID > aws-credentials
-        echo $AWS_SECRET_ACCESS_KEY >> aws-credentials
         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
         aws configure set default.region us-east-1
@@ -39,6 +37,10 @@ jobs:
         jq --version
         chmod +x ./scripts/get_jsonschema.sh
         ./scripts/get_jsonschema.sh
+
+    - name: Remove AWS configuration
+      run: |
+        rm -rf ~/.aws/
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
