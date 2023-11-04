@@ -51,4 +51,4 @@ wait
 
 sleep 1
 
-(cd "$data_dir" && find . -name '*.json' | sort | while read filepath; do >&2 echo "filepath: $filepath"; cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
+(cd "$data_dir" && find . -name '*.json' | LC_COLLATE=C LC_ALL=C sort | while read filepath; do >&2 echo "filepath: $filepath"; cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
