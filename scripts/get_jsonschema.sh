@@ -11,7 +11,7 @@ mkdir -p "$data_dir"
 
 addons="$(aws eks describe-addon-versions --region us-east-1 --query addons --output json)"
 
-aws eks describe-addon-versions --region us-east-1 --query addons --output json | jq 'map(.addonName)' > "$data_dir/addons.json"
+aws eks describe-addon-versions --region us-east-1 --query addons --output json | jq 'map(.addonName) | sort' > "$data_dir/addons.json"
 
 function writeAddonVersionConfiguration() {
     addonName="$1"
@@ -51,4 +51,4 @@ wait
 
 sleep 1
 
-(cd "$data_dir" && find . -name '*.json' | while read filepath; do >&2 echo "filepath: $filepath"; cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
+(cd "$data_dir" && find . -name '*.json' | sort | while read filepath; do >&2 echo "filepath: $filepath"; cat "$filepath" | jq --arg filepath "$filepath" '{$filepath: .}'; done | jq -s 'add' > data.json)
