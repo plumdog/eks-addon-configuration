@@ -1,6 +1,7 @@
 [
   "accuknox_kubearmor",
   "adot",
+  "amazon-cloudwatch-observability",
   "aws-ebs-csi-driver",
   "aws-efs-csi-driver",
   "aws-guardduty-agent",
