@@ -3,6 +3,7 @@ import AddonViewer from './AddonViewer';
 import AddonNavigation from './AddonNavigation';
 import AddonVersionNavigation from './AddonVersionNavigation';
 import Homepage from './Homepage';
+import useUrlState from '@ahooksjs/use-url-state';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -78,41 +79,39 @@ const theme = createTheme({
 function App() {
     const addons = getAddons();
 
-    const [selectedAddonName, setSelectedAddonName] = useState<string | null>(null);
+    const [searchParams, setSearchParams] = useUrlState<{addon?: string, version?: string}>({});
     const [selectedAddonData, setSelectedAddonData] = useState<Addon | null>(null);
-    const [selectedAddonVersion, setSelectedAddonVersion] = useState<string | null>(null);
     const [selectedAddonVersionConfiguration, setSelectedAddonVersionConfiguration] = useState<AddonVersionConfiguration | null>(null);
 
     useEffect(() => {
-        if (selectedAddonName && !selectedAddonData) {
-            const addonData = getAddon(selectedAddonName);
+        if (searchParams.addon && !selectedAddonData) {
+            const addonData = getAddon(searchParams.addon);
             setSelectedAddonData(addonData);
-            if (!selectedAddonVersion) {
+            if (!searchParams.version) {
                 const firstVersion = addonData.addonVersions[0];
                 if (firstVersion) {
-                    setSelectedAddonVersion(firstVersion.addonVersion);
+                    setSearchParams({version: firstVersion.addonVersion});
                 }
             }
         }
-    }, [selectedAddonName, selectedAddonData, selectedAddonVersion]);
+    }, [searchParams, selectedAddonData]);
 
     const handleAddonSelect = (addonName: string | null) => {
         setSelectedAddonData(null);
-        setSelectedAddonVersion(null);
+        setSearchParams({addon: addonName ?? undefined, version: undefined});
         setSelectedAddonVersionConfiguration(null);
-        setSelectedAddonName(addonName);
     };
 
     const handleAddonVersionSelect = (addonVersion: string) => {
-        setSelectedAddonVersion(addonVersion);
+        setSearchParams({version: addonVersion});
         setSelectedAddonVersionConfiguration(null);
     };
 
     useEffect(() => {
-        if (selectedAddonName && selectedAddonVersion && !selectedAddonVersionConfiguration) {
-            setSelectedAddonVersionConfiguration(getAddonVersionConfiguration(selectedAddonName, selectedAddonVersion));
+        if (searchParams.addon && searchParams.version && !selectedAddonVersionConfiguration) {
+            setSelectedAddonVersionConfiguration(getAddonVersionConfiguration(searchParams.addon, searchParams.version));
         }
-    }, [selectedAddonName, selectedAddonVersion, selectedAddonVersionConfiguration]);
+    }, [searchParams, selectedAddonVersionConfiguration]);
 
     return (
         <div className="App">
@@ -121,19 +120,19 @@ function App() {
                     <AddonNavigation
                         addons={addons}
                         onSelectAddon={handleAddonSelect}
-                        selectedAddon={selectedAddonName}
+                        selectedAddon={searchParams.addon}
                     />
                 }>
-                    { !selectedAddonName && <Homepage /> }
+                    { !searchParams.addon && <Homepage /> }
 
-                    { selectedAddonName && selectedAddonData &&
+                    { searchParams.addon && selectedAddonData &&
                       <AddonVersionNavigation
                           addon={selectedAddonData}
                           onSelectAddonVersion={handleAddonVersionSelect}
-                          selectedAddonVersion={selectedAddonVersion}
+                          selectedAddonVersion={searchParams.version}
                       /> }
 
-                    { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
+                    { searchParams.addon && selectedAddonData && <AddonViewer data={selectedAddonData} selectedAddonVersion={searchParams.version} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
 
                 </MainLayout>
             </ThemeProvider>
