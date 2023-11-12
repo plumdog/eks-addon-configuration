@@ -4,6 +4,7 @@ import AddonNavigation from './AddonNavigation';
 import AddonVersionNavigation from './AddonVersionNavigation';
 import Homepage from './Homepage';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
@@ -63,6 +64,17 @@ const MainLayout = ({ children, sidebar }: {children: Array<React.ReactNode>, si
     );
 };
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#757ce8',
+            main: '#3f50b5',
+            dark: '#002884',
+            contrastText: '#fff',
+        },
+    },
+});
+
 function App() {
     const addons = getAddons();
 
@@ -104,22 +116,27 @@ function App() {
 
     return (
         <div className="App">
-            <MainLayout sidebar={<AddonNavigation
-                addons={addons}
-                onSelectAddon={handleAddonSelect}
-                selectedAddon={selectedAddonName}
-            />}>
-                { !selectedAddonName && <Homepage /> }
+            <ThemeProvider theme={theme}>
+                <MainLayout sidebar={
+                    <AddonNavigation
+                        addons={addons}
+                        onSelectAddon={handleAddonSelect}
+                        selectedAddon={selectedAddonName}
+                    />
+                }>
+                    { !selectedAddonName && <Homepage /> }
 
-                { selectedAddonName && selectedAddonData && <AddonVersionNavigation
-                    addon={selectedAddonData}
-                    onSelectAddonVersion={handleAddonVersionSelect}
-                    selectedAddonVersion={selectedAddonVersion}
-                /> }
+                    { selectedAddonName && selectedAddonData &&
+                      <AddonVersionNavigation
+                          addon={selectedAddonData}
+                          onSelectAddonVersion={handleAddonVersionSelect}
+                          selectedAddonVersion={selectedAddonVersion}
+                      /> }
 
-                { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
+                    { selectedAddonName && selectedAddonData && <AddonViewer data={selectedAddonData} selectedAddonVersion={selectedAddonVersion} selectedAddonVersionConfiguration={selectedAddonVersionConfiguration} /> }
 
-            </MainLayout>
+                </MainLayout>
+            </ThemeProvider>
 
         </div>
     );
