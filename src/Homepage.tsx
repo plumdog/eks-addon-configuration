@@ -21,7 +21,26 @@ Documented here are the configuration options that can be passed to each. Many h
 
 <br />
 
----
+### How to use this site
+
+- Review the list of available EKS Addons in the left hand menu, and select the addon you are interested in
+- Select the version of the addon you are interested in, probably the latest version unless you already have a version installed
+- Review the JSON Schema for the configuration options
+- Enter some configuration in the text area
+- Click the "Validate" button to validate your configuration against the JSON schema
+    - If it is not valid, you will be shown the errors
+- Click the "Pretty" button to format your configuration
+    - This is useful if you have pasted in some configuration that is not formatted nicely
+
+<br />
+
+### Notes
+
+- All of the data on this site is retrieved from the AWS API.
+- Any issues with the data on this site should be raised with the publisher of the EKS Addon.
+    - Unless the data shown on this site does not match with the data returned from the AWS API in region us-east-1.
+- You can review any of this configuration yourself using the AWS CLI: <code>aws eks describe-addon-configuration ...</code>
+    - This is exactly how the information is sourced for this site, see [\`get_jsonschema.sh\`](https://github.com/plumdog/eks-addon-configuration/blob/main/scripts/get_jsonschema.sh).
 
 <br />
 
