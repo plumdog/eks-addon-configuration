@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://www.plumdog.co.uk/eks-addon-configuration/",
   "dependencies": {
+    "@ahooksjs/use-url-state": "^3.5.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.9",
@@ -23,6 +24,7 @@
     "mui-markdown": "^1.1.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
