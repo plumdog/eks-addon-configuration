@@ -1,0 +1,64 @@
+{
+  "addonName": "datadog_operator",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.1.5-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "Datadog",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "6e852b2a-ecbb-431c-9b63-7de0288f4d00",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=6e852b2a-ecbb-431c-9b63-7de0288f4d00"
+  }
+}
