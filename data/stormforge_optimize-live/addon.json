@@ -1,0 +1,56 @@
+{
+  "addonName": "stormforge_optimize-live",
+  "type": "cost-management",
+  "addonVersions": [
+    {
+      "addonVersion": "v2.8.0-eksbuild.1",
+      "architecture": [
+        "amd64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "StormForge",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "194587ab-711e-4eab-9a45-97b0ceaa62e4",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=194587ab-711e-4eab-9a45-97b0ceaa62e4"
+  }
+}

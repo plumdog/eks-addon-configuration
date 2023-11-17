@@ -71,6 +71,7 @@
     "aws-guardduty-agent",
     "calyptia_fluent-bit",
     "coredns",
+    "datadog_operator",
     "datree_engine-pro",
     "dynatrace_dynatrace-operator",
     "factorhouse_kpow",
@@ -78,7 +79,9 @@
     "kasten_k10",
     "kube-proxy",
     "kubecost_kubecost",
+    "new-relic_kubernetes-operator",
     "solo-io_istio-distro",
+    "stormforge_optimize-live",
     "teleport_teleport",
     "tetrate-io_istio-distro",
     "upbound_universal-crossplane",
@@ -15888,7 +15891,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.7.0-eksbuild.1",
+        "addonVersion": "v1.7.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -15935,6 +15938,58 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.7.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -16401,6 +16456,104 @@
     "type": "object"
   },
   "./aws-efs-csi-driver/configurations/v1.7.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the aws-efs-csi-driver",
+    "properties": {
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's controller service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {},
+            "description": "The podAnnotations Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "deleteAccessPointRootDir": {
+        "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+        "type": "boolean"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's node service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {
+              "example_node_annotation": "annotation"
+            },
+            "description": "The podAnnotations Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "replicaCount": {
+          "description": "The number of replicas for the CSI controller service Deployment",
+          "type": "integer"
+        },
+        "type": "object"
+      },
+      "useFIPS": {
+        "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-efs-csi-driver/configurations/v1.7.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Configurable parameters for the aws-efs-csi-driver",
@@ -20133,6 +20286,193 @@
         "type": "object"
       }
     }
+  },
+  "./datadog_operator/addon.json": {
+    "addonName": "datadog_operator",
+    "type": "monitoring",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.1.5-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Datadog",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "6e852b2a-ecbb-431c-9b63-7de0288f4d00",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=6e852b2a-ecbb-431c-9b63-7de0288f4d00"
+    }
+  },
+  "./datadog_operator/configurations/v0.1.5-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+      "datadog-operator": {
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "collectOperatorMetrics": {
+            "type": "boolean"
+          },
+          "containerSecurityContext": {
+            "type": "object"
+          },
+          "dd_url": {
+            "type": "null"
+          },
+          "env": {
+            "items": {},
+            "type": "array"
+          },
+          "fullnameOverride": {
+            "type": "string"
+          },
+          "image": {
+            "properties": {
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "installCRDs": {
+            "type": "boolean"
+          },
+          "logLevel": {
+            "type": "string"
+          },
+          "maximumGoroutines": {
+            "type": "integer"
+          },
+          "metricsPort": {
+            "type": "integer"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "rbac": {
+            "properties": {
+              "create": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "create"
+            ],
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "type": "object"
+          },
+          "secretBackend": {
+            "properties": {
+              "arguments": {
+                "type": "string"
+              },
+              "command": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "command",
+              "arguments"
+            ],
+            "type": "object"
+          },
+          "serviceAccount": {
+            "properties": {
+              "annotations": {
+                "type": "object"
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "create",
+              "annotations"
+            ],
+            "type": "object"
+          },
+          "site": {
+            "type": "null"
+          },
+          "tolerations": {
+            "items": {},
+            "type": "array"
+          },
+          "watchNamespaces": {
+            "items": {},
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
   },
   "./datree_engine-pro/addon.json": {
     "addonName": "datree_engine-pro",
@@ -25436,6 +25776,69 @@
     "description": "No configuration support for kubecost_kubecost",
     "type": "object"
   },
+  "./new-relic_kubernetes-operator/addon.json": {
+    "addonName": "new-relic_kubernetes-operator",
+    "type": "observability",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.1.8-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      }
+    ],
+    "publisher": "New Relic",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "c43a5e64-6708-42f2-85f7-29d2e350767e",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=c43a5e64-6708-42f2-85f7-29d2e350767e"
+    }
+  },
+  "./new-relic_kubernetes-operator/configurations/v0.1.8-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for new-relic_kubernetes-operator",
+    "type": "object"
+  },
   "./solo-io_istio-distro/addon.json": {
     "addonName": "solo-io_istio-distro",
     "type": "service-mesh",
@@ -25491,6 +25894,279 @@
     "additionalProperties": false,
     "description": "No configuration support for solo-io_solo-io-istio-distro",
     "type": "object"
+  },
+  "./stormforge_optimize-live/addon.json": {
+    "addonName": "stormforge_optimize-live",
+    "type": "cost-management",
+    "addonVersions": [
+      {
+        "addonVersion": "v2.8.0-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "StormForge",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "194587ab-711e-4eab-9a45-97b0ceaa62e4",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=194587ab-711e-4eab-9a45-97b0ceaa62e4"
+    }
+  },
+  "./stormforge_optimize-live/configurations/v2.8.0-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "additionalProperties": true,
+    "properties": {
+      "authorization": {
+        "additionalProperties": false,
+        "properties": {
+          "clientID": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          },
+          "clientSecret": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          },
+          "issuer": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "clusterDefaultConfig": {
+        "patternProperties": {
+          "^(cpu|memory)OptimizationGoal$": {
+            "enum": [
+              "balanced",
+              "savings",
+              "reliability"
+            ]
+          },
+          "^containers": {
+            "pattern": "^([-.A-Za-z0-9]*[,=]?)+$"
+          }
+        },
+        "properties": {
+          "autoDeploy": {
+            "enum": [
+              "true",
+              true,
+              "false",
+              false
+            ],
+            "type": [
+              "string",
+              "boolean"
+            ]
+          },
+          "schedule": {
+            "pattern": "(^@[a-z]+$)|(^P.*$)|(^([0-9H*/,]+ ){4,6}(,?(([0-7H*/]+)|MON|TUE|WED|THU|FRI|SAT|SUN))+$)",
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "enum": [
+            "schedule",
+            "autoDeploy",
+            "cpuOptimizationGoal",
+            "memoryOptimizationGoal",
+            "containersCpuOptimizationPolicy",
+            "containersCpuRequestsMin",
+            "containersCpuRequestsMax",
+            "containersCpuLimitsMin",
+            "containersCpuLimitsMax",
+            "containersCpuLimitsLimitRequestRatio",
+            "containersMemoryOptimizationPolicy",
+            "containersMemoryRequestsMin",
+            "containersMemoryRequestsMax",
+            "containersMemoryLimitsMin",
+            "containersMemoryLimitsMax",
+            "containersMemoryLimitsLimitRequestRatio"
+          ]
+        },
+        "type": "object"
+      },
+      "extraEnvVars": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "type": "array",
+        "x-kubernetes-patch-merge-key": "name",
+        "x-kubernetes-patch-strategy": "merge"
+      },
+      "imagePullSecrets": {
+        "description": "Image Pull Secrets required for pulling stormforge images",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "manageAuthSecret": {
+        "description": "Whether or not to create and manage the authorization secret",
+        "type": "boolean"
+      },
+      "noProxy": {
+        "description": "Configuration for NO_PROXY environment variable",
+        "type": "string"
+      },
+      "prom": {
+        "additionalProperties": false,
+        "properties": {
+          "debug": {
+            "type": "boolean"
+          },
+          "extraCAdvisorMetrics": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "honorTimestamps": {
+            "type": "boolean"
+          },
+          "image": {
+            "type": "object"
+          },
+          "proxy": {
+            "type": "object"
+          },
+          "remoteTimeout": {
+            "type": "string"
+          },
+          "remoteWriteQueueConfig": {
+            "type": "object"
+          },
+          "remoteWriteUrl": {
+            "type": "string"
+          },
+          "resources": {
+            "type": "object"
+          },
+          "retentionMaxTime": {
+            "type": "string"
+          },
+          "retentionMinTime": {
+            "type": "string"
+          },
+          "scrapeInterval": {
+            "type": "string"
+          },
+          "scrapeTimeout": {
+            "type": "string"
+          },
+          "tokenUrl": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "proxyUrl": {
+        "description": "Configuration for HTTPS_PROXY environment variable",
+        "type": "string"
+      },
+      "standbyMode": {
+        "type": "boolean"
+      },
+      "workload": {
+        "properties": {
+          "allowNamespaces": {
+            "description": "A list of namespaces (regex) to include workloads and metrics from",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "autoDiscovery": {
+            "description": "Automatically discover workloads that can be optimized. It works in conjuction with WorkloadOptimizer CRD",
+            "type": "boolean"
+          },
+          "collectLabels": {
+            "description": "Collect labels of the cluster's workloads.",
+            "type": "boolean"
+          },
+          "denyNamespaces": {
+            "description": "A list of namespaces (regex) to ignore workloads and metrics from",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "inactiveWorkloadsGC": {
+            "description": "Garbage collection of inactive workloads on StormForge API backend.",
+            "type": "boolean"
+          },
+          "workloadSyncInterval": {
+            "description": "Interval the agent will update probeTime for each existent workload.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "standbyMode",
+      "authorization"
+    ]
   },
   "./teleport_teleport/addon.json": {
     "addonName": "teleport_teleport",

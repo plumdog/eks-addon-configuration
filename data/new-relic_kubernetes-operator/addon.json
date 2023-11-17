@@ -1,0 +1,57 @@
+{
+  "addonName": "new-relic_kubernetes-operator",
+  "type": "observability",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.1.8-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    }
+  ],
+  "publisher": "New Relic",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "c43a5e64-6708-42f2-85f7-29d2e350767e",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=c43a5e64-6708-42f2-85f7-29d2e350767e"
+  }
+}
