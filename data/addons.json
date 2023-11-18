@@ -16,6 +16,7 @@
   "kube-proxy",
   "kubecost_kubecost",
   "new-relic_kubernetes-operator",
+  "snapshot-controller",
   "solo-io_istio-distro",
   "stormforge_optimize-live",
   "teleport_teleport",
