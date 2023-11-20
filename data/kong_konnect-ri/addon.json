@@ -1,0 +1,64 @@
+{
+  "addonName": "kong_konnect-ri",
+  "type": "ingress-service-type",
+  "addonVersions": [
+    {
+      "addonVersion": "v3.4.1-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "kong",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "e0162e82-1f0c-4192-830a-1ca850cd189b",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=e0162e82-1f0c-4192-830a-1ca850cd189b"
+  }
+}

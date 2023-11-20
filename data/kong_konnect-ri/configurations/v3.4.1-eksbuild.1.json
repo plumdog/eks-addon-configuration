@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "examples": [
+    {
+      "env": {
+        "cluster_cert": "/etc/secrets/kong-cluster-cert/tls.crt",
+        "cluster_cert_key": "/etc/secrets/kong-cluster-cert/tls.key",
+        "cluster_control_plane": "12b3p45867.us.cp0.konghq.com:443",
+        "cluster_server_name": "12b3p45867.us.cp0.konghq.com",
+        "cluster_telemetry_endpoint": "12b3p45867.us.tp0.konghq.com:443",
+        "cluster_telemetry_server_name": "12b3p45867.us.tp0.konghq.com"
+      },
+      "secretVolumes": [
+        "kong-cluster-cert"
+      ]
+    }
+  ],
+  "properties": {
+    "env": {
+      "examples": [
+        {
+          "cluster_cert": "/etc/secrets/kong-cluster-cert/tls.crt",
+          "cluster_cert_key": "/etc/secrets/kong-cluster-cert/tls.key",
+          "cluster_control_plane": "12b3p45867.us.cp0.konghq.com:443",
+          "cluster_server_name": "12b3p45867.us.cp0.konghq.com",
+          "cluster_telemetry_endpoint": "12b3p45867.us.tp0.konghq.com:443",
+          "cluster_telemetry_server_name": "12b3p45867.us.tp0.konghq.com"
+        }
+      ],
+      "properties": {
+        "cluster_cert": {
+          "default": "/etc/secrets/kong-cluster-cert/tls.crt",
+          "description": "The path to the dataplane certificate on the container",
+          "examples": [
+            "/etc/secrets/kong-cluster-cert/tls.crt"
+          ],
+          "title": "The cluster_cert Schema",
+          "type": "string"
+        },
+        "cluster_cert_key": {
+          "default": "/etc/secrets/kong-cluster-cert/tls.key",
+          "description": "The path to the dataplane key on the container",
+          "examples": [
+            "/etc/secrets/kong-cluster-cert/tls.key"
+          ],
+          "title": "The cluster_cert_key Schema",
+          "type": "string"
+        },
+        "cluster_control_plane": {
+          "description": "Related access endpoint provided by the runtime group. The url pattern is the protocol (https://) excluded and the and (:443) is included in the url",
+          "examples": [
+            "12b3p45867.us.cp0.konghq.com:443"
+          ],
+          "pattern": "^[A-Za-z0-9_.]+:443$",
+          "title": "The cluster_control_plane endpoint Schema",
+          "type": "string"
+        },
+        "cluster_server_name": {
+          "description": "The hostname if the cluster_control_plane The url pattern is the protocol (https://) and the port (:443) are excluded.",
+          "examples": [
+            "12b3p45867.us.cp0.konghq.com"
+          ],
+          "pattern": "^[A-Za-z0-9_.]+.com$",
+          "title": "The cluster_server_name endpoint Schema",
+          "type": "string"
+        },
+        "cluster_telemetry_endpoint": {
+          "description": "Related access endpoint provided by the runtime group. The url pattern is the protocol (https://) excluded and the and (:443) is included in the url",
+          "examples": [
+            "12b3p45867.us.tp0.konghq.com:443"
+          ],
+          "pattern": "^[A-Za-z0-9_.]+:443$",
+          "title": "The cluster_telemetry_endpoint Schema",
+          "type": "string"
+        },
+        "cluster_telemetry_server_name": {
+          "description": "The hostname if the cluster_telemetry_endpoint The url pattern is the protocol (https://) and the port (:443) are excluded.",
+          "examples": [
+            "12b3p45867.us.tp0.konghq.com"
+          ],
+          "pattern": "^[A-Za-z0-9_.]+.com$",
+          "title": "The cluster_telemetry_server_name Schema",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cluster_control_plane",
+        "cluster_server_name",
+        "cluster_telemetry_endpoint",
+        "cluster_telemetry_server_name",
+        "cluster_cert",
+        "cluster_cert_key"
+      ],
+      "title": "The env Schema to define the runtime group endpoints and certificates for the dataplanes",
+      "type": "object"
+    },
+    "secretVolumes": {
+      "description": "array object of kuberentes secrets. The only secret needed is the dataplane cluster certificates.",
+      "examples": [
+        [
+          "kong-cluster-cert"
+        ]
+      ],
+      "items": {
+        "default": "kong-cluster-cert",
+        "examples": [
+          "kong-cluster-cert"
+        ],
+        "title": "A Schema",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "The secretVolumes Schema",
+      "type": "array"
+    }
+  },
+  "required": [
+    "secretVolumes",
+    "env"
+  ],
+  "title": "Root Schema",
+  "type": "object"
+}
