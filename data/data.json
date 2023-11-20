@@ -71,15 +71,19 @@
     "aws-guardduty-agent",
     "calyptia_fluent-bit",
     "coredns",
+    "cribl_cribledge",
     "datadog_operator",
     "datree_engine-pro",
     "dynatrace_dynatrace-operator",
     "factorhouse_kpow",
+    "groundcover_agent",
     "haproxy-technologies_kubernetes-ingress-ee",
     "kasten_k10",
+    "kong_konnect-ri",
     "kube-proxy",
     "kubecost_kubecost",
     "new-relic_kubernetes-operator",
+    "rafay-systems_rafay-operator",
     "snapshot-controller",
     "solo-io_istio-distro",
     "stormforge_optimize-live",
@@ -93,7 +97,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v0.84.0-eksbuild.1",
+        "addonVersion": "v0.88.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -140,6 +144,58 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v0.84.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -6020,6 +6076,651 @@
               "enabled"
             ],
             "title": "The xray Schema",
+            "type": "object"
+          }
+        },
+        "title": "The collector Schema",
+        "type": "object"
+      },
+      "kubeRBACProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "title": "The resources Schema",
+            "type": "object"
+          }
+        },
+        "title": "The kubeRBACProxy Schema",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "env": {
+            "properties": {},
+            "title": "The env Schema",
+            "type": "object"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "title": "The resources Schema",
+            "type": "object"
+          }
+        },
+        "title": "The manager Schema",
+        "type": "object"
+      },
+      "nodeSelector": {
+        "properties": {},
+        "title": "The nodeSelector Schema",
+        "type": "object"
+      },
+      "replicaCount": {
+        "title": "The replicaCount Schema",
+        "type": "integer"
+      },
+      "tolerations": {
+        "items": {},
+        "title": "The tolerations Schema",
+        "type": "array"
+      }
+    },
+    "title": "Root Schema",
+    "type": "object"
+  },
+  "./adot/configurations/v0.88.0-eksbuild.1.json": {
+    "$id": "http://example.com/example.json",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the adot Operator Addon",
+    "examples": [
+      {
+        "admissionWebhooks": {
+          "namespaceSelector": {},
+          "objectSelector": {}
+        },
+        "affinity": {},
+        "collector": {
+          "containerLogs": {
+            "exporters": {
+              "awscloudwatchlogs": {
+                "log_group_name": "adot-log-group",
+                "log_stream_name": "adot-log-stream"
+              }
+            },
+            "pipelines": {
+              "logs": {
+                "cloudwatchLogs": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-container-logs"
+              }
+            }
+          },
+          "otlpIngest": {
+            "pipelines": {
+              "traces": {
+                "xray": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-otlp-ingest"
+              }
+            }
+          },
+          "prometheusMetrics": {
+            "exporters": {
+              "prometheusremotewrite": {
+                "endpoint": "https://aps-workspaces.us-west-2.amazonaws.com/workspaces/ws-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/api/v1/remote_write"
+              }
+            },
+            "pipelines": {
+              "metrics": {
+                "amp": {
+                  "enabled": true
+                },
+                "emf": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-prom-metrics"
+              }
+            }
+          }
+        },
+        "kubeRBACProxy": {
+          "enabled": true,
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "5m",
+              "memory": "64Mi"
+            }
+          }
+        },
+        "manager": {
+          "env": {},
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            }
+          }
+        },
+        "nodeSelector": {},
+        "replicaCount": 1,
+        "tolerations": []
+      }
+    ],
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "namespaceSelector": {
+            "properties": {},
+            "title": "The namespaceSelector Schema",
+            "type": "object"
+          },
+          "objectSelector": {
+            "properties": {},
+            "title": "The objectSelector Schema",
+            "type": "object"
+          }
+        },
+        "title": "The admissionWebhooks Schema",
+        "type": "object"
+      },
+      "affinity": {
+        "properties": {},
+        "title": "The affinity Schema",
+        "type": "object"
+      },
+      "collector": {
+        "additionalProperties": false,
+        "properties": {
+          "containerLogs": {
+            "additionalProperties": false,
+            "properties": {
+              "exporters": {
+                "additionalProperties": false,
+                "properties": {
+                  "awscloudwatchlogs": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "log_group_name": {
+                        "maxLength": 512,
+                        "minLength": 1,
+                        "pattern": "[\\.\\-_/#A-Za-z0-9]+",
+                        "title": "The log_group_name Schema",
+                        "type": "string"
+                      },
+                      "log_stream_name": {
+                        "maxLength": 512,
+                        "minLength": 1,
+                        "pattern": "[^:*]*",
+                        "title": "The log_stream_name Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The awscloudwatchlogs exporter Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT exporters Schema",
+                "type": "object"
+              },
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "logs": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cloudwatchLogs": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The Cloudwatch Logs Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The logs Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "title": "Opinionated collector for container logs",
+            "type": "object"
+          },
+          "otlpIngest": {
+            "additionalProperties": false,
+            "properties": {
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "traces": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "xray": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The X-Ray Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The traces Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "title": "Opinionated collector for otlp ingest",
+            "type": "object"
+          },
+          "prometheusMetrics": {
+            "additionalProperties": false,
+            "if": {
+              "properties": {
+                "pipelines": {
+                  "properties": {
+                    "metrics": {
+                      "properties": {
+                        "amp": {
+                          "properties": {
+                            "enabled": {
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "enabled"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "amp"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "metrics"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "pipelines"
+              ],
+              "type": "object"
+            },
+            "properties": {
+              "exporters": {
+                "additionalProperties": false,
+                "properties": {
+                  "prometheusremotewrite": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "endpoint": {
+                        "pattern": "^https://aps-workspaces\\.(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-[0-9]\\.amazonaws\\.com/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/api/v1/remote_write$",
+                        "title": "The AMP endpoint uri Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The prometheusremotewrite exporter Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The exporters Schema",
+                "type": "object"
+              },
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "metrics": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "amp": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The AMP Schema",
+                        "type": "object"
+                      },
+                      "emf": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The EMF Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The metrics Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "then": {
+              "properties": {
+                "exporters": {
+                  "properties": {
+                    "prometheusremotewrite": {
+                      "properties": {
+                        "endpoint": {}
+                      },
+                      "required": [
+                        "endpoint"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "prometheusremotewrite"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "exporters"
+              ],
+              "type": "object"
+            },
+            "title": "Opinionated collector for prometheus metrics",
             "type": "object"
           }
         },
@@ -17202,6 +17903,30 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.10.1-eksbuild.6",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.10.1-eksbuild.5",
         "architecture": [
           "amd64",
@@ -17310,6 +18035,51 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.9.3-eksbuild.10",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -17541,6 +18311,51 @@
           },
           {
             "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.8.7-eksbuild.9",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
             "platformVersions": [
               "*"
             ],
@@ -18752,6 +19567,186 @@
       }
     }
   },
+  "./coredns/configurations/v1.10.1-eksbuild.6.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "nodeSelectorTerms": [
+                      {
+                        "matchExpressions": [
+                          {
+                            "key": "kubernetes.io/os",
+                            "operator": "In",
+                            "values": [
+                              "linux"
+                            ]
+                          },
+                          {
+                            "key": "kubernetes.io/arch",
+                            "operator": "In",
+                            "values": [
+                              "amd64",
+                              "arm64"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "k8s-app",
+                              "operator": "In",
+                              "values": [
+                                "kube-dns"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the coredns pods",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "description": "podDisruptionBudget configurations",
+            "enabled": {
+              "default": true,
+              "description": "the option to enable managed PDB",
+              "type": "boolean"
+            },
+            "maxUnavailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "default": 1,
+              "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "minAvailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/control-plane"
+              }
+            ],
+            "description": "Tolerations of the coredns pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./coredns/configurations/v1.8.0-eksbuild.1.json": {
     "$ref": "#/definitions/Coredns",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -19415,6 +20410,248 @@
           },
           "resources": {
             "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./coredns/configurations/v1.8.7-eksbuild.9.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./coredns/configurations/v1.9.3-eksbuild.10.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "nodeSelectorTerms": [
+                      {
+                        "matchExpressions": [
+                          {
+                            "key": "kubernetes.io/os",
+                            "operator": "In",
+                            "values": [
+                              "linux"
+                            ]
+                          },
+                          {
+                            "key": "kubernetes.io/arch",
+                            "operator": "In",
+                            "values": [
+                              "amd64",
+                              "arm64"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "k8s-app",
+                              "operator": "In",
+                              "values": [
+                                "kube-dns"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the coredns pods",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "description": "podDisruptionBudget configurations",
+            "properties": {
+              "enabled": {
+                "description": "the option to enable managed PDB",
+                "type": "boolean"
+              },
+              "maxUnavailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              },
+              "minAvailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              }
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/control-plane"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/master"
+              }
+            ],
+            "description": "Tolerations of the coredns pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
           }
         },
         "title": "Coredns",
@@ -20288,6 +21525,97 @@
       }
     }
   },
+  "./cribl_cribledge/addon.json": {
+    "addonName": "cribl_cribledge",
+    "type": "observability",
+    "addonVersions": [
+      {
+        "addonVersion": "v4.3.1-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Cribl",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "956e78a4-f121-4029-9908-9ad395a4cfb6",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=956e78a4-f121-4029-9908-9ad395a4cfb6"
+    }
+  },
+  "./cribl_cribledge/configurations/v4.3.1-eksbuild.1.json": {
+    "$ref": "#/definitions/Cribl",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Cribl": {
+        "additionalProperties": false,
+        "properties": {
+          "cribl": {
+            "$ref": "#/definitions/cribl"
+          }
+        },
+        "title": "Cribl",
+        "type": "object"
+      },
+      "cribl": {
+        "additionalProperties": false,
+        "properties": {
+          "leader": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "cribl",
+        "type": "object"
+      }
+    }
+  },
   "./datadog_operator/addon.json": {
     "addonName": "datadog_operator",
     "type": "monitoring",
@@ -20649,6 +21977,789 @@
     "description": "No configuration support for factorhouse_kpow",
     "type": "object"
   },
+  "./groundcover_agent/addon.json": {
+    "addonName": "groundcover_agent",
+    "type": "monitoring",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.5.27-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "groundcover",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "8b5c893c-4d79-4bf7-94ea-947dc31d1df9",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=8b5c893c-4d79-4bf7-94ea-947dc31d1df9"
+    }
+  },
+  "./groundcover_agent/configurations/v1.5.27-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "alligator": {
+        "properties": {
+          "apmIngestor": {
+            "properties": {
+              "dataDog": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "tracesPort": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "otel": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "contentTypesToDrop": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "dataRetention": {
+            "type": "string"
+          },
+          "env": {
+            "type": "object"
+          },
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "port": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "nodelabels": {
+            "type": "array"
+          },
+          "obfuscateData": {
+            "type": "boolean"
+          },
+          "pprofAlligator": {
+            "properties": {
+              "cpuSamplingDuration": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "exponent": {
+                "type": "integer"
+              },
+              "interval": {
+                "type": "string"
+              },
+              "uploaderType": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "watchOnlyLocalNode": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "clusterId": {
+        "type": "string"
+      },
+      "curl": {
+        "properties": {
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "customMetrics": {
+        "properties": {
+          "config": {
+            "properties": {
+              "scrape_configs": {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "env": {
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "valueFrom": {
+                  "properties": {
+                    "secretKeyRef": {
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraArgs": {
+            "properties": {
+              "promscrape.dropOriginalLabels": {
+                "type": "string"
+              },
+              "promscrape.streamParse": {
+                "type": "string"
+              },
+              "remoteWrite.headers": {
+                "type": "string"
+              },
+              "remoteWrite.label": {
+                "type": "string"
+              },
+              "remoteWrite.maxDailySeries": {
+                "type": "string"
+              },
+              "remoteWrite.maxDiskUsagePerURL": {
+                "type": "string"
+              },
+              "remoteWrite.maxHourlySeries": {
+                "type": "string"
+              },
+              "remoteWrite.showURL": {
+                "type": "string"
+              },
+              "remoteWrite.tlsInsecureSkipVerify": {
+                "type": "string"
+              },
+              "remoteWrite.url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "extraScrapeConfigs": {
+            "type": "array"
+          },
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {
+              "prometheus.io/port": {
+                "type": "string"
+              },
+              "prometheus.io/scrape": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "rbac": {
+            "properties": {
+              "namespaced": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "flb": {
+        "properties": {
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "properties": {
+          "apiKey": {
+            "properties": {
+              "secretKey": {
+                "type": "string"
+              },
+              "secretName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "datadogapm": {
+            "properties": {
+              "overrideUrl": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "ingress": {
+            "properties": {
+              "site": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "logs": {
+            "properties": {
+              "overrideUrl": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "overrideUrl": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "otlp": {
+            "properties": {
+              "overrideGrpcURL": {
+                "type": "string"
+              },
+              "overrideHttpURL": {
+                "type": "string"
+              },
+              "tls": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "telemetry": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "logs": {
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "metrics": {
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "hostNetwork": {
+        "type": "boolean"
+      },
+      "k8sWatcher": {
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "annotations": {
+            "type": "object"
+          },
+          "env": {
+            "type": "object"
+          },
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "metricsIngester": {
+        "properties": {
+          "config": {
+            "properties": {
+              "scrape_configs": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "env": {
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "valueFrom": {
+                  "properties": {
+                    "secretKeyRef": {
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraArgs": {
+            "properties": {
+              "promscrape.dropOriginalLabels": {
+                "type": "string"
+              },
+              "promscrape.streamParse": {
+                "type": "string"
+              },
+              "remoteWrite.headers": {
+                "type": "string"
+              },
+              "remoteWrite.maxDiskUsagePerURL": {
+                "type": "string"
+              },
+              "remoteWrite.showURL": {
+                "type": "string"
+              },
+              "remoteWrite.streamAggr.config": {
+                "type": "string"
+              },
+              "remoteWrite.tlsInsecureSkipVerify": {
+                "type": "string"
+              },
+              "remoteWrite.url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "properties": {
+                "mountPath": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "readOnly": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "properties": {
+                "configMap": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {
+              "prometheus.io/port": {
+                "type": "string"
+              },
+              "prometheus.io/scrape": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "rbac": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "service": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "mode": {
+        "type": "string"
+      },
+      "rbac": {
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "labels": {
+            "type": "object"
+          },
+          "pspEnabled": {
+            "type": "boolean"
+          },
+          "sccEnabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "region": {
+        "type": "string"
+      },
+      "tracy": {
+        "properties": {
+          "image": {
+            "properties": {
+              "repository": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
   "./haproxy-technologies_kubernetes-ingress-ee/addon.json": {
     "addonName": "haproxy-technologies_kubernetes-ingress-ee",
     "type": "ingress-controller",
@@ -20772,6 +22883,194 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for Kasten_K10",
+    "type": "object"
+  },
+  "./kong_konnect-ri/addon.json": {
+    "addonName": "kong_konnect-ri",
+    "type": "ingress-service-type",
+    "addonVersions": [
+      {
+        "addonVersion": "v3.4.1-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "kong",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "e0162e82-1f0c-4192-830a-1ca850cd189b",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=e0162e82-1f0c-4192-830a-1ca850cd189b"
+    }
+  },
+  "./kong_konnect-ri/configurations/v3.4.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "default": {},
+    "examples": [
+      {
+        "env": {
+          "cluster_cert": "/etc/secrets/kong-cluster-cert/tls.crt",
+          "cluster_cert_key": "/etc/secrets/kong-cluster-cert/tls.key",
+          "cluster_control_plane": "12b3p45867.us.cp0.konghq.com:443",
+          "cluster_server_name": "12b3p45867.us.cp0.konghq.com",
+          "cluster_telemetry_endpoint": "12b3p45867.us.tp0.konghq.com:443",
+          "cluster_telemetry_server_name": "12b3p45867.us.tp0.konghq.com"
+        },
+        "secretVolumes": [
+          "kong-cluster-cert"
+        ]
+      }
+    ],
+    "properties": {
+      "env": {
+        "examples": [
+          {
+            "cluster_cert": "/etc/secrets/kong-cluster-cert/tls.crt",
+            "cluster_cert_key": "/etc/secrets/kong-cluster-cert/tls.key",
+            "cluster_control_plane": "12b3p45867.us.cp0.konghq.com:443",
+            "cluster_server_name": "12b3p45867.us.cp0.konghq.com",
+            "cluster_telemetry_endpoint": "12b3p45867.us.tp0.konghq.com:443",
+            "cluster_telemetry_server_name": "12b3p45867.us.tp0.konghq.com"
+          }
+        ],
+        "properties": {
+          "cluster_cert": {
+            "default": "/etc/secrets/kong-cluster-cert/tls.crt",
+            "description": "The path to the dataplane certificate on the container",
+            "examples": [
+              "/etc/secrets/kong-cluster-cert/tls.crt"
+            ],
+            "title": "The cluster_cert Schema",
+            "type": "string"
+          },
+          "cluster_cert_key": {
+            "default": "/etc/secrets/kong-cluster-cert/tls.key",
+            "description": "The path to the dataplane key on the container",
+            "examples": [
+              "/etc/secrets/kong-cluster-cert/tls.key"
+            ],
+            "title": "The cluster_cert_key Schema",
+            "type": "string"
+          },
+          "cluster_control_plane": {
+            "description": "Related access endpoint provided by the runtime group. The url pattern is the protocol (https://) excluded and the and (:443) is included in the url",
+            "examples": [
+              "12b3p45867.us.cp0.konghq.com:443"
+            ],
+            "pattern": "^[A-Za-z0-9_.]+:443$",
+            "title": "The cluster_control_plane endpoint Schema",
+            "type": "string"
+          },
+          "cluster_server_name": {
+            "description": "The hostname if the cluster_control_plane The url pattern is the protocol (https://) and the port (:443) are excluded.",
+            "examples": [
+              "12b3p45867.us.cp0.konghq.com"
+            ],
+            "pattern": "^[A-Za-z0-9_.]+.com$",
+            "title": "The cluster_server_name endpoint Schema",
+            "type": "string"
+          },
+          "cluster_telemetry_endpoint": {
+            "description": "Related access endpoint provided by the runtime group. The url pattern is the protocol (https://) excluded and the and (:443) is included in the url",
+            "examples": [
+              "12b3p45867.us.tp0.konghq.com:443"
+            ],
+            "pattern": "^[A-Za-z0-9_.]+:443$",
+            "title": "The cluster_telemetry_endpoint Schema",
+            "type": "string"
+          },
+          "cluster_telemetry_server_name": {
+            "description": "The hostname if the cluster_telemetry_endpoint The url pattern is the protocol (https://) and the port (:443) are excluded.",
+            "examples": [
+              "12b3p45867.us.tp0.konghq.com"
+            ],
+            "pattern": "^[A-Za-z0-9_.]+.com$",
+            "title": "The cluster_telemetry_server_name Schema",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster_control_plane",
+          "cluster_server_name",
+          "cluster_telemetry_endpoint",
+          "cluster_telemetry_server_name",
+          "cluster_cert",
+          "cluster_cert_key"
+        ],
+        "title": "The env Schema to define the runtime group endpoints and certificates for the dataplanes",
+        "type": "object"
+      },
+      "secretVolumes": {
+        "description": "array object of kuberentes secrets. The only secret needed is the dataplane cluster certificates.",
+        "examples": [
+          [
+            "kong-cluster-cert"
+          ]
+        ],
+        "items": {
+          "default": "kong-cluster-cert",
+          "examples": [
+            "kong-cluster-cert"
+          ],
+          "title": "A Schema",
+          "type": "string"
+        },
+        "minItems": 1,
+        "title": "The secretVolumes Schema",
+        "type": "array"
+      }
+    },
+    "required": [
+      "secretVolumes",
+      "env"
+    ],
+    "title": "Root Schema",
     "type": "object"
   },
   "./kube-proxy/addon.json": {
@@ -25840,12 +28139,641 @@
     "description": "No configuration support for new-relic_kubernetes-operator",
     "type": "object"
   },
+  "./rafay-systems_rafay-operator/addon.json": {
+    "addonName": "rafay-systems_rafay-operator",
+    "type": "kubernetes-management",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.0.6-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "rafay-systems",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "a37d499e-3f3d-4b96-86bc-16ee937d0443",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=a37d499e-3f3d-4b96-86bc-16ee937d0443"
+    }
+  },
+  "./rafay-systems_rafay-operator/configurations/v1.0.6-eksbuild.1.json": {
+    "$id": "http://example.com/example.json",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "default": {},
+    "examples": [
+      {
+        "allow_insecure_bootstrap": "",
+        "api_addr": "api.rafay.dev.",
+        "cluster_id": "",
+        "connector": {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+            "tag": "r1.27.0-1"
+          }
+        },
+        "control_addr": "control.rafay.dev.",
+        "controller": {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+            "tag": "r1.27.0-2"
+          }
+        },
+        "global": {
+          "Rafay": {
+            "ClusterLabels": {}
+          }
+        },
+        "http_proxy": "",
+        "https_proxy": "",
+        "initContainer": {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+            "tag": "1.33"
+          }
+        },
+        "max_dials": "2",
+        "no_proxy": "",
+        "openshift": false,
+        "proxy_auth": "",
+        "relay": {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+            "tag": "r1.27.0-1"
+          },
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          }
+        },
+        "relays": "",
+        "token": ""
+      }
+    ],
+    "properties": {
+      "allow_insecure_bootstrap": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The allow_insecure_bootstrap Schema",
+        "type": "string"
+      },
+      "api_addr": {
+        "default": "",
+        "examples": [
+          "api.rafay.dev."
+        ],
+        "title": "The api_addr Schema",
+        "type": "string"
+      },
+      "cluster_id": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The cluster_id Schema",
+        "type": "string"
+      },
+      "connector": {
+        "default": {},
+        "examples": [
+          {
+            "image": {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+              "tag": "r1.27.0-1"
+            }
+          }
+        ],
+        "properties": {
+          "image": {
+            "default": {},
+            "examples": [
+              {
+                "pullPolicy": "IfNotPresent",
+                "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+                "tag": "r1.27.0-1"
+              }
+            ],
+            "properties": {
+              "pullPolicy": {
+                "default": "",
+                "examples": [
+                  "IfNotPresent"
+                ],
+                "title": "The pullPolicy Schema",
+                "type": "string"
+              },
+              "repository": {
+                "default": "",
+                "examples": [
+                  "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector"
+                ],
+                "title": "The repository Schema",
+                "type": "string"
+              },
+              "tag": {
+                "default": "",
+                "examples": [
+                  "r1.27.0-1"
+                ],
+                "title": "The tag Schema",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "pullPolicy",
+              "tag"
+            ],
+            "title": "The image Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "title": "The connector Schema",
+        "type": "object"
+      },
+      "control_addr": {
+        "default": "",
+        "examples": [
+          "control.rafay.dev."
+        ],
+        "title": "The control_addr Schema",
+        "type": "string"
+      },
+      "controller": {
+        "default": {},
+        "examples": [
+          {
+            "image": {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+              "tag": "r1.27.0-2"
+            }
+          }
+        ],
+        "properties": {
+          "image": {
+            "default": {},
+            "examples": [
+              {
+                "pullPolicy": "IfNotPresent",
+                "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+                "tag": "r1.27.0-2"
+              }
+            ],
+            "properties": {
+              "pullPolicy": {
+                "default": "",
+                "examples": [
+                  "IfNotPresent"
+                ],
+                "title": "The pullPolicy Schema",
+                "type": "string"
+              },
+              "repository": {
+                "default": "",
+                "examples": [
+                  "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller"
+                ],
+                "title": "The repository Schema",
+                "type": "string"
+              },
+              "tag": {
+                "default": "",
+                "examples": [
+                  "r1.27.0-2"
+                ],
+                "title": "The tag Schema",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "pullPolicy",
+              "tag"
+            ],
+            "title": "The image Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "title": "The controller Schema",
+        "type": "object"
+      },
+      "global": {
+        "default": {},
+        "examples": [
+          {
+            "Rafay": {
+              "ClusterLabels": {}
+            }
+          }
+        ],
+        "properties": {
+          "Rafay": {
+            "default": {},
+            "examples": [
+              {
+                "ClusterLabels": {}
+              }
+            ],
+            "properties": {
+              "ClusterLabels": {
+                "default": {},
+                "examples": [
+                  {}
+                ],
+                "properties": {},
+                "required": [],
+                "title": "The ClusterLabels Schema",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ClusterLabels"
+            ],
+            "title": "The Rafay Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "Rafay"
+        ],
+        "title": "The global Schema",
+        "type": "object"
+      },
+      "http_proxy": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The http_proxy Schema",
+        "type": "string"
+      },
+      "https_proxy": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The https_proxy Schema",
+        "type": "string"
+      },
+      "initContainer": {
+        "default": {},
+        "examples": [
+          {
+            "image": {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+              "tag": "1.33"
+            }
+          }
+        ],
+        "properties": {
+          "image": {
+            "default": {},
+            "examples": [
+              {
+                "pullPolicy": "IfNotPresent",
+                "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+                "tag": "1.33"
+              }
+            ],
+            "properties": {
+              "pullPolicy": {
+                "default": "",
+                "examples": [
+                  "IfNotPresent"
+                ],
+                "title": "The pullPolicy Schema",
+                "type": "string"
+              },
+              "repository": {
+                "default": "",
+                "examples": [
+                  "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox"
+                ],
+                "title": "The repository Schema",
+                "type": "string"
+              },
+              "tag": {
+                "default": 0,
+                "examples": [
+                  "1.33"
+                ],
+                "title": "The tag Schema",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "pullPolicy",
+              "tag"
+            ],
+            "title": "The image Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "title": "The initContainer Schema",
+        "type": "object"
+      },
+      "max_dials": {
+        "default": "",
+        "examples": [
+          "2"
+        ],
+        "title": "The max_dials Schema",
+        "type": "string"
+      },
+      "no_proxy": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The no_proxy Schema",
+        "type": "string"
+      },
+      "openshift": {
+        "default": false,
+        "examples": [
+          false
+        ],
+        "title": "The openshift Schema",
+        "type": "boolean"
+      },
+      "proxy_auth": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The proxy_auth Schema",
+        "type": "string"
+      },
+      "relay": {
+        "default": {},
+        "examples": [
+          {
+            "image": {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+              "tag": "r1.27.0-1"
+            },
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          }
+        ],
+        "properties": {
+          "image": {
+            "default": {},
+            "examples": [
+              {
+                "pullPolicy": "IfNotPresent",
+                "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+                "tag": "r1.27.0-1"
+              }
+            ],
+            "properties": {
+              "pullPolicy": {
+                "default": "",
+                "examples": [
+                  "IfNotPresent"
+                ],
+                "title": "The pullPolicy Schema",
+                "type": "string"
+              },
+              "repository": {
+                "default": "",
+                "examples": [
+                  "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent"
+                ],
+                "title": "The repository Schema",
+                "type": "string"
+              },
+              "tag": {
+                "default": "",
+                "examples": [
+                  "r1.27.0-1"
+                ],
+                "title": "The tag Schema",
+                "type": "string"
+              }
+            },
+            "required": [
+              "repository",
+              "pullPolicy",
+              "tag"
+            ],
+            "title": "The image Schema",
+            "type": "object"
+          },
+          "resources": {
+            "default": {},
+            "examples": [
+              {
+                "limits": {
+                  "cpu": "500m",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "128Mi"
+                }
+              }
+            ],
+            "properties": {
+              "limits": {
+                "default": {},
+                "examples": [
+                  {
+                    "cpu": "500m",
+                    "memory": "512Mi"
+                  }
+                ],
+                "properties": {
+                  "cpu": {
+                    "default": "",
+                    "examples": [
+                      "500m"
+                    ],
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "default": "",
+                    "examples": [
+                      "512Mi"
+                    ],
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cpu",
+                  "memory"
+                ],
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "default": {},
+                "examples": [
+                  {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                  }
+                ],
+                "properties": {
+                  "cpu": {
+                    "default": "",
+                    "examples": [
+                      "100m"
+                    ],
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "default": "",
+                    "examples": [
+                      "128Mi"
+                    ],
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cpu",
+                  "memory"
+                ],
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "required": [
+              "requests",
+              "limits"
+            ],
+            "title": "The resources Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "image",
+          "resources"
+        ],
+        "title": "The relay Schema",
+        "type": "object"
+      },
+      "relays": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The relays Schema",
+        "type": "string"
+      },
+      "token": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The token Schema",
+        "type": "string"
+      }
+    },
+    "required": [
+      "global",
+      "connector",
+      "controller",
+      "relay",
+      "initContainer",
+      "token",
+      "api_addr",
+      "control_addr",
+      "allow_insecure_bootstrap",
+      "cluster_id",
+      "max_dials",
+      "relays",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy",
+      "proxy_auth",
+      "openshift"
+    ],
+    "title": "Root Schema",
+    "type": "object"
+  },
   "./snapshot-controller/addon.json": {
     "addonName": "snapshot-controller",
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v6.2.2-eksbuild.1",
+        "addonVersion": "v6.3.2-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -25895,12 +28823,70 @@
           }
         ],
         "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v6.2.2-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
       }
     ],
     "publisher": "eks",
     "owner": "aws"
   },
   "./snapshot-controller/configurations/v6.2.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "The CSI Snapshot Controller Addon does not currently support configuration",
+    "type": "object"
+  },
+  "./snapshot-controller/configurations/v6.3.2-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "The CSI Snapshot Controller Addon does not currently support configuration",
@@ -26977,6 +29963,58 @@
     "addonName": "vpc-cni",
     "type": "networking",
     "addonVersions": [
+      {
+        "addonVersion": "v1.15.4-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
       {
         "addonVersion": "v1.15.3-eksbuild.1",
         "architecture": [
@@ -37925,6 +40963,330 @@
     "description": "vpc-cni"
   },
   "./vpc-cni/configurations/v1.15.3-eksbuild.1.json": {
+    "$ref": "#/definitions/VpcCni",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Affinity": {
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "EniConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string"
+          },
+          "subnets": {
+            "additionalProperties": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "securityGroups": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            },
+            "minProperties": 1,
+            "type": "object"
+          }
+        },
+        "required": [
+          "create",
+          "region",
+          "subnets"
+        ],
+        "type": "object"
+      },
+      "Env": {
+        "additionalProperties": false,
+        "properties": {
+          "ADDITIONAL_ENI_TAGS": {
+            "type": "string"
+          },
+          "ANNOTATE_POD_IP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_EC2_ENDPOINT": {
+            "type": "string"
+          },
+          "AWS_EXTERNAL_SERVICE_CIDRS": {
+            "type": "string"
+          },
+          "AWS_MANAGE_ENIS_NON_SCHEDULABLE": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_CNI_NODE_PORT_SUPPORT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_ENI_MTU": {
+            "format": "integer",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXCLUDE_SNAT_CIDRS": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXTERNALSNAT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOGLEVEL": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_RANDOMIZESNAT": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_VETHPREFIX": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_LEVEL": {
+            "type": "string"
+          },
+          "CLUSTER_ENDPOINT": {
+            "type": "string"
+          },
+          "DISABLE_INTROSPECTION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_LEAKED_ENI_CLEANUP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_METRICS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_NETWORK_RESOURCE_PROVISIONING": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_POD_V6": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_BANDWIDTH_PLUGIN": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_POD_ENI": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_PREFIX_DELEGATION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V4_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENI_CONFIG_ANNOTATION_DEF": {
+            "type": "string"
+          },
+          "ENI_CONFIG_LABEL_DEF": {
+            "type": "string"
+          },
+          "INTROSPECTION_BIND_ADDRESS": {
+            "type": "string"
+          },
+          "IP_COOLDOWN_PERIOD": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MAX_ENI": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MINIMUM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "POD_SECURITY_GROUP_ENFORCING_MODE": {
+            "type": "string"
+          },
+          "WARM_ENI_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_PREFIX_TARGET": {
+            "format": "integer",
+            "type": "string"
+          }
+        },
+        "title": "Env",
+        "type": "object"
+      },
+      "Init": {
+        "additionalProperties": false,
+        "properties": {
+          "env": {
+            "$ref": "#/definitions/InitEnv"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Init",
+        "type": "object"
+      },
+      "InitEnv": {
+        "additionalProperties": false,
+        "properties": {
+          "DISABLE_TCP_EARLY_DEMUX": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          }
+        },
+        "title": "InitEnv",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "NodeAgent": {
+        "additionalProperties": false,
+        "properties": {
+          "enableCloudWatchLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enablePolicyEventLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "healthProbeBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "metricsBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "NodeAgent",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      },
+      "Tolerations": {
+        "additionalProperties": false,
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "VpcCni": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "$ref": "#/definitions/Affinity"
+          },
+          "enableNetworkPolicy": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enableWindowsIpam": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "eniConfig": {
+            "$ref": "#/definitions/EniConfig"
+          },
+          "env": {
+            "$ref": "#/definitions/Env"
+          },
+          "init": {
+            "$ref": "#/definitions/Init"
+          },
+          "livenessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "nodeAgent": {
+            "$ref": "#/definitions/NodeAgent"
+          },
+          "readinessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "$ref": "#/definitions/Tolerations"
+          }
+        },
+        "title": "VpcCni",
+        "type": "object"
+      }
+    },
+    "description": "vpc-cni"
+  },
+  "./vpc-cni/configurations/v1.15.4-eksbuild.1.json": {
     "$ref": "#/definitions/VpcCni",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {

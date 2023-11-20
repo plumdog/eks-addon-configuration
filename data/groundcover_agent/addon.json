@@ -1,0 +1,64 @@
+{
+  "addonName": "groundcover_agent",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.5.27-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "groundcover",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "8b5c893c-4d79-4bf7-94ea-947dc31d1df9",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=8b5c893c-4d79-4bf7-94ea-947dc31d1df9"
+  }
+}

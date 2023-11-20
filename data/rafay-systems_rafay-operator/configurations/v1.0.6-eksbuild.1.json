@@ -1,0 +1,573 @@
+{
+  "$id": "http://example.com/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "examples": [
+    {
+      "allow_insecure_bootstrap": "",
+      "api_addr": "api.rafay.dev.",
+      "cluster_id": "",
+      "connector": {
+        "image": {
+          "pullPolicy": "IfNotPresent",
+          "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+          "tag": "r1.27.0-1"
+        }
+      },
+      "control_addr": "control.rafay.dev.",
+      "controller": {
+        "image": {
+          "pullPolicy": "IfNotPresent",
+          "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+          "tag": "r1.27.0-2"
+        }
+      },
+      "global": {
+        "Rafay": {
+          "ClusterLabels": {}
+        }
+      },
+      "http_proxy": "",
+      "https_proxy": "",
+      "initContainer": {
+        "image": {
+          "pullPolicy": "IfNotPresent",
+          "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+          "tag": "1.33"
+        }
+      },
+      "max_dials": "2",
+      "no_proxy": "",
+      "openshift": false,
+      "proxy_auth": "",
+      "relay": {
+        "image": {
+          "pullPolicy": "IfNotPresent",
+          "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+          "tag": "r1.27.0-1"
+        },
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        }
+      },
+      "relays": "",
+      "token": ""
+    }
+  ],
+  "properties": {
+    "allow_insecure_bootstrap": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The allow_insecure_bootstrap Schema",
+      "type": "string"
+    },
+    "api_addr": {
+      "default": "",
+      "examples": [
+        "api.rafay.dev."
+      ],
+      "title": "The api_addr Schema",
+      "type": "string"
+    },
+    "cluster_id": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The cluster_id Schema",
+      "type": "string"
+    },
+    "connector": {
+      "default": {},
+      "examples": [
+        {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+            "tag": "r1.27.0-1"
+          }
+        }
+      ],
+      "properties": {
+        "image": {
+          "default": {},
+          "examples": [
+            {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector",
+              "tag": "r1.27.0-1"
+            }
+          ],
+          "properties": {
+            "pullPolicy": {
+              "default": "",
+              "examples": [
+                "IfNotPresent"
+              ],
+              "title": "The pullPolicy Schema",
+              "type": "string"
+            },
+            "repository": {
+              "default": "",
+              "examples": [
+                "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-connector"
+              ],
+              "title": "The repository Schema",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "examples": [
+                "r1.27.0-1"
+              ],
+              "title": "The tag Schema",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "The image Schema",
+          "type": "object"
+        }
+      },
+      "required": [
+        "image"
+      ],
+      "title": "The connector Schema",
+      "type": "object"
+    },
+    "control_addr": {
+      "default": "",
+      "examples": [
+        "control.rafay.dev."
+      ],
+      "title": "The control_addr Schema",
+      "type": "string"
+    },
+    "controller": {
+      "default": {},
+      "examples": [
+        {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+            "tag": "r1.27.0-2"
+          }
+        }
+      ],
+      "properties": {
+        "image": {
+          "default": {},
+          "examples": [
+            {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller",
+              "tag": "r1.27.0-2"
+            }
+          ],
+          "properties": {
+            "pullPolicy": {
+              "default": "",
+              "examples": [
+                "IfNotPresent"
+              ],
+              "title": "The pullPolicy Schema",
+              "type": "string"
+            },
+            "repository": {
+              "default": "",
+              "examples": [
+                "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/cluster-controller"
+              ],
+              "title": "The repository Schema",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "examples": [
+                "r1.27.0-2"
+              ],
+              "title": "The tag Schema",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "The image Schema",
+          "type": "object"
+        }
+      },
+      "required": [
+        "image"
+      ],
+      "title": "The controller Schema",
+      "type": "object"
+    },
+    "global": {
+      "default": {},
+      "examples": [
+        {
+          "Rafay": {
+            "ClusterLabels": {}
+          }
+        }
+      ],
+      "properties": {
+        "Rafay": {
+          "default": {},
+          "examples": [
+            {
+              "ClusterLabels": {}
+            }
+          ],
+          "properties": {
+            "ClusterLabels": {
+              "default": {},
+              "examples": [
+                {}
+              ],
+              "properties": {},
+              "required": [],
+              "title": "The ClusterLabels Schema",
+              "type": "object"
+            }
+          },
+          "required": [
+            "ClusterLabels"
+          ],
+          "title": "The Rafay Schema",
+          "type": "object"
+        }
+      },
+      "required": [
+        "Rafay"
+      ],
+      "title": "The global Schema",
+      "type": "object"
+    },
+    "http_proxy": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The http_proxy Schema",
+      "type": "string"
+    },
+    "https_proxy": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The https_proxy Schema",
+      "type": "string"
+    },
+    "initContainer": {
+      "default": {},
+      "examples": [
+        {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+            "tag": "1.33"
+          }
+        }
+      ],
+      "properties": {
+        "image": {
+          "default": {},
+          "examples": [
+            {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox",
+              "tag": "1.33"
+            }
+          ],
+          "properties": {
+            "pullPolicy": {
+              "default": "",
+              "examples": [
+                "IfNotPresent"
+              ],
+              "title": "The pullPolicy Schema",
+              "type": "string"
+            },
+            "repository": {
+              "default": "",
+              "examples": [
+                "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-busybox"
+              ],
+              "title": "The repository Schema",
+              "type": "string"
+            },
+            "tag": {
+              "default": 0,
+              "examples": [
+                "1.33"
+              ],
+              "title": "The tag Schema",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "The image Schema",
+          "type": "object"
+        }
+      },
+      "required": [
+        "image"
+      ],
+      "title": "The initContainer Schema",
+      "type": "object"
+    },
+    "max_dials": {
+      "default": "",
+      "examples": [
+        "2"
+      ],
+      "title": "The max_dials Schema",
+      "type": "string"
+    },
+    "no_proxy": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The no_proxy Schema",
+      "type": "string"
+    },
+    "openshift": {
+      "default": false,
+      "examples": [
+        false
+      ],
+      "title": "The openshift Schema",
+      "type": "boolean"
+    },
+    "proxy_auth": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The proxy_auth Schema",
+      "type": "string"
+    },
+    "relay": {
+      "default": {},
+      "examples": [
+        {
+          "image": {
+            "pullPolicy": "IfNotPresent",
+            "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+            "tag": "r1.27.0-1"
+          },
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "image": {
+          "default": {},
+          "examples": [
+            {
+              "pullPolicy": "IfNotPresent",
+              "repository": "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent",
+              "tag": "r1.27.0-1"
+            }
+          ],
+          "properties": {
+            "pullPolicy": {
+              "default": "",
+              "examples": [
+                "IfNotPresent"
+              ],
+              "title": "The pullPolicy Schema",
+              "type": "string"
+            },
+            "repository": {
+              "default": "",
+              "examples": [
+                "709825985650.dkr.ecr.us-east-1.amazonaws.com/rafay-systems/rafay-relay-agent"
+              ],
+              "title": "The repository Schema",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "examples": [
+                "r1.27.0-1"
+              ],
+              "title": "The tag Schema",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "The image Schema",
+          "type": "object"
+        },
+        "resources": {
+          "default": {},
+          "examples": [
+            {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          ],
+          "properties": {
+            "limits": {
+              "default": {},
+              "examples": [
+                {
+                  "cpu": "500m",
+                  "memory": "512Mi"
+                }
+              ],
+              "properties": {
+                "cpu": {
+                  "default": "",
+                  "examples": [
+                    "500m"
+                  ],
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "",
+                  "examples": [
+                    "512Mi"
+                  ],
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "The limits Schema",
+              "type": "object"
+            },
+            "requests": {
+              "default": {},
+              "examples": [
+                {
+                  "cpu": "100m",
+                  "memory": "128Mi"
+                }
+              ],
+              "properties": {
+                "cpu": {
+                  "default": "",
+                  "examples": [
+                    "100m"
+                  ],
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "",
+                  "examples": [
+                    "128Mi"
+                  ],
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "The requests Schema",
+              "type": "object"
+            }
+          },
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "title": "The resources Schema",
+          "type": "object"
+        }
+      },
+      "required": [
+        "image",
+        "resources"
+      ],
+      "title": "The relay Schema",
+      "type": "object"
+    },
+    "relays": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The relays Schema",
+      "type": "string"
+    },
+    "token": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The token Schema",
+      "type": "string"
+    }
+  },
+  "required": [
+    "global",
+    "connector",
+    "controller",
+    "relay",
+    "initContainer",
+    "token",
+    "api_addr",
+    "control_addr",
+    "allow_insecure_bootstrap",
+    "cluster_id",
+    "max_dials",
+    "relays",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy",
+    "proxy_auth",
+    "openshift"
+  ],
+  "title": "Root Schema",
+  "type": "object"
+}
