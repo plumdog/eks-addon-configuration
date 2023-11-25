@@ -11,6 +11,7 @@
   "datadog_operator",
   "datree_engine-pro",
   "dynatrace_dynatrace-operator",
+  "eks-pod-identity-agent",
   "factorhouse_kpow",
   "groundcover_agent",
   "haproxy-technologies_kubernetes-ingress-ee",
