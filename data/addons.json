@@ -5,6 +5,7 @@
   "aws-ebs-csi-driver",
   "aws-efs-csi-driver",
   "aws-guardduty-agent",
+  "aws-mountpoint-s3-csi-driver",
   "calyptia_fluent-bit",
   "coredns",
   "cribl_cribledge",

@@ -69,6 +69,7 @@
     "aws-ebs-csi-driver",
     "aws-efs-csi-driver",
     "aws-guardduty-agent",
+    "aws-mountpoint-s3-csi-driver",
     "calyptia_fluent-bit",
     "coredns",
     "cribl_cribledge",
@@ -17827,6 +17828,72 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for AWS GuardDuty Agent",
+    "type": "object"
+  },
+  "./aws-mountpoint-s3-csi-driver/addon.json": {
+    "addonName": "aws-mountpoint-s3-csi-driver",
+    "type": "storage",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.0.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      }
+    ],
+    "publisher": "s3",
+    "owner": "aws"
+  },
+  "./aws-mountpoint-s3-csi-driver/configurations/v1.0.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
     "type": "object"
   },
   "./calyptia_fluent-bit/addon.json": {
