@@ -6845,7 +6845,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.1.1-eksbuild.1",
+        "addonVersion": "v1.2.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -6895,12 +6895,131 @@
           }
         ],
         "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.1.1-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
       }
     ],
     "publisher": "eks",
     "owner": "aws"
   },
   "./amazon-cloudwatch-observability/configurations/v1.1.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.2.0-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
