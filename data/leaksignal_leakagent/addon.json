@@ -1,0 +1,64 @@
+{
+  "addonName": "leaksignal_leakagent",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.7.3-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "leaksignal",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "00debb54-dbb2-446d-b6d1-c54356fd7b5d",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=00debb54-dbb2-446d-b6d1-c54356fd7b5d"
+  }
+}
