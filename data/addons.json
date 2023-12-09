@@ -20,6 +20,7 @@
   "kong_konnect-ri",
   "kube-proxy",
   "kubecost_kubecost",
+  "leaksignal_leakagent",
   "new-relic_kubernetes-operator",
   "rafay-systems_rafay-operator",
   "snapshot-controller",
