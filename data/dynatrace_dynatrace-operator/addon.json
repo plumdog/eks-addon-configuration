@@ -3,12 +3,40 @@
   "type": "monitoring",
   "addonVersions": [
     {
-      "addonVersion": "v0.8.2-eksbuild.0",
+      "addonVersion": "v0.14.2-eksbuild.1",
       "architecture": [
         "amd64",
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
         {
           "clusterVersion": "1.24",
           "platformVersions": [
@@ -22,6 +50,30 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    },
+    {
+      "addonVersion": "v0.8.2-eksbuild.0",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.22",
