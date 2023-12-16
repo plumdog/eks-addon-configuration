@@ -78,6 +78,7 @@
     "dynatrace_dynatrace-operator",
     "eks-pod-identity-agent",
     "factorhouse_kpow",
+    "grafana-labs_kubernetes-monitoring",
     "groundcover_agent",
     "haproxy-technologies_kubernetes-ingress-ee",
     "kasten_k10",
@@ -89,6 +90,7 @@
     "rafay-systems_rafay-operator",
     "snapshot-controller",
     "solo-io_istio-distro",
+    "splunk_splunk-otel-collector-chart",
     "stormforge_optimize-live",
     "teleport_teleport",
     "tetrate-io_istio-distro",
@@ -17423,42 +17425,42 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.27",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.26",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.25",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.24",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.23",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           }
         ],
         "requiresConfiguration": false
@@ -23196,6 +23198,997 @@
     "description": "No configuration support for factorhouse_kpow",
     "type": "object"
   },
+  "./grafana-labs_kubernetes-monitoring/addon.json": {
+    "addonName": "grafana-labs_kubernetes-monitoring",
+    "type": "monitoring",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.6.1-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Grafana Labs",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "32a4dbb7-2f6f-4494-aef0-b778fc333971",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=32a4dbb7-2f6f-4494-aef0-b778fc333971"
+    }
+  },
+  "./grafana-labs_kubernetes-monitoring/configurations/v0.6.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "properties": {
+      "cluster": {
+        "properties": {
+          "kubernetesAPIService": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "platform": {
+            "enum": [
+              "",
+              "openshift"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "configValidator": {
+        "properties": {
+          "nodeSelector": {
+            "properties": {
+              "kubernetes.io/os": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "externalServices": {
+        "properties": {
+          "loki": {
+            "properties": {
+              "authMode": {
+                "type": "string"
+              },
+              "basicAuth": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "passwordKey": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "usernameKey": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "externalLabels": {
+                "type": "object"
+              },
+              "host": {
+                "type": "string"
+              },
+              "hostKey": {
+                "type": "string"
+              },
+              "proxyURL": {
+                "type": "string"
+              },
+              "queryEndpoint": {
+                "type": "string"
+              },
+              "secret": {
+                "properties": {
+                  "create": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "tenantId": {
+                "type": [
+                  "string",
+                  "integer"
+                ]
+              },
+              "tenantIdKey": {
+                "type": "string"
+              },
+              "tls": {
+                "type": "object"
+              },
+              "writeEndpoint": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "prometheus": {
+            "properties": {
+              "authMode": {
+                "type": "string"
+              },
+              "basicAuth": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "passwordKey": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "usernameKey": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "externalLabels": {
+                "type": "object"
+              },
+              "host": {
+                "type": "string"
+              },
+              "hostKey": {
+                "type": "string"
+              },
+              "processors": {
+                "properties": {
+                  "batch": {
+                    "properties": {
+                      "maxSize": {
+                        "type": "integer"
+                      },
+                      "size": {
+                        "type": "integer"
+                      },
+                      "timeout": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "memoryLimiter": {
+                    "properties": {
+                      "checkInterval": {
+                        "type": "string"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "limit": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "proxyURL": {
+                "type": "string"
+              },
+              "queryEndpoint": {
+                "type": "string"
+              },
+              "secret": {
+                "properties": {
+                  "create": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "tenantId": {
+                "type": [
+                  "string",
+                  "integer"
+                ]
+              },
+              "tenantIdKey": {
+                "type": "string"
+              },
+              "tls": {
+                "type": "object"
+              },
+              "writeEndpoint": {
+                "type": "string"
+              },
+              "writeRelabelConfigRules": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tempo": {
+            "properties": {
+              "authMode": {
+                "type": "string"
+              },
+              "basicAuth": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "passwordKey": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "usernameKey": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "host": {
+                "type": "string"
+              },
+              "hostKey": {
+                "type": "string"
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "secret": {
+                "properties": {
+                  "create": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "tenantId": {
+                "type": [
+                  "string",
+                  "integer"
+                ]
+              },
+              "tenantIdKey": {
+                "type": "string"
+              },
+              "tls": {
+                "type": "object"
+              },
+              "tlsOptions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "extraConfig": {
+        "type": "string"
+      },
+      "global": {
+        "properties": {
+          "image": {
+            "properties": {
+              "pullSecrets": {
+                "type": "array"
+              },
+              "registry": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "kube-state-metrics": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "logs": {
+        "properties": {
+          "cluster_events": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "namespaces": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraConfig": {
+            "type": "string"
+          },
+          "pod_logs": {
+            "properties": {
+              "annotation": {
+                "type": "string"
+              },
+              "discovery": {
+                "enum": [
+                  "all",
+                  "annotation"
+                ],
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "extraStageBlocks": {
+                "type": "string"
+              },
+              "namespaces": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "metrics": {
+        "properties": {
+          "agent": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "labelMatchers": {
+                "properties": {
+                  "app.kubernetes.io/name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "apiserver": {
+            "properties": {
+              "allowList": {
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "autoDiscover": {
+            "properties": {
+              "annotations": {
+                "properties": {
+                  "instance": {
+                    "type": "string"
+                  },
+                  "job": {
+                    "type": "string"
+                  },
+                  "metricsPath": {
+                    "type": "string"
+                  },
+                  "metricsPortName": {
+                    "type": "string"
+                  },
+                  "metricsPortNumber": {
+                    "type": "string"
+                  },
+                  "scrape": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "null"
+              },
+              "extraRelabelingRules": {
+                "type": "null"
+              }
+            },
+            "type": "object"
+          },
+          "cadvisor": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "cost": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "labelMatchers": {
+                "properties": {
+                  "app.kubernetes.io/name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraMetricRelabelingRules": {
+            "type": "string"
+          },
+          "extraRelabelingRules": {
+            "type": "string"
+          },
+          "kube-state-metrics": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "labelMatchers": {
+                "properties": {
+                  "app.kubernetes.io/name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              },
+              "service": {
+                "properties": {
+                  "isTLS": {
+                    "type": "boolean"
+                  },
+                  "port": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "kubeControllerManager": {
+            "properties": {
+              "allowList": {
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "kubeProxy": {
+            "properties": {
+              "allowList": {
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "kubeScheduler": {
+            "properties": {
+              "allowList": {
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "kubelet": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "kubernetesMonitoring": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "node-exporter": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "labelMatchers": {
+                "properties": {
+                  "app.kubernetes.io/name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              },
+              "service": {
+                "properties": {
+                  "isTLS": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "podMonitors": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "namespaces": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "probes": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "namespaces": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "scrapeInterval": {
+            "type": "string"
+          },
+          "serviceMonitors": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "namespaces": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "windows-exporter": {
+            "properties": {
+              "allowList": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "extraMetricRelabelingRules": {
+                "type": "string"
+              },
+              "extraRelabelingRules": {
+                "type": "string"
+              },
+              "labelMatchers": {
+                "properties": {
+                  "app.kubernetes.io/name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "opencost": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "prometheus-node-exporter": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "prometheus-operator-crds": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "prometheus-windows-exporter": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "test": {
+        "properties": {
+          "attempts": {
+            "type": "integer"
+          },
+          "extraQueries": {
+            "type": "array"
+          },
+          "image": {
+            "properties": {
+              "image": {
+                "type": "string"
+              },
+              "pullSecrets": {
+                "type": "array"
+              },
+              "registry": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "nodeSelector": {
+            "properties": {
+              "kubernetes.io/os": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "traces": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "processors": {
+            "properties": {
+              "batch": {
+                "properties": {
+                  "maxSize": {
+                    "type": "integer"
+                  },
+                  "size": {
+                    "type": "integer"
+                  },
+                  "timeout": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "receiver": {
+            "properties": {
+              "grpc": {
+                "properties": {
+                  "disable_debug_metrics": {
+                    "type": "boolean"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "port": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "http": {
+                "properties": {
+                  "disable_debug_metrics": {
+                    "type": "boolean"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "port": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "port": {
+                "type": "null"
+              },
+              "zipkin": {
+                "properties": {
+                  "disable_debug_metrics": {
+                    "type": "boolean"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "port": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "cluster"
+    ],
+    "type": "object"
+  },
   "./groundcover_agent/addon.json": {
     "addonName": "groundcover_agent",
     "type": "monitoring",
@@ -24297,6 +25290,23 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.28.4-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.28.2-eksbuild.2",
         "architecture": [
           "amd64",
@@ -24425,6 +25435,37 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.26.11-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -24576,6 +25617,44 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.25.16-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -24791,6 +25870,37 @@
         "requiresConfiguration": false
       },
       {
+        "addonVersion": "v1.24.17-eksbuild.4",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.24.17-eksbuild.3",
         "architecture": [
           "amd64",
@@ -24982,6 +26092,37 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.23.17-eksbuild.5",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -27194,6 +28335,68 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.23.17-eksbuild.5.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.23.7-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -27628,6 +28831,68 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.24.17-eksbuild.4.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.24.7-eksbuild.2.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -28000,6 +29265,68 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.25.16-eksbuild.1.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.25.6-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -28125,6 +29452,68 @@
     }
   },
   "./kube-proxy/configurations/v1.25.9-eksbuild.1.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.26.11-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -28931,6 +30320,68 @@
     }
   },
   "./kube-proxy/configurations/v1.28.2-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.28.4-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -30235,6 +31686,1613 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for solo-io_solo-io-istio-distro",
+    "type": "object"
+  },
+  "./splunk_splunk-otel-collector-chart/addon.json": {
+    "addonName": "splunk_splunk-otel-collector-chart",
+    "type": "monitoring",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.86.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Splunk",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "237169f6-b4c6-4a66-a8a5-d2b04ca17908",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=237169f6-b4c6-4a66-a8a5-d2b04ca17908"
+    }
+  },
+  "./splunk_splunk-otel-collector-chart/configurations/v0.86.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "anyOf": [
+          {
+            "properties": {
+              "splunkPlatform": {
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          {
+            "properties": {
+              "splunkObservability": {
+                "properties": {
+                  "realm": {
+                    "minLength": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          {
+            "properties": {
+              "splunkRealm": {
+                "deprecated": true,
+                "description": "[DEPRECATED] Splunk Observability Realm",
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "if": {
+          "$comment": "if k8s secret resource created by the chart (default behavior)",
+          "properties": {
+            "secret": {
+              "properties": {
+                "create": {
+                  "const": true
+                }
+              }
+            }
+          }
+        },
+        "then": {
+          "$comment": "then require tokens to be provided for every enabled destination",
+          "properties": {
+            "splunkObservability": {
+              "if": {
+                "properties": {
+                  "realm": {
+                    "minLength": 1
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "accessToken": {
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "splunkPlatform": {
+              "if": {
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "token": {
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if splunkPlatform.metricsEnabled is true and splunkPlatform.endpoint is provided",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "endpoint": {
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "then": {
+          "$comment": "then splunkPlatform.metricsIndex must be provided",
+          "properties": {
+            "splunkPlatform": {
+              "if": {
+                "properties": {
+                  "metricsEnabled": {
+                    "const": true
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "metricsIndex": {
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if splunkPlatform.logsEnabled is true and splunkPlatform.endpoint is provided",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "endpoint": {
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "then": {
+          "$comment": "then splunkPlatform.index must be provided",
+          "properties": {
+            "splunkPlatform": {
+              "if": {
+                "properties": {
+                  "logsEnabled": {
+                    "const": true
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "index": {
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "affinity": {
+        "description": "Defines node affinity to restrict deployment of the o11y collector daemonset.",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector agent configuration.",
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "controlPlaneEnabled": {
+            "deprecated": true,
+            "type": "boolean"
+          },
+          "controlPlaneMetrics": {
+            "additionalProperties": false,
+            "properties": {
+              "apiserver": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "controllerManager": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "coredns": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "etcd": {
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "$comment": "if etcd metrics are enabled",
+                      "properties": {
+                        "enabled": {
+                          "const": true
+                        }
+                      }
+                    },
+                    "then": {
+                      "else": {
+                        "$comment": "then require a k8s secret name for a secret the user created that is not an empty string",
+                        "properties": {
+                          "secret": {
+                            "properties": {
+                              "name": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "if": {
+                        "$comment": "if the helm chart will create the etcd k8s secret",
+                        "properties": {
+                          "secret": {
+                            "properties": {
+                              "create": {
+                                "const": true
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "then": {
+                        "$comment": "then require a clientCert and clientKey that are not empty strings",
+                        "properties": {
+                          "secret": {
+                            "properties": {
+                              "clientCert": {
+                                "minLength": 1
+                              },
+                              "clientKey": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "secret": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "caFile": {
+                        "type": "string"
+                      },
+                      "clientCert": {
+                        "type": "string"
+                      },
+                      "clientKey": {
+                        "type": "string"
+                      },
+                      "create": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "skipVerify": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "proxy": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "scheduler": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "maxUnavailable": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "ports": {
+            "patternProperties": {
+              ".*": {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "type": "integer"
+                  },
+                  "enabled_for": {
+                    "items": {
+                      "enum": [
+                        "traces",
+                        "metrics",
+                        "logs",
+                        "profiling"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "hostPort": {
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "type": "object"
+          },
+          "service": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "updateStrategy": {
+            "enum": [
+              "OnDelete",
+              "RollingUpdate"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "apiUrl": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk Observability API URL.",
+        "type": "string"
+      },
+      "autodetect": {
+        "additionalProperties": false,
+        "description": "Automatic detection of additional metric sources.",
+        "properties": {
+          "controlPlane": {
+            "deprecated": true,
+            "type": "boolean"
+          },
+          "istio": {
+            "type": "boolean"
+          },
+          "prometheus": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "cloudProvider": {
+        "description": "Cloud provider where the collector is running",
+        "enum": [
+          "aws",
+          "gcp",
+          "azure",
+          " ",
+          ""
+        ],
+        "type": "string"
+      },
+      "clusterName": {
+        "description": "Cluster name that will be used as metadata attributes for all telemetry data",
+        "type": "string"
+      },
+      "clusterReceiver": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector cluster receiver configuration.",
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "eventsEnabled": {
+            "deprecated": true,
+            "description": "[DEPRECATED] Use k8sObjects instead.",
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "k8sEventsEnabled": {
+            "deprecated": true,
+            "description": "[DEPRECATED] Use eventsEnabled instead.",
+            "type": "boolean"
+          },
+          "k8sObjects": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "integer"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "distribution": {
+        "description": "Kubernetes distribution where the collector is running",
+        "enum": [
+          "eks",
+          "eks/fargate",
+          "gke",
+          "gke/autopilot",
+          "aks",
+          "openshift",
+          " ",
+          ""
+        ],
+        "type": "string"
+      },
+      "distro": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Kubernetes distribution where the collector is running",
+        "type": "string"
+      },
+      "environment": {
+        "description": "Parameter that will be added to all the telemetry data (traces/logs/metrics) as an attribute.",
+        "type": "string"
+      },
+      "extraAttributes": {
+        "additionalProperties": false,
+        "description": "Additional metadata that will be added to all the telemetry as extra attributes.",
+        "properties": {
+          "custom": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "fromAnnotations": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "fromLabels": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "podLabels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "featureGates": {
+        "additionalProperties": true,
+        "description": "Helm Chart Feature Gates.",
+        "type": "object"
+      },
+      "fluentd": {
+        "additionalProperties": false,
+        "description": "Fluentd sidecar configuration for logs collection.",
+        "properties": {
+          "config": {
+            "additionalProperties": false,
+            "properties": {
+              "buffer": {
+                "type": "object"
+              },
+              "containers": {
+                "additionalProperties": false,
+                "properties": {
+                  "criTimeFormat": {
+                    "type": "string"
+                  },
+                  "logFormatType": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "pathDest": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "customFilters": {
+                "patternProperties": {
+                  ".*": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "body": {
+                        "type": "string"
+                      },
+                      "tag": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "excludePath": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "journalLogPath": {
+                "type": "string"
+              },
+              "logLevel": {
+                "enum": [
+                  "trace",
+                  "debug",
+                  "info",
+                  "warn",
+                  "error"
+                ],
+                "type": "string"
+              },
+              "logs": {
+                "patternProperties": {
+                  ".*": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "from": {
+                        "type": "object"
+                      },
+                      "multiline": {
+                        "additionalItems": false,
+                        "properties": {
+                          "firstline": {
+                            "type": "string"
+                          },
+                          "flushInterval": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "sourcetype": {
+                        "type": "string"
+                      },
+                      "timestampExtraction": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "format": {
+                            "type": "string"
+                          },
+                          "regexp": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "path": {
+                "type": "string"
+              },
+              "posFilePrefix": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "fullnameOverride": {
+        "description": "Override fully qualified app name.",
+        "type": "string"
+      },
+      "gateway": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector gateway deployment configuration.",
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "ports": {
+            "patternProperties": {
+              ".*": {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "type": "integer"
+                  },
+                  "enabled_for": {
+                    "items": {
+                      "enum": [
+                        "traces",
+                        "metrics",
+                        "logs",
+                        "profiling"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "hostPort": {
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "integer"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "type": "object"
+      },
+      "image": {
+        "additionalProperties": false,
+        "description": "Docker image configuration.",
+        "properties": {
+          "fluentd": {
+            "additionalProperties": false,
+            "properties": {
+              "initContainer": {
+                "deprecated": "true",
+                "type": "object"
+              },
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "imagePullSecrets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "initPatchLogDirs": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "otelcol": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ingestUrl": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk Observability ingest URL.",
+        "type": "string"
+      },
+      "isWindows": {
+        "description": "Apply for k8s cluster with windows worker node.",
+        "type": "boolean"
+      },
+      "k8sVersion": {
+        "description": "Version of Kubernetes environment",
+        "type": "string"
+      },
+      "livenessProbe": {
+        "type": "object"
+      },
+      "logsCollection": {
+        "additionalProperties": false,
+        "description": "Native OpenTelemetry logs collection configuration.",
+        "properties": {
+          "checkpointPath": {
+            "type": "string"
+          },
+          "containers": {
+            "additionalProperties": false,
+            "properties": {
+              "containerRuntime": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "excludeAgentLogs": {
+                "type": "boolean"
+              },
+              "excludePaths": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "extraOperators": {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "maxRecombineLogSize": {
+                "type": "integer"
+              },
+              "multilineConfigs": {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "useSplunkIncludeAnnotation": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "extraFileLogs": {
+            "type": "object"
+          },
+          "journald": {
+            "additionalProperties": false,
+            "description": "Configuration to collect journald logs",
+            "properties": {
+              "directory": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "index": {
+                "type": "string"
+              },
+              "units": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": [
+                        "string",
+                        "integer"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "logsEnabled": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Send Logs to Splunk Observability",
+        "type": "boolean"
+      },
+      "logsEngine": {
+        "description": "Logs collection engine",
+        "enum": [
+          "fluentd",
+          "otel"
+        ],
+        "type": "string"
+      },
+      "metricsEnabled": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Send Metrics to Splunk Observability",
+        "type": "boolean"
+      },
+      "nameOverride": {
+        "description": "Override name of the chart used in Kubernetes object names.",
+        "type": "string"
+      },
+      "nodeSelector": {
+        "type": "object"
+      },
+      "otelAgent": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk OpenTelemetry Collector agent configuration.",
+        "type": "object"
+      },
+      "otelCollector": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk OpenTelemetry Collector gateway deployment configuration.",
+        "type": "object"
+      },
+      "otelK8sClusterReceiver": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk OpenTelemetry Collector cluster receiver configuration.",
+        "type": "object"
+      },
+      "podDisruptionBudget": {
+        "additionalProperties": false,
+        "description": "Limits number of pods may be unavailable due to voluntary disruptions.",
+        "properties": {
+          "maxUnavailable": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          },
+          "minAvailable": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "priorityClassName": {
+        "type": "string"
+      },
+      "provider": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Cloud provider where the collector is running",
+        "type": "string"
+      },
+      "rbac": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "customRules": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "readinessProbe": {
+        "type": "object"
+      },
+      "secret": {
+        "additionalProperties": false,
+        "description": "Kubernetes secret resource configuration",
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "validateSecret": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "securityContextConstraints": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "securityContextConstraintsOverwrite": {
+        "description": "Openshift SecurityContextConstraints can be overriden in this field.",
+        "type": "object"
+      },
+      "service": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry collector service configuration.",
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "type": {
+            "enum": [
+              "ClusterIP",
+              "NodePort",
+              "LoadBalancer",
+              "ExternalName"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "serviceAccount": {
+        "additionalProperties": false,
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "create": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "splunkAccessToken": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk Observability Access Token",
+        "type": "string"
+      },
+      "splunkObservability": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "properties": {
+              "metricsEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "tracesEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "logsEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "profilingEnabled": {
+                "const": true
+              }
+            }
+          }
+        ],
+        "description": "Splunk Observability configuration",
+        "properties": {
+          "accessToken": {
+            "description": "Splunk Observability Access Token",
+            "type": "string"
+          },
+          "apiUrl": {
+            "type": "string"
+          },
+          "infrastructureMonitoringEventsEnabled": {
+            "description": "Send Kubernetes events to Splunk Observability Infrastructure Monitoring",
+            "type": "boolean"
+          },
+          "ingestUrl": {
+            "type": "string"
+          },
+          "logsEnabled": {
+            "description": "Send Logs to Splunk Observability",
+            "type": "boolean"
+          },
+          "metricsEnabled": {
+            "description": "Send Metrics to Splunk Observability",
+            "type": "boolean"
+          },
+          "profilingEnabled": {
+            "description": "Whether profiling data is enabled for Splunk Observability",
+            "type": "boolean"
+          },
+          "realm": {
+            "description": "Splunk Observability Realm",
+            "example": "us0",
+            "type": "string"
+          },
+          "tracesEnabled": {
+            "description": "Send Traces to Splunk Observability",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "splunkPlatform": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "properties": {
+              "logsEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "metricsEnabled": {
+                "const": true
+              }
+            }
+          }
+        ],
+        "description": "Splunk Cloud / Splunk Enterprise configuration",
+        "properties": {
+          "caFile": {
+            "type": "string"
+          },
+          "clientCert": {
+            "type": "string"
+          },
+          "clientKey": {
+            "type": "string"
+          },
+          "disableCompression": {
+            "type": "boolean"
+          },
+          "endpoint": {
+            "description": "Splunk Platform Endpoint",
+            "example": "http://localhost:8088/services/collector",
+            "type": "string"
+          },
+          "fieldNameConvention": {
+            "additionalProperties": false,
+            "properties": {
+              "keepOtelConvention": {
+                "type": "boolean"
+              },
+              "renameFieldsSck": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "idleConnTimeout": {
+            "type": "string"
+          },
+          "index": {
+            "description": "Name of Splunk index targeted.",
+            "type": "string"
+          },
+          "insecureSkipVerify": {
+            "type": "boolean"
+          },
+          "logsEnabled": {
+            "description": "Send Logs to Splunk Platform",
+            "type": "boolean"
+          },
+          "maxConnections": {
+            "type": "integer"
+          },
+          "metricsEnabled": {
+            "description": "Send Metrics to Splunk Platform",
+            "type": "boolean"
+          },
+          "metricsIndex": {
+            "type": "string"
+          },
+          "retryOnFailure": {
+            "additionalProperties": false,
+            "description": "Retry configurations",
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "initialInterval": {
+                "type": "string"
+              },
+              "maxElapsedTime": {
+                "type": "string"
+              },
+              "maxInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "sendingQueue": {
+            "additionalProperties": false,
+            "description": "Batching configurations for logs/traces/metrics",
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "numConsumers": {
+                "type": "integer"
+              },
+              "persistentQueue": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "storagePath": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "queueSize": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourcetype": {
+            "type": "string"
+          },
+          "timeout": {
+            "type": "string"
+          },
+          "token": {
+            "description": "Splunk Platform HEC Token",
+            "type": "string"
+          },
+          "tracesEnabled": {
+            "description": "Send Traces to Splunk Platform",
+            "type": "boolean"
+          },
+          "tracesIndex": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "splunkRealm": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Splunk Observability Realm",
+        "type": "string"
+      },
+      "terminationGracePeriodSeconds": {
+        "type": "integer"
+      },
+      "tolerations": {
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "tracesEnabled": {
+        "deprecated": true,
+        "description": "[DEPRECATED] Send Traces to Splunk Observability",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "clusterName",
+      "cloudProvider",
+      "distribution"
+    ],
+    "title": "Values",
     "type": "object"
   },
   "./stormforge_optimize-live/addon.json": {
