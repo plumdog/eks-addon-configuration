@@ -102,7 +102,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v0.88.0-eksbuild.2",
+        "addonVersion": "v0.90.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -149,6 +149,58 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v0.88.0-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -7540,6 +7592,651 @@
     "title": "Root Schema",
     "type": "object"
   },
+  "./adot/configurations/v0.90.0-eksbuild.1.json": {
+    "$id": "http://example.com/example.json",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the adot Operator Addon",
+    "examples": [
+      {
+        "admissionWebhooks": {
+          "namespaceSelector": {},
+          "objectSelector": {}
+        },
+        "affinity": {},
+        "collector": {
+          "containerLogs": {
+            "exporters": {
+              "awscloudwatchlogs": {
+                "log_group_name": "adot-log-group",
+                "log_stream_name": "adot-log-stream"
+              }
+            },
+            "pipelines": {
+              "logs": {
+                "cloudwatchLogs": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-container-logs"
+              }
+            }
+          },
+          "otlpIngest": {
+            "pipelines": {
+              "traces": {
+                "xray": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-otlp-ingest"
+              }
+            }
+          },
+          "prometheusMetrics": {
+            "exporters": {
+              "prometheusremotewrite": {
+                "endpoint": "https://aps-workspaces.us-west-2.amazonaws.com/workspaces/ws-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/api/v1/remote_write"
+              }
+            },
+            "pipelines": {
+              "metrics": {
+                "amp": {
+                  "enabled": true
+                },
+                "emf": {
+                  "enabled": true
+                }
+              }
+            },
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "750Mi"
+              },
+              "requests": {
+                "cpu": "300m",
+                "memory": "512Mi"
+              }
+            },
+            "serviceAccount": {
+              "annotations": {
+                "eks.amazonaws.com/role-arn": "arn:aws:iam::***:role/adot-col-prom-metrics"
+              }
+            }
+          }
+        },
+        "kubeRBACProxy": {
+          "enabled": true,
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "5m",
+              "memory": "64Mi"
+            }
+          }
+        },
+        "manager": {
+          "env": {},
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            }
+          }
+        },
+        "nodeSelector": {},
+        "replicaCount": 1,
+        "tolerations": []
+      }
+    ],
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "namespaceSelector": {
+            "properties": {},
+            "title": "The namespaceSelector Schema",
+            "type": "object"
+          },
+          "objectSelector": {
+            "properties": {},
+            "title": "The objectSelector Schema",
+            "type": "object"
+          }
+        },
+        "title": "The admissionWebhooks Schema",
+        "type": "object"
+      },
+      "affinity": {
+        "properties": {},
+        "title": "The affinity Schema",
+        "type": "object"
+      },
+      "collector": {
+        "additionalProperties": false,
+        "properties": {
+          "containerLogs": {
+            "additionalProperties": false,
+            "properties": {
+              "exporters": {
+                "additionalProperties": false,
+                "properties": {
+                  "awscloudwatchlogs": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "log_group_name": {
+                        "maxLength": 512,
+                        "minLength": 1,
+                        "pattern": "[\\.\\-_/#A-Za-z0-9]+",
+                        "title": "The log_group_name Schema",
+                        "type": "string"
+                      },
+                      "log_stream_name": {
+                        "maxLength": 512,
+                        "minLength": 1,
+                        "pattern": "[^:*]*",
+                        "title": "The log_stream_name Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The awscloudwatchlogs exporter Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT exporters Schema",
+                "type": "object"
+              },
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "logs": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cloudwatchLogs": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The Cloudwatch Logs Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The logs Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "title": "Opinionated collector for container logs",
+            "type": "object"
+          },
+          "otlpIngest": {
+            "additionalProperties": false,
+            "properties": {
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "traces": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "xray": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The X-Ray Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The traces Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "title": "Opinionated collector for otlp ingest",
+            "type": "object"
+          },
+          "prometheusMetrics": {
+            "additionalProperties": false,
+            "if": {
+              "properties": {
+                "pipelines": {
+                  "properties": {
+                    "metrics": {
+                      "properties": {
+                        "amp": {
+                          "properties": {
+                            "enabled": {
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "enabled"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "amp"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "metrics"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "pipelines"
+              ],
+              "type": "object"
+            },
+            "properties": {
+              "exporters": {
+                "additionalProperties": false,
+                "properties": {
+                  "prometheusremotewrite": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "endpoint": {
+                        "pattern": "^https://aps-workspaces\\.(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-[0-9]\\.amazonaws\\.com/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/api/v1/remote_write$",
+                        "title": "The AMP endpoint uri Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The prometheusremotewrite exporter Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The exporters Schema",
+                "type": "object"
+              },
+              "pipelines": {
+                "additionalProperties": false,
+                "properties": {
+                  "metrics": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "amp": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The AMP Schema",
+                        "type": "object"
+                      },
+                      "emf": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "enabled": {
+                            "title": "The enabled Schema",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "title": "The EMF Schema",
+                        "type": "object"
+                      }
+                    },
+                    "title": "The metrics Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The ADOT pipelines Schema",
+                "type": "object"
+              },
+              "resources": {
+                "additionalProperties": false,
+                "properties": {
+                  "limits": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The limits Schema",
+                    "type": "object"
+                  },
+                  "requests": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "cpu": {
+                        "title": "The cpu Schema",
+                        "type": "string"
+                      },
+                      "memory": {
+                        "title": "The memory Schema",
+                        "type": "string"
+                      }
+                    },
+                    "title": "The requests Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The resources Schema",
+                "type": "object"
+              },
+              "serviceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                  "annotations": {
+                    "properties": {},
+                    "title": "The annotations Schema",
+                    "type": "object"
+                  }
+                },
+                "title": "The serviceAccount Schema",
+                "type": "object"
+              }
+            },
+            "then": {
+              "properties": {
+                "exporters": {
+                  "properties": {
+                    "prometheusremotewrite": {
+                      "properties": {
+                        "endpoint": {}
+                      },
+                      "required": [
+                        "endpoint"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "prometheusremotewrite"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "exporters"
+              ],
+              "type": "object"
+            },
+            "title": "Opinionated collector for prometheus metrics",
+            "type": "object"
+          }
+        },
+        "title": "The collector Schema",
+        "type": "object"
+      },
+      "kubeRBACProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "title": "The resources Schema",
+            "type": "object"
+          }
+        },
+        "title": "The kubeRBACProxy Schema",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "env": {
+            "properties": {},
+            "title": "The env Schema",
+            "type": "object"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "title": "The resources Schema",
+            "type": "object"
+          }
+        },
+        "title": "The manager Schema",
+        "type": "object"
+      },
+      "nodeSelector": {
+        "properties": {},
+        "title": "The nodeSelector Schema",
+        "type": "object"
+      },
+      "replicaCount": {
+        "title": "The replicaCount Schema",
+        "type": "integer"
+      },
+      "tolerations": {
+        "items": {},
+        "title": "The tolerations Schema",
+        "type": "array"
+      }
+    },
+    "title": "Root Schema",
+    "type": "object"
+  },
   "./amazon-cloudwatch-observability/addon.json": {
     "addonName": "amazon-cloudwatch-observability",
     "type": "observability",
@@ -7910,7 +8607,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.26.0-eksbuild.1",
+        "addonVersion": "v1.26.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -7957,6 +8654,58 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.26.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -17993,6 +18742,473 @@
     },
     "type": "object"
   },
+  "./aws-ebs-csi-driver/configurations/v1.26.1-eksbuild.1.json": {
+    "$defs": {
+      "extraVolumeTags": {
+        "patternProperties": {
+          "^.*$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+          "type": "string"
+        },
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the AWS EBS CSI Driver",
+    "properties": {
+      "a1CompatibilityDaemonSet": {
+        "default": false,
+        "description": "Enable compatibility for the A1 instance family via use of an AL2-based image in a separate DaemonSet",
+        "type": "boolean"
+      },
+      "additionalDaemonSets": {
+        "default": {},
+        "description": "Additional DaemonSets of the node pod",
+        "patternProperties": {
+          "^.*$": {
+            "$ref": "#/properties/node",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the controller pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "preference": {
+                        "matchExpressions": [
+                          {
+                            "key": "eks.amazonaws.com/compute-type",
+                            "operator": "NotIn",
+                            "values": [
+                              "fargate"
+                            ]
+                          }
+                        ]
+                      },
+                      "weight": 1
+                    }
+                  ]
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "app",
+                              "operator": "In",
+                              "values": [
+                                "ebs-csi-controller"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "batching": {
+            "default": true,
+            "description": "Enable batching of API calls. Improves performance in workloads that are sensitive to EC2 rate limits.",
+            "type": "boolean"
+          },
+          "extraVolumeTags": {
+            "$ref": "#/$defs/extraVolumeTags",
+            "default": {},
+            "description": "Additional tags to be added to all EBS volumes"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the controller pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "sdkDebugLog": {
+            "default": false,
+            "description": "Enables debug logging of the AWS SDK via --aws-sdk-debug-log=true",
+            "type": "boolean"
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-controller-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the controller pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeModificationFeature": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "Enable modification of volume type, iops, etc via volume-modifier-for-k8s sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "customLabels": {
+        "default": null,
+        "description": "Custom labels added to Kubernetes objects",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the node pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "nodeAffinity": {
+                "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                    {
+                      "matchExpressions": [
+                        {
+                          "key": "eks.amazonaws.com/compute-type",
+                          "operator": "NotIn",
+                          "values": [
+                            "fargate"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "kubeletPath": {
+            "default": "/var/lib/kubelet",
+            "description": "Kubelet path of the node",
+            "type": "string"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the node pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-node-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "tolerateAllTaints": {
+            "default": true,
+            "description": "Node pods will tolerate all taints",
+            "type": "boolean"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the node pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeAttachLimit": {
+            "default": null,
+            "description": "Overrides the maximum number of volumes that can be attached per node (for all nodes)",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "proxy": {
+        "additionalProperties": false,
+        "properties": {
+          "http_proxy": {
+            "default": "",
+            "description": "Value of HTTP_PROXY and HTTPS_PROXY environment variables",
+            "type": "string"
+          },
+          "no_proxy": {
+            "default": "",
+            "description": "Value of NO_PROXY environment variable",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "sidecars": {
+        "additionalProperties": false,
+        "properties": {
+          "attacher": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the attacher container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "livenessProbe": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the livenessprobe container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "nodeDriverRegistrar": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the node-driver-registrar container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "provisioner": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the provisioner container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "resizer": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the resizer container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "snapshotter": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the snapshotter container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "forceEnable": {
+                "default": true,
+                "description": "Enables/disables the external-snapshotter sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "volumemodifier": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the volumemodifier container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
   "./aws-ebs-csi-driver/configurations/v1.4.0-eksbuild.preview.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
@@ -26150,6 +27366,23 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.28.4-eksbuild.4",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.28.4-eksbuild.1",
         "architecture": [
           "amd64",
@@ -26196,6 +27429,30 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.27.8-eksbuild.4",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -26319,6 +27576,37 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.26.11-eksbuild.4",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -30459,6 +31747,68 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.26.11-eksbuild.4.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.26.2-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -31203,6 +32553,68 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.27.8-eksbuild.4.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.28.1-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -31328,6 +32740,68 @@
     }
   },
   "./kube-proxy/configurations/v1.28.4-eksbuild.1.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.28.4-eksbuild.4.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -34246,7 +35720,7 @@
     "type": "cost-management",
     "addonVersions": [
       {
-        "addonVersion": "v2.8.0-eksbuild.1",
+        "addonVersion": "v2.9.1-eksbuild.1",
         "architecture": [
           "amd64"
         ],
@@ -34285,6 +35759,50 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      },
+      {
+        "addonVersion": "v2.8.0-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true
@@ -34426,6 +35944,207 @@
           },
           "image": {
             "type": "object"
+          },
+          "proxy": {
+            "type": "object"
+          },
+          "remoteTimeout": {
+            "type": "string"
+          },
+          "remoteWriteQueueConfig": {
+            "type": "object"
+          },
+          "remoteWriteUrl": {
+            "type": "string"
+          },
+          "resources": {
+            "type": "object"
+          },
+          "retentionMaxTime": {
+            "type": "string"
+          },
+          "retentionMinTime": {
+            "type": "string"
+          },
+          "scrapeInterval": {
+            "type": "string"
+          },
+          "scrapeTimeout": {
+            "type": "string"
+          },
+          "tokenUrl": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "proxyUrl": {
+        "description": "Configuration for HTTPS_PROXY environment variable",
+        "type": "string"
+      },
+      "standbyMode": {
+        "type": "boolean"
+      },
+      "workload": {
+        "properties": {
+          "allowNamespaces": {
+            "description": "A list of namespaces (regex) to include workloads and metrics from",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "autoDiscovery": {
+            "description": "Automatically discover workloads that can be optimized. It works in conjuction with WorkloadOptimizer CRD",
+            "type": "boolean"
+          },
+          "collectLabels": {
+            "description": "Collect labels of the cluster's workloads.",
+            "type": "boolean"
+          },
+          "denyNamespaces": {
+            "description": "A list of namespaces (regex) to ignore workloads and metrics from",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "inactiveWorkloadsGC": {
+            "description": "Garbage collection of inactive workloads on StormForge API backend.",
+            "type": "boolean"
+          },
+          "workloadSyncInterval": {
+            "description": "Interval the agent will update probeTime for each existent workload.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "standbyMode",
+      "authorization"
+    ]
+  },
+  "./stormforge_optimize-live/configurations/v2.9.1-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "additionalProperties": true,
+    "properties": {
+      "authorization": {
+        "additionalProperties": false,
+        "properties": {
+          "clientID": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          },
+          "clientSecret": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          },
+          "issuer": {
+            "pattern": "^[^\n]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "clusterDefaultConfig": {
+        "patternProperties": {
+          "^(cpu|memory)OptimizationGoal$": {
+            "enum": [
+              "balanced",
+              "savings",
+              "reliability"
+            ]
+          },
+          "^containers": {
+            "pattern": "^([-.A-Za-z0-9]*[,=]?)+$"
+          }
+        },
+        "properties": {
+          "autoDeploy": {
+            "enum": [
+              "true",
+              true,
+              "false",
+              false
+            ],
+            "type": [
+              "string",
+              "boolean"
+            ]
+          },
+          "schedule": {
+            "pattern": "(^@[a-z]+$)|(^P.*$)|(^([0-9H*/,]+ ){4,6}(,?(([0-7H*/]+)|MON|TUE|WED|THU|FRI|SAT|SUN))+$)",
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "enum": [
+            "schedule",
+            "autoDeploy",
+            "cpuOptimizationGoal",
+            "memoryOptimizationGoal",
+            "containersCpuOptimizationPolicy",
+            "containersCpuRequestsMin",
+            "containersCpuRequestsMax",
+            "containersCpuLimitsMin",
+            "containersCpuLimitsMax",
+            "containersCpuLimitsLimitRequestRatio",
+            "containersMemoryOptimizationPolicy",
+            "containersMemoryRequestsMin",
+            "containersMemoryRequestsMax",
+            "containersMemoryLimitsMin",
+            "containersMemoryLimitsMax",
+            "containersMemoryLimitsLimitRequestRatio"
+          ]
+        },
+        "type": "object"
+      },
+      "extraEnvVars": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "type": "array",
+        "x-kubernetes-patch-merge-key": "name",
+        "x-kubernetes-patch-strategy": "merge"
+      },
+      "manageAuthSecret": {
+        "description": "Whether or not to create and manage the authorization secret",
+        "type": "boolean"
+      },
+      "noProxy": {
+        "description": "Configuration for NO_PROXY environment variable",
+        "type": "string"
+      },
+      "prom": {
+        "additionalProperties": false,
+        "properties": {
+          "debug": {
+            "type": "boolean"
+          },
+          "extraCAdvisorMetrics": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "honorTimestamps": {
+            "type": "boolean"
           },
           "proxy": {
             "type": "object"
