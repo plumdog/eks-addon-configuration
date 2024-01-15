@@ -1,0 +1,64 @@
+{
+  "addonName": "netapp_trident-operator",
+  "type": "storage",
+  "addonVersions": [
+    {
+      "addonVersion": "v23.10.0-eksbuild.1",
+      "architecture": [
+        "arm64",
+        "amd64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    }
+  ],
+  "publisher": "NetApp Inc.",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "3dddaaf1-373c-40ce-91ce-26cec94088eb",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=3dddaaf1-373c-40ce-91ce-26cec94088eb"
+  }
+}
