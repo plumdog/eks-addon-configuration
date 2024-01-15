@@ -22,6 +22,7 @@
   "kube-proxy",
   "kubecost_kubecost",
   "leaksignal_leakagent",
+  "netapp_trident-operator",
   "new-relic_kubernetes-operator",
   "rafay-systems_rafay-operator",
   "snapshot-controller",
