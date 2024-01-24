@@ -10,6 +10,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -61,6 +68,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -114,6 +128,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -165,6 +186,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -269,6 +297,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -426,6 +461,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -530,6 +572,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -581,6 +630,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [

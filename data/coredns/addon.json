@@ -3,12 +3,53 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.11.1-eksbuild.4",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    },
+    {
+      "addonVersion": "v1.11.1-eksbuild.3",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false
+    },
+    {
       "addonVersion": "v1.10.1-eksbuild.7",
       "architecture": [
         "amd64",
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -33,6 +74,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [

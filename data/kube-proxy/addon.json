@@ -3,12 +3,53 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.29.0-eksbuild.2",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false
+    },
+    {
+      "addonVersion": "v1.29.0-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false
+    },
+    {
       "addonVersion": "v1.28.4-eksbuild.4",
       "architecture": [
         "amd64",
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -26,6 +67,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -78,6 +126,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -101,6 +156,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -225,6 +287,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -255,6 +324,13 @@
         "arm64"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
