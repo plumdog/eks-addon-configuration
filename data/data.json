@@ -22559,7 +22559,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.2.0-eksbuild.1",
+        "addonVersion": "v1.3.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -22613,6 +22613,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.2.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -22752,6 +22811,12 @@
     "type": "object"
   },
   "./aws-mountpoint-s3-csi-driver/configurations/v1.2.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
+    "type": "object"
+  },
+  "./aws-mountpoint-s3-csi-driver/configurations/v1.3.0-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
