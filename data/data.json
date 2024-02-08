@@ -30697,6 +30697,23 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.29.0-eksbuild.3",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.29.0-eksbuild.2",
         "architecture": [
           "amd64",
@@ -31201,6 +31218,44 @@
         "requiresConfiguration": false
       },
       {
+        "addonVersion": "v1.25.16-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.25.16-eksbuild.1",
         "architecture": [
           "amd64",
@@ -31449,6 +31504,37 @@
         "requiresConfiguration": false
       },
       {
+        "addonVersion": "v1.24.17-eksbuild.8",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.24.17-eksbuild.4",
         "architecture": [
           "amd64",
@@ -31667,6 +31753,37 @@
         "compatibilities": [
           {
             "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.23.17-eksbuild.9",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
             "platformVersions": [
               "*"
             ],
@@ -33976,6 +34093,78 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.23.17-eksbuild.9.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.23.7-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -34472,6 +34661,78 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.24.17-eksbuild.8.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.24.7-eksbuild.2.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -34870,6 +35131,78 @@
               "ipvs"
             ],
             "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.25.16-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
           },
           "resources": {
             "$ref": "#/definitions/Resources"
@@ -36358,6 +36691,78 @@
               "ipvs"
             ],
             "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.29.0-eksbuild.3.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
           },
           "resources": {
             "$ref": "#/definitions/Resources"
