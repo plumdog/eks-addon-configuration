@@ -1,0 +1,64 @@
+{
+  "addonName": "upwind-security_upwind-operator",
+  "type": "security",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.3.0-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "Upwind Security",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-iuipntteq5qxq",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-na5n7esfru5ig"
+  }
+}
