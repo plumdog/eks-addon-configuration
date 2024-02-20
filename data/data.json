@@ -96,6 +96,7 @@
     "teleport_teleport",
     "tetrate-io_istio-distro",
     "upbound_universal-crossplane",
+    "upwind-security_upwind-operator",
     "vpc-cni"
   ],
   "./adot/addon.json": {
@@ -41040,6 +41041,479 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for upbound_universal-crossplane",
+    "type": "object"
+  },
+  "./upwind-security_upwind-operator/addon.json": {
+    "addonName": "upwind-security_upwind-operator",
+    "type": "security",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.3.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Upwind Security",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-iuipntteq5qxq",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-na5n7esfru5ig"
+    }
+  },
+  "./upwind-security_upwind-operator/configurations/v0.3.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "properties": {
+      "global": {
+        "properties": {
+          "credentials": {
+            "properties": {
+              "create": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "upwind-operator": {
+        "properties": {
+          "affinity": {
+            "properties": {
+              "nodeAffinity": {
+                "properties": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "properties": {
+                      "nodeSelectorTerms": {
+                        "items": {
+                          "properties": {
+                            "matchExpressions": {
+                              "items": {
+                                "properties": {
+                                  "key": {
+                                    "type": "string"
+                                  },
+                                  "operator": {
+                                    "type": "string"
+                                  },
+                                  "values": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "agent": {
+            "properties": {
+              "create": {
+                "type": "boolean"
+              },
+              "interval": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "values": {
+                "properties": {
+                  "tolerations": {
+                    "items": {
+                      "properties": {
+                        "operator": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "clusterAgent": {
+            "properties": {
+              "create": {
+                "type": "boolean"
+              },
+              "interval": {
+                "type": "null"
+              },
+              "name": {
+                "type": "string"
+              },
+              "values": {
+                "properties": {},
+                "type": "object"
+              },
+              "version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "credentials": {
+            "properties": {
+              "agentSecretName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "clientId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "clientSecret": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "registrySecretName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "extraArgs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "extraEnv": {
+            "type": "array"
+          },
+          "extraLabels": {
+            "properties": {
+              "app.kubernetes.io/managed-by": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "fullnameOverride": {
+            "type": "string"
+          },
+          "global": {
+            "properties": {
+              "credentials": {
+                "properties": {
+                  "clientId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "clientSecret": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "create": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "image": {
+            "properties": {
+              "pullPolicy": {
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "kubeRBACProxy": {
+            "properties": {
+              "image": {
+                "properties": {
+                  "pullPolicy": {
+                    "type": "string"
+                  },
+                  "repository": {
+                    "type": "string"
+                  },
+                  "tag": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "livenessProbe": {
+            "properties": {
+              "failureThreshold": {
+                "type": "integer"
+              },
+              "httpGet": {
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "port": {
+                    "type": "integer"
+                  },
+                  "scheme": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "initialDelaySeconds": {
+                "type": "integer"
+              },
+              "periodSeconds": {
+                "type": "integer"
+              },
+              "successThreshold": {
+                "type": "integer"
+              },
+              "timeoutSeconds": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "operator": {
+            "properties": {
+              "agentEndpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "logLevel": {
+                "type": "string"
+              },
+              "oauthEndpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "registryEndpoint": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "progressDeadlineSeconds": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "readinessProbe": {
+            "properties": {
+              "failureThreshold": {
+                "type": "integer"
+              },
+              "httpGet": {
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "port": {
+                    "type": "integer"
+                  },
+                  "scheme": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "initialDelaySeconds": {
+                "type": "integer"
+              },
+              "periodSeconds": {
+                "type": "integer"
+              },
+              "successThreshold": {
+                "type": "integer"
+              },
+              "timeoutSeconds": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "replicas": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "revisionHistoryLimit": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "serviceAccount": {
+            "properties": {
+              "annotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "strategy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      }
+    },
     "type": "object"
   },
   "./vpc-cni/addon.json": {
