@@ -8955,13 +8955,6 @@
         ],
         "compatibilities": [
           {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
             "clusterVersion": "1.28",
             "platformVersions": [
               "*"
@@ -9013,13 +9006,6 @@
           "arm64"
         ],
         "compatibilities": [
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
@@ -9327,7 +9313,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.27.0-eksbuild.1",
+        "addonVersion": "v1.28.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9381,6 +9367,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.27.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -20511,6 +20556,482 @@
     },
     "type": "object"
   },
+  "./aws-ebs-csi-driver/configurations/v1.28.0-eksbuild.1.json": {
+    "$defs": {
+      "extraVolumeTags": {
+        "patternProperties": {
+          "^.*$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+          "type": "string"
+        },
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the AWS EBS CSI Driver",
+    "properties": {
+      "a1CompatibilityDaemonSet": {
+        "default": false,
+        "description": "Enable compatibility for the A1 instance family via use of an AL2-based image in a separate DaemonSet",
+        "type": "boolean"
+      },
+      "additionalDaemonSets": {
+        "default": {},
+        "description": "Additional DaemonSets of the node pod",
+        "patternProperties": {
+          "^.*$": {
+            "$ref": "#/properties/node",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the controller pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "preference": {
+                        "matchExpressions": [
+                          {
+                            "key": "eks.amazonaws.com/compute-type",
+                            "operator": "NotIn",
+                            "values": [
+                              "fargate"
+                            ]
+                          }
+                        ]
+                      },
+                      "weight": 1
+                    }
+                  ]
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "app",
+                              "operator": "In",
+                              "values": [
+                                "ebs-csi-controller"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "batching": {
+            "default": true,
+            "description": "Enable batching of API calls. Improves performance in workloads that are sensitive to EC2 rate limits.",
+            "type": "boolean"
+          },
+          "extraVolumeTags": {
+            "$ref": "#/$defs/extraVolumeTags",
+            "default": {},
+            "description": "Additional tags to be added to all EBS volumes"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the controller pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "sdkDebugLog": {
+            "default": false,
+            "description": "Enables debug logging of the AWS SDK via --aws-sdk-debug-log=true",
+            "type": "boolean"
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-controller-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the controller pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeModificationFeature": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "Enable modification of volume type, iops, etc via volume-modifier-for-k8s sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "customLabels": {
+        "default": null,
+        "description": "Custom labels added to Kubernetes objects",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the node pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "nodeAffinity": {
+                "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                    {
+                      "matchExpressions": [
+                        {
+                          "key": "eks.amazonaws.com/compute-type",
+                          "operator": "NotIn",
+                          "values": [
+                            "fargate"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "kubeletPath": {
+            "default": "/var/lib/kubelet",
+            "description": "Kubelet path of the node",
+            "type": "string"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the node pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "reservedVolumeAttachments": {
+            "default": null,
+            "description": "The number of attachment slots to reserve for system use (and not to be used for CSI volumes)\nWhen this parameter is not specified (or set to -1), the EBS CSI Driver will attempt to determine the number of reserved slots via heuristic",
+            "minimum": -1,
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-node-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "tolerateAllTaints": {
+            "default": true,
+            "description": "Node pods will tolerate all taints",
+            "type": "boolean"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the node pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeAttachLimit": {
+            "default": null,
+            "description": "Overrides the maximum number of volumes that can be attached per node (for all nodes)",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "proxy": {
+        "additionalProperties": false,
+        "properties": {
+          "http_proxy": {
+            "default": "",
+            "description": "Value of HTTP_PROXY and HTTPS_PROXY environment variables",
+            "type": "string"
+          },
+          "no_proxy": {
+            "default": "",
+            "description": "Value of NO_PROXY environment variable",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "sidecars": {
+        "additionalProperties": false,
+        "properties": {
+          "attacher": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the attacher container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "livenessProbe": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the livenessprobe container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "nodeDriverRegistrar": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the node-driver-registrar container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "provisioner": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the provisioner container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "resizer": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the resizer container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "snapshotter": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the snapshotter container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "forceEnable": {
+                "default": true,
+                "description": "Enables/disables the external-snapshotter sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "volumemodifier": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the volumemodifier container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
   "./aws-ebs-csi-driver/configurations/v1.4.0-eksbuild.preview.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
@@ -22717,7 +23238,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.3.0-eksbuild.1",
+        "addonVersion": "v1.3.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -22771,6 +23292,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.3.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -22975,6 +23555,12 @@
     "type": "object"
   },
   "./aws-mountpoint-s3-csi-driver/configurations/v1.3.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
+    "type": "object"
+  },
+  "./aws-mountpoint-s3-csi-driver/configurations/v1.3.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
@@ -28271,7 +28857,7 @@
     "type": "security",
     "addonVersions": [
       {
-        "addonVersion": "v1.1.0-eksbuild.1",
+        "addonVersion": "v1.2.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -28318,6 +28904,58 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.1.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -28544,6 +29182,171 @@
     "description": "EKS Pod Identity Agent"
   },
   "./eks-pod-identity-agent/configurations/v1.1.0-eksbuild.1.json": {
+    "$ref": "#/definitions/EksPodIdentityAgent",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Affinity": {
+        "title": "Affinity Schema",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "Agent": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "title": "Agent Schema",
+        "type": "object"
+      },
+      "EksPodIdentityAgent": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "$ref": "#/definitions/Affinity"
+          },
+          "agent": {
+            "$ref": "#/definitions/Agent"
+          },
+          "fullnameOverride": {
+            "type": "string"
+          },
+          "image": {
+            "$ref": "#/definitions/Image"
+          },
+          "imagePullSecrets": {
+            "$ref": "#/definitions/ImagePullSecrets"
+          },
+          "init": {
+            "$ref": "#/definitions/Init"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "$ref": "#/definitions/NodeSelector"
+          },
+          "podAnnotations": {
+            "$ref": "#/definitions/PodAnnotations"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "$ref": "#/definitions/Tolerations"
+          },
+          "updateStrategy": {
+            "$ref": "#/definitions/UpdateStrategy"
+          }
+        },
+        "title": "EksPodIdentityAgent",
+        "type": "object"
+      },
+      "Image": {
+        "additionalProperties": false,
+        "properties": {
+          "pullPolicy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "title": "Image Schema",
+        "type": "object"
+      },
+      "ImagePullSecrets": {
+        "additionalProperties": false,
+        "items": {
+          "type": "object"
+        },
+        "title": "ImagePullSecrets Schema",
+        "type": "array"
+      },
+      "Init": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "create": {
+            "type": "boolean"
+          }
+        },
+        "title": "Init Schema",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits Schema",
+        "type": "object"
+      },
+      "NodeSelector": {
+        "title": "NodeSelector Schema",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "PodAnnotations": {
+        "title": "PodAnnotations Schema",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources Schema",
+        "type": "object"
+      },
+      "Tolerations": {
+        "additionalProperties": false,
+        "items": {
+          "type": "object"
+        },
+        "title": "Tolerations Schema",
+        "type": "array"
+      },
+      "UpdateStrategy": {
+        "title": "UpdateStrategy Schema",
+        "type": [
+          "object",
+          "null"
+        ]
+      }
+    },
+    "description": "EKS Pod Identity Agent"
+  },
+  "./eks-pod-identity-agent/configurations/v1.2.0-eksbuild.1.json": {
     "$ref": "#/definitions/EksPodIdentityAgent",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -30855,6 +31658,23 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.29.1-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.29.0-eksbuild.3",
         "architecture": [
           "amd64",
@@ -30901,6 +31721,30 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.28.6-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -30979,6 +31823,37 @@
         "compatibilities": [
           {
             "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.27.10-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
             "platformVersions": [
               "*"
             ],
@@ -31140,6 +32015,44 @@
         "compatibilities": [
           {
             "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.26.13-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
             "platformVersions": [
               "*"
             ],
@@ -31367,6 +32280,44 @@
         "compatibilities": [
           {
             "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.25.16-eksbuild.3",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
             "platformVersions": [
               "*"
             ],
@@ -35397,6 +36348,78 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.25.16-eksbuild.3.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.25.6-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -35671,6 +36694,78 @@
               "ipvs"
             ],
             "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.26.13-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
           },
           "resources": {
             "$ref": "#/definitions/Resources"
@@ -36105,6 +37200,78 @@
               "ipvs"
             ],
             "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.27.10-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
           },
           "resources": {
             "$ref": "#/definitions/Resources"
@@ -36761,6 +37928,78 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.28.6-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.29.0-eksbuild.1.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -36886,6 +38125,78 @@
     }
   },
   "./kube-proxy/configurations/v1.29.0-eksbuild.3.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.29.1-eksbuild.2.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -41677,6 +42988,65 @@
     "addonName": "vpc-cni",
     "type": "networking",
     "addonVersions": [
+      {
+        "addonVersion": "v1.16.3-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
       {
         "addonVersion": "v1.16.2-eksbuild.1",
         "architecture": [
@@ -54248,6 +55618,380 @@
     "description": "vpc-cni"
   },
   "./vpc-cni/configurations/v1.16.2-eksbuild.1.json": {
+    "$ref": "#/definitions/VpcCni",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Affinity": {
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "EniConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string"
+          },
+          "subnets": {
+            "additionalProperties": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "securityGroups": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            },
+            "minProperties": 1,
+            "type": "object"
+          }
+        },
+        "required": [
+          "create",
+          "region",
+          "subnets"
+        ],
+        "type": "object"
+      },
+      "Env": {
+        "additionalProperties": false,
+        "properties": {
+          "ADDITIONAL_ENI_TAGS": {
+            "type": "string"
+          },
+          "ANNOTATE_POD_IP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_EC2_ENDPOINT": {
+            "type": "string"
+          },
+          "AWS_EXTERNAL_SERVICE_CIDRS": {
+            "type": "string"
+          },
+          "AWS_MANAGE_ENIS_NON_SCHEDULABLE": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_CNI_NODE_PORT_SUPPORT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_ENI_MTU": {
+            "format": "integer",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXCLUDE_SNAT_CIDRS": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXTERNALSNAT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOGLEVEL": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_RANDOMIZESNAT": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_VETHPREFIX": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_LEVEL": {
+            "type": "string"
+          },
+          "CLUSTER_ENDPOINT": {
+            "type": "string"
+          },
+          "DISABLE_INTROSPECTION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_LEAKED_ENI_CLEANUP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_METRICS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_NETWORK_RESOURCE_PROVISIONING": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_POD_V6": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_BANDWIDTH_PLUGIN": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_POD_ENI": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_PREFIX_DELEGATION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V4_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENI_CONFIG_ANNOTATION_DEF": {
+            "type": "string"
+          },
+          "ENI_CONFIG_LABEL_DEF": {
+            "type": "string"
+          },
+          "INTROSPECTION_BIND_ADDRESS": {
+            "type": "string"
+          },
+          "IP_COOLDOWN_PERIOD": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MAX_ENI": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MINIMUM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "POD_SECURITY_GROUP_ENFORCING_MODE": {
+            "type": "string"
+          },
+          "WARM_ENI_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_PREFIX_TARGET": {
+            "format": "integer",
+            "type": "string"
+          }
+        },
+        "title": "Env",
+        "type": "object"
+      },
+      "Init": {
+        "additionalProperties": false,
+        "properties": {
+          "env": {
+            "$ref": "#/definitions/InitEnv"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Init",
+        "type": "object"
+      },
+      "InitEnv": {
+        "additionalProperties": false,
+        "properties": {
+          "DISABLE_TCP_EARLY_DEMUX": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          }
+        },
+        "title": "InitEnv",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "NodeAgent": {
+        "additionalProperties": false,
+        "properties": {
+          "conntrackCacheCleanupPeriod": {
+            "format": "integer",
+            "type": "integer"
+          },
+          "enableCloudWatchLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enablePolicyEventLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "healthProbeBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "metricsBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "NodeAgent",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      },
+      "Tolerations": {
+        "additionalProperties": false,
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "VpcCni": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "$ref": "#/definitions/Affinity"
+          },
+          "branchENICooldown": {
+            "type": "integer"
+          },
+          "enableNetworkPolicy": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enableWindowsIpam": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enableWindowsPrefixDelegation": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "eniConfig": {
+            "$ref": "#/definitions/EniConfig"
+          },
+          "env": {
+            "$ref": "#/definitions/Env"
+          },
+          "init": {
+            "$ref": "#/definitions/Init"
+          },
+          "livenessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "minimumWindowsIPTarget": {
+            "type": "integer"
+          },
+          "nodeAgent": {
+            "$ref": "#/definitions/NodeAgent"
+          },
+          "podAnnotations": {
+            "additionalProperties": {
+              "not": {
+                "type": [
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podLabels": {
+            "additionalProperties": {
+              "not": {
+                "type": [
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "readinessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "$ref": "#/definitions/Tolerations"
+          },
+          "warmWindowsIPTarget": {
+            "type": "integer"
+          },
+          "warmWindowsPrefixTarget": {
+            "type": "integer"
+          }
+        },
+        "title": "VpcCni",
+        "type": "object"
+      }
+    },
+    "description": "vpc-cni"
+  },
+  "./vpc-cni/configurations/v1.16.3-eksbuild.2.json": {
     "$ref": "#/definitions/VpcCni",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
