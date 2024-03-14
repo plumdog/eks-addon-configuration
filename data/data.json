@@ -8948,7 +8948,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.3.0-eksbuild.1",
+        "addonVersion": "v1.3.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9002,6 +9002,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.3.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -9494,6 +9553,73 @@
     "type": "object"
   },
   "./amazon-cloudwatch-observability/configurations/v1.3.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.3.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
@@ -21343,7 +21469,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.7.5-eksbuild.2",
+        "addonVersion": "v1.7.6-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -21397,6 +21523,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.7.5-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -22714,6 +22899,104 @@
       "deleteAccessPointRootDir": {
         "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
         "type": "boolean"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's node service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {
+              "example_node_annotation": "annotation"
+            },
+            "description": "The podAnnotations Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "replicaCount": {
+          "description": "The number of replicas for the CSI controller service Deployment",
+          "type": "integer"
+        },
+        "type": "object"
+      },
+      "useFIPS": {
+        "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-efs-csi-driver/configurations/v1.7.6-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the aws-efs-csi-driver",
+    "properties": {
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "deleteAccessPointRootDir": {
+            "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+            "type": "boolean"
+          },
+          "logLevel": {
+            "description": "The log level of the driver's controller service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {},
+            "description": "The podAnnotations Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
       },
       "node": {
         "additionalProperties": false,
