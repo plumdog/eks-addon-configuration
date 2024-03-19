@@ -40361,12 +40361,26 @@
     "type": "service-mesh",
     "addonVersions": [
       {
-        "addonVersion": "v1.18.3-eksbuild.1",
+        "addonVersion": "v1.21.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.27",
             "platformVersions": [
@@ -40387,6 +40401,37 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      },
+      {
+        "addonVersion": "v1.18.3-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.24",
@@ -40410,6 +40455,555 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for solo-io_solo-io-istio-distro",
+    "type": "object"
+  },
+  "./solo-io_istio-distro/configurations/v1.21.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "properties": {
+      "defaults": {
+        "properties": {
+          "base": {
+            "properties": {
+              "enableIstioConfigCRDs": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "global": {
+            "properties": {
+              "autoscalingv2API": {
+                "type": "boolean"
+              },
+              "caAddress": {
+                "type": "string"
+              },
+              "caName": {
+                "type": "string"
+              },
+              "certSigners": {
+                "type": "array"
+              },
+              "configCluster": {
+                "type": "boolean"
+              },
+              "defaultPodDisruptionBudget": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "defaultResources": {
+                "properties": {
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "externalIstiod": {
+                "type": "boolean"
+              },
+              "hub": {
+                "type": "string"
+              },
+              "imagePullPolicy": {
+                "type": "string"
+              },
+              "istioNamespace": {
+                "type": "string"
+              },
+              "istiod": {
+                "properties": {
+                  "enableAnalysis": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "jwtPolicy": {
+                "type": "string"
+              },
+              "logAsJson": {
+                "type": "boolean"
+              },
+              "logging": {
+                "properties": {
+                  "level": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "meshID": {
+                "type": "string"
+              },
+              "meshNetworks": {
+                "type": "object"
+              },
+              "mountMtlsCerts": {
+                "type": "boolean"
+              },
+              "multiCluster": {
+                "properties": {
+                  "clusterName": {
+                    "type": "string"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "network": {
+                "type": "string"
+              },
+              "omitSidecarInjectorConfigMap": {
+                "type": "boolean"
+              },
+              "oneNamespace": {
+                "type": "boolean"
+              },
+              "operatorManageWebhooks": {
+                "type": "boolean"
+              },
+              "pilotCertProvider": {
+                "type": "string"
+              },
+              "proxy": {
+                "properties": {
+                  "autoInject": {
+                    "type": "string"
+                  },
+                  "clusterDomain": {
+                    "type": "string"
+                  },
+                  "componentLogLevel": {
+                    "type": "string"
+                  },
+                  "enableCoreDump": {
+                    "type": "boolean"
+                  },
+                  "excludeIPRanges": {
+                    "type": "string"
+                  },
+                  "excludeInboundPorts": {
+                    "type": "string"
+                  },
+                  "excludeOutboundPorts": {
+                    "type": "string"
+                  },
+                  "includeIPRanges": {
+                    "type": "string"
+                  },
+                  "includeInboundPorts": {
+                    "type": "string"
+                  },
+                  "includeOutboundPorts": {
+                    "type": "string"
+                  },
+                  "logLevel": {
+                    "type": "string"
+                  },
+                  "privileged": {
+                    "type": "boolean"
+                  },
+                  "readinessFailureThreshold": {
+                    "type": "integer"
+                  },
+                  "readinessInitialDelaySeconds": {
+                    "type": "integer"
+                  },
+                  "readinessPeriodSeconds": {
+                    "type": "integer"
+                  },
+                  "resources": {
+                    "properties": {
+                      "limits": {
+                        "properties": {
+                          "cpu": {
+                            "type": "string"
+                          },
+                          "memory": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "requests": {
+                        "properties": {
+                          "cpu": {
+                            "type": "string"
+                          },
+                          "memory": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "statusPort": {
+                    "type": "integer"
+                  },
+                  "tracer": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "proxy_init": {
+                "properties": {},
+                "type": "object"
+              },
+              "remotePilotAddress": {
+                "type": "string"
+              },
+              "sds": {
+                "properties": {
+                  "token": {
+                    "properties": {
+                      "aud": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "sts": {
+                "properties": {
+                  "servicePort": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "variant": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "istio_cni": {
+            "properties": {
+              "chained": {
+                "type": "boolean"
+              },
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "istiodRemote": {
+            "properties": {
+              "injectionPath": {
+                "type": "string"
+              },
+              "injectionURL": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "meshConfig": {
+            "properties": {
+              "enablePrometheusMerge": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "pilot": {
+            "properties": {
+              "affinity": {
+                "type": "object"
+              },
+              "autoscaleBehavior": {
+                "type": "object"
+              },
+              "autoscaleEnabled": {
+                "type": "boolean"
+              },
+              "autoscaleMax": {
+                "type": "integer"
+              },
+              "autoscaleMin": {
+                "type": "integer"
+              },
+              "configMap": {
+                "type": "boolean"
+              },
+              "configSource": {
+                "properties": {
+                  "subscribedResources": {
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "cpu": {
+                "properties": {
+                  "targetAverageUtilization": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "deploymentLabels": {
+                "type": "object"
+              },
+              "env": {
+                "type": "object"
+              },
+              "extraContainerArgs": {
+                "type": "array"
+              },
+              "hub": {
+                "type": "string"
+              },
+              "ipFamilies": {
+                "type": "array"
+              },
+              "ipFamilyPolicy": {
+                "type": "string"
+              },
+              "jwksResolverExtraRootCA": {
+                "type": "string"
+              },
+              "keepaliveMaxServerConnectionAge": {
+                "type": "string"
+              },
+              "memory": {
+                "type": "object"
+              },
+              "nodeSelector": {
+                "type": "object"
+              },
+              "plugins": {
+                "type": "array"
+              },
+              "podAnnotations": {
+                "type": "object"
+              },
+              "podLabels": {
+                "type": "object"
+              },
+              "replicaCount": {
+                "type": "integer"
+              },
+              "resources": {
+                "properties": {
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "rollingMaxSurge": {
+                "type": "string"
+              },
+              "rollingMaxUnavailable": {
+                "type": "string"
+              },
+              "seccompProfile": {
+                "type": "object"
+              },
+              "serviceAnnotations": {
+                "type": "object"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "tolerations": {
+                "type": "array"
+              },
+              "topologySpreadConstraints": {
+                "type": "array"
+              },
+              "traceSampling": {
+                "type": "number"
+              },
+              "variant": {
+                "type": "string"
+              },
+              "volumeMounts": {
+                "type": "array"
+              },
+              "volumes": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "revisionTags": {
+            "type": "array"
+          },
+          "sidecarInjectorWebhook": {
+            "properties": {
+              "alwaysInjectSelector": {
+                "type": "array"
+              },
+              "defaultTemplates": {
+                "type": "array"
+              },
+              "enableNamespacesByDefault": {
+                "type": "boolean"
+              },
+              "injectedAnnotations": {
+                "type": "object"
+              },
+              "neverInjectSelector": {
+                "type": "array"
+              },
+              "reinvocationPolicy": {
+                "type": "string"
+              },
+              "rewriteAppHTTPProbe": {
+                "type": "boolean"
+              },
+              "templates": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "telemetry": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "v2": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "prometheus": {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "stackdriver": {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "istio_cni": {
+        "properties": {
+          "chained": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "meshConfig": {
+        "properties": {
+          "defaultConfig": {
+            "properties": {
+              "proxyMetadata": {
+                "properties": {
+                  "ISTIO_META_ENABLE_HBONE": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "pilot": {
+        "properties": {
+          "env": {
+            "properties": {
+              "CA_TRUSTED_NODE_ACCOUNTS": {
+                "type": "string"
+              },
+              "ENABLE_AUTO_SNI": {
+                "type": "string"
+              },
+              "PILOT_ENABLE_AMBIENT_CONTROLLERS": {
+                "type": "string"
+              },
+              "PILOT_ENABLE_HBONE": {
+                "type": "string"
+              },
+              "VERIFY_CERTIFICATE_AT_CLIENT": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "telemetry": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "v2": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
     "type": "object"
   },
   "./splunk_splunk-otel-collector-chart/addon.json": {
