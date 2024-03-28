@@ -116,6 +116,20 @@
             "*"
           ],
           "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.21",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false
@@ -341,6 +355,20 @@
         },
         {
           "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.21",
           "platformVersions": [
             "*"
           ],
@@ -619,6 +647,20 @@
             "*"
           ],
           "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.21",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false
@@ -726,6 +768,20 @@
         },
         {
           "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.21",
           "platformVersions": [
             "*"
           ],
@@ -927,6 +983,13 @@
         },
         {
           "clusterVersion": "1.22",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.21",
           "platformVersions": [
             "*"
           ],
