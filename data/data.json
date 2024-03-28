@@ -34898,6 +34898,37 @@
         "requiresConfiguration": false
       },
       {
+        "addonVersion": "v1.22.17-eksbuild.3",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
         "addonVersion": "v1.22.17-eksbuild.2",
         "architecture": [
           "amd64",
@@ -35041,6 +35072,37 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.21.14-eksbuild.5",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -36056,6 +36118,64 @@
       }
     }
   },
+  "./kube-proxy/configurations/v1.21.14-eksbuild.5.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./kube-proxy/configurations/v1.21.2-eksbuild.2.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -36297,6 +36417,68 @@
     }
   },
   "./kube-proxy/configurations/v1.22.17-eksbuild.2.json": {
+    "$ref": "#/definitions/KubeProxy",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Ipvs": {
+        "additionalProperties": false,
+        "properties": {
+          "scheduler": {
+            "type": "string"
+          }
+        },
+        "title": "Ipvs",
+        "type": "object"
+      },
+      "KubeProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "ipvs": {
+            "$ref": "#/definitions/Ipvs"
+          },
+          "mode": {
+            "enum": [
+              "iptables",
+              "ipvs"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "KubeProxy",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./kube-proxy/configurations/v1.22.17-eksbuild.3.json": {
     "$ref": "#/definitions/KubeProxy",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -45410,6 +45592,20 @@
               "*"
             ],
             "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -45635,6 +45831,20 @@
           },
           {
             "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
             "platformVersions": [
               "*"
             ],
@@ -45913,6 +46123,20 @@
               "*"
             ],
             "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -46020,6 +46244,20 @@
           },
           {
             "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
             "platformVersions": [
               "*"
             ],
@@ -46221,6 +46459,13 @@
           },
           {
             "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
             "platformVersions": [
               "*"
             ],
