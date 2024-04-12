@@ -9652,7 +9652,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.5.0-eksbuild.1",
+        "addonVersion": "v1.5.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9706,6 +9706,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.5.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -10696,6 +10755,193 @@
     "type": "object"
   },
   "./amazon-cloudwatch-observability/configurations/v1.5.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.5.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
@@ -43242,6 +43488,51 @@
             "platformVersions": [
               "*"
             ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": true
+      },
+      {
+        "addonVersion": "v1.20.4-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
             "defaultVersion": true
           },
           {
@@ -43325,6 +43616,525 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for solo-io_solo-io-istio-distro",
+    "type": "object"
+  },
+  "./solo-io_istio-distro/configurations/v1.20.4-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "properties": {
+      "base": {
+        "properties": {
+          "enableIstioConfigCRDs": {
+            "type": "boolean"
+          },
+          "validateGateway": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "properties": {
+          "autoscalingv2API": {
+            "type": "boolean"
+          },
+          "caAddress": {
+            "type": "string"
+          },
+          "caName": {
+            "type": "string"
+          },
+          "certSigners": {
+            "type": "array"
+          },
+          "configCluster": {
+            "type": "boolean"
+          },
+          "defaultPodDisruptionBudget": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "defaultResources": {
+            "properties": {
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "externalIstiod": {
+            "type": "boolean"
+          },
+          "hub": {
+            "type": "string"
+          },
+          "imagePullPolicy": {
+            "type": "string"
+          },
+          "istioNamespace": {
+            "type": "string"
+          },
+          "istiod": {
+            "properties": {
+              "enableAnalysis": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "jwtPolicy": {
+            "type": "string"
+          },
+          "logAsJson": {
+            "type": "boolean"
+          },
+          "logging": {
+            "properties": {
+              "level": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "meshID": {
+            "type": "string"
+          },
+          "meshNetworks": {
+            "type": "object"
+          },
+          "mountMtlsCerts": {
+            "type": "boolean"
+          },
+          "multiCluster": {
+            "properties": {
+              "clusterName": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "network": {
+            "type": "string"
+          },
+          "omitSidecarInjectorConfigMap": {
+            "type": "boolean"
+          },
+          "oneNamespace": {
+            "type": "boolean"
+          },
+          "operatorManageWebhooks": {
+            "type": "boolean"
+          },
+          "pilotCertProvider": {
+            "type": "string"
+          },
+          "proxy": {
+            "properties": {
+              "autoInject": {
+                "type": "string"
+              },
+              "clusterDomain": {
+                "type": "string"
+              },
+              "componentLogLevel": {
+                "type": "string"
+              },
+              "enableCoreDump": {
+                "type": "boolean"
+              },
+              "excludeIPRanges": {
+                "type": "string"
+              },
+              "excludeInboundPorts": {
+                "type": "string"
+              },
+              "excludeOutboundPorts": {
+                "type": "string"
+              },
+              "includeIPRanges": {
+                "type": "string"
+              },
+              "includeInboundPorts": {
+                "type": "string"
+              },
+              "includeOutboundPorts": {
+                "type": "string"
+              },
+              "logLevel": {
+                "type": "string"
+              },
+              "privileged": {
+                "type": "boolean"
+              },
+              "readinessFailureThreshold": {
+                "type": "integer"
+              },
+              "readinessInitialDelaySeconds": {
+                "type": "integer"
+              },
+              "readinessPeriodSeconds": {
+                "type": "integer"
+              },
+              "resources": {
+                "properties": {
+                  "limits": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "statusPort": {
+                "type": "integer"
+              },
+              "tracer": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "proxy_init": {
+            "properties": {},
+            "type": "object"
+          },
+          "remotePilotAddress": {
+            "type": "string"
+          },
+          "sds": {
+            "properties": {
+              "token": {
+                "properties": {
+                  "aud": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "sts": {
+            "properties": {
+              "servicePort": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "variant": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "istio_cni": {
+        "properties": {
+          "chained": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "istiodRemote": {
+        "properties": {
+          "injectionPath": {
+            "type": "string"
+          },
+          "injectionURL": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "meshConfig": {
+        "properties": {
+          "enablePrometheusMerge": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ownerName": {
+        "type": "string"
+      },
+      "pilot": {
+        "properties": {
+          "autoscaleBehavior": {
+            "type": "object"
+          },
+          "autoscaleEnabled": {
+            "type": "boolean"
+          },
+          "autoscaleMax": {
+            "type": "integer"
+          },
+          "autoscaleMin": {
+            "type": "integer"
+          },
+          "configMap": {
+            "type": "boolean"
+          },
+          "configSource": {
+            "properties": {
+              "subscribedResources": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "cpu": {
+            "properties": {
+              "targetAverageUtilization": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "deploymentLabels": {
+            "type": "object"
+          },
+          "env": {
+            "type": "object"
+          },
+          "extraContainerArgs": {
+            "type": "array"
+          },
+          "hub": {
+            "type": "string"
+          },
+          "ipFamilies": {
+            "type": "array"
+          },
+          "ipFamilyPolicy": {
+            "type": "string"
+          },
+          "jwksResolverExtraRootCA": {
+            "type": "string"
+          },
+          "keepaliveMaxServerConnectionAge": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "plugins": {
+            "type": "array"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "properties": {
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "rollingMaxSurge": {
+            "type": "string"
+          },
+          "rollingMaxUnavailable": {
+            "type": "string"
+          },
+          "seccompProfile": {
+            "type": "object"
+          },
+          "serviceAnnotations": {
+            "type": "object"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "tolerations": {
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "type": "array"
+          },
+          "traceSampling": {
+            "type": "number"
+          },
+          "variant": {
+            "type": "string"
+          },
+          "volumeMounts": {
+            "type": "array"
+          },
+          "volumes": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "revision": {
+        "type": "string"
+      },
+      "revisionTags": {
+        "type": "array"
+      },
+      "sidecarInjectorWebhook": {
+        "properties": {
+          "alwaysInjectSelector": {
+            "type": "array"
+          },
+          "defaultTemplates": {
+            "type": "array"
+          },
+          "enableNamespacesByDefault": {
+            "type": "boolean"
+          },
+          "injectedAnnotations": {
+            "type": "object"
+          },
+          "neverInjectSelector": {
+            "type": "array"
+          },
+          "reinvocationPolicy": {
+            "type": "string"
+          },
+          "rewriteAppHTTPProbe": {
+            "type": "boolean"
+          },
+          "templates": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "telemetry": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "v2": {
+            "properties": {
+              "accessLogPolicy": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "logWindowDuration": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "metadataExchange": {
+                "properties": {
+                  "wasmEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "prometheus": {
+                "properties": {
+                  "configOverride": {
+                    "properties": {
+                      "gateway": {
+                        "type": "object"
+                      },
+                      "inboundSidecar": {
+                        "type": "object"
+                      },
+                      "outboundSidecar": {
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "wasmEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "stackdriver": {
+                "properties": {
+                  "configOverride": {
+                    "type": "object"
+                  },
+                  "disableOutbound": {
+                    "type": "boolean"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "logging": {
+                    "type": "boolean"
+                  },
+                  "monitoring": {
+                    "type": "boolean"
+                  },
+                  "topology": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
     "type": "object"
   },
   "./solo-io_istio-distro/configurations/v1.21.0-eksbuild.1.json": {
