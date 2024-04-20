@@ -9652,7 +9652,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.5.1-eksbuild.1",
+        "addonVersion": "v1.5.3-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9706,6 +9706,124 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.5.2-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.5.1-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -10942,6 +11060,380 @@
     "type": "object"
   },
   "./amazon-cloudwatch-observability/configurations/v1.5.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.5.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.5.3-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
