@@ -43175,12 +43175,19 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v23.10.0-eksbuild.1",
+        "addonVersion": "v24.2.0-eksbuild.1",
         "architecture": [
           "arm64",
           "amd64"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
@@ -43224,6 +43231,58 @@
             "defaultVersion": true
           }
         ],
+        "requiresConfiguration": true
+      },
+      {
+        "addonVersion": "v23.10.0-eksbuild.1",
+        "architecture": [
+          "arm64",
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
         "requiresConfiguration": false
       }
     ],
@@ -43238,6 +43297,31 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for netapp_trident-operator",
+    "type": "object"
+  },
+  "./netapp_trident-operator/configurations/v24.2.0-eksbuild.1.json": {
+    "$id": "http://example.com/example.json",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "default": {},
+    "examples": [
+      {
+        "cloudIdentity": ""
+      }
+    ],
+    "properties": {
+      "cloudIdentity": {
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "title": "The cloudIdentity Schema",
+        "type": "string"
+      }
+    },
+    "required": [
+      "cloudIdentity"
+    ],
+    "title": "Root Schema",
     "type": "object"
   },
   "./new-relic_kubernetes-operator/addon.json": {
