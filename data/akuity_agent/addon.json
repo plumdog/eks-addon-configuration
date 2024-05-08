@@ -1,0 +1,50 @@
+{
+  "addonName": "akuity_agent",
+  "type": "gitops",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.4.2-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "akuity",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "e20fce9c-0a34-4878-aa32-028954620986",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-zihrsklxqjuu6"
+  }
+}

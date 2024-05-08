@@ -1,0 +1,63 @@
+{
+  "addonName": "cisco_cisco-cloud-observability-collectors",
+  "type": "observability",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.16.1125-eksbuild.1",
+      "architecture": [
+        "amd64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "Cisco Systems, Inc.",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "43a73efc-995b-4de1-84fa-ce800f3809c6",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-rxumaeansz5go"
+  }
+}
