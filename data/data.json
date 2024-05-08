@@ -65,12 +65,15 @@
   "./addons.json": [
     "accuknox_kubearmor",
     "adot",
+    "akuity_agent",
     "amazon-cloudwatch-observability",
     "aws-ebs-csi-driver",
     "aws-efs-csi-driver",
     "aws-guardduty-agent",
     "aws-mountpoint-s3-csi-driver",
     "calyptia_fluent-bit",
+    "cisco_cisco-cloud-observability-collectors",
+    "cisco_cisco-cloud-observability-operators",
     "coredns",
     "cribl_cribledge",
     "datadog_operator",
@@ -9647,12 +9650,76 @@
     "title": "Root Schema",
     "type": "object"
   },
+  "./akuity_agent/addon.json": {
+    "addonName": "akuity_agent",
+    "type": "gitops",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.4.2-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "akuity",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "e20fce9c-0a34-4878-aa32-028954620986",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-zihrsklxqjuu6"
+    }
+  },
+  "./akuity_agent/configurations/v0.4.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "properties": {
+      "akpUrl": {
+        "description": "Akuity Agent Manifests URL",
+        "type": "string"
+      }
+    },
+    "required": [
+      "akpUrl"
+    ],
+    "title": "Akuity Agent",
+    "type": "object"
+  },
   "./amazon-cloudwatch-observability/addon.json": {
     "addonName": "amazon-cloudwatch-observability",
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.5.5-eksbuild.1",
+        "addonVersion": "v1.6.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9706,6 +9773,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false
+      },
+      {
+        "addonVersion": "v1.5.5-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false
@@ -11926,6 +12052,193 @@
     "type": "object"
   },
   "./amazon-cloudwatch-observability/configurations/v1.5.5-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.6.0-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
@@ -28591,6 +28904,1559 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for calyptia_fluent-bit",
+    "type": "object"
+  },
+  "./cisco_cisco-cloud-observability-collectors/addon.json": {
+    "addonName": "cisco_cisco-cloud-observability-collectors",
+    "type": "observability",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.16.1125-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Cisco Systems, Inc.",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "43a73efc-995b-4de1-84fa-ce800f3809c6",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-rxumaeansz5go"
+    }
+  },
+  "./cisco_cisco-cloud-observability-collectors/configurations/v1.16.1125-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "examples": [
+      {
+        "appdynamics-cloud-db-collector": {
+          "appdCloudAuth": {},
+          "install": {
+            "dbCollector": false,
+            "dbMonitoringConfigs": false
+          }
+        },
+        "appdynamics-cloud-k8s-monitoring": {
+          "clustermonConfig": {
+            "autoscalers": {
+              "hpaVpaEnabled": true
+            },
+            "configurations": {
+              "enabled": true
+            },
+            "events": {
+              "enabled": true,
+              "reasonToExclude": [],
+              "severeGroupByReason": [],
+              "severityToExclude": []
+            },
+            "filters": {
+              "annotation": {
+                "excludeRegex": ""
+              },
+              "entity": {
+                "excludeLabels": [],
+                "excludeRegex": ""
+              },
+              "label": {
+                "excludeRegex": ""
+              },
+              "namespace": {
+                "excludeRegex": "",
+                "includeRegex": ".*"
+              }
+            },
+            "ingressControllers": {},
+            "labels": {
+              "enabled": true
+            },
+            "logFilesMaxSizeMb": 10,
+            "logFilesNumBackups": 4,
+            "logLevel": "info",
+            "os": "linux",
+            "printToStdout": "true"
+          },
+          "clustermonPod": {
+            "affinity": {},
+            "annotations": {},
+            "labels": {},
+            "nodeSelector": {},
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "1000Mi"
+              },
+              "requests": {
+                "cpu": "500m",
+                "memory": "750Mi"
+              }
+            },
+            "tolerations": []
+          },
+          "containermonConfig": {
+            "os": [
+              "linux"
+            ]
+          },
+          "inframonPod": {
+            "affinity": {},
+            "annotations": {},
+            "env": {
+              "linux": {
+                "nodeSelector": {
+                  "kubernetes.io/os": "linux"
+                }
+              }
+            },
+            "labels": {},
+            "nodeSelector": {},
+            "resources": {
+              "limits": {
+                "cpu": "350m",
+                "memory": "100Mi"
+              },
+              "requests": {
+                "cpu": "200m",
+                "memory": "64Mi"
+              }
+            },
+            "tolerations": []
+          },
+          "install": {
+            "clustermon": true,
+            "defaultInfraCollectors": true,
+            "logCollector": false
+          },
+          "logCollectorPod": null,
+          "servermonConfig": {
+            "os": [
+              "linux"
+            ]
+          }
+        },
+        "appdynamics-otel-collector": {
+          "clientId": "",
+          "clientSecretEnvVar": {
+            "valueFrom": {
+              "secretKeyRef": {
+                "key": "secret",
+                "name": "oauth-client-secret"
+              }
+            }
+          },
+          "configOverride": {
+            "exporters": {
+              "logging": {
+                "verbosity": "detailed"
+              }
+            },
+            "service": {
+              "pipelines": {
+                "logs/appd": {
+                  "exporters": [
+                    "otlphttp",
+                    "logging"
+                  ]
+                },
+                "metrics": {
+                  "exporters": [
+                    "otlphttp",
+                    "logging"
+                  ]
+                }
+              }
+            }
+          },
+          "endpoint": "https://data.appdynamics.com",
+          "spec": {
+            "mode": "daemonset",
+            "resources": {
+              "limits": {
+                "cpu": "200m",
+                "memory": "1024Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "512Mi"
+              }
+            }
+          },
+          "tokenUrl": "https://token_ur.com/oauth2l"
+        },
+        "global": {
+          "clusterId": "",
+          "clusterName": "",
+          "tls": {
+            "appdCollectors": {
+              "enabled": false,
+              "secret": {}
+            },
+            "otelExporter": {
+              "secret": {},
+              "settings": {}
+            },
+            "otelReceiver": {
+              "secret": {},
+              "settings": {}
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "appdynamics-cloud-db-collector": {
+        "properties": {
+          "appdCloudAuth": {
+            "properties": {},
+            "type": "object"
+          },
+          "install": {
+            "properties": {
+              "dbCollector": {
+                "type": "boolean"
+              },
+              "dbMonitoringConfigs": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "appdynamics-cloud-k8s-monitoring": {
+        "properties": {
+          "clustermonConfig": {
+            "properties": {
+              "autoscalers": {
+                "properties": {
+                  "hpaVpaEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "configurations": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "events": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "reasonToExclude": {
+                    "items": {},
+                    "type": "array"
+                  },
+                  "severeGroupByReason": {
+                    "items": {},
+                    "type": "array"
+                  },
+                  "severityToExclude": {
+                    "items": {},
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "filters": {
+                "properties": {
+                  "annotation": {
+                    "properties": {
+                      "excludeRegex": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "entity": {
+                    "properties": {
+                      "excludeLabels": {
+                        "items": {},
+                        "type": "array"
+                      },
+                      "excludeRegex": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "label": {
+                    "properties": {
+                      "excludeRegex": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "namespace": {
+                    "properties": {
+                      "excludeRegex": {
+                        "type": "string"
+                      },
+                      "includeRegex": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "ingressControllers": {
+                "properties": {},
+                "type": "object"
+              },
+              "labels": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "logFilesMaxSizeMb": {
+                "type": "number"
+              },
+              "logFilesNumBackups": {
+                "type": "number"
+              },
+              "logLevel": {
+                "type": "string"
+              },
+              "os": {
+                "type": "string"
+              },
+              "printToStdout": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "clustermonPod": {
+            "properties": {
+              "affinity": {
+                "properties": {},
+                "type": "object"
+              },
+              "annotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "labels": {
+                "properties": {},
+                "type": "object"
+              },
+              "nodeSelector": {
+                "properties": {},
+                "type": "object"
+              },
+              "resources": {
+                "properties": {
+                  "limits": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "tolerations": {
+                "items": {},
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "containermonConfig": {
+            "properties": {
+              "os": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "inframonPod": {
+            "properties": {
+              "affinity": {
+                "properties": {},
+                "type": "object"
+              },
+              "annotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "env": {
+                "properties": {},
+                "type": "object"
+              },
+              "labels": {
+                "properties": {},
+                "type": "object"
+              },
+              "nodeSelector": {
+                "properties": {},
+                "type": "object"
+              },
+              "resources": {
+                "properties": {
+                  "limits": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "tolerations": {
+                "items": {},
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "install": {
+            "properties": {
+              "clustermon": {
+                "type": "boolean"
+              },
+              "defaultInfraCollectors": {
+                "type": "boolean"
+              },
+              "logCollector": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "logCollectorConfig": {
+            "description": "configuration for log collector",
+            "properties": {
+              "container": {
+                "description": "Config for containers from which logs are to be collected",
+                "properties": {
+                  "conditionalConfigs": {
+                    "description": "The block which contains all the settings for a specific log source, type, and pattern as a pair of condition+config blocks. There can be multiple condition+config pairs within conditionalConfigs",
+                    "items": {
+                      "properties": {
+                        "condition": {
+                          "properties": {
+                            "key": {
+                              "type": "string"
+                            },
+                            "operator": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "config": {
+                          "properties": {
+                            "logFormat": {
+                              "type": "string"
+                            },
+                            "messageParser": {
+                              "description": "Single-line message pattern for messages. Include only one log type in each condition block, and delete all others",
+                              "properties": {
+                                "grok": {
+                                  "description": "Single-line message pattern for grok parser",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "infra": {
+                                  "description": "Single-line message pattern for Kubernetes infrastructure log messages",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "json": {
+                                  "description": "Single-line message pattern for json parser",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "log4J": {
+                                  "description": "Single-line message pattern for log4J parser",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "logback": {
+                                  "description": "Single-line message pattern for logback parser",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "timestamp": {
+                                  "description": "Single-line message pattern for Timestamp parser",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    },
+                                    "format": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "multiLineMatch": {
+                              "type": "string"
+                            },
+                            "multiLineNegate": {
+                              "type": "boolean"
+                            },
+                            "multiLinePattern": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "defaultConfig": {
+                    "description": "Default condition for harvesting logs from any container on your cluster",
+                    "properties": {
+                      "enabled": {
+                        "description": "Enable default log collection",
+                        "type": "boolean"
+                      },
+                      "messageParser": {
+                        "description": "Single-line message pattern for messages. Include only one log type in each condition block, and delete all others",
+                        "properties": {
+                          "grok": {
+                            "description": "Single-line message pattern for grok parser",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "infra": {
+                            "description": "Single-line message pattern for Kubernetes infrastructure log messages",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "json": {
+                            "description": "Single-line message pattern for json parser",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "log4J": {
+                            "description": "Single-line message pattern for log4J parser",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "logback": {
+                            "description": "Single-line message pattern for logback parser",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "timestamp": {
+                            "description": "Single-line message pattern for Timestamp parser",
+                            "properties": {
+                              "enabled": {
+                                "type": "boolean"
+                              },
+                              "format": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "dropFields": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "excludeCondition": {
+                    "properties": {
+                      "condition": {
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "logging": {
+                    "properties": {
+                      "level": {
+                        "type": "string"
+                      },
+                      "selectors": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "monitorCollectors": {
+                    "description": "Enables or disables log collection from the Log Collector and other collectors running on your cluster",
+                    "type": "boolean"
+                  },
+                  "monitoring": {
+                    "properties": {
+                      "otlpmetric": {
+                        "properties": {
+                          "collectPeriod": {
+                            "type": "string"
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "metrics": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "reportPeriod": {
+                            "type": "string"
+                          },
+                          "resourceAttrs": {
+                            "items": {
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "filebeatYaml": {
+                "description": "Advanced config for LCA",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "logCollectorPod": {
+            "description": "configuration for log collector pod",
+            "properties": {
+              "affinity": {
+                "type": "object"
+              },
+              "annotations": {
+                "type": "object"
+              },
+              "labels": {
+                "type": "object"
+              },
+              "nodeSelector": {
+                "type": "object"
+              },
+              "resources": {
+                "properties": {
+                  "limits": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "rollingUpdateMaxUnavailable": {
+                "type": "string"
+              },
+              "tolerations": {
+                "items": {},
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "servermonConfig": {
+            "properties": {
+              "os": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "appdynamics-otel-collector": {
+        "properties": {
+          "annotations": {
+            "description": "user provided annotations.",
+            "type": "object"
+          },
+          "clientId": {
+            "description": "AppDynamics oauth2 client id",
+            "type": "string"
+          },
+          "clientSecretEnvVar": {
+            "description": "AppDynamics oauth2 client secret environment variable.",
+            "type": "object"
+          },
+          "config": {
+            "description": "OpenTelemetry Collector Configuration. It is the recommended way to set the collector config. If spec.config is set, this property won't take effect. Refer to the OpenTelemetry Collector documentation for details..",
+            "type": "object"
+          },
+          "configOverride": {
+            "description": "Any additional OpenTelemetry Collector Configuration for the enabled configuration. We can also use this field to remove/add new components to the pipelines",
+            "type": "object"
+          },
+          "enablePrometheus": {
+            "description": "Enable the prometheus related deployment, it will deploy a target allocator and change collector replica mode to be statfulset.",
+            "type": "boolean"
+          },
+          "endpoint": {
+            "description": "AppDynamics otlp endpoint url",
+            "type": "string"
+          },
+          "env": {
+            "description": "os specific otel collector spec.",
+            "properties": {
+              "linux": {
+                "description": "linux specific spec and configOverride, values specified here will override mode.statefulset and mode.daemonset",
+                "properties": {
+                  "configOverride": {
+                    "description": "configOverride for linux deployed opentelemetry collector.",
+                    "type": "object"
+                  },
+                  "mode": {
+                    "description": "spec and configOverride for different deployment modes for linux",
+                    "properties": {
+                      "daemonset": {
+                        "description": "spec and configOverride for daemonset deployed opentelemetry collector for linux.",
+                        "properties": {
+                          "configOverride": {
+                            "description": "configOverride for daemonset deployed opentelemetry collector for linux.",
+                            "type": "object"
+                          },
+                          "spec": {
+                            "description": "spec for daemonset deployed opentelemetry collector for linux.",
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "statefulset": {
+                        "description": "spec and configOverride for statefulset deployed opentelemetry collector for linux.",
+                        "properties": {
+                          "configOverride": {
+                            "description": "configOverride for statefulset deployed opentelemetry collector for linux.",
+                            "type": "object"
+                          },
+                          "spec": {
+                            "description": "spec for statefulset deployed opentelemetry collector for linux.",
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "spec for linux deployed opentelemetry collector.",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "windows": {
+                "description": "windows specific spec and configOverride, values specified here will override mode.statefulset and mode.daemonset",
+                "properties": {
+                  "configOverride": {
+                    "description": "configOverride for windows deployed opentelemetry collector.",
+                    "type": "object"
+                  },
+                  "mode": {
+                    "description": "spec and configOverride for different deployment modes for windows",
+                    "properties": {
+                      "daemonset": {
+                        "description": "spec and configOverride for daemonset deployed opentelemetry collector for windows.",
+                        "properties": {
+                          "configOverride": {
+                            "description": "configOverride for daemonset deployed opentelemetry collector for windows.",
+                            "type": "object"
+                          },
+                          "spec": {
+                            "description": "spec for daemonset deployed opentelemetry collector for windows.",
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "statefulset": {
+                        "description": "spec and configOverride for statefulset deployed opentelemetry collector for windows.",
+                        "properties": {
+                          "configOverride": {
+                            "description": "configOverride for statefulset deployed opentelemetry collector for windows.",
+                            "type": "object"
+                          },
+                          "spec": {
+                            "description": "spec for statefulset deployed opentelemetry collector for windows.",
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "spec for windows deployed opentelemetry collector.",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "install": {
+            "description": "Install flag for Otel, 'true' will install/upgrade it, 'false' will not install/uninstall it",
+            "type": "boolean"
+          },
+          "labels": {
+            "description": "user provided labels.",
+            "type": "object"
+          },
+          "mode": {
+            "description": "spec and configOverride for different deployment modes",
+            "enableFileLog": {
+              "description": "enable filelog receiver deployment.",
+              "type": "boolean"
+            },
+            "filelogReceiverConfig": {
+              "description": "filelogReceiverConfig specify configs for filelog receiver.",
+              "properties": {
+                "excludeLogsPath": {
+                  "type": "array"
+                },
+                "includeLogsPath": {
+                  "type": "array"
+                },
+                "messageParserPattern": {
+                  "type": "string"
+                },
+                "messageParserType": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "presets": {
+              "description": "presets specify a list of pre-configured fuctions.",
+              "properties": {
+                "truncated": {
+                  "description": "truncated specify max attributes length.",
+                  "properties": {
+                    "log": {
+                      "description": "log attributes truncated length.",
+                      "properties": {
+                        "log": {
+                          "type": "integer"
+                        },
+                        "resrouce": {
+                          "type": "integer"
+                        },
+                        "scope": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "metric": {
+                      "description": "metric attributes truncated length.",
+                      "properties": {
+                        "datapoint": {
+                          "type": "integer"
+                        },
+                        "metric": {
+                          "type": "integer"
+                        },
+                        "resrouce": {
+                          "type": "integer"
+                        },
+                        "scope": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "trace": {
+                      "description": "trace attributes truncated length.",
+                      "properties": {
+                        "resrouce": {
+                          "type": "integer"
+                        },
+                        "scope": {
+                          "type": "integer"
+                        },
+                        "span": {
+                          "type": "integer"
+                        },
+                        "spanevent": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "properties": {
+              "daemonset": {
+                "description": "spec and configOverride for daemonset deployed opentelemetry collector.",
+                "properties": {
+                  "configOverride": {
+                    "description": "configOverride for daemonset deployed opentelemetry collector.",
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "spec for daemonset deployed opentelemetry collector.",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "statefulset": {
+                "description": "spec and configOverride for statefulset deployed opentelemetry collector.",
+                "properties": {
+                  "configOverride": {
+                    "description": "configOverride for statefulset deployed opentelemetry collector.",
+                    "type": "object"
+                  },
+                  "spec": {
+                    "description": "spec for statefulset deployed opentelemetry collector.",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "os": {
+            "description": "Choose the os type for otel collector to run, useful when the cluster has mixed os types, available values are linux and windows.",
+            "type": "array"
+          },
+          "rbac": {
+            "description": "RBAC rules associated with the service account. If created, a Role will be created and bind with the collector service account",
+            "properties": {
+              "create": {
+                "type": "boolean"
+              },
+              "rules": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "create"
+            ],
+            "type": "object"
+          },
+          "selfTelemetry": {
+            "description": "Open telemetry collector metrics",
+            "type": "boolean"
+          },
+          "selfTelemetryServiceName": {
+            "description": "Open telemetry collector service name",
+            "type": "string"
+          },
+          "selfTelemetryServiceNamespace": {
+            "description": "Open telemetry collector service namespace",
+            "type": "string"
+          },
+          "sendChartInfo": {
+            "description": "sendChartInfo when set to true, will add the chart name and version to the http headers for sending to AppDynamics Cloud for debugging purpose. It is false by default",
+            "type": "boolean"
+          },
+          "service": {
+            "description": "service expose collector for external traffics.",
+            "properties": {
+              "clusterIP": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "ports": {
+                "type": "array"
+              },
+              "type": {
+                "enum": [
+                  "ClusterIP",
+                  "NodePort",
+                  "LoadBalancer",
+                  "ExternalName"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "setPodUID": {
+            "description": "setPodUID when set to true will set pod uid to the collector self-telemetry resrouce.",
+            "type": "boolean"
+          },
+          "spec": {
+            "description": "The spec section of OpenTelemetry Operator. Refer to https://github.com/open-telemetry/opentelemetry-operator/blob/main/docs/api.md#opentelemetrycollectorspec for possible properties",
+            "type": "object"
+          },
+          "status": {
+            "description": "The status section of OpenTelemetry Operator. Refer to https://github.com/open-telemetry/opentelemetry-operator/blob/main/docs/api.md#opentelemetrycollectorstatus for possible properties",
+            "type": "object"
+          },
+          "tokenUrl": {
+            "description": "AppDynamics oauth2 token refreshurl",
+            "type": "string"
+          },
+          "traceContextPropagation": {
+            "description": "to enable/disbale traceparent header propagation for export requests made by collector.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "clientId",
+          "clientSecretEnvVar",
+          "tokenUrl",
+          "endpoint"
+        ],
+        "type": "object"
+      },
+      "global": {
+        "properties": {
+          "clusterId": {
+            "type": "string"
+          },
+          "clusterName": {
+            "type": "string"
+          },
+          "tls": {
+            "properties": {
+              "appdCollectors": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "secret": {
+                    "properties": {},
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "otelExporter": {
+                "properties": {
+                  "secret": {
+                    "properties": {},
+                    "type": "object"
+                  },
+                  "settings": {
+                    "properties": {},
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "otelReceiver": {
+                "properties": {
+                  "secret": {
+                    "properties": {},
+                    "type": "object"
+                  },
+                  "settings": {
+                    "properties": {},
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "clusterName",
+          "clusterId"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "global",
+      "appdynamics-otel-collector"
+    ],
+    "title": "EKS Addon Config Schema",
+    "type": "object"
+  },
+  "./cisco_cisco-cloud-observability-operators/addon.json": {
+    "addonName": "cisco_cisco-cloud-observability-operators",
+    "type": "observability",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.16.255-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true
+      }
+    ],
+    "publisher": "Cisco Systems, Inc.",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "38179cb1-c95c-4f96-ad48-756876047f26",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-iyryefaozooow"
+    }
+  },
+  "./cisco_cisco-cloud-observability-operators/configurations/v1.16.255-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "examples": [
+      {
+        "appdynamics-cloud-operator": {
+          "operatorPod": {
+            "nodeSelector": {
+              "kubernetes.io/os": "linux"
+            }
+          }
+        },
+        "appdynamics-smartagent": {
+          "affinity": {},
+          "enabled": true,
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          },
+          "oauth": {
+            "clientId": "",
+            "clientSecretEnvVar": {
+              "valueFrom": {
+                "secretKeyRef": {
+                  "key": "secret",
+                  "name": "oauth-client-secret"
+                }
+              }
+            },
+            "scopes": "",
+            "tenantId": "",
+            "tokenUrl": ""
+          },
+          "podAnnotations": {},
+          "proxy": {
+            "httpProxy": "",
+            "httpsProxy": "",
+            "noProxy": ""
+          },
+          "resources": {
+            "limits": {
+              "cpu": "200m",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          },
+          "solution": {
+            "endpoint": "http://localhost:8080"
+          },
+          "tls": {
+            "caFile": "",
+            "certFile": "",
+            "insecure": true,
+            "keyFile": ""
+          },
+          "tolerations": []
+        },
+        "global": {
+          "clusterId": "<kube-system namespace uid>",
+          "clusterName": "clusterName"
+        },
+        "opentelemetry-operator": {
+          "nodeSelector": {
+            "kubernetes.io/os": "linux"
+          }
+        }
+      }
+    ],
+    "properties": {
+      "appdynamics-cloud-operator": {
+        "properties": {
+          "operatorPod": {
+            "properties": {
+              "nodeSelector": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "appdynamics-smartagent": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "nodeSelector": {
+            "properties": {
+              "kubernetes.io/os": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kubernetes.io/os"
+            ],
+            "type": "object"
+          },
+          "oauth": {
+            "properties": {
+              "clientId": {
+                "type": "string"
+              },
+              "clientSecretEnvVar": {
+                "description": "AppDynamics oauth2 client secret environment variable.",
+                "type": "object"
+              },
+              "scopes": {
+                "type": "string"
+              },
+              "tenantId": {
+                "type": "string"
+              },
+              "tokenUrl": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "type": "object"
+          },
+          "proxy": {
+            "properties": {
+              "httpProxy": {
+                "type": "string"
+              },
+              "httpsProxy": {
+                "type": "string"
+              },
+              "noProxy": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "properties": {
+              "limits": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "properties": {
+                  "cpu": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "solution": {
+            "properties": {
+              "endpoint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "endpoint"
+            ],
+            "type": "object"
+          },
+          "tls": {
+            "properties": {
+              "caFile": {
+                "type": "string"
+              },
+              "certFile": {
+                "type": "string"
+              },
+              "insecure": {
+                "type": "boolean"
+              },
+              "keyFile": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "additionalProperties": false,
+        "properties": {
+          "clusterId": {
+            "type": "string"
+          },
+          "clusterName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "clusterId",
+          "clusterName"
+        ],
+        "type": "object"
+      },
+      "opentelemetry-operator": {
+        "properties": {
+          "nodeSelector": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "global",
+      "appdynamics-smartagent"
+    ],
+    "title": "EKS Addon Config Schema",
     "type": "object"
   },
   "./coredns/addon.json": {
