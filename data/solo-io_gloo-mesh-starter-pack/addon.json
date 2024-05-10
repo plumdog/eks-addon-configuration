@@ -1,0 +1,57 @@
+{
+  "addonName": "solo-io_gloo-mesh-starter-pack",
+  "type": "service-mesh",
+  "addonVersions": [
+    {
+      "addonVersion": "v2.5.4-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    }
+  ],
+  "publisher": "Solo.io",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "f9506b13-05fe-4aee-a753-abe231d91b69",
+    "productUrl": "http://aws.amazon.com/marketplace/pp/prodview-hkqlukmfcmlq4"
+  }
+}

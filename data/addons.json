@@ -29,6 +29,7 @@
   "new-relic_kubernetes-operator",
   "rafay-systems_rafay-operator",
   "snapshot-controller",
+  "solo-io_gloo-mesh-starter-pack",
   "solo-io_istio-distro",
   "splunk_splunk-otel-collector-chart",
   "stormforge_optimize-live",
