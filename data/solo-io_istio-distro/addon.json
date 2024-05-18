@@ -3,6 +3,44 @@
   "type": "service-mesh",
   "addonVersions": [
     {
+      "addonVersion": "v1.21.2-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true
+    },
+    {
       "addonVersion": "v1.21.0-eksbuild.1",
       "architecture": [
         "amd64",
@@ -59,28 +97,28 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.27",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.26",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.25",
