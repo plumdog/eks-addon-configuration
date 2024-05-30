@@ -10,6 +10,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
           "clusterVersion": "1.29",
           "platformVersions": [
             "*"
