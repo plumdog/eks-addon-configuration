@@ -52,7 +52,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v0.1.5-eksbuild.1",
@@ -104,7 +105,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "Datadog",

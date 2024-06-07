@@ -52,7 +52,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "Upwind Security",

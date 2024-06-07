@@ -45,7 +45,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v0.1.8-eksbuild.1",
@@ -90,7 +91,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "New Relic",
