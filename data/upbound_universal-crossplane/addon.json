@@ -38,7 +38,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "upbound",

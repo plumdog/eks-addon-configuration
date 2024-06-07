@@ -44,7 +44,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.16.1-eksbuild.0",
@@ -75,7 +76,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.15.3-eksbuild.0",
@@ -106,7 +108,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "tetrate-io",

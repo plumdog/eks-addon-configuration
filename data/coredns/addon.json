@@ -24,7 +24,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.11.1-eksbuild.8",
@@ -48,7 +49,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.11.1-eksbuild.6",
@@ -72,7 +74,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.11.1-eksbuild.4",
@@ -96,7 +99,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.11.1-eksbuild.3",
@@ -113,7 +117,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.11",
@@ -151,7 +156,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.10",
@@ -189,7 +195,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.7",
@@ -227,7 +234,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.6",
@@ -258,7 +266,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.5",
@@ -282,7 +291,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.4",
@@ -306,7 +316,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.3",
@@ -330,7 +341,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.2",
@@ -354,7 +366,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.10.1-eksbuild.1",
@@ -371,7 +384,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.15",
@@ -416,7 +430,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.11",
@@ -461,7 +476,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.10",
@@ -506,7 +522,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.9",
@@ -551,7 +568,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.7",
@@ -596,7 +614,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.6",
@@ -634,7 +653,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.5",
@@ -672,7 +692,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.3",
@@ -710,7 +731,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.9.3-eksbuild.2",
@@ -741,7 +763,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.10",
@@ -793,7 +816,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.9",
@@ -838,7 +862,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.8",
@@ -883,7 +908,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.7",
@@ -928,7 +954,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.6",
@@ -973,7 +1000,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.5",
@@ -1018,7 +1046,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.4",
@@ -1063,7 +1092,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.3",
@@ -1101,7 +1131,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.2",
@@ -1118,7 +1149,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.7-eksbuild.1",
@@ -1142,7 +1174,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.4-eksbuild.2",
@@ -1187,7 +1220,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.4-eksbuild.1",
@@ -1218,7 +1252,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.3-eksbuild.1",
@@ -1242,7 +1277,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.8.0-eksbuild.1",
@@ -1259,7 +1295,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "eks",

@@ -38,7 +38,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.21.0-eksbuild.1",
@@ -83,7 +84,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.20.4-eksbuild.1",
@@ -128,7 +130,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v1.18.3-eksbuild.1",
@@ -166,7 +169,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "Solo.io",

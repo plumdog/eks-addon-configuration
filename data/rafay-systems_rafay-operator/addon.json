@@ -44,7 +44,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "rafay-systems",

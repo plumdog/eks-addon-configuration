@@ -52,7 +52,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": true
     }
   ],
   "publisher": "Calyptia Inc",

@@ -45,7 +45,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": false
+      "requiresConfiguration": false,
+      "requiresIamPermissions": true
     }
   ],
   "publisher": "datree",

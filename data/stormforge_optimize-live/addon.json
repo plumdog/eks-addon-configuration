@@ -44,7 +44,8 @@
           "defaultVersion": true
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     },
     {
       "addonVersion": "v2.8.0-eksbuild.1",
@@ -88,7 +89,8 @@
           "defaultVersion": false
         }
       ],
-      "requiresConfiguration": true
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
     }
   ],
   "publisher": "StormForge",
