@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "No configurable parameters for Mountpoint for S3 CSI Driver",
+  "type": "object"
+}
