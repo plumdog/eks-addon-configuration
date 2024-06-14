@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "properties": {
+    "clusterName": {
+      "default": "aws-eks-cluster",
+      "examples": [
+        "staging",
+        "production"
+      ],
+      "required": true,
+      "title": "The name of the cluster which the sensor is installed on",
+      "type": "string"
+    },
+    "secretName": {
+      "default": "snyk-secret",
+      "examples": [
+        "aws-secret",
+        "snyk-secret"
+      ],
+      "required": true,
+      "title": "The name of the secret which contains the token for Snyk",
+      "type": "string"
+    },
+    "snykGroupId": {
+      "default": "",
+      "examples": [
+        "ffffffff-ffff-ffff-ffff-fffffffffffff",
+        "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaaa"
+      ],
+      "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+      "required": true,
+      "title": "The Snyk Group ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "secretName",
+    "clusterName",
+    "snykGroupId"
+  ],
+  "title": "Root Schema",
+  "type": "object"
+}
