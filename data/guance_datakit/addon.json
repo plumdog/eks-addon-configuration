@@ -1,0 +1,58 @@
+{
+  "addonName": "guance_datakit",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.0.4-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Guance",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "50a877c8-b52c-4bbb-951a-300f97c280d9",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso"
+  }
+}
