@@ -84,6 +84,7 @@
     "factorhouse_kpow",
     "grafana-labs_kubernetes-monitoring",
     "groundcover_agent",
+    "guance_datakit",
     "haproxy-technologies_kubernetes-ingress-ee",
     "kasten_k10",
     "kong_konnect-ri",
@@ -26303,7 +26304,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v2.0.3-eksbuild.1",
+        "addonVersion": "v2.0.4-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -26364,6 +26365,73 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.0.3-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -28856,6 +28924,104 @@
     "type": "object"
   },
   "./aws-efs-csi-driver/configurations/v2.0.3-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the aws-efs-csi-driver",
+    "properties": {
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "deleteAccessPointRootDir": {
+            "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+            "type": "boolean"
+          },
+          "logLevel": {
+            "description": "The log level of the driver's controller service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {},
+            "description": "The podAnnotations Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's node service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {
+              "example_node_annotation": "annotation"
+            },
+            "description": "The podAnnotations Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "replicaCount": {
+        "description": "The number of replicas for the CSI controller service Deployment",
+        "type": "integer"
+      },
+      "useFIPS": {
+        "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-efs-csi-driver/configurations/v2.0.4-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Configurable parameters for the aws-efs-csi-driver",
@@ -38891,49 +39057,49 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.29",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.27",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.26",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.25",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.24",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           }
         ],
         "requiresConfiguration": false,
@@ -38951,49 +39117,49 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.29",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.27",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.26",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.25",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.24",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -43287,6 +43453,161 @@
         "type": "object"
       }
     },
+    "type": "object"
+  },
+  "./guance_datakit/addon.json": {
+    "addonName": "guance_datakit",
+    "type": "monitoring",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.0.4-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "Guance",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "50a877c8-b52c-4bbb-951a-300f97c280d9",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso"
+    }
+  },
+  "./guance_datakit/configurations/v1.0.4-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "properties": {
+      "MetricsServerEnabled": {
+        "type": "boolean"
+      },
+      "datakit": {
+        "additionalProperties": false,
+        "properties": {
+          "datawaySecrets": {
+            "type": "boolean"
+          },
+          "default_enabled_inputs": {
+            "type": "string"
+          },
+          "global_tags": {
+            "type": "string"
+          },
+          "http_listen": {
+            "type": "string"
+          },
+          "log_level": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "datawaySecrets",
+          "global_tags",
+          "default_enabled_inputs",
+          "log_level",
+          "http_listen"
+        ],
+        "type": "object"
+      },
+      "dkconfig": {
+        "type": "array"
+      },
+      "extraEnvs": {
+        "type": "array"
+      },
+      "kubeStateMetricsEnabled": {
+        "type": "boolean"
+      },
+      "resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "additionalProperties": false,
+            "properties": {
+              "cpu": {
+                "type": "string"
+              },
+              "memory": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cpu",
+              "memory"
+            ],
+            "type": "object"
+          },
+          "requests": {
+            "additionalProperties": false,
+            "properties": {
+              "cpu": {
+                "type": "string"
+              },
+              "memory": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cpu",
+              "memory"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "requests",
+          "limits"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "datakit",
+      "extraEnvs",
+      "resources",
+      "dkconfig",
+      "kubeStateMetricsEnabled",
+      "MetricsServerEnabled"
+    ],
     "type": "object"
   },
   "./haproxy-technologies_kubernetes-ingress-ee/addon.json": {

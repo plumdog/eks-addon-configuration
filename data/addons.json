@@ -19,6 +19,7 @@
   "factorhouse_kpow",
   "grafana-labs_kubernetes-monitoring",
   "groundcover_agent",
+  "guance_datakit",
   "haproxy-technologies_kubernetes-ingress-ee",
   "kasten_k10",
   "kong_konnect-ri",
