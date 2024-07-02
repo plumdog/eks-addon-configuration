@@ -63490,52 +63490,6 @@
     "type": "policy-management",
     "addonVersions": [
       {
-        "addonVersion": "v1.20.3-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.28",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.27",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.26",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.25",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
         "addonVersion": "v1.18.0-eksbuild.1",
         "architecture": [
           "amd64"
@@ -63546,21 +63500,21 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.26",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.25",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.24",
@@ -64152,12 +64106,6 @@
         "type": "object"
       }
     },
-    "type": "object"
-  },
-  "./tetrate-io_istio-distro/configurations/v1.20.3-eksbuild.1.json": {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": false,
-    "description": "No configuration support for tetrate-io_istio-distro",
     "type": "object"
   },
   "./upbound_universal-crossplane/addon.json": {

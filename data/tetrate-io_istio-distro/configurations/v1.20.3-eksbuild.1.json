@@ -1,6 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "additionalProperties": false,
-  "description": "No configuration support for tetrate-io_istio-distro",
-  "type": "object"
-}
