@@ -9802,7 +9802,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.7.0-eksbuild.1",
+        "addonVersion": "v1.8.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -9863,6 +9863,73 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.7.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -12590,6 +12657,247 @@
     "type": "object"
   },
   "./amazon-cloudwatch-observability/configurations/v1.7.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          },
+          "fluentBit": {
+            "additionalProperties": false,
+            "properties": {
+              "config": {
+                "additionalProperties": false,
+                "properties": {
+                  "customParsers": {
+                    "title": "Define the Parsers configuration to be used for FluentBit. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                    "type": "string"
+                  },
+                  "extraFiles": {
+                    "additionalProperties": true,
+                    "properties": {
+                      "application-log.conf": {
+                        "title": "Customize application logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      },
+                      "dataplane-log.conf": {
+                        "title": "Customize dataplane logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      },
+                      "host-log.conf": {
+                        "title": "Customize host logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      }
+                    },
+                    "title": "Additional conf files to include alongside the FluentBit configuration",
+                    "type": "object"
+                  },
+                  "service": {
+                    "title": "Provide the Service section of the FluentBit config to define global properties. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                    "type": "string"
+                  }
+                },
+                "title": "The configuration to be supplied to FluentBit",
+                "type": "object"
+              }
+            },
+            "title": "FluentBit specific configuration",
+            "type": "object"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      },
+      "tolerations": {
+        "default": [
+          {
+            "key": "",
+            "operator": "Exists"
+          }
+        ],
+        "items": {
+          "type": "object"
+        },
+        "title": "Tolerations to apply to all pod workloads installed by the EKS add-on",
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./amazon-cloudwatch-observability/configurations/v1.8.0-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Amazon CloudWatch Observability configuration",
@@ -26949,6 +27257,73 @@
     "type": "storage",
     "addonVersions": [
       {
+        "addonVersion": "v2.0.5-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
         "addonVersion": "v2.0.4-eksbuild.1",
         "architecture": [
           "amd64",
@@ -29756,6 +30131,104 @@
       "replicaCount": {
         "description": "The number of replicas for the CSI controller service Deployment",
         "type": "integer"
+      },
+      "useFIPS": {
+        "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-efs-csi-driver/configurations/v2.0.5-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the aws-efs-csi-driver",
+    "properties": {
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "deleteAccessPointRootDir": {
+            "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+            "type": "boolean"
+          },
+          "logLevel": {
+            "description": "The log level of the driver's controller service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {},
+            "description": "The podAnnotations Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's node service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {
+              "example_node_annotation": "annotation"
+            },
+            "description": "The podAnnotations Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "replicaCount": {
+          "description": "The number of replicas for the CSI controller service Deployment",
+          "type": "integer"
+        },
+        "type": "object"
       },
       "useFIPS": {
         "description": "Assert whether or not the driver uses FIPS enabled endpoints",
