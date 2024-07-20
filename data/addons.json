@@ -28,6 +28,7 @@
   "leaksignal_leakagent",
   "netapp_trident-operator",
   "new-relic_kubernetes-operator",
+  "rad-security_rad-security",
   "rafay-systems_rafay-operator",
   "snapshot-controller",
   "snyk_runtime-sensor",
