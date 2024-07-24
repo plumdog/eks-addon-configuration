@@ -39628,12 +39628,26 @@
     "type": "monitoring",
     "addonVersions": [
       {
-        "addonVersion": "v0.1.7-eksbuild.1",
+        "addonVersion": "v0.1.9-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
@@ -39675,6 +39689,59 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.1.7-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -39865,6 +39932,129 @@
     "type": "object"
   },
   "./datadog_operator/configurations/v0.1.7-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+      "datadog-operator": {
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "collectOperatorMetrics": {
+            "type": "boolean"
+          },
+          "containerSecurityContext": {
+            "type": "object"
+          },
+          "dd_url": {
+            "type": "null"
+          },
+          "env": {
+            "items": {},
+            "type": "array"
+          },
+          "fullnameOverride": {
+            "type": "string"
+          },
+          "image": {
+            "properties": {
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "installCRDs": {
+            "type": "boolean"
+          },
+          "logLevel": {
+            "type": "string"
+          },
+          "maximumGoroutines": {
+            "type": "integer"
+          },
+          "metricsPort": {
+            "type": "integer"
+          },
+          "nameOverride": {
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "rbac": {
+            "properties": {
+              "create": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "create"
+            ],
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "type": "object"
+          },
+          "secretBackend": {
+            "properties": {
+              "arguments": {
+                "type": "string"
+              },
+              "command": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "command",
+              "arguments"
+            ],
+            "type": "object"
+          },
+          "serviceAccount": {
+            "properties": {
+              "annotations": {
+                "type": "object"
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "create",
+              "annotations"
+            ],
+            "type": "object"
+          },
+          "site": {
+            "type": "null"
+          },
+          "tolerations": {
+            "items": {},
+            "type": "array"
+          },
+          "watchNamespaces": {
+            "items": {},
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./datadog_operator/configurations/v0.1.9-eksbuild.1.json": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "properties": {
       "datadog-operator": {
@@ -55494,12 +55684,19 @@
     "type": "security",
     "addonVersions": [
       {
-        "addonVersion": "v1.31.3-eksbuild.1",
+        "addonVersion": "v1.32.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.29",
             "platformVersions": [
@@ -55548,6 +55745,66 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.31.3-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -55666,6 +55923,233 @@
     "type": "object"
   },
   "./snyk_runtime-sensor/configurations/v1.31.3-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "default": {},
+    "properties": {
+      "clusterName": {
+        "default": "aws-eks-cluster",
+        "examples": [
+          "staging",
+          "production"
+        ],
+        "required": true,
+        "title": "The name of the cluster which the sensor is installed on",
+        "type": "string"
+      },
+      "secretName": {
+        "default": "snyk-secret",
+        "examples": [
+          "aws-secret",
+          "snyk-secret"
+        ],
+        "required": true,
+        "title": "The name of the secret which contains the token for Snyk",
+        "type": "string"
+      },
+      "sensor": {
+        "default": {},
+        "examples": [
+          {
+            "extraArgs": [],
+            "image": {
+              "repository": "snyk/runtime-sensor",
+              "tag": "1.0.0"
+            },
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "serviceAccount": {
+              "create": true
+            }
+          }
+        ],
+        "properties": {
+          "extraArgs": {
+            "default": [],
+            "examples": [
+              []
+            ],
+            "items": {},
+            "title": "The extraArgs Schema",
+            "type": "array"
+          },
+          "image": {
+            "default": {},
+            "examples": [
+              {
+                "repository": "snyk/runtime-sensor",
+                "tag": "0.0.1"
+              }
+            ],
+            "properties": {
+              "repository": {
+                "default": "snyk/runtime-sensor",
+                "examples": [
+                  "snyk/runtime-sensor"
+                ],
+                "title": "The repository Schema",
+                "type": "string"
+              },
+              "tag": {
+                "default": "1.0.0",
+                "examples": [
+                  "0.0.1"
+                ],
+                "title": "The tag Schema",
+                "type": "string"
+              }
+            },
+            "title": "The image Schema",
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "resources": {
+            "default": {},
+            "examples": [
+              {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "128Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                }
+              }
+            ],
+            "properties": {
+              "limits": {
+                "default": {},
+                "examples": [
+                  {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                  }
+                ],
+                "properties": {
+                  "cpu": {
+                    "default": "500m",
+                    "examples": [
+                      "500m"
+                    ],
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "default": "1024Mi",
+                    "examples": [
+                      "1024Mi"
+                    ],
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The limits Schema",
+                "type": "object"
+              },
+              "requests": {
+                "default": {},
+                "examples": [
+                  {
+                    "cpu": "100m",
+                    "memory": "512Mi"
+                  }
+                ],
+                "properties": {
+                  "cpu": {
+                    "default": "100m",
+                    "examples": [
+                      "100m"
+                    ],
+                    "title": "The cpu Schema",
+                    "type": "string"
+                  },
+                  "memory": {
+                    "default": "512Mi",
+                    "examples": [
+                      "64Mi"
+                    ],
+                    "title": "The memory Schema",
+                    "type": "string"
+                  }
+                },
+                "title": "The requests Schema",
+                "type": "object"
+              }
+            },
+            "title": "The resources Schema",
+            "type": "object"
+          },
+          "serviceAccount": {
+            "default": {},
+            "examples": [
+              {
+                "create": true
+              }
+            ],
+            "properties": {
+              "annotations": {
+                "type": "object"
+              },
+              "create": {
+                "default": true,
+                "examples": [
+                  true
+                ],
+                "title": "The create Schema",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "create"
+            ],
+            "title": "The serviceAccount Schema",
+            "type": "object"
+          }
+        },
+        "title": "The sensor Schema",
+        "type": "object"
+      },
+      "snykAPIBaseURL": {
+        "default": "api.snyk.io:443",
+        "examples": [
+          "api.snyk.io:443",
+          "api.us.snyk.io:443"
+        ],
+        "title": "The Snyk API region and port to report to",
+        "type": "string"
+      },
+      "snykGroupId": {
+        "default": "",
+        "examples": [
+          "ffffffff-ffff-ffff-ffff-fffffffffffff",
+          "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaaa"
+        ],
+        "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+        "required": true,
+        "title": "The Snyk Group ID",
+        "type": "string"
+      }
+    },
+    "required": [
+      "secretName",
+      "clusterName",
+      "snykGroupId",
+      "snykAPIBaseURL"
+    ],
+    "title": "Root Schema",
+    "type": "object"
+  },
+  "./snyk_runtime-sensor/configurations/v1.32.0-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "default": {},
     "properties": {
