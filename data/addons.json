@@ -33,6 +33,7 @@
   "snapshot-controller",
   "snyk_runtime-sensor",
   "solarwinds_swo-k8s-collector-addon",
+  "solo-io_gloo-gateway",
   "solo-io_gloo-mesh-starter-pack",
   "solo-io_istio-distro",
   "splunk_splunk-otel-collector-chart",
