@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Amazon CloudWatch Observability configuration",
+  "properties": {
+    "admissionWebhooks": {
+      "additionalProperties": false,
+      "properties": {
+        "autoGenerateCert": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": true,
+              "title": "Enable auto generation of TLS certs",
+              "type": "boolean"
+            },
+            "expiryDays": {
+              "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+              "type": "integer"
+            }
+          },
+          "title": "Auto generate TLS certs",
+          "type": "object"
+        },
+        "certManager": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": false,
+              "title": "Enable management of TLS certs using cert-manager",
+              "type": "boolean"
+            }
+          },
+          "title": "Manage TLS certs using cert-manager",
+          "type": "object"
+        }
+      },
+      "title": "Admission Webhooks specific configuration",
+      "type": "object"
+    },
+    "agent": {
+      "additionalProperties": false,
+      "properties": {
+        "autoGenerateCert": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": true,
+              "title": "Enable auto generation of TLS certs",
+              "type": "boolean"
+            },
+            "expiryDays": {
+              "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+              "type": "integer"
+            }
+          },
+          "title": "Auto generate TLS certs",
+          "type": "object"
+        },
+        "certManager": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": false,
+              "title": "Enable management of TLS certs using cert-manager",
+              "type": "boolean"
+            }
+          },
+          "title": "Manage TLS certs using cert-manager",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "The JSON config to be supplied to the CloudWatch Agent",
+          "type": "object"
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "128Mi"
+            }
+          },
+          "description": "Resource requests/limits of the CloudWatch Agent pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "title": "CloudWatch Agent specific configuration",
+      "type": "object"
+    },
+    "containerLogs": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": true,
+          "title": "Enable container logging on the cluster",
+          "type": "boolean"
+        },
+        "fluentBit": {
+          "additionalProperties": false,
+          "properties": {
+            "config": {
+              "additionalProperties": false,
+              "properties": {
+                "customParsers": {
+                  "title": "Define the Parsers configuration to be used for FluentBit. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                  "type": "string"
+                },
+                "extraFiles": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "application-log.conf": {
+                      "title": "Customize application logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                      "type": "string"
+                    },
+                    "dataplane-log.conf": {
+                      "title": "Customize dataplane logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                      "type": "string"
+                    },
+                    "host-log.conf": {
+                      "title": "Customize host logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Additional conf files to include alongside the FluentBit configuration",
+                  "type": "object"
+                },
+                "service": {
+                  "title": "Provide the Service section of the FluentBit config to define global properties. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                  "type": "string"
+                }
+              },
+              "title": "The configuration to be supplied to FluentBit",
+              "type": "object"
+            },
+            "resources": {
+              "default": {
+                "limits": {
+                  "cpu": "500m",
+                  "memory": "250Mi"
+                },
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "25Mi"
+                }
+              },
+              "description": "Resource requests/limits of the FluentBit pod",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "title": "FluentBit specific configuration",
+          "type": "object"
+        }
+      },
+      "title": "Container Logging specific configuration",
+      "type": "object"
+    },
+    "dcgmExporter": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "500Mi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "128Mi"
+            }
+          },
+          "description": "Resource requests/limits of the DCGM Exporter pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "title": "DCGM Exporter specific configuration",
+      "type": "object"
+    },
+    "manager": {
+      "additionalProperties": false,
+      "properties": {
+        "autoAnnotateAutoInstrumentation": {
+          "additionalProperties": false,
+          "properties": {
+            "java": {
+              "additionalProperties": false,
+              "properties": {
+                "daemonsets": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                  "type": "array"
+                },
+                "deployments": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                  "type": "array"
+                },
+                "namespaces": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster namespaces",
+                  "type": "array"
+                },
+                "statefulsets": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                  "type": "array"
+                }
+              },
+              "title": "Auto Annotate cluster resources for java",
+              "type": "object"
+            },
+            "python": {
+              "additionalProperties": false,
+              "properties": {
+                "daemonsets": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                  "type": "array"
+                },
+                "deployments": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                  "type": "array"
+                },
+                "namespaces": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster namespaces",
+                  "type": "array"
+                },
+                "statefulsets": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                  "type": "array"
+                }
+              },
+              "title": "Auto Annotate cluster resources for python",
+              "type": "object"
+            }
+          },
+          "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+          "type": "object"
+        },
+        "resources": {
+          "default": {
+            "requests": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            }
+          },
+          "description": "Resource requests/limits of the CloudWatchAgent Operator pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "title": "CloudWatchAgent Operator specific configuration",
+      "type": "object"
+    },
+    "neuronMonitor": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "256m",
+              "memory": "128Mi"
+            }
+          },
+          "description": "Resource requests/limits of the Neuron Monitor pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "title": "Neuron Monitor specific configuration",
+      "type": "object"
+    },
+    "tolerations": {
+      "default": [
+        {
+          "key": "",
+          "operator": "Exists"
+        }
+      ],
+      "items": {
+        "type": "object"
+      },
+      "title": "Tolerations to apply to all pod workloads installed by the EKS add-on",
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
