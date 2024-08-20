@@ -73,6 +73,7 @@
     "aws-guardduty-agent",
     "aws-mountpoint-s3-csi-driver",
     "calyptia_fluent-bit",
+    "catalogic-software_cloudcasa",
     "cisco_cisco-cloud-observability-collectors",
     "cisco_cisco-cloud-observability-operators",
     "coredns",
@@ -34158,6 +34159,98 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for calyptia_fluent-bit",
+    "type": "object"
+  },
+  "./catalogic-software_cloudcasa/addon.json": {
+    "addonName": "catalogic-software_cloudcasa",
+    "type": "backup",
+    "addonVersions": [
+      {
+        "addonVersion": "v3.1.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "Catalogic Software",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-dc3rdeys7gbdm",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tvszgkzzdozc2"
+    }
+  },
+  "./catalogic-software_cloudcasa/configurations/v3.1.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the catalogic-software_cloudcasa agent",
+    "properties": {
+      "cluster_id": {
+        "additionalProperties": false,
+        "description": "ID of the cluster obtained from the CloudCasa dashboard",
+        "type": "string"
+      }
+    },
     "type": "object"
   },
   "./cisco_cisco-cloud-observability-collectors/addon.json": {

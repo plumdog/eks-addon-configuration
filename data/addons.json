@@ -8,6 +8,7 @@
   "aws-guardduty-agent",
   "aws-mountpoint-s3-csi-driver",
   "calyptia_fluent-bit",
+  "catalogic-software_cloudcasa",
   "cisco_cisco-cloud-observability-collectors",
   "cisco_cisco-cloud-observability-operators",
   "coredns",
