@@ -10509,7 +10509,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v2.1.0-eksbuild.1",
+        "addonVersion": "v2.1.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -10570,6 +10570,73 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.1.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -16900,12 +16967,426 @@
     },
     "type": "object"
   },
+  "./amazon-cloudwatch-observability/configurations/v2.1.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon CloudWatch Observability configuration",
+    "properties": {
+      "admissionWebhooks": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          }
+        },
+        "title": "Admission Webhooks specific configuration",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerateCert": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "title": "Enable auto generation of TLS certs",
+                "type": "boolean"
+              },
+              "expiryDays": {
+                "title": "Days to expire for auto generated certs. Defaults to 10 years when not specified",
+                "type": "integer"
+              }
+            },
+            "title": "Auto generate TLS certs",
+            "type": "object"
+          },
+          "certManager": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "title": "Enable management of TLS certs using cert-manager",
+                "type": "boolean"
+              }
+            },
+            "title": "Manage TLS certs using cert-manager",
+            "type": "object"
+          },
+          "config": {
+            "additionalProperties": true,
+            "title": "The JSON config to be supplied to the CloudWatch Agent",
+            "type": "object"
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              }
+            },
+            "description": "Resource requests/limits of the CloudWatch Agent pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "title": "CloudWatch Agent specific configuration",
+        "type": "object"
+      },
+      "containerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enable container logging on the cluster",
+            "type": "boolean"
+          },
+          "fluentBit": {
+            "additionalProperties": false,
+            "properties": {
+              "config": {
+                "additionalProperties": false,
+                "properties": {
+                  "customParsers": {
+                    "title": "Define the Parsers configuration to be used for FluentBit. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                    "type": "string"
+                  },
+                  "extraFiles": {
+                    "additionalProperties": true,
+                    "properties": {
+                      "application-log.conf": {
+                        "title": "Customize application logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      },
+                      "dataplane-log.conf": {
+                        "title": "Customize dataplane logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      },
+                      "host-log.conf": {
+                        "title": "Customize host logs configuration. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                        "type": "string"
+                      }
+                    },
+                    "title": "Additional conf files to include alongside the FluentBit configuration",
+                    "type": "object"
+                  },
+                  "service": {
+                    "title": "Provide the Service section of the FluentBit config to define global properties. For default configuration refer https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html#install-CloudWatch-Observability-EKS-addon-configuration",
+                    "type": "string"
+                  }
+                },
+                "title": "The configuration to be supplied to FluentBit",
+                "type": "object"
+              },
+              "resources": {
+                "default": {
+                  "limits": {
+                    "cpu": "500m",
+                    "memory": "250Mi"
+                  },
+                  "requests": {
+                    "cpu": "50m",
+                    "memory": "25Mi"
+                  }
+                },
+                "description": "Resource requests/limits of the FluentBit pod",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "title": "FluentBit specific configuration",
+            "type": "object"
+          }
+        },
+        "title": "Container Logging specific configuration",
+        "type": "object"
+      },
+      "dcgmExporter": {
+        "additionalProperties": false,
+        "properties": {
+          "resources": {
+            "default": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "500Mi"
+              },
+              "requests": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              }
+            },
+            "description": "Resource requests/limits of the DCGM Exporter pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "title": "DCGM Exporter specific configuration",
+        "type": "object"
+      },
+      "manager": {
+        "additionalProperties": false,
+        "properties": {
+          "autoAnnotateAutoInstrumentation": {
+            "additionalProperties": false,
+            "properties": {
+              "dotnet": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for dotnet",
+                "type": "object"
+              },
+              "java": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for java",
+                "type": "object"
+              },
+              "nodejs": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for nodejs",
+                "type": "object"
+              },
+              "python": {
+                "additionalProperties": false,
+                "properties": {
+                  "daemonsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster daemonsets. Specify in the namespace/daemonset format",
+                    "type": "array"
+                  },
+                  "deployments": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster deployments. Specify in the namespace/deployment format",
+                    "type": "array"
+                  },
+                  "namespaces": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster namespaces",
+                    "type": "array"
+                  },
+                  "statefulsets": {
+                    "default": [],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Auto Annotate cluster statefulsets. Specify in the namespace/statefulset format",
+                    "type": "array"
+                  }
+                },
+                "title": "Auto Annotate cluster resources for python",
+                "type": "object"
+              }
+            },
+            "title": "Auto Annotate cluster resources to enable Auto Instrumentation via the Operator",
+            "type": "object"
+          },
+          "resources": {
+            "default": {
+              "requests": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "description": "Resource requests/limits of the CloudWatchAgent Operator pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "title": "CloudWatchAgent Operator specific configuration",
+        "type": "object"
+      },
+      "neuronMonitor": {
+        "additionalProperties": false,
+        "properties": {
+          "resources": {
+            "default": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "256m",
+                "memory": "128Mi"
+              }
+            },
+            "description": "Resource requests/limits of the Neuron Monitor pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "title": "Neuron Monitor specific configuration",
+        "type": "object"
+      },
+      "tolerations": {
+        "default": [
+          {
+            "key": "",
+            "operator": "Exists"
+          }
+        ],
+        "items": {
+          "type": "object"
+        },
+        "title": "Tolerations to apply to all pod workloads installed by the EKS add-on",
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
   "./aws-ebs-csi-driver/addon.json": {
     "addonName": "aws-ebs-csi-driver",
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.34.0-eksbuild.1",
+        "addonVersion": "v1.35.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -16966,6 +17447,73 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.34.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -32175,6 +32723,562 @@
     },
     "type": "object"
   },
+  "./aws-ebs-csi-driver/configurations/v1.35.0-eksbuild.1.json": {
+    "$defs": {
+      "extraVolumeTags": {
+        "patternProperties": {
+          "^.*$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9 _\\.:\\/=+\\-@]*$",
+          "type": "string"
+        },
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the AWS EBS CSI Driver",
+    "properties": {
+      "a1CompatibilityDaemonSet": {
+        "default": false,
+        "description": "Enable compatibility for the A1 instance family via use of an AL2-based image in a separate DaemonSet",
+        "type": "boolean"
+      },
+      "additionalDaemonSets": {
+        "default": {},
+        "description": "Additional DaemonSets of the node pod",
+        "patternProperties": {
+          "^.*$": {
+            "$ref": "#/properties/node",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the controller pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "preference": {
+                        "matchExpressions": [
+                          {
+                            "key": "eks.amazonaws.com/compute-type",
+                            "operator": "NotIn",
+                            "values": [
+                              "fargate"
+                            ]
+                          }
+                        ]
+                      },
+                      "weight": 1
+                    }
+                  ]
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "app",
+                              "operator": "In",
+                              "values": [
+                                "ebs-csi-controller"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "batching": {
+            "default": true,
+            "description": "Enable batching of API calls. Improves performance in workloads that are sensitive to EC2 rate limits.",
+            "type": "boolean"
+          },
+          "dnsConfig": {
+            "default": null,
+            "description": "DNS configuration for the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "extraVolumeTags": {
+            "$ref": "#/$defs/extraVolumeTags",
+            "default": {},
+            "description": "Additional tags to be added to all EBS volumes"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the controller pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podDisruptionBudget": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": true,
+                "description": "Enables/Disables the EBS CSI Controller Pod's PodDisruptionBudget which ensures that at least 1 controller Pod is always able to Attach/Detach/Create/Delete volumes. Warning: Disabling PodDisruptionBudget may lead to delays in stateful workloads starting due to controller pod restarts or evictions.",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "priorityClassName": {
+            "default": "system-cluster-critical",
+            "description": "Priority class for the controller Deployment",
+            "type": "string"
+          },
+          "replicaCount": {
+            "default": 2,
+            "description": "Number of replicas in the controller Deployment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "sdkDebugLog": {
+            "default": false,
+            "description": "Enables debug logging of the AWS SDK via --aws-sdk-debug-log=true",
+            "type": "boolean"
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-controller-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the controller pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "default": [],
+            "description": "Topology spread constraints for the controller pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeModificationFeature": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "Enable modification of volume type, iops, etc via volume-modifier-for-k8s sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "customLabels": {
+        "default": null,
+        "description": "Custom labels added to Kubernetes objects",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "defaultStorageClass": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": false,
+            "description": "Creates a default StorageClass.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "additionalArgs": {
+            "default": [],
+            "description": "Additional arguments passed to the node pod",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "affinity": {
+            "default": {
+              "nodeAffinity": {
+                "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                    {
+                      "matchExpressions": [
+                        {
+                          "key": "eks.amazonaws.com/compute-type",
+                          "operator": "NotIn",
+                          "values": [
+                            "fargate"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "enableLinux": {
+            "default": true,
+            "description": "Enable the node Linux DaemonSet",
+            "type": "boolean"
+          },
+          "enableWindows": {
+            "default": true,
+            "description": "Enable the node Windows DaemonSet",
+            "type": "boolean"
+          },
+          "hostNetwork": {
+            "default": false,
+            "description": "Run node pods on the host network",
+            "type": "boolean"
+          },
+          "kubeletPath": {
+            "default": "/var/lib/kubelet",
+            "description": "Kubelet path of the node",
+            "type": "string"
+          },
+          "legacyXFS": {
+            "default": "false",
+            "description": "Warning: This option will be removed in a future release. It is a temporary workaround for users unable to immediately migrate off of older kernel versions. Formats XFS volumes with bigtime=0,inobtcount=0,reflink=0, for mounting onto nodes with linux kernel version <= 5.4. Note that XFS volumes formatted with this option will only have timestamp records until 2038",
+            "type": "boolean"
+          },
+          "loggingFormat": {
+            "default": "text",
+            "description": "Log format for the driver container on the node pod",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "Node selector of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": null,
+            "description": "Annotations applied to the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "priorityClassName": {
+            "default": "system-node-critical",
+            "description": "Priority class for the Node Daemonset",
+            "type": "string"
+          },
+          "reservedVolumeAttachments": {
+            "default": null,
+            "description": "The number of attachment slots to reserve for system use (and not to be used for CSI volumes)\nWhen this parameter is not specified (or set to -1), the EBS CSI Driver will attempt to determine the number of reserved slots via heuristic",
+            "minimum": -1,
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "40Mi"
+              }
+            },
+            "description": "Resource requests/limits of the node pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "default": null,
+                "description": "Additional annotations added to the ebs-csi-node-sa service account",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "default": 30,
+            "description": "Number of seconds to wait before forcefully terminating a stopping node pod",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "tolerateAllTaints": {
+            "default": true,
+            "description": "Node pods will tolerate all taints",
+            "type": "boolean"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "effect": "NoExecute",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ],
+            "description": "Tolerations of the node pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "volumeAttachLimit": {
+            "default": null,
+            "description": "Overrides the maximum number of volumes that can be attached per node (for all nodes)",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "proxy": {
+        "additionalProperties": false,
+        "properties": {
+          "http_proxy": {
+            "default": "",
+            "description": "Value of HTTP_PROXY and HTTPS_PROXY environment variables",
+            "type": "string"
+          },
+          "no_proxy": {
+            "default": "",
+            "description": "Value of NO_PROXY environment variable",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "sidecars": {
+        "additionalProperties": false,
+        "properties": {
+          "attacher": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the attacher container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "livenessProbe": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the livenessprobe container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "nodeDriverRegistrar": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the node-driver-registrar container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "provisioner": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the provisioner container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "resizer": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the resizer container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "snapshotter": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the snapshotter container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "forceEnable": {
+                "default": true,
+                "description": "Enables/disables the external-snapshotter sidecar",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "volumemodifier": {
+            "additionalProperties": false,
+            "properties": {
+              "additionalArgs": {
+                "default": [],
+                "description": "Additional arguments passed to the volumemodifier container",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
   "./aws-ebs-csi-driver/configurations/v1.4.0-eksbuild.preview.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
@@ -35714,6 +36818,73 @@
     "type": "security",
     "addonVersions": [
       {
+        "addonVersion": "v1.7.1-eksbuild.2",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v1.7.1-eksbuild.1",
         "architecture": [
           "amd64",
@@ -36829,6 +38000,83 @@
     "description": "Advanced configuration parameters of AWS GuardDuty Agent (EKS Runtime Monitoring Addon)"
   },
   "./aws-guardduty-agent/configurations/v1.7.1-eksbuild.1.json": {
+    "$ref": "#/definitions/GuardDutyAgent",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "GuardDutyAgent": {
+        "additionalProperties": false,
+        "properties": {
+          "dnsPolicy": {
+            "enum": [
+              "ClusterFirstWithHostNet",
+              "ClusterFirst",
+              "Default"
+            ],
+            "type": "string"
+          },
+          "priorityClassName": {
+            "enum": [
+              "aws-guardduty-agent.priorityclass",
+              "aws-guardduty-agent.priorityclass-high",
+              "system-cluster-critical",
+              "system-node-critical"
+            ],
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "GuardDutyAgent",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "pattern": "^([2-9]\\d{2}|[1-9]\\d{3}|10000)m$",
+            "type": "string"
+          },
+          "memory": {
+            "pattern": "^(256|[3-9]\\d{2}|[1-9]\\d{3}|1\\d{4}|20000)Mi$",
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Requests": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "pattern": "^([2-9]\\d{2}|[1-9]\\d{3}|10000)m$",
+            "type": "string"
+          },
+          "memory": {
+            "pattern": "^(256|[3-9]\\d{2}|[1-9]\\d{3}|1\\d{4}|20000)Mi$",
+            "type": "string"
+          }
+        },
+        "title": "Requests",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Requests"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    },
+    "description": "Advanced configuration parameters of AWS GuardDuty Agent (EKS Runtime Monitoring Addon)"
+  },
+  "./aws-guardduty-agent/configurations/v1.7.1-eksbuild.2.json": {
     "$ref": "#/definitions/GuardDutyAgent",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
@@ -79602,7 +80850,7 @@
     "type": "policy-management",
     "addonVersions": [
       {
-        "addonVersion": "v1.22.30001-eksbuild.1",
+        "addonVersion": "v1.23.1001-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -79635,6 +80883,45 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.22.30001-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -81939,6 +83226,599 @@
               },
               "traceSampling": {
                 "type": "integer"
+              },
+              "variant": {
+                "type": "string"
+              },
+              "volumeMounts": {
+                "type": "array"
+              },
+              "volumes": {
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "revisionTags": {
+            "type": "array"
+          },
+          "sidecarInjectorWebhook": {
+            "properties": {
+              "alwaysInjectSelector": {
+                "type": "array"
+              },
+              "defaultTemplates": {
+                "type": "array"
+              },
+              "enableNamespacesByDefault": {
+                "type": "boolean"
+              },
+              "injectedAnnotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "neverInjectSelector": {
+                "type": "array"
+              },
+              "reinvocationPolicy": {
+                "type": "string"
+              },
+              "rewriteAppHTTPProbe": {
+                "type": "boolean"
+              },
+              "templates": {
+                "properties": {},
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "telemetry": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "v2": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "prometheus": {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "stackdriver": {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "properties": {
+          "hub": {
+            "type": "string"
+          },
+          "proxy": {
+            "properties": {
+              "image": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "proxy_init": {
+            "properties": {
+              "image": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "pilot": {
+        "properties": {
+          "autoscaleEnabled": {
+            "type": "boolean"
+          },
+          "image": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "./tetrate-io_istio-distro/configurations/v1.23.1001-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "defaults": {
+        "properties": {
+          "base": {
+            "properties": {
+              "enableIstioConfigCRDs": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "experimental": {
+            "properties": {
+              "stableValidationPolicy": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "gateways": {
+            "properties": {
+              "seccompProfile": {
+                "properties": {},
+                "type": "object"
+              },
+              "securityContext": {
+                "properties": {},
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "global": {
+            "properties": {
+              "autoscalingv2API": {
+                "type": "boolean"
+              },
+              "caAddress": {
+                "type": "string"
+              },
+              "caName": {
+                "type": "string"
+              },
+              "certSigners": {
+                "type": "array"
+              },
+              "configCluster": {
+                "type": "boolean"
+              },
+              "configValidation": {
+                "type": "boolean"
+              },
+              "defaultPodDisruptionBudget": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "defaultResources": {
+                "properties": {
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "externalIstiod": {
+                "type": "boolean"
+              },
+              "hub": {
+                "type": "string"
+              },
+              "imagePullPolicy": {
+                "type": "string"
+              },
+              "imagePullSecrets": {
+                "type": "array"
+              },
+              "istioNamespace": {
+                "type": "string"
+              },
+              "istiod": {
+                "properties": {
+                  "enableAnalysis": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "logAsJson": {
+                "type": "boolean"
+              },
+              "logging": {
+                "properties": {
+                  "level": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "meshID": {
+                "type": "string"
+              },
+              "meshNetworks": {
+                "properties": {},
+                "type": "object"
+              },
+              "mountMtlsCerts": {
+                "type": "boolean"
+              },
+              "multiCluster": {
+                "properties": {
+                  "clusterName": {
+                    "type": "string"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "network": {
+                "type": "string"
+              },
+              "omitSidecarInjectorConfigMap": {
+                "type": "boolean"
+              },
+              "operatorManageWebhooks": {
+                "type": "boolean"
+              },
+              "pilotCertProvider": {
+                "type": "string"
+              },
+              "priorityClassName": {
+                "type": "string"
+              },
+              "proxy": {
+                "properties": {
+                  "autoInject": {
+                    "type": "string"
+                  },
+                  "clusterDomain": {
+                    "type": "string"
+                  },
+                  "componentLogLevel": {
+                    "type": "string"
+                  },
+                  "enableCoreDump": {
+                    "type": "boolean"
+                  },
+                  "excludeIPRanges": {
+                    "type": "string"
+                  },
+                  "excludeInboundPorts": {
+                    "type": "string"
+                  },
+                  "excludeOutboundPorts": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "includeIPRanges": {
+                    "type": "string"
+                  },
+                  "includeInboundPorts": {
+                    "type": "string"
+                  },
+                  "includeOutboundPorts": {
+                    "type": "string"
+                  },
+                  "logLevel": {
+                    "type": "string"
+                  },
+                  "outlierLogPath": {
+                    "type": "string"
+                  },
+                  "privileged": {
+                    "type": "boolean"
+                  },
+                  "readinessFailureThreshold": {
+                    "type": "integer"
+                  },
+                  "readinessInitialDelaySeconds": {
+                    "type": "integer"
+                  },
+                  "readinessPeriodSeconds": {
+                    "type": "integer"
+                  },
+                  "resources": {
+                    "properties": {
+                      "limits": {
+                        "properties": {
+                          "cpu": {
+                            "type": "string"
+                          },
+                          "memory": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "requests": {
+                        "properties": {
+                          "cpu": {
+                            "type": "string"
+                          },
+                          "memory": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "startupProbe": {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "failureThreshold": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "statusPort": {
+                    "type": "integer"
+                  },
+                  "tracer": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "proxy_init": {
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "remotePilotAddress": {
+                "type": "string"
+              },
+              "sds": {
+                "properties": {
+                  "token": {
+                    "properties": {
+                      "aud": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "sts": {
+                "properties": {
+                  "servicePort": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "variant": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "istio_cni": {
+            "properties": {
+              "chained": {
+                "type": "boolean"
+              },
+              "provider": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "istiodRemote": {
+            "properties": {
+              "injectionCABundle": {
+                "type": "string"
+              },
+              "injectionPath": {
+                "type": "string"
+              },
+              "injectionURL": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "meshConfig": {
+            "properties": {
+              "enablePrometheusMerge": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "pilot": {
+            "properties": {
+              "affinity": {
+                "properties": {},
+                "type": "object"
+              },
+              "autoscaleBehavior": {
+                "properties": {},
+                "type": "object"
+              },
+              "autoscaleEnabled": {
+                "type": "boolean"
+              },
+              "autoscaleMax": {
+                "type": "integer"
+              },
+              "autoscaleMin": {
+                "type": "integer"
+              },
+              "cni": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "provider": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "configMap": {
+                "type": "boolean"
+              },
+              "cpu": {
+                "properties": {
+                  "targetAverageUtilization": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "deploymentLabels": {
+                "properties": {},
+                "type": "object"
+              },
+              "env": {
+                "properties": {},
+                "type": "object"
+              },
+              "extraContainerArgs": {
+                "type": "array"
+              },
+              "hub": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "ipFamilies": {
+                "type": "array"
+              },
+              "ipFamilyPolicy": {
+                "type": "string"
+              },
+              "jwksResolverExtraRootCA": {
+                "type": "string"
+              },
+              "keepaliveMaxServerConnectionAge": {
+                "type": "string"
+              },
+              "memory": {
+                "properties": {},
+                "type": "object"
+              },
+              "nodeSelector": {
+                "properties": {},
+                "type": "object"
+              },
+              "podAnnotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "podLabels": {
+                "properties": {},
+                "type": "object"
+              },
+              "replicaCount": {
+                "type": "integer"
+              },
+              "resources": {
+                "properties": {
+                  "requests": {
+                    "properties": {
+                      "cpu": {
+                        "type": "string"
+                      },
+                      "memory": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "rollingMaxSurge": {
+                "type": "string"
+              },
+              "rollingMaxUnavailable": {
+                "type": "string"
+              },
+              "seccompProfile": {
+                "properties": {},
+                "type": "object"
+              },
+              "serviceAccountAnnotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "serviceAnnotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "tag": {
+                "type": "string"
+              },
+              "taint": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "tolerations": {
+                "type": "array"
+              },
+              "topologySpreadConstraints": {
+                "type": "array"
+              },
+              "traceSampling": {
+                "type": "integer"
+              },
+              "trustedZtunnelNamespace": {
+                "type": "string"
               },
               "variant": {
                 "type": "string"
