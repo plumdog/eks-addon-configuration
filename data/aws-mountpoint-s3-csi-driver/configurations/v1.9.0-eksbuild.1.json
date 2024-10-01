@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for Mountpoint for S3 CSI Driver",
+  "properties": {
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "podInfoOnMountCompat": {
+          "additionalProperties": false,
+          "properties": {
+            "enable": {
+              "default": false,
+              "description": "Enable `podInfoOnMount` on the CSIDriver object, a pre-requisite for pod authentication sources on k8s<=1.30",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "tolerateAllTaints": {
+          "default": false,
+          "description": "Mountpoint for S3 CSI Driver Pods will tolerate all taints and will be scheduled in all nodes",
+          "type": "boolean"
+        },
+        "tolerations": {
+          "default": [],
+          "items": {
+            "type": "object"
+          },
+          "title": "Tolerations for Mountpoint for S3 CSI Driver Pods",
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
