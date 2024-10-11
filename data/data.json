@@ -69902,7 +69902,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v8.0.0-eksbuild.1",
+        "addonVersion": "v8.1.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -69970,6 +69970,80 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v8.0.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -70269,6 +70343,75 @@
       },
       "tolerations": {
         "default": [],
+        "description": "Tolerations of the CSI Snapshot Controller pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./snapshot-controller/configurations/v8.1.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the CSI Snapshot Controller EKS Addon",
+    "properties": {
+      "additionalArgs": {
+        "default": [],
+        "description": "Additional arguments passed to the CSI Snapshot Controller container",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "logLevel": {
+        "default": null,
+        "description": "Log verbosity of the CSI Snapshot Controller container",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "nodeSelector": {
+        "default": {
+          "kubernetes.io/os": "linux"
+        },
+        "description": "Node selector of the CSI Snapshot Controller pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "resources": {
+        "default": {
+          "limits": {
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "40Mi"
+          }
+        },
+        "description": "Resource requests/limits of the CSI Snapshot Controller container",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "tolerations": {
+        "default": [
+          {
+            "key": "CriticalAddonsOnly",
+            "operator": "Exists"
+          },
+          {
+            "effect": "NoExecute",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          }
+        ],
         "description": "Tolerations of the CSI Snapshot Controller pod",
         "items": {
           "type": "object"
