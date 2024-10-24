@@ -1,0 +1,51 @@
+{
+  "addonName": "spacelift_workerpool-controller",
+  "type": "gitops",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.25.0-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Spacelift Inc.",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-qbux6xr4sis7m",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-dmtci7jwczbcm"
+  }
+}

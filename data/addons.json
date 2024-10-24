@@ -36,6 +36,7 @@
   "solo-io_gloo-gateway",
   "solo-io_gloo-mesh-starter-pack",
   "solo-io_istio-distro",
+  "spacelift_workerpool-controller",
   "splunk_splunk-otel-collector-chart",
   "stormforge_optimize-live",
   "teleport_teleport",
