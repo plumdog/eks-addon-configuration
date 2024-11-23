@@ -53,7 +53,7 @@
         }
       ],
       "requiresConfiguration": false,
-      "requiresIamPermissions": false
+      "requiresIamPermissions": true
     }
   ],
   "publisher": "HAProxy Technologies",
