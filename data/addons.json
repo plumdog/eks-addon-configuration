@@ -28,6 +28,7 @@
   "leaksignal_leakagent",
   "netapp_trident-operator",
   "new-relic_kubernetes-operator",
+  "nirmata_kyverno",
   "rad-security_rad-security",
   "rafay-systems_rafay-operator",
   "snapshot-controller",
