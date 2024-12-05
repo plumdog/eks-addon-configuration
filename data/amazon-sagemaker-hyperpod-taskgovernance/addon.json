@@ -1,0 +1,33 @@
+{
+  "addonName": "amazon-sagemaker-hyperpod-taskgovernance",
+  "type": "policy-management",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.0.0-eksbuild.3",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "sagemaker",
+  "owner": "aws"
+}

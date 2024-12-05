@@ -68,6 +68,7 @@
     "adot",
     "akuity_agent",
     "amazon-cloudwatch-observability",
+    "amazon-sagemaker-hyperpod-taskgovernance",
     "aws-ebs-csi-driver",
     "aws-efs-csi-driver",
     "aws-guardduty-agent",
@@ -24129,6 +24130,45 @@
         "type": "array"
       }
     },
+    "type": "object"
+  },
+  "./amazon-sagemaker-hyperpod-taskgovernance/addon.json": {
+    "addonName": "amazon-sagemaker-hyperpod-taskgovernance",
+    "type": "policy-management",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.0.0-eksbuild.3",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "sagemaker",
+    "owner": "aws"
+  },
+  "./amazon-sagemaker-hyperpod-taskgovernance/configurations/v1.0.0-eksbuild.3.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Amazon SageMaker HyperPod task governance",
     "type": "object"
   },
   "./aws-ebs-csi-driver/addon.json": {
