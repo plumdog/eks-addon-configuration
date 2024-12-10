@@ -8,6 +8,9 @@
         "amd64",
         "arm64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -46,6 +49,9 @@
       "architecture": [
         "amd64",
         "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
@@ -86,6 +92,9 @@
         "amd64",
         "arm64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.30",
@@ -125,6 +134,9 @@
         "amd64",
         "arm64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.30",
@@ -163,6 +175,9 @@
       "architecture": [
         "amd64",
         "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
@@ -210,6 +225,9 @@
         "amd64",
         "arm64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -247,6 +265,9 @@
       "addonVersion": "v1.18.0-eksbuild.1",
       "architecture": [
         "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
@@ -294,6 +315,9 @@
         "amd64",
         "arm64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.24",
@@ -325,6 +349,9 @@
       "architecture": [
         "amd64",
         "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
