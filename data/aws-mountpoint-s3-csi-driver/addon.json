@@ -8,9 +8,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -84,9 +81,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -162,9 +156,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -238,9 +229,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -316,9 +304,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -392,9 +377,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -470,9 +452,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.30",
@@ -539,9 +518,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -610,9 +586,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.30",
@@ -680,9 +653,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -742,9 +712,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -806,9 +773,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -868,9 +832,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {

@@ -8,12 +8,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "hybrid",
-        "auto",
-        "fargate"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -80,9 +74,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -158,9 +149,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -234,9 +222,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {
@@ -312,9 +297,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -388,9 +370,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {

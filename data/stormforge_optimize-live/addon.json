@@ -7,9 +7,6 @@
       "architecture": [
         "amd64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.30",
@@ -76,9 +73,6 @@
       "architecture": [
         "amd64"
       ],
-      "computeTypes": [
-        "ec2"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.28",
@@ -123,9 +117,6 @@
       "addonVersion": "v2.8.0-eksbuild.1",
       "architecture": [
         "amd64"
-      ],
-      "computeTypes": [
-        "ec2"
       ],
       "compatibilities": [
         {

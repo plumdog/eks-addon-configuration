@@ -8,10 +8,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -99,10 +95,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
@@ -192,10 +184,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -283,10 +271,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
@@ -376,10 +360,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -468,10 +448,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -545,10 +521,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
@@ -624,10 +596,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -701,10 +669,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
@@ -780,10 +744,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -858,10 +818,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.28",
@@ -928,10 +884,6 @@
       "architecture": [
         "amd64",
         "arm64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
@@ -1000,10 +952,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.28",
@@ -1071,10 +1019,6 @@
         "amd64",
         "arm64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.28",
@@ -1141,10 +1085,6 @@
       "architecture": [
         "amd64"
       ],
-      "computeTypes": [
-        "ec2",
-        "auto"
-      ],
       "compatibilities": [
         {
           "clusterVersion": "1.26",
@@ -1196,10 +1136,6 @@
       "addonVersion": "v1.0.0-eksbuild.1",
       "architecture": [
         "amd64"
-      ],
-      "computeTypes": [
-        "ec2",
-        "auto"
       ],
       "compatibilities": [
         {
