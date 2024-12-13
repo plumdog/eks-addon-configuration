@@ -7,6 +7,10 @@
       "architecture": [
         "amd64"
       ],
+      "computeTypes": [
+        "ec2",
+        "auto"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",

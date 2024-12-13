@@ -8,6 +8,9 @@
         "arm64",
         "amd64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.31",
@@ -67,6 +70,9 @@
       "architecture": [
         "arm64",
         "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
@@ -128,6 +134,9 @@
         "arm64",
         "amd64"
       ],
+      "computeTypes": [
+        "ec2"
+      ],
       "compatibilities": [
         {
           "clusterVersion": "1.29",
@@ -187,6 +196,9 @@
       "architecture": [
         "arm64",
         "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
       ],
       "compatibilities": [
         {
