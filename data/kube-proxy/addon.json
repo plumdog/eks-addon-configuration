@@ -3,6 +3,28 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.31.3-eksbuild.2",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
       "addonVersion": "v1.31.2-eksbuild.3",
       "architecture": [
         "amd64",
@@ -103,6 +125,35 @@
       "compatibilities": [
         {
           "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.30.7-eksbuild.2",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
@@ -321,6 +372,42 @@
       "compatibilities": [
         {
           "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.29.11-eksbuild.2",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
           "platformVersions": [
             "*"
           ],
