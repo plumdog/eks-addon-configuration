@@ -92058,7 +92058,7 @@
   "./solo-io_istio-distro/configurations/v1.18.3-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
-    "description": "No configuration support for solo-io_solo-io-istio-distro",
+    "description": "No configuration support for solo-io_istio-distro",
     "type": "object"
   },
   "./solo-io_istio-distro/configurations/v1.20.4-eksbuild.1.json": {
