@@ -3,7 +3,7 @@
   "type": "policy-management",
   "addonVersions": [
     {
-      "addonVersion": "v1.0.0-eksbuild.3",
+      "addonVersion": "v1.0.0-eksbuild.4",
       "architecture": [
         "amd64",
         "arm64"
@@ -25,6 +25,34 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.0.0-eksbuild.3",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
