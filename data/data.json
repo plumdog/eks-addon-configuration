@@ -51964,6 +51964,44 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.11.4-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "hybrid",
+          "fargate",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v1.11.3-eksbuild.2",
         "architecture": [
           "amd64",
@@ -52254,6 +52292,58 @@
         "compatibilities": [
           {
             "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.10.1-eksbuild.17",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "hybrid",
+          "fargate",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
             "platformVersions": [
               "*"
             ],
@@ -52679,6 +52769,58 @@
         "compatibilities": [
           {
             "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.9.3-eksbuild.21",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "hybrid",
+          "fargate",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
             "platformVersions": [
               "*"
             ],
@@ -53212,6 +53354,64 @@
           },
           {
             "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.8.7-eksbuild.20",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "fargate",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.22",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.21",
             "platformVersions": [
               "*"
             ],
@@ -54738,6 +54938,224 @@
               "object",
               "null"
             ]
+          },
+          "autoScaling": {
+            "additionalProperties": false,
+            "description": "autoScaling configurations",
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "the option to enable eks managed autoscaling for coredns",
+                "type": "boolean"
+              },
+              "maxReplicas": {
+                "description": "the max value that autoscaler can scale up the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "minReplicas": {
+                "default": 2,
+                "description": "the min value that autoscaler can scale down the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "type": "object"
+          },
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "description": "podDisruptionBudget configurations",
+            "properties": {
+              "enabled": {
+                "default": true,
+                "description": "the option to enable managed PDB",
+                "type": "boolean"
+              },
+              "maxUnavailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "default": 1,
+                "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              },
+              "minAvailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              }
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/control-plane"
+              }
+            ],
+            "description": "Tolerations of the coredns pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./coredns/configurations/v1.10.1-eksbuild.17.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "nodeSelectorTerms": [
+                      {
+                        "matchExpressions": [
+                          {
+                            "key": "kubernetes.io/os",
+                            "operator": "In",
+                            "values": [
+                              "linux"
+                            ]
+                          },
+                          {
+                            "key": "kubernetes.io/arch",
+                            "operator": "In",
+                            "values": [
+                              "amd64",
+                              "arm64"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "k8s-app",
+                              "operator": "In",
+                              "values": [
+                                "kube-dns"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the coredns pods",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "annotationTopologyMode": {
+            "description": "Topology mode for annotations",
+            "enum": [
+              "Disabled",
+              "Auto"
+            ],
+            "type": "string"
           },
           "autoScaling": {
             "additionalProperties": false,
@@ -57661,6 +58079,224 @@
       }
     }
   },
+  "./coredns/configurations/v1.11.4-eksbuild.1.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "nodeSelectorTerms": [
+                      {
+                        "matchExpressions": [
+                          {
+                            "key": "kubernetes.io/os",
+                            "operator": "In",
+                            "values": [
+                              "linux"
+                            ]
+                          },
+                          {
+                            "key": "kubernetes.io/arch",
+                            "operator": "In",
+                            "values": [
+                              "amd64",
+                              "arm64"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "k8s-app",
+                              "operator": "In",
+                              "values": [
+                                "kube-dns"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the coredns pods",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "annotationTopologyMode": {
+            "description": "Topology mode for annotations",
+            "enum": [
+              "Disabled",
+              "Auto"
+            ],
+            "type": "string"
+          },
+          "autoScaling": {
+            "additionalProperties": false,
+            "description": "autoScaling configurations",
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "the option to enable eks managed autoscaling for coredns",
+                "type": "boolean"
+              },
+              "maxReplicas": {
+                "description": "the max value that autoscaler can scale up the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "minReplicas": {
+                "default": 2,
+                "description": "the min value that autoscaler can scale down the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "type": "object"
+          },
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "description": "podDisruptionBudget configurations",
+            "properties": {
+              "enabled": {
+                "default": true,
+                "description": "the option to enable managed PDB",
+                "type": "boolean"
+              },
+              "maxUnavailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "default": 1,
+                "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              },
+              "minAvailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              }
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/control-plane"
+              }
+            ],
+            "description": "Tolerations of the coredns pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
   "./coredns/configurations/v1.8.0-eksbuild.1.json": {
     "$ref": "#/definitions/Coredns",
     "$schema": "http://json-schema.org/draft-06/schema#",
@@ -58132,6 +58768,72 @@
       "Coredns": {
         "additionalProperties": false,
         "properties": {
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./coredns/configurations/v1.8.7-eksbuild.20.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "annotationTopologyMode": {
+            "description": "Topology mode for annotations",
+            "enum": [
+              "Disabled",
+              "Auto"
+            ],
+            "type": "string"
+          },
           "computeType": {
             "type": "string"
           },
@@ -59612,6 +60314,224 @@
           },
           "resources": {
             "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Coredns",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      }
+    }
+  },
+  "./coredns/configurations/v1.9.3-eksbuild.21.json": {
+    "$ref": "#/definitions/Coredns",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Coredns": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "default": {
+              "affinity": {
+                "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                    "nodeSelectorTerms": [
+                      {
+                        "matchExpressions": [
+                          {
+                            "key": "kubernetes.io/os",
+                            "operator": "In",
+                            "values": [
+                              "linux"
+                            ]
+                          },
+                          {
+                            "key": "kubernetes.io/arch",
+                            "operator": "In",
+                            "values": [
+                              "amd64",
+                              "arm64"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "podAntiAffinity": {
+                  "preferredDuringSchedulingIgnoredDuringExecution": [
+                    {
+                      "podAffinityTerm": {
+                        "labelSelector": {
+                          "matchExpressions": [
+                            {
+                              "key": "k8s-app",
+                              "operator": "In",
+                              "values": [
+                                "kube-dns"
+                              ]
+                            }
+                          ]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                      },
+                      "weight": 100
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Affinity of the coredns pods",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "annotationTopologyMode": {
+            "description": "Topology mode for annotations",
+            "enum": [
+              "Disabled",
+              "Auto"
+            ],
+            "type": "string"
+          },
+          "autoScaling": {
+            "additionalProperties": false,
+            "description": "autoScaling configurations",
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "the option to enable eks managed autoscaling for coredns",
+                "type": "boolean"
+              },
+              "maxReplicas": {
+                "description": "the max value that autoscaler can scale up the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "minReplicas": {
+                "default": 2,
+                "description": "the min value that autoscaler can scale down the coredns replicas to",
+                "maximum": 1000,
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "type": "object"
+          },
+          "computeType": {
+            "type": "string"
+          },
+          "corefile": {
+            "description": "Entire corefile contents to use with installation",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "properties": {},
+            "title": "The podAnnotations Schema",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "description": "podDisruptionBudget configurations",
+            "properties": {
+              "enabled": {
+                "default": true,
+                "description": "the option to enable managed PDB",
+                "type": "boolean"
+              },
+              "maxUnavailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "default": 1,
+                "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              },
+              "minAvailable": {
+                "anyOf": [
+                  {
+                    "pattern": ".*%$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "description": "minxAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+              }
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "properties": {},
+            "title": "The podLabels Schema",
+            "type": "object"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "CriticalAddonsOnly",
+                "operator": "Exists"
+              },
+              {
+                "effect": "NoSchedule",
+                "key": "node-role.kubernetes.io/control-plane"
+              }
+            ],
+            "description": "Tolerations of the coredns pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
           }
         },
         "title": "Coredns",
@@ -82865,7 +83785,7 @@
     "type": "cost-management",
     "addonVersions": [
       {
-        "addonVersion": "v2.1.0-eksbuild.1",
+        "addonVersion": "v2.4.3-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -82874,6 +83794,20 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.29",
             "platformVersions": [
@@ -82915,6 +83849,62 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v2.1.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.23",
@@ -83251,6 +84241,12 @@
     "type": "object"
   },
   "./kubecost_kubecost/configurations/v2.1.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for kubecost_kubecost",
+    "type": "object"
+  },
+  "./kubecost_kubecost/configurations/v2.4.3-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for kubecost_kubecost",
@@ -107123,6 +108119,76 @@
     "type": "networking",
     "addonVersions": [
       {
+        "addonVersion": "v1.19.2-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
         "addonVersion": "v1.19.0-eksbuild.1",
         "architecture": [
           "amd64",
@@ -126581,6 +127647,427 @@
     "description": "vpc-cni"
   },
   "./vpc-cni/configurations/v1.19.0-eksbuild.1.json": {
+    "$ref": "#/definitions/VpcCni",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Affinity": {
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "EniConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string"
+          },
+          "subnets": {
+            "additionalProperties": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "securityGroups": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            },
+            "minProperties": 1,
+            "type": "object"
+          }
+        },
+        "required": [
+          "create",
+          "region",
+          "subnets"
+        ],
+        "type": "object"
+      },
+      "Env": {
+        "additionalProperties": false,
+        "properties": {
+          "ADDITIONAL_ENI_TAGS": {
+            "type": "string"
+          },
+          "ANNOTATE_POD_IP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_EC2_ENDPOINT": {
+            "type": "string"
+          },
+          "AWS_EXTERNAL_SERVICE_CIDRS": {
+            "type": "string"
+          },
+          "AWS_MANAGE_ENIS_NON_SCHEDULABLE": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_CNI_NODE_PORT_SUPPORT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_ENI_MTU": {
+            "format": "integer",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXCLUDE_SNAT_CIDRS": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_EXTERNALSNAT": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOGLEVEL": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_RANDOMIZESNAT": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_CNI_VETHPREFIX": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_FILE": {
+            "type": "string"
+          },
+          "AWS_VPC_K8S_PLUGIN_LOG_LEVEL": {
+            "type": "string"
+          },
+          "CLUSTER_ENDPOINT": {
+            "type": "string"
+          },
+          "DISABLE_INTROSPECTION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_LEAKED_ENI_CLEANUP": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_METRICS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_NETWORK_RESOURCE_PROVISIONING": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "DISABLE_POD_V6": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_BANDWIDTH_PLUGIN": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_POD_ENI": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_PREFIX_DELEGATION": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_SUBNET_DISCOVERY": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V4_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENI_CONFIG_ANNOTATION_DEF": {
+            "type": "string"
+          },
+          "ENI_CONFIG_LABEL_DEF": {
+            "type": "string"
+          },
+          "INTROSPECTION_BIND_ADDRESS": {
+            "type": "string"
+          },
+          "IP_COOLDOWN_PERIOD": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MAX_ENI": {
+            "format": "integer",
+            "type": "string"
+          },
+          "MINIMUM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "NETWORK_POLICY_ENFORCING_MODE": {
+            "enum": [
+              "standard",
+              "strict"
+            ],
+            "type": "string"
+          },
+          "POD_MTU": {
+            "format": "integer",
+            "type": "string"
+          },
+          "POD_SECURITY_GROUP_ENFORCING_MODE": {
+            "type": "string"
+          },
+          "WARM_ENI_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_IP_TARGET": {
+            "format": "integer",
+            "type": "string"
+          },
+          "WARM_PREFIX_TARGET": {
+            "format": "integer",
+            "type": "string"
+          }
+        },
+        "title": "Env",
+        "type": "object"
+      },
+      "Init": {
+        "additionalProperties": false,
+        "properties": {
+          "env": {
+            "$ref": "#/definitions/InitEnv"
+          },
+          "image": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "title": "Image Schema",
+            "type": "object"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "Init",
+        "type": "object"
+      },
+      "InitEnv": {
+        "additionalProperties": false,
+        "properties": {
+          "DISABLE_TCP_EARLY_DEMUX": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "ENABLE_V6_EGRESS": {
+            "format": "boolean",
+            "type": "string"
+          }
+        },
+        "title": "InitEnv",
+        "type": "object"
+      },
+      "Limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "Limits",
+        "type": "object"
+      },
+      "NodeAgent": {
+        "additionalProperties": false,
+        "properties": {
+          "conntrackCacheCleanupPeriod": {
+            "format": "integer",
+            "type": "integer"
+          },
+          "enableCloudWatchLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enablePolicyEventLogs": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "healthProbeBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "image": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "title": "Image Schema",
+            "type": "object"
+          },
+          "metricsBindAddr": {
+            "format": "integer",
+            "type": "string"
+          },
+          "networkPolicyAgentLogFileLocation": {
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          }
+        },
+        "title": "NodeAgent",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/Limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/Limits"
+          }
+        },
+        "title": "Resources",
+        "type": "object"
+      },
+      "Tolerations": {
+        "additionalProperties": false,
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "VpcCni": {
+        "additionalProperties": false,
+        "properties": {
+          "affinity": {
+            "$ref": "#/definitions/Affinity"
+          },
+          "branchENICooldown": {
+            "type": "integer"
+          },
+          "enableNetworkPolicy": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enableWindowsIpam": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "enableWindowsPrefixDelegation": {
+            "format": "boolean",
+            "type": "string"
+          },
+          "eniConfig": {
+            "$ref": "#/definitions/EniConfig"
+          },
+          "env": {
+            "$ref": "#/definitions/Env"
+          },
+          "extraEnv": {
+            "type": "array"
+          },
+          "init": {
+            "$ref": "#/definitions/Init"
+          },
+          "livenessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "minimumWindowsIPTarget": {
+            "type": "integer"
+          },
+          "nodeAgent": {
+            "$ref": "#/definitions/NodeAgent"
+          },
+          "podAnnotations": {
+            "additionalProperties": {
+              "not": {
+                "type": [
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podLabels": {
+            "additionalProperties": {
+              "not": {
+                "type": [
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "readinessProbeTimeoutSeconds": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/definitions/Resources"
+          },
+          "tolerations": {
+            "$ref": "#/definitions/Tolerations"
+          },
+          "warmWindowsIPTarget": {
+            "type": "integer"
+          },
+          "warmWindowsPrefixTarget": {
+            "type": "integer"
+          }
+        },
+        "title": "VpcCni",
+        "type": "object"
+      }
+    },
+    "description": "vpc-cni"
+  },
+  "./vpc-cni/configurations/v1.19.2-eksbuild.1.json": {
     "$ref": "#/definitions/VpcCni",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
