@@ -1,0 +1,47 @@
+{
+  "addonName": "cloudsoft_amp-add-on",
+  "type": "kubernetes-management",
+  "addonVersions": [
+    {
+      "addonVersion": "v721.0.0-eksbuild.1",
+      "architecture": [
+        "arm64",
+        "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "cloudsoft",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-ly7l7qbdhyd5w",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-rh5ylo5aa4dim"
+  }
+}

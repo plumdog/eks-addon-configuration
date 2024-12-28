@@ -1,0 +1,82 @@
+{
+  "addonName": "uptycs_uptycs-runtime-sensor",
+  "type": "security",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.0.0-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.24",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.23",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Uptycs",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-52md7llv3h4t6",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-sikdnmdb7llly"
+  }
+}

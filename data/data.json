@@ -82,6 +82,7 @@
     "catalogic-software_cloudcasa",
     "cisco_cisco-cloud-observability-collectors",
     "cisco_cisco-cloud-observability-operators",
+    "cloudsoft_amp-add-on",
     "coredns",
     "cribl_cribledge",
     "datadog_operator",
@@ -115,6 +116,8 @@
     "teleport_teleport",
     "tetrate-io_istio-distro",
     "upbound_universal-crossplane",
+    "uptycs_uptycs-collector",
+    "uptycs_uptycs-runtime-sensor",
     "upwind-security_upwind-operator",
     "vpc-cni"
   ],
@@ -51957,6 +51960,245 @@
       "appdynamics-smartagent"
     ],
     "title": "EKS Addon Config Schema",
+    "type": "object"
+  },
+  "./cloudsoft_amp-add-on/addon.json": {
+    "addonName": "cloudsoft_amp-add-on",
+    "type": "kubernetes-management",
+    "addonVersions": [
+      {
+        "addonVersion": "v721.0.0-eksbuild.1",
+        "architecture": [
+          "arm64",
+          "amd64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "cloudsoft",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-ly7l7qbdhyd5w",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-rh5ylo5aa4dim"
+    }
+  },
+  "./cloudsoft_amp-add-on/configurations/v721.0.0-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "definitions": {
+      "containerResources": {
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cpu",
+          "memory"
+        ]
+      }
+    },
+    "properties": {
+      "ampResourceLimits": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/containerResources"
+          },
+          "requests": {
+            "$ref": "#/definitions/containerResources"
+          }
+        },
+        "required": [
+          "requests",
+          "limits"
+        ],
+        "type": "object"
+      },
+      "ampSecretsNameOverride": {
+        "type": "string"
+      },
+      "ampServiceType": {
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "properties": {
+              "clusterIp": {
+                "const": false
+              },
+              "loadBalancer": {
+                "const": true
+              },
+              "nodePort": {
+                "const": false
+              }
+            }
+          },
+          {
+            "properties": {
+              "clusterIp": {
+                "const": false
+              },
+              "loadBalancer": {
+                "const": false
+              },
+              "nodePort": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "clusterIp": {
+                "const": true
+              },
+              "clusterIpConfig": {
+                "additionalProperties": false,
+                "properties": {
+                  "host": {
+                    "type": "string"
+                  },
+                  "tls": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "crt": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "crt",
+                      "key"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "host",
+                  "tls"
+                ],
+                "type": "object"
+              },
+              "loadBalancer": {
+                "const": false
+              },
+              "nodePort": {
+                "const": false
+              }
+            },
+            "required": [
+              "clusterIpConfig"
+            ]
+          }
+        ],
+        "properties": {
+          "clusterIp": {
+            "type": "boolean"
+          },
+          "clusterIpConfig": {
+            "type": "object"
+          },
+          "loadBalancer": {
+            "type": "boolean"
+          },
+          "nodePort": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "brooklynConfigOverride": {
+        "type": "string"
+      },
+      "store": {
+        "additionalProperties": false,
+        "properties": {
+          "existingPersistence": {
+            "additionalProperties": false,
+            "dependentRequired": {
+              "volumeHandle": [
+                "driver"
+              ]
+            },
+            "properties": {
+              "driver": {
+                "type": "string"
+              },
+              "volumeHandle": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "persistToLocalContainerOnly": {
+            "type": "boolean"
+          },
+          "reclaimPolicy": {
+            "enum": [
+              "",
+              "Delete",
+              "Retain",
+              "Recycle"
+            ],
+            "type": "string"
+          },
+          "storageClass": {
+            "additionalProperties": false,
+            "dependentRequired": {
+              "provisioner": [
+                "name"
+              ]
+            },
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "provisioner": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "store"
+    ],
+    "title": "Cloudsoft AMP schema",
     "type": "object"
   },
   "./coredns/addon.json": {
@@ -107090,6 +107332,286 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for upbound_universal-crossplane",
+    "type": "object"
+  },
+  "./uptycs_uptycs-collector/addon.json": {
+    "addonName": "uptycs_uptycs-collector",
+    "type": "security",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.1.1-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "Uptycs",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-gpjrkqzplvnsw",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-n2ya7cmyxezsi"
+    }
+  },
+  "./uptycs_uptycs-collector/configurations/v1.1.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+      "admissionControllerParameters": {
+        "description": "Admission controllers related parameters",
+        "properties": {
+          "disable_gatekeeper_controller": {
+            "type": "boolean"
+          },
+          "disable_gatekeeper_controller_psp": {
+            "type": "boolean"
+          },
+          "disable_image_admission_controller": {
+            "type": "boolean"
+          },
+          "gatekeeper_controller_audit_interval": {
+            "type": "number"
+          },
+          "image_security_policy": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "auditLogDetections": {
+        "additionalProperties": false,
+        "description": "Audit log detection parameters",
+        "properties": {
+          "eks": {
+            "properties": {
+              "disable_audit": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "deployment": {
+        "additionalProperties": false,
+        "description": "Kubequery deployment",
+        "properties": {
+          "spec": {
+            "properties": {
+              "containers": {
+                "properties": {
+                  "resources": {
+                    "description": "Resources allocated to Kubequery deployment",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "hostname": {
+                "description": "Cluster name that shows up in Uptycs UI",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "uptycsCloud": {
+        "description": "Uptycs cloud service onto which the cluster is enrolled",
+        "type": "string"
+      },
+      "uptycsProtectDisabled": {
+        "description": "Uptycs protect flag controls if remediation & blocking features are enabled",
+        "type": "boolean"
+      },
+      "webhook": {
+        "description": "Validating webhooks CA certs bundle",
+        "properties": {
+          "caBundle": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "deployment",
+      "uptycsCloud",
+      "uptycsProtectDisabled",
+      "admissionControllerParameters",
+      "auditLogDetections",
+      "webhook"
+    ],
+    "title": "Values",
+    "type": "object"
+  },
+  "./uptycs_uptycs-runtime-sensor/addon.json": {
+    "addonName": "uptycs_uptycs-runtime-sensor",
+    "type": "security",
+    "addonVersions": [
+      {
+        "addonVersion": "v1.0.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "Uptycs",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-52md7llv3h4t6",
+      "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-sikdnmdb7llly"
+    }
+  },
+  "./uptycs_uptycs-runtime-sensor/configurations/v1.0.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+      "daemonset": {
+        "additionalProperties": false,
+        "description": "K8sosquery daemonset",
+        "properties": {
+          "containers": {
+            "properties": {
+              "resources": {
+                "description": "Resources allocated to K8sosquery daemonset",
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "uptycsCloud": {
+        "description": "Uptycs cloud service onto which the cluster is enrolled",
+        "type": "string"
+      }
+    },
+    "required": [
+      "daemonset",
+      "uptycsCloud"
+    ],
+    "title": "Values",
     "type": "object"
   },
   "./upwind-security_upwind-operator/addon.json": {
