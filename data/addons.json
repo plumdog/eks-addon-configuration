@@ -14,6 +14,7 @@
   "catalogic-software_cloudcasa",
   "cisco_cisco-cloud-observability-collectors",
   "cisco_cisco-cloud-observability-operators",
+  "cloudsoft_amp-add-on",
   "coredns",
   "cribl_cribledge",
   "datadog_operator",
@@ -47,6 +48,8 @@
   "teleport_teleport",
   "tetrate-io_istio-distro",
   "upbound_universal-crossplane",
+  "uptycs_uptycs-collector",
+  "uptycs_uptycs-runtime-sensor",
   "upwind-security_upwind-operator",
   "vpc-cni"
 ]

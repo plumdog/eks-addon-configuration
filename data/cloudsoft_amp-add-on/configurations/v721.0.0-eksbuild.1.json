@@ -1,0 +1,192 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "containerResources": {
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cpu",
+        "memory"
+      ]
+    }
+  },
+  "properties": {
+    "ampResourceLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/containerResources"
+        },
+        "requests": {
+          "$ref": "#/definitions/containerResources"
+        }
+      },
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "type": "object"
+    },
+    "ampSecretsNameOverride": {
+      "type": "string"
+    },
+    "ampServiceType": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "clusterIp": {
+              "const": false
+            },
+            "loadBalancer": {
+              "const": true
+            },
+            "nodePort": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "clusterIp": {
+              "const": false
+            },
+            "loadBalancer": {
+              "const": false
+            },
+            "nodePort": {
+              "const": true
+            }
+          }
+        },
+        {
+          "properties": {
+            "clusterIp": {
+              "const": true
+            },
+            "clusterIpConfig": {
+              "additionalProperties": false,
+              "properties": {
+                "host": {
+                  "type": "string"
+                },
+                "tls": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "crt": {
+                      "type": "string"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "crt",
+                    "key"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "host",
+                "tls"
+              ],
+              "type": "object"
+            },
+            "loadBalancer": {
+              "const": false
+            },
+            "nodePort": {
+              "const": false
+            }
+          },
+          "required": [
+            "clusterIpConfig"
+          ]
+        }
+      ],
+      "properties": {
+        "clusterIp": {
+          "type": "boolean"
+        },
+        "clusterIpConfig": {
+          "type": "object"
+        },
+        "loadBalancer": {
+          "type": "boolean"
+        },
+        "nodePort": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "brooklynConfigOverride": {
+      "type": "string"
+    },
+    "store": {
+      "additionalProperties": false,
+      "properties": {
+        "existingPersistence": {
+          "additionalProperties": false,
+          "dependentRequired": {
+            "volumeHandle": [
+              "driver"
+            ]
+          },
+          "properties": {
+            "driver": {
+              "type": "string"
+            },
+            "volumeHandle": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "persistToLocalContainerOnly": {
+          "type": "boolean"
+        },
+        "reclaimPolicy": {
+          "enum": [
+            "",
+            "Delete",
+            "Retain",
+            "Recycle"
+          ],
+          "type": "string"
+        },
+        "storageClass": {
+          "additionalProperties": false,
+          "dependentRequired": {
+            "provisioner": [
+              "name"
+            ]
+          },
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "provisioner": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "store"
+  ],
+  "title": "Cloudsoft AMP schema",
+  "type": "object"
+}
