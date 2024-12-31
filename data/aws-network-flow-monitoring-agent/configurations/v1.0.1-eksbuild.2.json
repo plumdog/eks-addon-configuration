@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for AWS Network Flow Monitor Agent",
+  "properties": {
+    "additionalLabels": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional labels that will be applied to every object",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "affinity": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional annotations for daemonset Pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional labels for daemonset Pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "title": "Resource Limits",
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "title": "Resource Requests",
+          "type": "object"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Root Schema",
+  "type": "object"
+}
