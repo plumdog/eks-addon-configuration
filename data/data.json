@@ -63199,10 +63199,10 @@
     "type": "monitoring",
     "addonVersions": [
       {
-        "addonVersion": "v1.3.2-eksbuild.1",
+        "addonVersion": "v1.4.0-eksbuild.1",
         "architecture": [
-          "amd64",
-          "arm64"
+          "arm64",
+          "amd64"
         ],
         "computeTypes": [
           "ec2"
@@ -63256,6 +63256,69 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.3.2-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.24",
@@ -63604,6 +63667,12 @@
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for dynatrace_dynatrace-operator v1.3.2-eksbuild.1",
+    "type": "object"
+  },
+  "./dynatrace_dynatrace-operator/configurations/v1.4.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for dynatrace_dynatrace-operator",
     "type": "object"
   },
   "./eks-node-monitoring-agent/addon.json": {
@@ -93799,7 +93868,7 @@
     "type": "service-mesh",
     "addonVersions": [
       {
-        "addonVersion": "v1.23.20-eksbuild.1",
+        "addonVersion": "v1.24.2-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -93808,6 +93877,13 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
@@ -93828,6 +93904,41 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.23.20-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.27",
@@ -101111,6 +101222,12 @@
         "type": "string"
       }
     },
+    "type": "object"
+  },
+  "./solo-io_istio-distro/configurations/v1.24.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for solo-io_istio-distro",
     "type": "object"
   },
   "./spacelift_workerpool-controller/addon.json": {
