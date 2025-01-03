@@ -31,6 +31,7 @@
   "kube-proxy",
   "kubecost_kubecost",
   "leaksignal_leakagent",
+  "metrics-server",
   "netapp_trident-operator",
   "new-relic_kubernetes-operator",
   "nirmata_kyverno",
