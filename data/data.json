@@ -90317,7 +90317,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v3.3.0-eksbuild.1",
+        "addonVersion": "v4.3.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -90326,6 +90326,20 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.29",
             "platformVersions": [
@@ -90360,6 +90374,55 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v3.3.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.24",
@@ -90408,6 +90471,132 @@
         "required": [
           "name",
           "uid"
+        ],
+        "type": "object"
+      },
+      "otel": {
+        "additionalProperties": false,
+        "properties": {
+          "endpoint": {
+            "description": "SolarWinds Observability OTEL endpoint.",
+            "type": "string"
+          },
+          "events": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "filter": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "logs": {
+            "additionalProperties": false,
+            "properties": {
+              "container": {
+                "type": "boolean"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "filter": {
+                "type": "object"
+              },
+              "journal": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "additionalProperties": false,
+            "properties": {
+              "autodiscovery": {
+                "additionalProperties": false,
+                "properties": {
+                  "prometheusEndpoints": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "additionalRules": {
+                        "type": "string"
+                      },
+                      "customTransformations": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "counterToRate": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "filter": {
+                        "type": "object"
+                      },
+                      "podMonitors": {
+                        "properties": {
+                          "rules": {
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "filter": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "endpoint"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "cluster",
+      "otel"
+    ],
+    "type": "object"
+  },
+  "./solarwinds_swo-k8s-collector-addon/configurations/v4.3.1-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Configuration validation schema for EKS addon solarwinds_swo-k8s-collector. For more information, see https://github.com/solarwinds/swi-k8s-opentelemetry-collector/blob/master/deploy/helm/values.yaml.",
+    "properties": {
+      "cluster": {
+        "additionalProperties": false,
+        "description": "Cluster identification.",
+        "properties": {
+          "name": {
+            "description": "A unique name of a cluster provided by user during deployment of the Helm chart.",
+            "type": "string"
+          },
+          "uid": {
+            "description": "An optional unique identifier for a cluster provided by user during deployment of the Helm chart. Useful for example if multiple clusters have to have the same name. Or when the name contains problematic characters.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
         ],
         "type": "object"
       },
