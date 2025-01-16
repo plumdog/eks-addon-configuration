@@ -3,14 +3,22 @@
   "type": "ingress-controller",
   "addonVersions": [
     {
-      "addonVersion": "v1.17.7-eksbuild.1",
+      "addonVersion": "v1.18.2-eksbuild.1",
       "architecture": [
-        "amd64"
+        "amd64",
+        "arm64"
       ],
       "computeTypes": [
         "ec2"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
@@ -38,6 +46,47 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.17.7-eksbuild.1",
+      "architecture": [
+        "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.26",
