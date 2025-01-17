@@ -44325,7 +44325,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v2.1.3-eksbuild.1",
+        "addonVersion": "v2.1.4-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -44397,6 +44397,84 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.1.3-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -49094,6 +49172,134 @@
     "type": "object"
   },
   "./aws-efs-csi-driver/configurations/v2.1.3-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters for the aws-efs-csi-driver",
+    "properties": {
+      "controller": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptiveRetryMode": {
+            "default": true,
+            "description": "Control if adaptive retry mode will be used to more heavily client side rate limit EFS API requests",
+            "type": "boolean"
+          },
+          "deleteAccessPointRootDir": {
+            "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+            "type": "boolean"
+          },
+          "logLevel": {
+            "description": "The log level of the driver's controller service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {},
+            "description": "The podAnnotations Schema for the CSI controller service Deployment",
+            "properties": {},
+            "type": "object"
+          },
+          "replicaCount": {
+            "description": "The number of replicas for the CSI controller service Deployment",
+            "type": "integer"
+          },
+          "resources": {
+            "default": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            },
+            "description": "Resource requests/limits of the controller pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "default": [],
+            "description": "Topology spread constraints for the controller pod",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "node": {
+        "additionalProperties": false,
+        "properties": {
+          "logLevel": {
+            "description": "The log level of the driver's node service",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "nodeSelector": {
+            "default": null,
+            "description": "The nodeSelector Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "default": {
+              "example_node_annotation": "annotation"
+            },
+            "description": "The podAnnotations Schema for the CSI node service Dameonset",
+            "properties": {},
+            "type": "object"
+          },
+          "tolerations": {
+            "default": [
+              {
+                "key": "",
+                "operator": "Exists"
+              }
+            ],
+            "items": {},
+            "title": "The tolerations Schema for the CSI controller service Deployment",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "useFIPS": {
+        "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-efs-csi-driver/configurations/v2.1.4-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Configurable parameters for the aws-efs-csi-driver",
