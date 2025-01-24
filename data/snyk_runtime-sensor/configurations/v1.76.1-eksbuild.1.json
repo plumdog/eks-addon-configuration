@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "properties": {
+    "clusterName": {
+      "default": "aws-eks-cluster",
+      "examples": [
+        "staging",
+        "production"
+      ],
+      "required": true,
+      "title": "The name of the cluster which the sensor is installed on",
+      "type": "string"
+    },
+    "secretName": {
+      "default": "snyk-secret",
+      "examples": [
+        "aws-secret",
+        "snyk-secret"
+      ],
+      "required": true,
+      "title": "The name of the secret which contains the token for Snyk",
+      "type": "string"
+    },
+    "secretProvider": {
+      "default": "none",
+      "examples": [
+        "none",
+        "aws-secrets-manager"
+      ],
+      "title": "Secret provider for the runtime sensor",
+      "type": "string"
+    },
+    "sensor": {
+      "default": {},
+      "examples": [
+        {
+          "extraArgs": [],
+          "image": {
+            "repository": "snyk/runtime-sensor",
+            "tag": "1.0.0"
+          },
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            }
+          },
+          "scanning": [
+            {
+              "apiGroups": [
+                "apps"
+              ],
+              "resources": [
+                "deployments",
+                "daemonsets",
+                "statefulsets",
+                "replicasets"
+              ]
+            },
+            {
+              "apiGroups": [
+                ""
+              ],
+              "resources": [
+                "pods"
+              ]
+            },
+            {
+              "apiGroups": [
+                "networking.k8s.io"
+              ],
+              "resources": [
+                "ingresses"
+              ]
+            }
+          ],
+          "serviceAccount": {
+            "create": true
+          }
+        }
+      ],
+      "properties": {
+        "extraArgs": {
+          "default": [],
+          "examples": [
+            []
+          ],
+          "items": {},
+          "title": "The extraArgs Schema",
+          "type": "array"
+        },
+        "image": {
+          "default": {},
+          "examples": [
+            {
+              "repository": "snyk/runtime-sensor",
+              "tag": "0.0.1"
+            }
+          ],
+          "properties": {
+            "repository": {
+              "default": "snyk/runtime-sensor",
+              "examples": [
+                "snyk/runtime-sensor"
+              ],
+              "title": "The repository Schema",
+              "type": "string"
+            },
+            "tag": {
+              "default": "1.0.0",
+              "examples": [
+                "0.0.1"
+              ],
+              "title": "The tag Schema",
+              "type": "string"
+            }
+          },
+          "title": "The image Schema",
+          "type": "object"
+        },
+        "podAnnotations": {
+          "type": "object"
+        },
+        "resources": {
+          "default": {},
+          "examples": [
+            {
+              "limits": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            }
+          ],
+          "properties": {
+            "limits": {
+              "default": {},
+              "examples": [
+                {
+                  "cpu": "100m",
+                  "memory": "128Mi"
+                }
+              ],
+              "properties": {
+                "cpu": {
+                  "default": "500m",
+                  "examples": [
+                    "500m"
+                  ],
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "1024Mi",
+                  "examples": [
+                    "1024Mi"
+                  ],
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The limits Schema",
+              "type": "object"
+            },
+            "requests": {
+              "default": {},
+              "examples": [
+                {
+                  "cpu": "100m",
+                  "memory": "512Mi"
+                }
+              ],
+              "properties": {
+                "cpu": {
+                  "default": "100m",
+                  "examples": [
+                    "100m"
+                  ],
+                  "title": "The cpu Schema",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "512Mi",
+                  "examples": [
+                    "64Mi"
+                  ],
+                  "title": "The memory Schema",
+                  "type": "string"
+                }
+              },
+              "title": "The requests Schema",
+              "type": "object"
+            }
+          },
+          "title": "The resources Schema",
+          "type": "object"
+        },
+        "scanning": {
+          "examples": [
+            [
+              {
+                "apiGroups": [
+                  "apps"
+                ],
+                "resources": [
+                  "deployments",
+                  "daemonsets",
+                  "statefulsets",
+                  "replicasets"
+                ]
+              },
+              {
+                "apiGroups": [
+                  ""
+                ],
+                "resources": [
+                  "pods"
+                ]
+              }
+            ]
+          ],
+          "properties": {
+            "types": {
+              "items": {
+                "properties": {
+                  "apiGroups": {
+                    "examples": [
+                      [
+                        "apps"
+                      ]
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "API groups for scanning",
+                    "type": "array"
+                  },
+                  "resources": {
+                    "examples": [
+                      [
+                        "deployments",
+                        "daemonsets",
+                        "statefulsets",
+                        "replicasets"
+                      ]
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "Resources for scanning",
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "title": "Scanning configuration",
+          "type": "object"
+        },
+        "serviceAccount": {
+          "default": {},
+          "examples": [
+            {
+              "create": true
+            }
+          ],
+          "properties": {
+            "annotations": {
+              "type": "object"
+            },
+            "create": {
+              "default": true,
+              "examples": [
+                true
+              ],
+              "title": "The create Schema",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "create"
+          ],
+          "title": "The serviceAccount Schema",
+          "type": "object"
+        }
+      },
+      "title": "The sensor Schema",
+      "type": "object"
+    },
+    "snykAPIBaseURL": {
+      "default": "api.snyk.io:443",
+      "examples": [
+        "api.snyk.io:443",
+        "api.us.snyk.io:443"
+      ],
+      "title": "The Snyk API region and port to report to",
+      "type": "string"
+    },
+    "snykGroupId": {
+      "default": "",
+      "examples": [
+        "ffffffff-ffff-ffff-ffff-fffffffffffff",
+        "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaaa"
+      ],
+      "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+      "required": true,
+      "title": "The Snyk Group ID",
+      "type": "string"
+    },
+    "workloadType": {
+      "default": "daemonset",
+      "enum": [
+        "daemonset",
+        "deployment"
+      ],
+      "title": "Runs the sensor as the requested workload type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "secretName",
+    "clusterName",
+    "snykGroupId",
+    "snykAPIBaseURL"
+  ],
+  "title": "Root Schema",
+  "type": "object"
+}
