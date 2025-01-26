@@ -67868,7 +67868,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v4.8.1-eksbuild.1",
+        "addonVersion": "v4.9.3-eksbuild.1",
         "architecture": [
           "arm64"
         ],
@@ -67876,6 +67876,13 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
@@ -67903,6 +67910,47 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v4.8.1-eksbuild.1",
+        "architecture": [
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.26",
@@ -68032,6 +68080,33 @@
     "additionalProperties": false,
     "description": "No configuration support for cribl_cribledge v4.8.1-eksbuild.1",
     "type": "object"
+  },
+  "./cribl_cribledge/configurations/v4.9.3-eksbuild.1.json": {
+    "$ref": "#/definitions/Cribl",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+      "Cribl": {
+        "additionalProperties": false,
+        "properties": {
+          "cribl": {
+            "$ref": "#/definitions/cribl"
+          }
+        },
+        "title": "Cribl",
+        "type": "object"
+      },
+      "cribl": {
+        "additionalProperties": false,
+        "properties": {
+          "leader": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "cribl",
+        "type": "object"
+      }
+    }
   },
   "./datadog_operator/addon.json": {
     "addonName": "datadog_operator",
@@ -116180,7 +116255,7 @@
     "type": "security",
     "addonVersions": [
       {
-        "addonVersion": "v1.1.1-eksbuild.1",
+        "addonVersion": "v1.1.2-eksbuild.1",
         "architecture": [
           "amd64"
         ],
@@ -116188,6 +116263,13 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
@@ -116236,6 +116318,75 @@
               "*"
             ],
             "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.1.1-eksbuild.1",
+        "architecture": [
+          "amd64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -116342,20 +116493,120 @@
     "title": "Values",
     "type": "object"
   },
+  "./uptycs_uptycs-collector/configurations/v1.1.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+      "admissionControllerParameters": {
+        "description": "Admission controllers related parameters",
+        "properties": {
+          "disable_gatekeeper_controller": {
+            "type": "boolean"
+          },
+          "disable_gatekeeper_controller_psp": {
+            "type": "boolean"
+          },
+          "disable_image_admission_controller": {
+            "type": "boolean"
+          },
+          "gatekeeper_controller_audit_interval": {
+            "type": "number"
+          },
+          "image_security_policy": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "auditLogDetections": {
+        "additionalProperties": false,
+        "description": "Audit log detection parameters",
+        "properties": {
+          "eks": {
+            "properties": {
+              "disable_audit": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "deployment": {
+        "additionalProperties": false,
+        "description": "Kubequery deployment",
+        "properties": {
+          "spec": {
+            "properties": {
+              "containers": {
+                "properties": {
+                  "resources": {
+                    "description": "Resources allocated to Kubequery deployment",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "hostname": {
+                "description": "Cluster name that shows up in Uptycs UI",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "uptycsCloud": {
+        "description": "Uptycs cloud service onto which the cluster is enrolled",
+        "type": "string"
+      },
+      "uptycsProtectDisabled": {
+        "description": "Uptycs protect flag controls if remediation & blocking features are enabled",
+        "type": "boolean"
+      },
+      "webhook": {
+        "description": "Validating webhooks CA certs bundle",
+        "properties": {
+          "caBundle": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "deployment",
+      "uptycsCloud",
+      "uptycsProtectDisabled",
+      "admissionControllerParameters",
+      "auditLogDetections",
+      "webhook"
+    ],
+    "title": "Values",
+    "type": "object"
+  },
   "./uptycs_uptycs-runtime-sensor/addon.json": {
     "addonName": "uptycs_uptycs-runtime-sensor",
     "type": "security",
     "addonVersions": [
       {
-        "addonVersion": "v1.0.0-eksbuild.1",
+        "addonVersion": "v1.0.1-eksbuild.1",
         "architecture": [
-          "amd64",
-          "arm64"
+          "arm64",
+          "amd64"
         ],
         "computeTypes": [
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
@@ -116415,6 +116666,76 @@
         ],
         "requiresConfiguration": true,
         "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.0.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.26",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.25",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.24",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.23",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
       }
     ],
     "publisher": "Uptycs",
@@ -116425,6 +116746,37 @@
     }
   },
   "./uptycs_uptycs-runtime-sensor/configurations/v1.0.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+      "daemonset": {
+        "additionalProperties": false,
+        "description": "K8sosquery daemonset",
+        "properties": {
+          "containers": {
+            "properties": {
+              "resources": {
+                "description": "Resources allocated to K8sosquery daemonset",
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "uptycsCloud": {
+        "description": "Uptycs cloud service onto which the cluster is enrolled",
+        "type": "string"
+      }
+    },
+    "required": [
+      "daemonset",
+      "uptycsCloud"
+    ],
+    "title": "Values",
+    "type": "object"
+  },
+  "./uptycs_uptycs-runtime-sensor/configurations/v1.0.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft-07/schema#",
     "properties": {
       "daemonset": {

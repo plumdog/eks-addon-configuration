@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "properties": {
+    "admissionControllerParameters": {
+      "description": "Admission controllers related parameters",
+      "properties": {
+        "disable_gatekeeper_controller": {
+          "type": "boolean"
+        },
+        "disable_gatekeeper_controller_psp": {
+          "type": "boolean"
+        },
+        "disable_image_admission_controller": {
+          "type": "boolean"
+        },
+        "gatekeeper_controller_audit_interval": {
+          "type": "number"
+        },
+        "image_security_policy": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "auditLogDetections": {
+      "additionalProperties": false,
+      "description": "Audit log detection parameters",
+      "properties": {
+        "eks": {
+          "properties": {
+            "disable_audit": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "deployment": {
+      "additionalProperties": false,
+      "description": "Kubequery deployment",
+      "properties": {
+        "spec": {
+          "properties": {
+            "containers": {
+              "properties": {
+                "resources": {
+                  "description": "Resources allocated to Kubequery deployment",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "hostname": {
+              "description": "Cluster name that shows up in Uptycs UI",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "uptycsCloud": {
+      "description": "Uptycs cloud service onto which the cluster is enrolled",
+      "type": "string"
+    },
+    "uptycsProtectDisabled": {
+      "description": "Uptycs protect flag controls if remediation & blocking features are enabled",
+      "type": "boolean"
+    },
+    "webhook": {
+      "description": "Validating webhooks CA certs bundle",
+      "properties": {
+        "caBundle": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "deployment",
+    "uptycsCloud",
+    "uptycsProtectDisabled",
+    "admissionControllerParameters",
+    "auditLogDetections",
+    "webhook"
+  ],
+  "title": "Values",
+  "type": "object"
+}
