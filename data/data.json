@@ -13379,6 +13379,48 @@
     "type": "gitops",
     "addonVersions": [
       {
+        "addonVersion": "v0.8.6-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v0.6.2-eksbuild.1",
         "architecture": [
           "amd64",
@@ -13393,14 +13435,14 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.28",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.27",
@@ -13485,6 +13527,20 @@
     "type": "object"
   },
   "./akuity_agent/configurations/v0.6.2-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "properties": {
+      "akpUrl": {
+        "description": "Akuity Agent Manifests URL",
+        "type": "string"
+      }
+    },
+    "required": [
+      "akpUrl"
+    ],
+    "title": "Akuity Agent",
+    "type": "object"
+  },
+  "./akuity_agent/configurations/v0.8.6-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft-07/schema",
     "properties": {
       "akpUrl": {
