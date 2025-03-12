@@ -23,6 +23,7 @@
   "eks-node-monitoring-agent",
   "eks-pod-identity-agent",
   "factorhouse_kpow",
+  "friendliai_friendli-container",
   "grafana-labs_kubernetes-monitoring",
   "groundcover_agent",
   "guance_datakit",
