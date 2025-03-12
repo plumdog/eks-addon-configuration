@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "No configuration support for friendliai_friendli-container",
+  "type": "object"
+}
