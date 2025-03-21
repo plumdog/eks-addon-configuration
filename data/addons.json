@@ -12,6 +12,7 @@
   "aws-network-flow-monitoring-agent",
   "calyptia_fluent-bit",
   "catalogic-software_cloudcasa",
+  "cert-manager",
   "cisco_cisco-cloud-observability-collectors",
   "cisco_cisco-cloud-observability-operators",
   "cloudsoft_amp-add-on",
