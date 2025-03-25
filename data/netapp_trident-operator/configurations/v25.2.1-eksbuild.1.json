@@ -1,0 +1,109 @@
+{
+  "$id": "http://example.com/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "examples": [
+    {
+      "cloudIdentity": "",
+      "ontapConfigurator": {
+        "enabled": true,
+        "svms": [
+          {
+            "authType": "awsarn",
+            "fsxnID": "fs-04f8f55e27350a9c1",
+            "protocols": [
+              "nfs",
+              "iscsi"
+            ],
+            "svmName": "testsvmname"
+          }
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "cloudIdentity": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The cloudIdentity Schema",
+      "type": "string"
+    },
+    "ontapConfigurator": {
+      "default": {},
+      "properties": {
+        "enabled": {
+          "default": false,
+          "examples": [
+            true
+          ],
+          "title": "The enabled Schema",
+          "type": "boolean"
+        },
+        "svms": {
+          "default": [],
+          "items": {
+            "properties": {
+              "authType": {
+                "default": "",
+                "examples": [
+                  "awsarn"
+                ],
+                "title": "The authType Schema",
+                "type": "string"
+              },
+              "fsxnID": {
+                "default": "",
+                "examples": [
+                  "fs-04f8f55e27350a9c1"
+                ],
+                "title": "The fsxnID Schema",
+                "type": "string"
+              },
+              "protocols": {
+                "default": [],
+                "items": {
+                  "examples": [
+                    "nfs",
+                    "iscsi"
+                  ],
+                  "type": "string"
+                },
+                "title": "The protocols Schema",
+                "type": "array"
+              },
+              "svmName": {
+                "default": "",
+                "examples": [
+                  "testsvmname"
+                ],
+                "title": "The svmName Schema",
+                "type": "string"
+              }
+            },
+            "required": [
+              "fsxnID",
+              "protocols",
+              "authType"
+            ],
+            "type": "object"
+          },
+          "title": "The svms Schema",
+          "type": "array"
+        }
+      },
+      "required": [
+        "enabled",
+        "svms"
+      ],
+      "title": "The ontapConfigurator Schema",
+      "type": "object"
+    }
+  },
+  "required": [
+    "cloudIdentity"
+  ],
+  "title": "Root Schema",
+  "type": "object"
+}
