@@ -51,6 +51,7 @@
   "spacelift_workerpool-controller",
   "splunk_splunk-otel-collector-chart",
   "stormforge_optimize-live",
+  "suse_observability-agent",
   "teleport_teleport",
   "tetrate-io_istio-distro",
   "upbound_universal-crossplane",
