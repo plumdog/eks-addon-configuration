@@ -1,0 +1,40 @@
+{
+  "$id": "https://stackstate.io/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "properties": {
+    "stackstate": {
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "cluster": {
+          "properties": {
+            "name": {
+              "pattern": "^[a-z0-9]([a-z0-9\\-\\.]*[a-z0-9])$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "apiKey",
+        "cluster",
+        "url"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "stackstate"
+  ],
+  "title": "SUSE Observability Helm chart values",
+  "type": "object"
+}
