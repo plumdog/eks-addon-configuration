@@ -13,6 +13,34 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
