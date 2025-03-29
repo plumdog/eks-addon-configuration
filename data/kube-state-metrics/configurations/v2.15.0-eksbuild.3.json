@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "definitions": {
+    "limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        }
+      },
+      "title": "limits",
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/limits"
+        },
+        "requests": {
+          "$ref": "#/definitions/limits"
+        }
+      },
+      "title": "resources",
+      "type": "object"
+    }
+  },
+  "description": "Configurable properties for kube-state-metrics",
+  "properties": {
+    "affinity": {
+      "default": {
+        "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "kubernetes.io/os",
+                    "operator": "In",
+                    "values": [
+                      "linux"
+                    ]
+                  },
+                  {
+                    "key": "kubernetes.io/arch",
+                    "operator": "In",
+                    "values": [
+                      "amd64",
+                      "arm64"
+                    ]
+                  },
+                  {
+                    "key": "eks.amazonaws.com/compute-type",
+                    "operator": "NotIn",
+                    "values": [
+                      "hybrid"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "podAntiAffinity": {
+          "preferredDuringSchedulingIgnoredDuringExecution": [
+            {
+              "podAffinityTerm": {
+                "labelSelector": {
+                  "matchExpressions": [
+                    {
+                      "key": "app.kubernetes.io/name",
+                      "operator": "In",
+                      "values": [
+                        "kube-state-metrics"
+                      ]
+                    }
+                  ]
+                },
+                "topologyKey": "kubernetes.io/hostname"
+              },
+              "weight": 100
+            }
+          ]
+        }
+      },
+      "description": "Affinity of the kube-state-metrics pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "collectors": {
+      "additionalProperties": false,
+      "default": [
+        "certificatesigningrequests",
+        "configmaps",
+        "cronjobs",
+        "daemonsets",
+        "deployments",
+        "endpoints",
+        "horizontalpodautoscalers",
+        "ingresses",
+        "jobs",
+        "leases",
+        "limitranges",
+        "mutatingwebhookconfigurations",
+        "namespaces",
+        "networkpolicies",
+        "nodes",
+        "persistentvolumeclaims",
+        "persistentvolumes",
+        "poddisruptionbudgets",
+        "pods",
+        "replicasets",
+        "replicationcontrollers",
+        "resourcequotas",
+        "services",
+        "statefulsets",
+        "storageclasses",
+        "validatingwebhookconfigurations",
+        "volumeattachments"
+      ],
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "extraArgs": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "extraVolumeMounts": {
+      "description": "Extra volume mounts to add to the kube-state-metrics container",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "extraVolumes": {
+      "description": "Extra volumes to add to the kube-state-metrics pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "kubeRBACProxy": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Whether or not to enable the kubeRBACProxy",
+          "type": "boolean"
+        },
+        "extraArgs": {
+          "description": "Extra arguments to pass into the kubeRBACProxy command",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraVolumeMounts": {
+          "description": "Extra volume mounts to add to the kubeRBACProxy",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "$ref": "#/definitions/resources",
+          "description": "Resource requests/limits of the kubeRBACProxy"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "metricAllowlist": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "metricAnnotationsAllowList": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "metricDenylist": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "metricLabelsAllowlist": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "namespaces": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "namespacesDenylist": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the kube-state-metrics command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "networkPolicy": {
+      "description": "Network policy for kube-state-metrics",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "description": "Node selector of the kube-state-metrics pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional annotations to add to the kube-state-metrics deployment pods",
+      "type": "object"
+    },
+    "podDisruptionBudget": {
+      "additionalProperties": false,
+      "default": {
+        "maxUnavailable": 1
+      },
+      "description": "Settings for the PodDisruptionBudget",
+      "properties": {
+        "maxUnavailable": {
+          "anyOf": [
+            {
+              "pattern": ".*%$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "default": 1,
+          "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+        },
+        "minAvailable": {
+          "anyOf": [
+            {
+              "pattern": ".*%$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+        }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional labels to add to the kube-state-metrics deployment pods",
+      "type": "object"
+    },
+    "priorityClassName": {
+      "default": "system-node-critical",
+      "description": "Name of priority class for kube-state-metrics pod",
+      "type": "string"
+    },
+    "replicas": {
+      "default": 1,
+      "description": "Number of replicas in the kube-state-metrics deployment",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "resources": {
+      "$ref": "#/definitions/resources",
+      "description": "Resource requests/limits of the kube-state-metrics container"
+    },
+    "selectorOverride": {
+      "default": null,
+      "description": "Node selector of the node pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "default": [
+        {
+          "key": "CriticalAddonsOnly",
+          "operator": "Exists"
+        }
+      ],
+      "description": "Tolerations of the kube-state-metrics pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "topologySpreadConstraints": {
+      "default": [
+        {
+          "labelSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "kube-state-metrics",
+              "app.kubernetes.io/name": "kube-state-metrics"
+            }
+          },
+          "maxSkew": 1,
+          "topologyKey": "topology.kubernetes.io/zone",
+          "whenUnsatisfiable": "ScheduleAnyway"
+        }
+      ],
+      "description": "The coredns pod topology spread constraints",
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
