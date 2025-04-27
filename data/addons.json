@@ -23,6 +23,7 @@
   "dynatrace_dynatrace-operator",
   "eks-node-monitoring-agent",
   "eks-pod-identity-agent",
+  "elastic_elastic-agent",
   "external-dns",
   "factorhouse_kpow",
   "friendliai_friendli-container",
