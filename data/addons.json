@@ -40,6 +40,7 @@
   "netapp_trident-operator",
   "new-relic_kubernetes-operator",
   "nirmata_kyverno",
+  "nirmata_nirmata-kyverno-payg",
   "prometheus-node-exporter",
   "rad-security_rad-security",
   "rafay-systems_rafay-operator",
