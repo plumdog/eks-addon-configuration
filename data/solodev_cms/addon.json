@@ -1,0 +1,33 @@
+{
+  "addonName": "solodev_cms",
+  "type": "networking",
+  "addonVersions": [
+    {
+      "addonVersion": "v10.3.95-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Solodev",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "b51125c1-67c1-41e1-adc5-57d7a6b391b3",
+    "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-s7tpcn3m7fuf6"
+  }
+}
