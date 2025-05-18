@@ -17,6 +17,48 @@
           "platformVersions": [
             "*"
           ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.25.3-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
           "defaultVersion": true
         },
         {
@@ -24,21 +66,21 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.29",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": true,
@@ -171,6 +213,48 @@
       "requiresIamPermissions": false
     },
     {
+      "addonVersion": "v1.24.6-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    },
+    {
       "addonVersion": "v1.24.2-eksbuild.1",
       "architecture": [
         "amd64",
@@ -206,7 +290,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
