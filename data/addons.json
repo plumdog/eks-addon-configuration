@@ -7,6 +7,7 @@
   "appviewx_appviewx-mim-eks",
   "aws-ebs-csi-driver",
   "aws-efs-csi-driver",
+  "aws-fsx-csi-driver",
   "aws-guardduty-agent",
   "aws-mountpoint-s3-csi-driver",
   "aws-network-flow-monitoring-agent",
