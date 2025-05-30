@@ -3,6 +3,30 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.12.1-eksbuild.2",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "fargate",
+        "auto"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
       "addonVersion": "v1.11.4-eksbuild.14",
       "architecture": [
         "amd64",
@@ -15,6 +39,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.32",
           "platformVersions": [
@@ -61,6 +92,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.32",
           "platformVersions": [
             "*"
@@ -105,6 +143,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.32",
           "platformVersions": [
@@ -188,6 +233,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.31",
           "platformVersions": [
