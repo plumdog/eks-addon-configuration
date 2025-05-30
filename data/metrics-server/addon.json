@@ -16,6 +16,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
           "clusterVersion": "1.32",
           "platformVersions": [
             "*"
@@ -96,6 +103,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.32",
           "platformVersions": [
             "*"
@@ -174,6 +188,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.32",
           "platformVersions": [
