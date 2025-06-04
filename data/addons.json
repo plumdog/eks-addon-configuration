@@ -11,6 +11,7 @@
   "aws-guardduty-agent",
   "aws-mountpoint-s3-csi-driver",
   "aws-network-flow-monitoring-agent",
+  "aws-privateca-connector-for-kubernetes",
   "calyptia_fluent-bit",
   "catalogic-software_cloudcasa",
   "cert-manager",

@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "MetricsServerEnabled": {
+      "type": "boolean"
+    },
+    "datakit": {
+      "additionalProperties": false,
+      "properties": {
+        "datawaySecrets": {
+          "type": "boolean"
+        },
+        "default_enabled_inputs": {
+          "type": "string"
+        },
+        "global_tags": {
+          "type": "string"
+        },
+        "http_listen": {
+          "type": "string"
+        },
+        "log_level": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "datawaySecrets",
+        "global_tags",
+        "default_enabled_inputs",
+        "log_level",
+        "http_listen"
+      ],
+      "type": "object"
+    },
+    "dkconfig": {
+      "type": "array"
+    },
+    "extraEnvs": {
+      "type": "array"
+    },
+    "kubeStateMetricsEnabled": {
+      "type": "boolean"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "datakit",
+    "extraEnvs",
+    "resources",
+    "dkconfig",
+    "kubeStateMetricsEnabled",
+    "MetricsServerEnabled"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,74 @@
+{
+  "addonName": "aws-privateca-connector-for-kubernetes",
+  "type": "security",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.6.0-eksbuild.1",
+      "architecture": [
+        "arm64",
+        "amd64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "fargate",
+        "auto"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": true
+    }
+  ],
+  "publisher": "aws-privateca",
+  "owner": "aws"
+}
