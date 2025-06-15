@@ -57,6 +57,7 @@
   "splunk_splunk-otel-collector-chart",
   "stormforge_optimize-live",
   "suse_observability-agent",
+  "sysdig_falco",
   "teleport_teleport",
   "tetrate-io_istio-distro",
   "upbound_universal-crossplane",
