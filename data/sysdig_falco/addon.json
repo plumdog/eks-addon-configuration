@@ -1,0 +1,82 @@
+{
+  "addonName": "sysdig_falco",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.41.0-eksbuild.1",
+      "architecture": [
+        "arm64",
+        "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.26",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.25",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Sysdig",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-4xmryld72ii6c",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=5fk52cahr2ird36i717da858q"
+  }
+}
