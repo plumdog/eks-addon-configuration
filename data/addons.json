@@ -33,6 +33,7 @@
   "groundcover_agent",
   "guance_datakit",
   "haproxy-technologies_kubernetes-ingress-ee",
+  "ibm-software_ibm-instana-observability",
   "kong_konnect-ri",
   "kube-proxy",
   "kube-state-metrics",
