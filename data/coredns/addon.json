@@ -3,7 +3,7 @@
   "type": "networking",
   "addonVersions": [
     {
-      "addonVersion": "v1.12.2-eksbuild.1",
+      "addonVersion": "v1.12.2-eksbuild.4",
       "architecture": [
         "amd64",
         "arm64"

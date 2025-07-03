@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for the aws-efs-csi-driver",
+  "properties": {
+    "controller": {
+      "additionalProperties": false,
+      "properties": {
+        "adaptiveRetryMode": {
+          "default": true,
+          "description": "Control if adaptive retry mode will be used to more heavily client side rate limit EFS API requests",
+          "type": "boolean"
+        },
+        "deleteAccessPointRootDir": {
+          "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+          "type": "boolean"
+        },
+        "env": {
+          "default": [],
+          "type": "array"
+        },
+        "logLevel": {
+          "description": "The log level of the driver's controller service",
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "The nodeSelector Schema for the CSI controller service Deployment",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": {},
+          "description": "The podAnnotations Schema for the CSI controller service Deployment",
+          "properties": {},
+          "type": "object"
+        },
+        "replicaCount": {
+          "description": "The number of replicas for the CSI controller service Deployment",
+          "type": "integer"
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "200m",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "256Mi"
+            }
+          },
+          "description": "Resource requests/limits of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "timeout": {
+          "defult": 15,
+          "description": "Timeout for Create/DeleteVolume calls to Controller",
+          "type": "integer"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "",
+              "operator": "Exists"
+            }
+          ],
+          "items": {},
+          "title": "The tolerations Schema for the CSI controller service Deployment",
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "default": [],
+          "description": "Topology spread constraints for the controller pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "volumeMounts": {
+          "default": [],
+          "description": "Add additional volume mounts on the controller",
+          "type": "array"
+        },
+        "volumes": {
+          "default": [],
+          "description": "Add additional volumes to be mounted onto the controller",
+          "type": "array"
+        },
+        "workerThreads": {
+          "default": 100,
+          "description": "Number of concurrent threads controller will handle at once",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "env": {
+          "default": [],
+          "type": "array"
+        },
+        "logLevel": {
+          "description": "The log level of the driver's node service",
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "The nodeSelector Schema for the CSI node service Dameonset",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": {
+            "example_node_annotation": "annotation"
+          },
+          "description": "The podAnnotations Schema for the CSI node service Dameonset",
+          "properties": {},
+          "type": "object"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "",
+              "operator": "Exists"
+            }
+          ],
+          "items": {},
+          "title": "The tolerations Schema for the CSI controller service Deployment",
+          "type": "array"
+        },
+        "volumeMounts": {
+          "default": [],
+          "type": "array"
+        },
+        "volumes": {
+          "default": [],
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "useFIPS": {
+      "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}
