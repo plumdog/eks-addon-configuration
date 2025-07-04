@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "hpTrainingControllerManager": {
+      "description": "Configuration for the HyperPod Training Controller Manager",
+      "properties": {
+        "manager": {
+          "description": "Configuration for the manager component",
+          "properties": {
+            "nodeSelector": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "default": {
+                "sagemaker.amazonaws.com/compute-type": "hyperpod"
+              },
+              "description": "Node selector for the controller pods (default: selects nodes with label sagemaker.amazonaws.com/compute-type: hyperpod)",
+              "type": "object"
+            },
+            "resources": {
+              "description": "Resource requirements for the manager",
+              "properties": {
+                "limits": {
+                  "description": "Resource limits for the manager",
+                  "properties": {
+                    "cpu": {
+                      "default": "2",
+                      "description": "CPU limit for the controller (default: 2)",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "4Gi",
+                      "description": "Memory limit for the controller (default: 4Gi)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "requests": {
+                  "description": "Resource requests for the manager",
+                  "properties": {
+                    "cpu": {
+                      "default": "1",
+                      "description": "CPU request for the controller (default: 1)",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "2Gi",
+                      "description": "Memory request for the controller (default: 2Gi)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "podLabels": {
+      "default": {
+        "app": "hyperpod-training-operator",
+        "role": "controller"
+      },
+      "description": "Pod labels for the controller pods",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
