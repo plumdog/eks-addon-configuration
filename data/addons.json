@@ -29,6 +29,7 @@
   "elastic_elastic-agent",
   "external-dns",
   "factorhouse_kpow",
+  "fluent-bit",
   "friendliai_friendli-container",
   "friendliai_friendli-container-eks",
   "grafana-labs_kubernetes-monitoring",
