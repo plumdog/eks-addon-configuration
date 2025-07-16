@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "metricConfig": {
+      "description": "Configuration for a specific metric type",
+      "properties": {
+        "level": {
+          "description": "The collection level for the metric type",
+          "enum": [
+            "BASIC",
+            "ADVANCED",
+            "DISABLED"
+          ],
+          "type": "string"
+        },
+        "scrapeInterval": {
+          "description": "The interval in seconds between metric scrapes",
+          "maximum": 300,
+          "minimum": 30,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "level"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Configuration schema for Amazon SageMaker HyperPod Observability AddOn for EKS",
+  "properties": {
+    "amgWorkspace": {
+      "description": "Amazon Managed Grafana (AMG) workspace configuration",
+      "properties": {
+        "arn": {
+          "description": "The ARN of the AMG workspace",
+          "pattern": "^arn:aws[-a-z]*:grafana:[-a-z0-9]+:[0-9]{12}:/workspaces/g-[0-9a-f]{10}$",
+          "type": "string"
+        },
+        "workspaceName": {
+          "description": "The name of the AMG workspace",
+          "pattern": "^[a-zA-Z0-9-._~]{1,255}$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ampWorkspace": {
+      "description": "Amazon Managed Service for Prometheus (AMP) workspace configuration",
+      "properties": {
+        "arn": {
+          "description": "The ARN of the AMP workspace",
+          "pattern": "^arn:aws[-a-z]*:aps:[-a-z0-9]+:[0-9]{12}:workspace/.+$",
+          "type": "string"
+        },
+        "prometheusEndpoint": {
+          "description": "The endpoint URL for the AMP workspace",
+          "pattern": "^https://aps-workspaces\\.(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-[0-9]\\.amazonaws\\.com/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prometheusEndpoint"
+      ],
+      "type": "object"
+    },
+    "customServiceScrapeTargets": {
+      "description": "Custom service scrape targets configuration",
+      "items": {
+        "properties": {
+          "metricsPath": {
+            "description": "HTTP path to scrape metrics from (default: /metrics)",
+            "type": "string"
+          },
+          "scrapeInterval": {
+            "description": "Override default scrape interval in seconds (30–300)",
+            "maximum": 300,
+            "minimum": 30,
+            "type": "integer"
+          },
+          "target": {
+            "description": "The endpoint to scrape (hostname:port format)",
+            "pattern": "^[a-zA-Z0-9.-]+:[0-9]{1,5}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "metricsProvider": {
+      "description": "Configuration for different types of metrics collection",
+      "properties": {
+        "acceleratedComputeMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for accelerated compute (GPU) metrics collection"
+        },
+        "clusterMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for cluster-level metrics collection"
+        },
+        "inferenceMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for inference metrics collection"
+        },
+        "logging": {
+          "description": "Logging configuration for cluster logs",
+          "properties": {
+            "enabled": {
+              "description": "Enable or disable logging",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "networkMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for network metrics collection"
+        },
+        "nodeMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for node-level metrics collection"
+        },
+        "scalingMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for scaling metrics collection"
+        },
+        "taskGovernanceMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for task governance metrics collection"
+        },
+        "trainingMetrics": {
+          "$ref": "#/definitions/metricConfig",
+          "description": "Configuration for training metrics collection"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "ampWorkspace"
+  ],
+  "type": "object"
+}
