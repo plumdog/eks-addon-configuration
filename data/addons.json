@@ -3,6 +3,7 @@
   "adot",
   "akuity_agent",
   "amazon-cloudwatch-observability",
+  "amazon-sagemaker-hyperpod-observability",
   "amazon-sagemaker-hyperpod-taskgovernance",
   "amazon-sagemaker-hyperpod-training-operator",
   "appviewx_appviewx-mim-eks",
