@@ -60,6 +60,7 @@
   "solodev_cms",
   "spacelift_workerpool-controller",
   "splunk_splunk-otel-collector-chart",
+  "sriov-network-metrics-exporter",
   "stormforge_optimize-live",
   "suse_observability-agent",
   "sysdig_falco",
