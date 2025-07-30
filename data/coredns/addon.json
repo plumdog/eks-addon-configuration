@@ -244,6 +244,20 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
@@ -386,6 +400,20 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
@@ -423,6 +451,20 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.31",
           "platformVersions": [
@@ -462,6 +504,20 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
@@ -500,6 +556,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
@@ -530,6 +607,27 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
@@ -562,6 +660,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
@@ -593,6 +712,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
@@ -623,6 +763,34 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.29",
           "platformVersions": [
@@ -908,6 +1076,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
@@ -952,6 +1127,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
@@ -998,6 +1180,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
@@ -1043,6 +1232,20 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.29",
           "platformVersions": [
             "*"
@@ -1081,6 +1284,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -1111,6 +1335,27 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
@@ -1143,6 +1388,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -1174,6 +1440,27 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
@@ -1204,6 +1491,34 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.27",
           "platformVersions": [
@@ -1748,6 +2063,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.27",
           "platformVersions": [
             "*"
@@ -1791,6 +2113,13 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.27",
           "platformVersions": [
@@ -1836,6 +2165,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.27",
           "platformVersions": [
             "*"
@@ -1879,6 +2215,20 @@
         "auto"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.27",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.26",
           "platformVersions": [
