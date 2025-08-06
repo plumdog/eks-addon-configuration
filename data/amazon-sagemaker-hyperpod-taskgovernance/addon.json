@@ -3,48 +3,6 @@
   "type": "policy-management",
   "addonVersions": [
     {
-      "addonVersion": "v1.2.1-eksbuild.1",
-      "architecture": [
-        "amd64",
-        "arm64"
-      ],
-      "computeTypes": [
-        "hyperpod"
-      ],
-      "compatibilities": [
-        {
-          "clusterVersion": "1.33",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.32",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.31",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.30",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        }
-      ],
-      "requiresConfiguration": false,
-      "requiresIamPermissions": false
-    },
-    {
       "addonVersion": "v1.2.0-eksbuild.1",
       "architecture": [
         "amd64",
@@ -59,28 +17,28 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.32",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
