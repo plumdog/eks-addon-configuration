@@ -1,0 +1,576 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "properties": {
+    "_internal_defaults_do_not_set": {
+      "properties": {
+        "affinity": {
+          "type": "object"
+        },
+        "autoscaleBehavior": {
+          "type": "object"
+        },
+        "autoscaleEnabled": {
+          "type": "boolean"
+        },
+        "autoscaleMax": {
+          "type": "integer"
+        },
+        "autoscaleMin": {
+          "type": "integer"
+        },
+        "base": {
+          "properties": {
+            "enableIstioConfigCRDs": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "cni": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "provider": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "configMap": {
+          "type": "boolean"
+        },
+        "cpu": {
+          "properties": {
+            "targetAverageUtilization": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "deploymentAnnotations": {
+          "type": "object"
+        },
+        "deploymentLabels": {
+          "type": "object"
+        },
+        "env": {
+          "type": "object"
+        },
+        "envVarFrom": {
+          "type": "array"
+        },
+        "experimental": {
+          "properties": {
+            "stableValidationPolicy": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "extraContainerArgs": {
+          "type": "array"
+        },
+        "gatewayClasses": {
+          "type": "object"
+        },
+        "gateways": {
+          "properties": {
+            "seccompProfile": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "global": {
+          "properties": {
+            "caAddress": {
+              "type": "string"
+            },
+            "caName": {
+              "type": "string"
+            },
+            "certSigners": {
+              "type": "array"
+            },
+            "configCluster": {
+              "type": "boolean"
+            },
+            "configValidation": {
+              "type": "boolean"
+            },
+            "defaultPodDisruptionBudget": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "defaultResources": {
+              "properties": {
+                "requests": {
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "externalIstiod": {
+              "type": "boolean"
+            },
+            "hub": {
+              "type": "string"
+            },
+            "imagePullPolicy": {
+              "type": "string"
+            },
+            "istioNamespace": {
+              "type": "string"
+            },
+            "istiod": {
+              "properties": {
+                "enableAnalysis": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "logAsJson": {
+              "type": "boolean"
+            },
+            "logging": {
+              "properties": {
+                "level": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "meshID": {
+              "type": "string"
+            },
+            "meshNetworks": {
+              "type": "object"
+            },
+            "mountMtlsCerts": {
+              "type": "boolean"
+            },
+            "multiCluster": {
+              "properties": {
+                "clusterName": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "nativeNftables": {
+              "type": "boolean"
+            },
+            "network": {
+              "type": "string"
+            },
+            "omitSidecarInjectorConfigMap": {
+              "type": "boolean"
+            },
+            "operatorManageWebhooks": {
+              "type": "boolean"
+            },
+            "pilotCertProvider": {
+              "type": "string"
+            },
+            "proxy": {
+              "properties": {
+                "autoInject": {
+                  "type": "string"
+                },
+                "clusterDomain": {
+                  "type": "string"
+                },
+                "componentLogLevel": {
+                  "type": "string"
+                },
+                "excludeIPRanges": {
+                  "type": "string"
+                },
+                "excludeInboundPorts": {
+                  "type": "string"
+                },
+                "excludeOutboundPorts": {
+                  "type": "string"
+                },
+                "includeIPRanges": {
+                  "type": "string"
+                },
+                "includeInboundPorts": {
+                  "type": "string"
+                },
+                "includeOutboundPorts": {
+                  "type": "string"
+                },
+                "logLevel": {
+                  "type": "string"
+                },
+                "outlierLogPath": {
+                  "type": "string"
+                },
+                "privileged": {
+                  "type": "boolean"
+                },
+                "readinessFailureThreshold": {
+                  "type": "integer"
+                },
+                "readinessInitialDelaySeconds": {
+                  "type": "integer"
+                },
+                "readinessPeriodSeconds": {
+                  "type": "integer"
+                },
+                "resources": {
+                  "properties": {
+                    "limits": {
+                      "properties": {
+                        "cpu": {
+                          "type": "string"
+                        },
+                        "memory": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requests": {
+                      "properties": {
+                        "cpu": {
+                          "type": "string"
+                        },
+                        "memory": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "statusPort": {
+                  "type": "integer"
+                },
+                "tracer": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "proxy_init": {
+              "properties": {
+                "forceApplyIptables": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "remotePilotAddress": {
+              "type": "string"
+            },
+            "sds": {
+              "properties": {
+                "token": {
+                  "properties": {
+                    "aud": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "sts": {
+              "properties": {
+                "servicePort": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "variant": {
+              "type": "string"
+            },
+            "waypoint": {
+              "properties": {
+                "affinity": {
+                  "type": "object"
+                },
+                "nodeSelector": {
+                  "type": "object"
+                },
+                "resources": {
+                  "properties": {
+                    "limits": {
+                      "properties": {
+                        "cpu": {
+                          "type": "string"
+                        },
+                        "memory": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requests": {
+                      "properties": {
+                        "cpu": {
+                          "type": "string"
+                        },
+                        "memory": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "tolerations": {
+                  "type": "array"
+                },
+                "topologySpreadConstraints": {
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "hub": {
+          "type": "string"
+        },
+        "initContainers": {
+          "type": "array"
+        },
+        "ipFamilies": {
+          "type": "array"
+        },
+        "ipFamilyPolicy": {
+          "type": "string"
+        },
+        "istiodRemote": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "enabledLocalInjectorIstiod": {
+              "type": "boolean"
+            },
+            "injectionCABundle": {
+              "type": "string"
+            },
+            "injectionPath": {
+              "type": "string"
+            },
+            "injectionURL": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "jwksResolverExtraRootCA": {
+          "type": "string"
+        },
+        "keepaliveMaxServerConnectionAge": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "object"
+        },
+        "meshConfig": {
+          "properties": {
+            "enablePrometheusMerge": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "nodeSelector": {
+          "type": "object"
+        },
+        "ownerName": {
+          "type": "string"
+        },
+        "pdb": {
+          "properties": {
+            "minAvailable": {
+              "type": "integer"
+            },
+            "unhealthyPodEvictionPolicy": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "podAnnotations": {
+          "type": "object"
+        },
+        "podLabels": {
+          "type": "object"
+        },
+        "replicaCount": {
+          "type": "integer"
+        },
+        "resources": {
+          "properties": {
+            "requests": {
+              "properties": {
+                "cpu": {
+                  "type": "string"
+                },
+                "memory": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "revisionTags": {
+          "type": "array"
+        },
+        "rollingMaxSurge": {
+          "type": "string"
+        },
+        "rollingMaxUnavailable": {
+          "type": "string"
+        },
+        "seccompProfile": {
+          "type": "object"
+        },
+        "serviceAccountAnnotations": {
+          "type": "object"
+        },
+        "serviceAnnotations": {
+          "type": "object"
+        },
+        "sidecarInjectorWebhook": {
+          "properties": {
+            "alwaysInjectSelector": {
+              "type": "array"
+            },
+            "defaultTemplates": {
+              "type": "array"
+            },
+            "enableNamespacesByDefault": {
+              "type": "boolean"
+            },
+            "injectedAnnotations": {
+              "type": "object"
+            },
+            "neverInjectSelector": {
+              "type": "array"
+            },
+            "reinvocationPolicy": {
+              "type": "string"
+            },
+            "rewriteAppHTTPProbe": {
+              "type": "boolean"
+            },
+            "templates": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "sidecarInjectorWebhookAnnotations": {
+          "type": "object"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "taint": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "namespace": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "telemetry": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "v2": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "prometheus": {
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "stackdriver": {
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "tolerations": {
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "type": "array"
+        },
+        "traceSampling": {
+          "type": "number"
+        },
+        "trustedZtunnelName": {
+          "type": "string"
+        },
+        "trustedZtunnelNamespace": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "volumeMounts": {
+          "type": "array"
+        },
+        "volumes": {
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "profile": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
