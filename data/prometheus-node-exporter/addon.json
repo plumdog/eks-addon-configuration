@@ -3,7 +3,7 @@
   "type": "observability",
   "addonVersions": [
     {
-      "addonVersion": "v1.9.1-eksbuild.3",
+      "addonVersion": "v1.9.1-eksbuild.4",
       "architecture": [
         "amd64",
         "arm64"
@@ -55,6 +55,64 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.9.1-eksbuild.3",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "auto",
+        "ec2",
+        "hybrid"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.28",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.27",
