@@ -422,5 +422,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "community"
+  "owner": "community",
+  "defaultNamespace": "external-dns"
 }

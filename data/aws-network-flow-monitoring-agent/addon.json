@@ -428,5 +428,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "amazon-network-flow-monitor"
 }

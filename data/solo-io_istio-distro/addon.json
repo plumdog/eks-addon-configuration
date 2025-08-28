@@ -1128,5 +1128,6 @@
   "marketplaceInformation": {
     "productId": "bc18df1e-655f-4469-a969-600c0ec256db",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-kvr2wqekzmuhi"
-  }
+  },
+  "defaultNamespace": "istio-system"
 }

@@ -155,5 +155,6 @@
   "marketplaceInformation": {
     "productId": "prod-52md7llv3h4t6",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-sikdnmdb7llly"
-  }
+  },
+  "defaultNamespace": "uptycs"
 }

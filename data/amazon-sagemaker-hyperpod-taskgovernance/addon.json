@@ -438,5 +438,6 @@
     }
   ],
   "publisher": "sagemaker",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "kueue-system"
 }

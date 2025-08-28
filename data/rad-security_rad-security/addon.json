@@ -71,5 +71,6 @@
   "marketplaceInformation": {
     "productId": "prod-m7tlrvfq6yjzu",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-pniea4xv73lbw"
-  }
+  },
+  "defaultNamespace": "ksoc"
 }

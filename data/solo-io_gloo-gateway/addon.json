@@ -230,5 +230,6 @@
   "marketplaceInformation": {
     "productId": "prod-yewbssna2fk6y",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-btlli6o5q2vbm"
-  }
+  },
+  "defaultNamespace": "gloo-system"
 }

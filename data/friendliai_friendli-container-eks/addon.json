@@ -97,5 +97,6 @@
   "marketplaceInformation": {
     "productId": "prod-wvnqrfz7h7qdo",
     "productUrl": "https://aws.amazon.com/marketplace/pp?sku=4ffod2ckxb4sgghw2v2oqyozj"
-  }
+  },
+  "defaultNamespace": "friendli-container-system"
 }

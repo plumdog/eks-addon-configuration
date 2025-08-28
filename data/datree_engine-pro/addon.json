@@ -57,5 +57,6 @@
   "marketplaceInformation": {
     "productId": "ad0ee0c8-f50f-464a-9bc4-d6270592dd36",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-x3bz6wjgnfxu4"
-  }
+  },
+  "defaultNamespace": "datree"
 }

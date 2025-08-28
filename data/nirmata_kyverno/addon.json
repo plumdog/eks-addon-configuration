@@ -132,5 +132,6 @@
   "marketplaceInformation": {
     "productId": "53cc511c-fcd6-48c2-b2ed-937aad0923f9",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-nj5p5k32xgkxw"
-  }
+  },
+  "defaultNamespace": "kyverno"
 }

@@ -3387,5 +3387,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "amazon-cloudwatch"
 }

@@ -1366,5 +1366,6 @@
     }
   ],
   "publisher": "s3",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "kube-system"
 }

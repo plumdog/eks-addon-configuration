@@ -687,5 +687,6 @@
   "marketplaceInformation": {
     "productId": "6f9d8708-95c6-46cf-94db-6717b8dbda17",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-brb73nceicv7u"
-  }
+  },
+  "defaultNamespace": "dynatrace"
 }

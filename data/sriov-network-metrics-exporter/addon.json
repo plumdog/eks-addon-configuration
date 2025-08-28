@@ -86,5 +86,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "monitoring"
 }

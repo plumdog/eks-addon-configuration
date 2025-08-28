@@ -57,5 +57,6 @@
   "marketplaceInformation": {
     "productId": "772597fd-d3df-40b4-8671-ea156637871d",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-5npox4ixz64qk"
-  }
+  },
+  "defaultNamespace": "kubearmor"
 }

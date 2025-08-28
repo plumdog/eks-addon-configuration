@@ -29,5 +29,6 @@
   "marketplaceInformation": {
     "productId": "b51125c1-67c1-41e1-adc5-57d7a6b391b3",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-s7tpcn3m7fuf6"
-  }
+  },
+  "defaultNamespace": "solodev"
 }

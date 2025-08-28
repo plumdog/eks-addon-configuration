@@ -778,5 +778,6 @@
   "marketplaceInformation": {
     "productId": "prod-rrjwnaqiqdc3m",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-ngf2dkfeefxwe"
-  }
+  },
+  "defaultNamespace": "kube-system"
 }

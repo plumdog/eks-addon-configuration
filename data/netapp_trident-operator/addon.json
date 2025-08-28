@@ -442,5 +442,6 @@
   "marketplaceInformation": {
     "productId": "3dddaaf1-373c-40ce-91ce-26cec94088eb",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-mptzckr6mggia"
-  }
+  },
+  "defaultNamespace": "trident"
 }

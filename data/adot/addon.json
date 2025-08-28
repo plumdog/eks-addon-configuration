@@ -1741,5 +1741,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "opentelemetry-operator-system"
 }

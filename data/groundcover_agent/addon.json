@@ -64,5 +64,6 @@
   "marketplaceInformation": {
     "productId": "8b5c893c-4d79-4bf7-94ea-947dc31d1df9",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-vnspjkskxmgkm"
-  }
+  },
+  "defaultNamespace": "groundcover"
 }

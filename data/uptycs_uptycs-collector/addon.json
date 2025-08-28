@@ -146,5 +146,6 @@
   "marketplaceInformation": {
     "productId": "prod-gpjrkqzplvnsw",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-n2ya7cmyxezsi"
-  }
+  },
+  "defaultNamespace": "kubequery"
 }

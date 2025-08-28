@@ -9,7 +9,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -65,7 +66,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -121,7 +123,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -226,7 +229,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -331,7 +335,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -429,7 +434,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "auto"
       ],
       "compatibilities": [
         {
@@ -1775,5 +1781,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "amazon-guardduty"
 }

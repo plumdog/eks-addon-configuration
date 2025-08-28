@@ -43,5 +43,6 @@
   "marketplaceInformation": {
     "productId": "prod-ly7l7qbdhyd5w",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-rh5ylo5aa4dim"
-  }
+  },
+  "defaultNamespace": "cloudsoft-amp"
 }
