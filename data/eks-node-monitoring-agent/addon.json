@@ -518,5 +518,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "kube-system"
 }

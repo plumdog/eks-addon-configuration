@@ -56,5 +56,6 @@
   "marketplaceInformation": {
     "productId": "prod-r6jihyzwywblg",
     "productUrl": "https://aws.amazon.com/marketplace/pp?sku=1y22veysorinv05ujeo1mdfzk"
-  }
+  },
+  "defaultNamespace": "friendli-container-system"
 }

@@ -455,5 +455,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "community"
+  "owner": "community",
+  "defaultNamespace": "kube-system"
 }

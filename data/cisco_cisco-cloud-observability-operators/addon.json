@@ -64,5 +64,6 @@
   "marketplaceInformation": {
     "productId": "38179cb1-c95c-4f96-ad48-756876047f26",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-iyryefaozooow"
-  }
+  },
+  "defaultNamespace": "appdynamics"
 }

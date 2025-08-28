@@ -498,5 +498,6 @@
   "marketplaceInformation": {
     "productId": "prod-ddxlqvmqhdbd4",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-uvof3afhvlvea"
-  }
+  },
+  "defaultNamespace": "snyk-runtime-sensor"
 }

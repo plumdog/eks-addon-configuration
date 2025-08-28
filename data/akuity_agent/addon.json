@@ -134,5 +134,6 @@
   "marketplaceInformation": {
     "productId": "e20fce9c-0a34-4878-aa32-028954620986",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-zihrsklxqjuu6"
-  }
+  },
+  "defaultNamespace": "akuity"
 }

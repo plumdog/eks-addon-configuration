@@ -88,5 +88,6 @@
     }
   ],
   "publisher": "sagemaker",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "hyperpod-observability"
 }

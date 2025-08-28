@@ -141,5 +141,6 @@
   "marketplaceInformation": {
     "productId": "prod-4xmryld72ii6c",
     "productUrl": "https://aws.amazon.com/marketplace/pp?sku=5fk52cahr2ird36i717da858q"
-  }
+  },
+  "defaultNamespace": "falco"
 }

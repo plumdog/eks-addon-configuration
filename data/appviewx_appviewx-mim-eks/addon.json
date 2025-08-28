@@ -49,5 +49,6 @@
   "marketplaceInformation": {
     "productId": "prod-kxjbqixcgoise",
     "productUrl": "http://aws.amazon.com/marketplace/pp/prodview-wp2urfeiu37j4"
-  }
+  },
+  "defaultNamespace": "crypto-mesh"
 }

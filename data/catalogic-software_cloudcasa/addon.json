@@ -148,5 +148,6 @@
   "marketplaceInformation": {
     "productId": "prod-dc3rdeys7gbdm",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tvszgkzzdozc2"
-  }
+  },
+  "defaultNamespace": "cloudcasa-io"
 }

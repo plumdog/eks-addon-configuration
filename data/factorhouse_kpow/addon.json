@@ -49,5 +49,6 @@
   "marketplaceInformation": {
     "productId": "bbdf424c-a70d-4438-8fb5-ba2a984b57af",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-vgghgqdsplhvc"
-  }
+  },
+  "defaultNamespace": "factorhouse"
 }

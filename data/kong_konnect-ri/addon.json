@@ -64,5 +64,6 @@
   "marketplaceInformation": {
     "productId": "e0162e82-1f0c-4192-830a-1ca850cd189b",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-4lozhkbtgizp4"
-  }
+  },
+  "defaultNamespace": "kong"
 }

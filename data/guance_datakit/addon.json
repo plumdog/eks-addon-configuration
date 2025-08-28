@@ -190,5 +190,6 @@
   "marketplaceInformation": {
     "productId": "50a877c8-b52c-4bbb-951a-300f97c280d9",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso"
-  }
+  },
+  "defaultNamespace": "datakit"
 }

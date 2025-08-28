@@ -134,5 +134,6 @@
   "marketplaceInformation": {
     "productId": "prod-tqdc264ve2utc",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-tddekyrun3vxi"
-  }
+  },
+  "defaultNamespace": "solarwinds"
 }

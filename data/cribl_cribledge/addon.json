@@ -601,5 +601,6 @@
   "marketplaceInformation": {
     "productId": "956e78a4-f121-4029-9908-9ad395a4cfb6",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-6bmpo32ebx6gg"
-  }
+  },
+  "defaultNamespace": "cribledge"
 }

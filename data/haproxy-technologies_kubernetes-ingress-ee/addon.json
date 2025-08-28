@@ -64,5 +64,6 @@
   "marketplaceInformation": {
     "productId": "b4274687-d917-418e-b943-0f6efc8c1c9b",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-yk63cfstvao2s"
-  }
+  },
+  "defaultNamespace": "haproxy-controller"
 }

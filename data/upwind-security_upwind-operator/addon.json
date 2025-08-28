@@ -211,5 +211,6 @@
   "marketplaceInformation": {
     "productId": "prod-iuipntteq5qxq",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-na5n7esfru5ig"
-  }
+  },
+  "defaultNamespace": "upwind"
 }

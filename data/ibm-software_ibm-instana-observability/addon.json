@@ -64,5 +64,6 @@
   "marketplaceInformation": {
     "productId": "prod-fakbiunn4ydkw",
     "productUrl": "https://aws.amazon.com/marketplace/pp?sku=8j3zacvl8jcg4pqk2kko60s92"
-  }
+  },
+  "defaultNamespace": "instana-agent"
 }

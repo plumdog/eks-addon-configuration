@@ -77,5 +77,6 @@
     }
   ],
   "publisher": "aws-privateca",
-  "owner": "aws"
+  "owner": "aws",
+  "defaultNamespace": "aws-privateca-issuer"
 }

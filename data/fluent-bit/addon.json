@@ -296,5 +296,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "community"
+  "owner": "community",
+  "defaultNamespace": "fluent-bit"
 }

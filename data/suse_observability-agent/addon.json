@@ -77,5 +77,6 @@
   "marketplaceInformation": {
     "productId": "prod-dj3fn77caiq4o",
     "productUrl": "https://aws.amazon.com/marketplace/pp?sku=dq7lm1vomow5w8cz0b1lgbps4"
-  }
+  },
+  "defaultNamespace": "suse-observability"
 }

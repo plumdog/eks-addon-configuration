@@ -232,5 +232,6 @@
   "marketplaceInformation": {
     "productId": "c43a5e64-6708-42f2-85f7-29d2e350767e",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-gcywa6keq2ajy"
-  }
+  },
+  "defaultNamespace": "newrelic"
 }

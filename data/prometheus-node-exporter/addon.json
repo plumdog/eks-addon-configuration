@@ -433,5 +433,6 @@
     }
   ],
   "publisher": "eks",
-  "owner": "community"
+  "owner": "community",
+  "defaultNamespace": "prometheus-node-exporter"
 }

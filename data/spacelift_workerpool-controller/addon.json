@@ -50,5 +50,6 @@
   "marketplaceInformation": {
     "productId": "prod-qbux6xr4sis7m",
     "productUrl": "https://aws.amazon.com/marketplace/pp/prodview-dmtci7jwczbcm"
-  }
+  },
+  "defaultNamespace": "spacelift-worker-controller-system"
 }

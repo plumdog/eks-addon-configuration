@@ -57,5 +57,6 @@
   "marketplaceInformation": {
     "productId": "f9506b13-05fe-4aee-a753-abe231d91b69",
     "productUrl": "http://aws.amazon.com/marketplace/pp/prodview-hkqlukmfcmlq4"
-  }
+  },
+  "defaultNamespace": "gloo-mesh"
 }
