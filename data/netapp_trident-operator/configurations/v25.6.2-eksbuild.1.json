@@ -1,0 +1,31 @@
+{
+  "$id": "http://example.com/example.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "default": {},
+  "examples": [
+    {
+      "cloudIdentity": "",
+      "cloudProvider": "AWS"
+    }
+  ],
+  "properties": {
+    "cloudIdentity": {
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "title": "The cloudIdentity Schema",
+      "type": "string"
+    },
+    "cloudProvider": {
+      "default": "",
+      "examples": [
+        "AWS"
+      ],
+      "title": "The cloudProvider Schema",
+      "type": "string"
+    }
+  },
+  "title": "Root Schema",
+  "type": "object"
+}
