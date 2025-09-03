@@ -1,0 +1,131 @@
+{
+  "$ref": "#/definitions/GuardDutyAgent",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "ExecAction": {
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "command"
+      ],
+      "title": "ExecAction",
+      "type": "object"
+    },
+    "GuardDutyAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "dnsPolicy": {
+          "enum": [
+            "ClusterFirstWithHostNet",
+            "ClusterFirst",
+            "Default"
+          ],
+          "type": "string"
+        },
+        "priorityClassName": {
+          "enum": [
+            "aws-guardduty-agent.priorityclass",
+            "aws-guardduty-agent.priorityclass-high",
+            "system-cluster-critical",
+            "system-node-critical"
+          ],
+          "type": "string"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "startupProbe": {
+          "$ref": "#/definitions/StartupProbe"
+        }
+      },
+      "title": "GuardDutyAgent",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "pattern": "^([2-9]\\d{2}|[1-9]\\d{3}|10000)m$",
+          "type": "string"
+        },
+        "memory": {
+          "pattern": "^(256|[3-9]\\d{2}|[1-9]\\d{3}|1\\d{4}|20000)Mi$",
+          "type": "string"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "Requests": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "pattern": "^([2-9]\\d|[1-9]\\d{2}|[1-9]\\d{3}|10000)m$",
+          "type": "string"
+        },
+        "memory": {
+          "pattern": "^(12[8-9]|1[3-9]\\d|[2-9]\\d{2}|[1-9]\\d{3}|1\\d{4}|20000)Mi$",
+          "type": "string"
+        }
+      },
+      "title": "Requests",
+      "type": "object"
+    },
+    "Resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/Limits"
+        },
+        "requests": {
+          "$ref": "#/definitions/Requests"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    },
+    "StartupProbe": {
+      "additionalProperties": false,
+      "properties": {
+        "exec": {
+          "$ref": "#/definitions/ExecAction"
+        },
+        "failureThreshold": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "initialDelaySeconds": {
+          "maximum": 300,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "periodSeconds": {
+          "maximum": 60,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "successThreshold": {
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "timeoutSeconds": {
+          "maximum": 60,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "title": "StartupProbe",
+      "type": "object"
+    }
+  },
+  "description": "Advanced configuration parameters of AWS GuardDuty Agent (EKS Runtime Monitoring Addon)"
+}
