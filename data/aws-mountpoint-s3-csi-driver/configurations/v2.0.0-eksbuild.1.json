@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for Mountpoint for S3 CSI Driver",
+  "properties": {
+    "controller": {
+      "additionalProperties": false,
+      "properties": {
+        "nodeSelector": {
+          "default": null,
+          "description": "nodeSelector for S3 CSI Driver Controller. See https://github.com/awslabs/mountpoint-s3-csi-driver/blob/main/docs/INSTALL.md#configuring-nodeselector-for-the-controller-component for more details.",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "nodeSelector": {
+          "default": null,
+          "description": "nodeSelector for S3 CSI Driver Node DaemonSet",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podInfoOnMountCompat": {
+          "additionalProperties": false,
+          "properties": {
+            "enable": {
+              "default": true,
+              "description": "Deprecated with Mountpoint for S3 CSI Driver v2 and always enabled. Enable `podInfoOnMount` on the CSIDriver object, a pre-requisite for pod authentication sources on k8s<=1.30",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "tolerateAllTaints": {
+          "default": true,
+          "description": "Mountpoint for S3 CSI Driver Pods will tolerate all taints and will be scheduled in all nodes",
+          "type": "boolean"
+        },
+        "tolerations": {
+          "default": [],
+          "items": {
+            "type": "object"
+          },
+          "title": "Tolerations for Mountpoint for S3 CSI Driver Pods",
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
