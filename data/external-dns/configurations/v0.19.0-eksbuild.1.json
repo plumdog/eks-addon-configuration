@@ -1,0 +1,305 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "default": {
+        "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "kubernetes.io/os",
+                    "operator": "In",
+                    "values": [
+                      "linux"
+                    ]
+                  },
+                  {
+                    "key": "kubernetes.io/arch",
+                    "operator": "In",
+                    "values": [
+                      "amd64",
+                      "arm64"
+                    ]
+                  },
+                  {
+                    "key": "eks.amazonaws.com/compute-type",
+                    "operator": "NotIn",
+                    "values": [
+                      "hybrid"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "description": "Affinity of the external-dns pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "domainFilters": {
+      "description": "Limit possible target zones by domain suffixes",
+      "type": "array"
+    },
+    "env": {
+      "description": "Environment variables for external-dns",
+      "type": "array"
+    },
+    "excludeDomains": {
+      "description": "Intentionally exclude domains from being managed",
+      "type": "array"
+    },
+    "extraArgs": {
+      "description": "Extra arguments for external-dns",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ],
+      "uniqueItems": true
+    },
+    "extraVolumeMounts": {
+      "description": "Extra volume mounts to add to the external-dns container",
+      "type": "array"
+    },
+    "extraVolumes": {
+      "description": "Extra volume to add to the external-dns container",
+      "type": "array"
+    },
+    "interval": {
+      "default": "1m",
+      "description": "Interval for DNS updates",
+      "type": "string"
+    },
+    "labelFilter": {
+      "description": "Filter resources queried for endpoints by label selector",
+      "pattern": "^[a-zA-Z0-9._-]+=[a-zA-Z0-9._-]+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "logFormat": {
+      "default": "text",
+      "description": "Log format.",
+      "enum": [
+        "text",
+        "json"
+      ],
+      "type": [
+        "string"
+      ]
+    },
+    "logLevel": {
+      "default": "info",
+      "description": "Log level.",
+      "enum": [
+        "panic",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal"
+      ],
+      "type": [
+        "string"
+      ]
+    },
+    "managedRecordTypes": {
+      "description": "Record types to manage (default: A, AAAA, CNAME)",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ],
+      "uniqueItems": true
+    },
+    "namespaced": {
+      "default": false,
+      "description": "if `true`, _ExternalDNS_ will run in a namespaced scope (`Role`` and `Rolebinding`` will be namespaced too)",
+      "type": "boolean"
+    },
+    "nodeSelector": {
+      "description": "Node selector of the external-dns pod",
+      "properties": {},
+      "type": "object"
+    },
+    "podAnnotations": {
+      "description": "Additional annotations to add to the external-dns deployment pod",
+      "properties": {},
+      "type": "object"
+    },
+    "podLabels": {
+      "description": "Additional podLabels to add to the external-dns deployment pod",
+      "properties": {},
+      "type": "object"
+    },
+    "policy": {
+      "default": "upsert-only",
+      "description": "How DNS records are synchronized between sources and providers; available values are `sync` & `upsert-only`",
+      "enum": [
+        "sync",
+        "upsert-only"
+      ],
+      "type": [
+        "string"
+      ]
+    },
+    "priorityClassName": {
+      "default": "system-node-critical",
+      "description": "Name of priority class for the external-dns pod",
+      "type": "string"
+    },
+    "registry": {
+      "default": "txt",
+      "description": "Specify the registry for storing ownership and labels",
+      "enum": [
+        "txt",
+        "aws-sd",
+        "dynamodb",
+        "noop"
+      ],
+      "type": "string"
+    },
+    "resources": {
+      "properties": {
+        "limits": {
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "service": {
+      "properties": {
+        "ipFamilies": {
+          "items": {
+            "enum": [
+              "IPv4",
+              "IPv6"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 0,
+          "type": [
+            "array",
+            "null"
+          ],
+          "uniqueItems": true
+        },
+        "ipFamilyPolicy": {
+          "enum": [
+            "SingleStack",
+            "PreferDualStack",
+            "RequireDualStack",
+            null
+          ],
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "port": {
+          "default": 7979,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "serviceMonitor": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "sources": {
+      "default": [
+        "service",
+        "ingress"
+      ],
+      "description": "Kubernetes resources to monitor for DNS entries",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "default": [
+        {
+          "key": "CriticalAddonsOnly",
+          "operator": "Exists"
+        }
+      ],
+      "description": "Tolerations of the external-dns pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "topologySpreadConstraints": {
+      "default": [],
+      "description": "The external-dns pod topology spread constraints",
+      "type": "array"
+    },
+    "triggerLoopOnEvent": {
+      "default": false,
+      "description": "If `true`, triggers run loop on create/update/delete events in addition of regular interval",
+      "type": "boolean"
+    },
+    "txtOwnerId": {
+      "description": "Specify an identifier for this instance of _ExternalDNS_ wWhen using a registry other than `noop`",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "txtPrefix": {
+      "description": "Mutually exclusive with `txtSuffix`",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "txtSuffix": {
+      "description": "Mutually exclusive with `txtPrefix`",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object"
+}
