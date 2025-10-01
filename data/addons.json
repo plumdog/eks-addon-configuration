@@ -22,6 +22,7 @@
   "cloudsoft_amp-add-on",
   "coredns",
   "cribl_cribledge",
+  "cyberark_cert-manager-eks",
   "datadog_operator",
   "datree_engine-pro",
   "dynatrace_dynatrace-operator",
