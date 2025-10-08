@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "properties": {
+    "akpUrl": {
+      "description": "Akuity Agent Manifests URL",
+      "type": "string"
+    }
+  },
+  "required": [
+    "akpUrl"
+  ],
+  "title": "Akuity Agent",
+  "type": "object"
+}
