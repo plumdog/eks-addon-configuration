@@ -18,7 +18,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.33",
@@ -273,7 +273,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.33",
