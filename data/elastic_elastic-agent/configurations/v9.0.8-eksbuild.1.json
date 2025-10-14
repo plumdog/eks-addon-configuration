@@ -1,0 +1,1341 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "AgentFleetConfig": {
+      "description": "Elastic-Agent managed configuration.",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Enable Elastic-Agent managed mode.",
+          "type": "boolean"
+        },
+        "insecure": {
+          "description": "Fleet insecure URL.",
+          "type": "boolean"
+        },
+        "kibanaHost": {
+          "description": "Kibana host to fallback if enrollment token is not supplied.",
+          "type": "string"
+        },
+        "kibanaPassword": {
+          "description": "Kibana password to fallback if enrollment token is not supplied.",
+          "type": "string"
+        },
+        "kibanaUser": {
+          "description": "Kibana username to fallback if enrollment token is not supplied.",
+          "type": "string"
+        },
+        "preset": {
+          "description": "Agent preset to deploy.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Fleet enrollment token.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Fleet server URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentImageConfig": {
+      "description": "Image configuration for the Elastic-Agent.",
+      "properties": {
+        "pullPolicy": {
+          "description": "Image pull policy.",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "type": "string"
+        },
+        "repository": {
+          "description": "Docker image repository.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "tag": {
+          "description": "Image tag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentPreset": {
+      "description": "Configuration for an Agent preset.",
+      "properties": {
+        "affinity": {
+          "description": "Affinity rules for the deployment.",
+          "examples": [
+            {
+              "nodeAffinity": {
+                "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                    {
+                      "matchExpressions": [
+                        {
+                          "key": "kubernetes.io/e2e-az-name",
+                          "operator": "In",
+                          "values": [
+                            "e2e-az1",
+                            "e2e-az2"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "type": "object"
+        },
+        "agent": {
+          "examples": [
+            {
+              "monitoring": {
+                "enabled": true,
+                "logs": true,
+                "metrics": true,
+                "namespace": "elastic-agent",
+                "use_output": "default"
+              }
+            }
+          ],
+          "properties": {
+            "monitoring": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "logs": {
+                  "type": "boolean"
+                },
+                "metrics": {
+                  "type": "boolean"
+                },
+                "namespace": {
+                  "type": "string"
+                },
+                "use_output": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations for the deployment.",
+          "examples": [
+            {
+              "annotationKey": "annotationValue"
+            }
+          ],
+          "type": "object"
+        },
+        "automountServiceAccountToken": {
+          "default": true,
+          "description": "Automount service account token for the deployment.",
+          "examples": [
+            true
+          ],
+          "type": "boolean"
+        },
+        "clusterRole": {
+          "$ref": "#/definitions/AgentPresetClusterRole"
+        },
+        "envFrom": {
+          "description": "Environment variables for the deployment.",
+          "examples": [
+            [
+              {
+                "configMapRef": {
+                  "name": "my-config"
+                }
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "extraContainers": {
+          "description": "Extra containers for the deployment.",
+          "examples": [
+            [
+              {
+                "image": "nginx",
+                "name": "sidecar-container",
+                "ports": [
+                  {
+                    "containerPort": 80
+                  }
+                ]
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "extraEnvs": {
+          "description": "Extra environment variables for the deployment.",
+          "examples": [
+            [
+              {
+                "name": "ENV_VAR_NAME",
+                "value": "value"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "extraVolumeMounts": {
+          "description": "Extra volume mounts for the deployment.",
+          "examples": [
+            [
+              {
+                "mountPath": "/mnt/extra",
+                "name": "extra-volume"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "extraVolumes": {
+          "description": "Extra volumes for the deployment.",
+          "examples": [
+            [
+              {
+                "emptyDir": {},
+                "name": "extra-volume"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "hostNetwork": {
+          "description": "Enable host networking for the deployment.",
+          "examples": [
+            true
+          ],
+          "type": "boolean"
+        },
+        "hostPID": {
+          "description": "Enable host PID namespace for the deployment.",
+          "examples": [
+            true
+          ],
+          "type": "boolean"
+        },
+        "initContainers": {
+          "description": "Init containers for the deployment.",
+          "examples": [
+            [
+              {
+                "command": [
+                  "sh",
+                  "-c",
+                  "echo Initializing..."
+                ],
+                "image": "busybox",
+                "name": "init-container"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels for the deployment.",
+          "examples": [
+            {
+              "app": "elastic-agent"
+            }
+          ],
+          "type": "object"
+        },
+        "mode": {
+          "description": "Mode of the Agent preset.",
+          "enum": [
+            "deployment",
+            "statefulset",
+            "daemonset"
+          ],
+          "type": "string"
+        },
+        "nodeSelector": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Node selector for the deployment.",
+          "examples": [
+            {
+              "disktype": "ssd"
+            }
+          ],
+          "type": "object"
+        },
+        "ports": {
+          "description": "Port configuration.",
+          "items": {
+            "properties": {
+              "appProtocol": {
+                "description": "The application protocol for this port, such as HTTP, HTTPS, or GRPC.",
+                "type": "string"
+              },
+              "containerPort": {
+                "description": "The port number on which the service is exposed.",
+                "type": "integer"
+              },
+              "hostIP": {
+                "description": "Specifies the host IP to bind the external port to.",
+                "type": "string"
+              },
+              "hostPort": {
+                "description": "Specifies the port on the node that the container ports is exposed.",
+                "type": "integer"
+              },
+              "name": {
+                "description": "The name of the port.",
+                "type": "string"
+              },
+              "nodePort": {
+                "description": "The port on each node to expose the service if the type is NodePort.",
+                "type": "integer"
+              },
+              "protocol": {
+                "description": "The protocol used by both the service and container ports. Defaults to TCP.",
+                "type": "string"
+              },
+              "serviceNodePort": {
+                "description": "The port on each node to expose the service if the type is NodePort.",
+                "type": "integer"
+              },
+              "servicePort": {
+                "description": "Specifies the port that the service should listen on.",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "priorityClass": {
+          "$ref": "#/definitions/AgentPriorityClass"
+        },
+        "providers": {
+          "description": "Providers configuration for the deployment.",
+          "examples": [
+            {
+              "kubernetes": {
+                "enabled": true,
+                "node": "node-1",
+                "scope": "cluster"
+              },
+              "kubernetes_leaderelection": {
+                "enabled": false
+              }
+            }
+          ],
+          "properties": {
+            "kubernetes": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "node": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "kubernetes_leaderelection": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "replicaCount": {
+          "description": "Replica count for the preset.",
+          "examples": [
+            1
+          ],
+          "type": "integer"
+        },
+        "resources": {
+          "description": "Resource limits and requests for the deployment.",
+          "examples": [
+            {
+              "limits": {
+                "cpu": "500m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "250m",
+                "memory": "64Mi"
+              }
+            }
+          ],
+          "type": "object"
+        },
+        "securityContext": {
+          "description": "Security context for the deployment.",
+          "examples": [
+            {
+              "fsGroup": 2000,
+              "runAsGroup": 3000,
+              "runAsUser": 1000
+            }
+          ],
+          "type": "object"
+        },
+        "service": {
+          "description": "Service configuration.",
+          "examples": [
+            {
+              "type": "ClusterIP"
+            }
+          ],
+          "properties": {
+            "allocateLoadBalancerNodePorts": {
+              "description": "If true, allocates NodePorts for LoadBalancer services. Defaults to true.",
+              "type": "boolean"
+            },
+            "clusterIP": {
+              "description": "The IP address of the service. Automatically assigned unless specified.",
+              "type": "string"
+            },
+            "clusterIPs": {
+              "description": "A list of IP addresses assigned to this service, used for dual-stack services.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "externalIPs": {
+              "description": "A list of external IP addresses for the service to accept traffic on.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "externalName": {
+              "description": "The external reference name used by ExternalName services.",
+              "type": "string"
+            },
+            "externalTrafficPolicy": {
+              "description": "Specifies how nodes handle external traffic. Defaults to Cluster.",
+              "enum": [
+                "Cluster",
+                "Local"
+              ],
+              "type": "string"
+            },
+            "healthCheckNodePort": {
+              "description": "The health check node port for LoadBalancer services with local traffic policy.",
+              "type": "integer"
+            },
+            "internalTrafficPolicy": {
+              "description": "Describes how internal traffic is distributed. Defaults to Cluster.",
+              "enum": [
+                "Cluster",
+                "Local"
+              ],
+              "type": "string"
+            },
+            "ipFamilies": {
+              "description": "The IP families (IPv4, IPv6) assigned to the service for dual-stack clusters.",
+              "items": {
+                "enum": [
+                  "IPv4",
+                  "IPv6"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "ipFamilyPolicy": {
+              "description": "Defines the dual-stack behavior of the service.",
+              "enum": [
+                "SingleStack",
+                "PreferDualStack",
+                "RequireDualStack"
+              ],
+              "type": "string"
+            },
+            "loadBalancerClass": {
+              "description": "The class of the load balancer implementation for this service.",
+              "type": "string"
+            },
+            "loadBalancerIP": {
+              "description": "The load balancer IP address, if applicable and supported by the cloud provider.",
+              "type": "string"
+            },
+            "loadBalancerSourceRanges": {
+              "description": "CIDR ranges that allow access to the load balancer.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "publishNotReadyAddresses": {
+              "description": "If true, publishes addresses even if the pods are not ready.",
+              "type": "boolean"
+            },
+            "sessionAffinity": {
+              "description": "Specifies session affinity. Defaults to None.",
+              "enum": [
+                "None",
+                "ClientIP"
+              ],
+              "type": "string"
+            },
+            "sessionAffinityConfig": {
+              "description": "Configuration for session affinity.",
+              "type": "object"
+            },
+            "trafficDistribution": {
+              "description": "Specifies traffic distribution preferences. This is an alpha feature.",
+              "type": "string"
+            },
+            "type": {
+              "description": "Determines how the service is exposed. Defaults to ClusterIP.",
+              "enum": [
+                "ClusterIP",
+                "NodePort",
+                "LoadBalancer"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "serviceAccount": {
+          "$ref": "#/definitions/AgentPresetServiceAccount"
+        },
+        "statePersistence": {
+          "description": "Volume type used for Agent state persistence.",
+          "enum": [
+            "HostPath",
+            "EmptyDir",
+            "None"
+          ],
+          "type": "string"
+        },
+        "tolerations": {
+          "description": "Tolerations for the deployment.",
+          "examples": [
+            [
+              {
+                "effect": "NoSchedule",
+                "key": "key1",
+                "operator": "Exists"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "description": "Topology spread constraints for the deployment.",
+          "examples": [
+            [
+              {
+                "labelSelector": {
+                  "matchLabels": {
+                    "app": "elastic-agent"
+                  }
+                },
+                "maxSkew": 1,
+                "topologyKey": "kubernetes.io/hostname",
+                "whenUnsatisfiable": "DoNotSchedule"
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AgentPresetClusterRole": {
+      "examples": [
+        {
+          "create": true,
+          "name": ""
+        }
+      ],
+      "properties": {
+        "annotations": {
+          "description": "Annotations for the cluster role if create is set to true.",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Create the cluster role.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the cluster role to use if create is set to false.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "Rules for the cluster role to create if create is set to true.",
+          "examples": [
+            [
+              {
+                "apiGroups": [
+                  ""
+                ],
+                "resources": [
+                  "pods"
+                ],
+                "verbs": [
+                  "get",
+                  "watch",
+                  "list"
+                ]
+              }
+            ]
+          ],
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AgentPresetServiceAccount": {
+      "examples": [
+        {
+          "create": true,
+          "name": ""
+        }
+      ],
+      "properties": {
+        "annotations": {
+          "description": "Annotations for the service account if create is set to true.",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Create the service account.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the service account to use if create is set to false.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentPriorityClass": {
+      "examples": [
+        {
+          "create": true,
+          "description": "Elastic Agent priority class",
+          "globalDefault": true,
+          "preemptionPolicy": "Never",
+          "value": 1000000
+        }
+      ],
+      "properties": {
+        "create": {
+          "default": true,
+          "description": "Create the priority class.",
+          "type": "boolean"
+        },
+        "description": {
+          "description": "Description of the priority class.",
+          "type": "string"
+        },
+        "globalDefault": {
+          "description": "Set the priority class as the global default.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the priority class to use if create is set to false.",
+          "type": "string"
+        },
+        "preemptionPolicy": {
+          "description": "Preemption policy for the priority class.",
+          "enum": [
+            "Never",
+            "PreemptLowerPriority"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the priority class.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CustomIntegrationConfig": {
+      "description": "Configuration for a single integration.",
+      "properties": {
+        "id": {
+          "description": "Unique identifier for the integration.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "preset": {
+          "description": "Agent preset that this integration runs on.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "use_output": {
+          "description": "Name of the output to use.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesMetricsAndStateConfig": {
+      "properties": {
+        "metrics": {
+          "$ref": "#/definitions/KubernetesStreamConfig"
+        },
+        "state": {
+          "$ref": "#/definitions/KubernetesStreamConfig"
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesMetricsConfig": {
+      "properties": {
+        "metrics": {
+          "$ref": "#/definitions/KubernetesStreamConfig"
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesStateConfig": {
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/KubernetesStreamConfig"
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesStreamConfig": {
+      "properties": {
+        "enabled": {
+          "description": "Enable stream.",
+          "type": "boolean"
+        },
+        "vars": {
+          "description": "Stream variables.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OutputObject": {
+      "description": "Defines the configuration for an output.",
+      "properties": {
+        "api_key": {
+          "description": "API key to authenticate with the output (required for ESPlainAuthAPI type).",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name to reference an Elasticsearch cluster managed by ECK (required for ESECKRef type).",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace to reference an Elasticsearch cluster managed by ECK (optional for ESECKRef type).",
+          "type": "string"
+        },
+        "password": {
+          "description": "Password to authenticate with the output (required for ESPlainAuthBasic).",
+          "example": "fantastic",
+          "type": "string"
+        },
+        "secretName": {
+          "description": "K8s secret to mount output connection details (required for ESSecretAuthBasic and ESSecretAuthAPI types).",
+          "type": "string"
+        },
+        "ssl": {
+          "$ref": "#/definitions/SSLConfigClient"
+        },
+        "type": {
+          "description": "Type of the output.",
+          "enum": [
+            "ESPlainAuthBasic",
+            "ESPlainAuthAPI",
+            "ESSecretAuthBasic",
+            "ESSecretAuthAPI",
+            "ESECKRef"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the output (required for ESPlainAuthBasic and ESPlainAuthAPI type).",
+          "example": "http://elasticsearch:9200",
+          "type": "string"
+        },
+        "username": {
+          "description": "Username to authenticate with the output (required for ESPlainAuthBasic).",
+          "example": "elastic",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SSLConfigClient": {
+      "properties": {
+        "caTrustedFingerprint": {
+          "description": "A HEX encoded SHA-256 of a CA certificate. If this certificate is present in the chain during the handshake, it will be added to the certificate_authorities list and the handshake will continue normally.",
+          "type": "string"
+        },
+        "certificateAuthorities": {
+          "description": "The list of root certificates for verifications (required). If certificate_authorities is empty or not set, the system keystore is used. If certificate_authorities is self-signed, the host system needs to trust that CA cert as well.",
+          "items": {
+            "$ref": "#/definitions/ValueFrom"
+          },
+          "type": "array"
+        },
+        "verificationMode": {
+          "default": "none",
+          "description": "Controls the verification of server certificates.",
+          "enum": [
+            "full",
+            "strict",
+            "certificate",
+            "none"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SystemLogsStreamVars": {
+      "description": "System integration log stream variables.",
+      "properties": {
+        "exclude_files": {
+          "description": "Files to exclude from logs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignore_older": {
+          "description": "If this option is specified, events that are older than the specified amount of time are ignored. Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\".",
+          "type": "string"
+        },
+        "paths": {
+          "description": "Paths to scan for logs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "processors": {
+          "description": "Processors for the system auth logs stream.",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "Tags for the logs stream.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ValueFrom": {
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "valueFromSecret": {
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "description": "Schema for managing the Elastic Agent Helm chart values.",
+  "properties": {
+    "agent": {
+      "description": "Configuration for the Elastic-Agent.",
+      "properties": {
+        "engine": {
+          "default": "k8s",
+          "description": "Engine to use for Kubernetes manifests or ECK CRDs.",
+          "enum": [
+            "k8s",
+            "eck"
+          ],
+          "examples": [
+            "k8s"
+          ],
+          "type": "string"
+        },
+        "fleet": {
+          "description": "Elastic-Agent managed configuration.",
+          "properties": {
+            "agentCert": {
+              "$ref": "#/definitions/ValueFrom",
+              "description": "Elastic Agent client private key to use with Fleet Server during mTLS authentication."
+            },
+            "agentCertKey": {
+              "$ref": "#/definitions/ValueFrom",
+              "description": "Elastic Agent client private key to use with Fleet Server during mTLS authentication."
+            },
+            "ca": {
+              "$ref": "#/definitions/ValueFrom",
+              "description": "CA certificate to use when connecting to Fleet."
+            },
+            "enabled": {
+              "default": false,
+              "description": "Enable Elastic-Agent managed mode.",
+              "type": "boolean"
+            },
+            "force": {
+              "description": "Elastic Agent client certificate to use with Fleet Server during mTLS authentication.",
+              "type": "boolean"
+            },
+            "insecure": {
+              "description": "Communicate with Fleet with either insecure HTTP or unverified HTTPS.",
+              "type": "boolean"
+            },
+            "kibanaCA": {
+              "$ref": "#/definitions/ValueFrom",
+              "description": "CA certificate to use when connecting to Kibana if the enrollment token is not supplied."
+            },
+            "kibanaHost": {
+              "description": "Kibana host to fallback if enrollment token is not supplied.",
+              "type": "string"
+            },
+            "kibanaPassword": {
+              "description": "Kibana password to fallback if enrollment token is not supplied.",
+              "type": "string"
+            },
+            "kibanaServiceToken": {
+              "description": "Service token to use when connecting to Kibana if the enrollment token is not supplied.",
+              "type": "string"
+            },
+            "kibanaUser": {
+              "description": "Kibana username to fallback if enrollment token is not supplied.",
+              "type": "string"
+            },
+            "policyName": {
+              "description": "Token policy name to use for fetching token from Kibana if the enrollment token is not supplied.",
+              "type": "string"
+            },
+            "preset": {
+              "description": "Agent preset to deploy.",
+              "type": "string"
+            },
+            "token": {
+              "description": "Fleet enrollment token.",
+              "type": "string"
+            },
+            "tokenName": {
+              "description": "Token name to use for fetching token from Kibana if the enrollment token is not supplied.",
+              "type": "string"
+            },
+            "url": {
+              "description": "Fleet server URL.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "image": {
+          "$ref": "#/definitions/AgentImageConfig"
+        },
+        "imagePullSecrets": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "presets": {
+          "additionalProperties": {
+            "$ref": "#/definitions/AgentPreset"
+          },
+          "default": {
+            "presetName": {
+              "mode": "daemonset"
+            }
+          },
+          "description": "Map of deployment presets for the Elastic Agent.",
+          "examples": [
+            {
+              "presetName": {
+                "mode": "daemonset"
+              }
+            }
+          ],
+          "type": "object"
+        },
+        "unprivileged": {
+          "description": "Enable unprivileged mode.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Elastic-Agent version.",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+.*$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "extraIntegrations": {
+      "additionalProperties": {
+        "$ref": "#/definitions/CustomIntegrationConfig"
+      },
+      "description": "Configuration for extra integrations.",
+      "type": "object"
+    },
+    "kubernetes": {
+      "description": "Configuration for Kubernetes integration.",
+      "properties": {
+        "apiserver": {
+          "properties": {
+            "enabled": {
+              "description": "Enable apiserver input.",
+              "type": "boolean"
+            },
+            "vars": {
+              "description": "Apiserver variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "containers": {
+          "properties": {
+            "audit_logs": {
+              "$ref": "#/definitions/KubernetesStreamConfig"
+            },
+            "logs": {
+              "properties": {
+                "enabled": {
+                  "description": "Enable containers logs stream.",
+                  "type": "boolean"
+                },
+                "vars": {
+                  "description": "Stream variables.",
+                  "properties": {
+                    "additionalParsersConfig": {
+                      "default": [],
+                      "description": "Additional parsers configuration.",
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "containerParserFormat": {
+                      "default": "auto",
+                      "description": "Container parser's format configuration.",
+                      "type": "string"
+                    },
+                    "containerParserStream": {
+                      "default": "all",
+                      "description": "Container parser's stream configuration.",
+                      "type": "string"
+                    },
+                    "enabledDefaultProcessors": {
+                      "default": true,
+                      "description": "Enable container logs stream default processors.",
+                      "type": "boolean"
+                    },
+                    "processors": {
+                      "default": [],
+                      "description": "Additional processors to use on the container logs streams. Processors are used to reduce the number of fields in the exported event or to enhance the event with metadata. This executes in the agent before the events are shipped.",
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "symlinks": {
+                      "default": true,
+                      "description": "Use Symlinks.",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "metrics": {
+              "$ref": "#/definitions/KubernetesStreamConfig"
+            },
+            "state": {
+              "$ref": "#/definitions/KubernetesStreamConfig"
+            }
+          },
+          "type": "object"
+        },
+        "controller_manager": {
+          "properties": {
+            "enabled": {
+              "description": "Enable controller_manager input.",
+              "type": "boolean"
+            },
+            "vars": {
+              "description": "Controller manager stream variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "cronjobs": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "daemonsets": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "deployments": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "enabled": {
+          "description": "Enable Kubernetes integration.",
+          "type": "boolean"
+        },
+        "hints": {
+          "properties": {
+            "enabled": {
+              "description": "Enable elastic-agent autodiscovery feature.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "jobs": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "metrics": {
+          "properties": {
+            "enabled": {
+              "description": "Enable metric streams based on kubelet.",
+              "type": "boolean"
+            },
+            "vars": {
+              "description": "Metric streams variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Kubernetes namespace.",
+          "type": "string"
+        },
+        "namespaces": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "nodes": {
+          "$ref": "#/definitions/KubernetesMetricsAndStateConfig"
+        },
+        "onboardingID": {
+          "description": "Onboarding ID for quick-start flow.",
+          "type": "string"
+        },
+        "output": {
+          "description": "Name of the output used in Kubernetes integration. Must be defined in outputs.",
+          "type": "string"
+        },
+        "persistentvolumeclaims": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "persistentvolumes": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "pods": {
+          "$ref": "#/definitions/KubernetesMetricsAndStateConfig"
+        },
+        "proxy": {
+          "properties": {
+            "enabled": {
+              "description": "Enable proxy input.",
+              "type": "boolean"
+            },
+            "vars": {
+              "description": "Proxy stream variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "replicasets": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "resourcequotas": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "scheduler": {
+          "properties": {
+            "enabled": {
+              "description": "Enable scheduler input.",
+              "type": "boolean"
+            },
+            "vars": {
+              "description": "Scheduler stream variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "services": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "state": {
+          "properties": {
+            "enabled": {
+              "description": "Enable state streams based on kube-state-metrics.",
+              "type": "boolean"
+            },
+            "host": {
+              "description": "Host of the kube-state-metrics service, used when kube-state-metrics.enabled is set to false.",
+              "type": "string"
+            },
+            "vars": {
+              "description": "State streams variables.",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "statefulsets": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "storageclasses": {
+          "$ref": "#/definitions/KubernetesStateConfig"
+        },
+        "system": {
+          "$ref": "#/definitions/KubernetesMetricsConfig"
+        },
+        "volumes": {
+          "$ref": "#/definitions/KubernetesMetricsConfig"
+        }
+      },
+      "type": "object"
+    },
+    "outputs": {
+      "additionalProperties": {
+        "$ref": "#/definitions/OutputObject"
+      },
+      "description": "Object containing multiple output configurations.",
+      "examples": [
+        {
+          "outputNamePlain": {
+            "type": "ESPlainAuthBasic"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "system": {
+      "description": "Configuration for system integration.",
+      "properties": {
+        "authLogs": {
+          "properties": {
+            "enabled": {
+              "description": "Enable system auth logs stream.",
+              "type": "boolean"
+            },
+            "vars": {
+              "$ref": "#/definitions/SystemLogsStreamVars"
+            }
+          },
+          "type": "object"
+        },
+        "enabled": {
+          "description": "Enable system integration.",
+          "type": "boolean"
+        },
+        "metrics": {
+          "properties": {
+            "enabled": {
+              "description": "Enable system metrics stream.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "output namespace.",
+          "type": "string"
+        },
+        "output": {
+          "description": "Name of the output used in system integration. Must be defined in outputs.",
+          "type": "string"
+        },
+        "syslog": {
+          "properties": {
+            "enabled": {
+              "description": "Enable system syslog stream.",
+              "type": "boolean"
+            },
+            "vars": {
+              "$ref": "#/definitions/SystemLogsStreamVars"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "Elastic Agent Helm chart configuration.",
+  "type": "object"
+}
