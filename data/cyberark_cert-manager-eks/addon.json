@@ -17,35 +17,35 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.32",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.29",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": true,
@@ -95,6 +95,55 @@
             "*"
           ],
           "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.17.5-eksbuild.1",
+      "architecture": [
+        "arm64",
+        "amd64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.29",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": true,
