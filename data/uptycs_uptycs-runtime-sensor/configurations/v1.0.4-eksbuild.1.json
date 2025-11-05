@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "properties": {
+    "daemonset": {
+      "additionalProperties": false,
+      "description": "Uptycs Runtime Sensor daemonset",
+      "properties": {
+        "containers": {
+          "properties": {
+            "resources": {
+              "description": "Resources allocated to Uptycs Runtime Sensor daemonset",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "uptycsCloud": {
+      "description": "Uptycs cloud service onto which the cluster is enrolled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "daemonset",
+    "uptycsCloud"
+  ],
+  "title": "Values",
+  "type": "object"
+}
