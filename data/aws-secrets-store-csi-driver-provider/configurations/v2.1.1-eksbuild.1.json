@@ -1,0 +1,115 @@
+{
+  "$defs": {
+    "limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "default": "50m",
+          "type": "string"
+        },
+        "memory": {
+          "default": "100Mi",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "requests": {
+          "$ref": "#/$defs/Limits"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for the AWS provider for the Secrets Store CSI Driver",
+  "properties": {
+    "affinity": {
+      "description": "The affinity to use for the provider",
+      "type": "object"
+    },
+    "awsRegion": {
+      "description": "The AWS region to use for the provider",
+      "type": "string"
+    },
+    "dnsConfig": {
+      "description": "The DNS config to use for the provider",
+      "type": "object"
+    },
+    "driverWritesSecrets": {
+      "description": "Asserts whether the Secrets Store CSI Driver writes secrets instead of the provider",
+      "type": "boolean"
+    },
+    "nodeSelector": {
+      "description": "The node selector to use for the provider",
+      "type": "object"
+    },
+    "podAnnotations": {
+      "description": "The pod annotations to use for the provider",
+      "type": "object"
+    },
+    "podLabels": {
+      "description": "The pod labels to use for the provider",
+      "type": "object"
+    },
+    "port": {
+      "description": "The port to use for the provider",
+      "type": "integer"
+    },
+    "priorityClassName": {
+      "description": "The priority class name for the provider",
+      "type": "string"
+    },
+    "resources": {
+      "description": "The compute resources to use for the provider",
+      "properties": {
+        "resources": {
+          "$ref": "#/$defs/resources"
+        }
+      },
+      "type": "object"
+    },
+    "secrets-store-csi-driver": {
+      "description": "Options to configure the upstream Secrets Store CSI Driver",
+      "properties": {
+        "enableSecretRotation": {
+          "type": "boolean"
+        },
+        "rotationPollInterval": {
+          "type": "string"
+        },
+        "syncSecret": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "tolerations": {
+      "default": [
+        {
+          "operator": "Exists"
+        }
+      ],
+      "description": "The tolerations schema for the provider",
+      "items": {},
+      "type": "array"
+    },
+    "useFipsEndpoint": {
+      "description": "Assert whether or not the provider uses FIPS enabled endpoints",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}
