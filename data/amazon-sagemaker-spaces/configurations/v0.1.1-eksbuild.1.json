@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Amazon SageMaker Space Operator",
+  "properties": {
+    "jupyter-k8s": {
+      "additionalProperties": false,
+      "description": "Configuration for jupyter-k8s subchart",
+      "properties": {
+        "controllerManager": {
+          "additionalProperties": false,
+          "description": "Controller manager configuration",
+          "properties": {
+            "affinity": {
+              "description": "Affinity rules for controller manager pods",
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "container": {
+              "additionalProperties": false,
+              "description": "Container configuration",
+              "properties": {
+                "resources": {
+                  "additionalProperties": false,
+                  "description": "Resource requirements for controller manager container",
+                  "properties": {
+                    "limits": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "requests": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "nodeSelector": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Node selector for controller manager pods",
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "pod": {
+              "additionalProperties": false,
+              "description": "Pod metadata configuration",
+              "properties": {
+                "annotations": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "default": {},
+                  "description": "Additional annotations for controller manager pods",
+                  "type": "object"
+                },
+                "labels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "default": {},
+                  "description": "Additional labels for controller manager pods",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "podDisruptionBudget": {
+              "additionalProperties": false,
+              "description": "Pod disruption budget configuration",
+              "properties": {
+                "enabled": {
+                  "default": false,
+                  "description": "Whether to enable pod disruption budget",
+                  "type": "boolean"
+                },
+                "maxUnavailable": {
+                  "anyOf": [
+                    {
+                      "pattern": ".*%$",
+                      "type": "string"
+                    },
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Maximum number of pods that can be unavailable"
+                },
+                "minAvailable": {
+                  "anyOf": [
+                    {
+                      "pattern": ".*%$",
+                      "type": "string"
+                    },
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Minimum number of pods that must be available"
+                }
+              },
+              "type": "object"
+            },
+            "tolerations": {
+              "description": "Tolerations for controller manager pods",
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "topologySpreadConstraints": {
+              "default": [],
+              "description": "Topology spread constraints for controller manager pods",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "labelSelector": {
+                    "additionalProperties": false,
+                    "description": "Label selector for matching pods",
+                    "properties": {
+                      "matchExpressions": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "key": {
+                              "type": "string"
+                            },
+                            "operator": {
+                              "enum": [
+                                "In",
+                                "NotIn",
+                                "Exists",
+                                "DoesNotExist"
+                              ],
+                              "type": "string"
+                            },
+                            "values": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "operator"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "matchLabels": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "maxSkew": {
+                    "description": "Maximum allowed difference in number of pods",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "topologyKey": {
+                    "description": "Key of node labels for topology domain",
+                    "examples": [
+                      "topology.kubernetes.io/zone",
+                      "kubernetes.io/hostname"
+                    ],
+                    "type": "string"
+                  },
+                  "whenUnsatisfiable": {
+                    "description": "Action when constraint cannot be satisfied",
+                    "enum": [
+                      "DoNotSchedule",
+                      "ScheduleAnyway"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "maxSkew",
+                  "topologyKey",
+                  "whenUnsatisfiable"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "workspacePodWatching": {
+          "additionalProperties": false,
+          "description": "Configure workspace pod event watching",
+          "properties": {
+            "enable": {
+              "default": false,
+              "description": "Whether to enable workspace pod event watching",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "jupyter-k8s-aws-hyperpod": {
+      "additionalProperties": false,
+      "description": "Configuration for jupyter-k8s-aws-hyperpod subchart",
+      "properties": {
+        "clusterWebUI": {
+          "additionalProperties": true,
+          "description": "Web interface configuration",
+          "properties": {
+            "auth": {
+              "additionalProperties": false,
+              "description": "Configuration for authentication middleware component",
+              "properties": {
+                "kmsKeyId": {
+                  "description": "KMS Key ID or ARN for JWT signing",
+                  "pattern": "^(arn:aws:kms:[a-z0-9-]+:[0-9]{12}:key/)?[a-f0-9-]+$",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "awsCertificateArn": {
+              "description": "AWS Certificate Manager ARN for SSL/TLS termination at load balancer",
+              "examples": [
+                "arn:aws:acm:us-west-2:123456789012:certificate/12345678-1234-1234-1234-123456789012"
+              ],
+              "pattern": "^arn:aws:acm:[a-z0-9-]+:[0-9]{12}:certificate/[a-f0-9-]+$",
+              "type": "string"
+            },
+            "domain": {
+              "description": "Full domain for the application (required for external access)",
+              "examples": [
+                "spaces.example.com",
+                "sagemaker.mydomain.com"
+              ],
+              "maxLength": 253,
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$",
+              "type": "string"
+            },
+            "enabled": {
+              "default": false,
+              "description": "Whether to enable cluster web UI",
+              "type": "boolean"
+            },
+            "externalDns": {
+              "additionalProperties": false,
+              "description": "External DNS configuration",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "description": "Whether to enable external-dns annotations for automatic DNS record creation",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "traefik": {
+              "additionalProperties": false,
+              "description": "Configuration for Traefik proxy component",
+              "properties": {
+                "shouldInstall": {
+                  "default": false,
+                  "description": "Whether to deploy Traefik",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "remoteAccess": {
+          "additionalProperties": false,
+          "description": "Configuration for remote access via SSM",
+          "properties": {
+            "enabled": {
+              "default": false,
+              "description": "Whether to enable remote access capabilities",
+              "type": "boolean"
+            },
+            "ssmDocumentName": {
+              "default": "AWS-StartSSHSession",
+              "description": "Custom SSM document name for SSH sessions",
+              "type": "string"
+            },
+            "ssmManagedNodeRole": {
+              "description": "IAM role name for SSM managed instances",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [],
+  "type": "object"
+}

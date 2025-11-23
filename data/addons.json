@@ -6,6 +6,7 @@
   "amazon-sagemaker-hyperpod-observability",
   "amazon-sagemaker-hyperpod-taskgovernance",
   "amazon-sagemaker-hyperpod-training-operator",
+  "amazon-sagemaker-spaces",
   "appviewx_appviewx-mim-eks",
   "aws-ebs-csi-driver",
   "aws-efs-csi-driver",
