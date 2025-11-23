@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Amazon SageMaker Space Operator",
+  "properties": {
+    "jupyter-k8s": {
+      "additionalProperties": false,
+      "description": "Configuration for jupyter-k8s subchart",
+      "properties": {
+        "workspacePodWatching": {
+          "additionalProperties": false,
+          "description": "Configure workspace pod event watching",
+          "properties": {
+            "enable": {
+              "default": false,
+              "description": "Whether to enable workspace pod event watching",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "jupyter-k8s-aws-hyperpod": {
+      "additionalProperties": false,
+      "description": "Configuration for jupyter-k8s-aws-hyperpod subchart",
+      "properties": {
+        "clusterWebUI": {
+          "additionalProperties": false,
+          "description": "Web interface configuration",
+          "properties": {
+            "auth": {
+              "additionalProperties": false,
+              "description": "Configuration for authentication middleware component",
+              "properties": {
+                "kmsKeyId": {
+                  "description": "KMS Key ID or ARN for JWT signing",
+                  "pattern": "^(arn:aws:kms:[a-z0-9-]+:[0-9]{12}:key/)?[a-f0-9-]+$",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "awsCertificateArn": {
+              "description": "AWS Certificate Manager ARN for SSL/TLS termination at load balancer",
+              "examples": [
+                "arn:aws:acm:us-west-2:123456789012:certificate/12345678-1234-1234-1234-123456789012"
+              ],
+              "pattern": "^arn:aws:acm:[a-z0-9-]+:[0-9]{12}:certificate/[a-f0-9-]+$",
+              "type": "string"
+            },
+            "domain": {
+              "description": "Full domain for the application (required for external access)",
+              "examples": [
+                "spaces.example.com",
+                "sagemaker.mydomain.com"
+              ],
+              "maxLength": 253,
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$",
+              "type": "string"
+            },
+            "enabled": {
+              "default": false,
+              "description": "Whether to enable cluster web UI",
+              "type": "boolean"
+            },
+            "externalDns": {
+              "additionalProperties": false,
+              "description": "External DNS configuration",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "description": "Whether to enable external-dns annotations for automatic DNS record creation",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "traefik": {
+              "additionalProperties": false,
+              "description": "Configuration for Traefik proxy component",
+              "properties": {
+                "shouldInstall": {
+                  "default": false,
+                  "description": "Whether to deploy Traefik",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "remoteAccess": {
+          "additionalProperties": false,
+          "description": "Configuration for remote access via SSM",
+          "properties": {
+            "enabled": {
+              "default": false,
+              "description": "Whether to enable remote access capabilities",
+              "type": "boolean"
+            },
+            "ssmDocumentName": {
+              "default": "AWS-StartSSHSession",
+              "description": "Custom SSM document name for SSH sessions",
+              "type": "string"
+            },
+            "ssmManagedNodeRole": {
+              "description": "IAM role name for SSM managed instances",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [],
+  "type": "object"
+}
