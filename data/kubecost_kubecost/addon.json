@@ -3,69 +3,6 @@
   "type": "cost-management",
   "addonVersions": [
     {
-      "addonVersion": "v3.0.3-eksbuild.1",
-      "architecture": [
-        "amd64",
-        "arm64"
-      ],
-      "computeTypes": [
-        "ec2"
-      ],
-      "compatibilities": [
-        {
-          "clusterVersion": "1.33",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.32",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.31",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.30",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.29",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.28",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        },
-        {
-          "clusterVersion": "1.27",
-          "platformVersions": [
-            "*"
-          ],
-          "defaultVersion": true
-        }
-      ],
-      "requiresConfiguration": false,
-      "requiresIamPermissions": false
-    },
-    {
       "addonVersion": "v2.7.1-eksbuild.1",
       "architecture": [
         "amd64",
@@ -80,42 +17,42 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.31",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.29",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.28",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.27",
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         },
         {
           "clusterVersion": "1.26",
