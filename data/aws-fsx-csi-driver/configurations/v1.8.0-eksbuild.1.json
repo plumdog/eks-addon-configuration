@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for the aws-fsx-csi-driver",
+  "properties": {
+    "controller": {
+      "additionalProperties": false,
+      "description": "Configuration for the FSx CSI Driver controller component",
+      "properties": {
+        "affinity": {
+          "default": {
+            "affinity": {
+              "nodeAffinity": {
+                "preferredDuringSchedulingIgnoredDuringExecution": [
+                  {
+                    "preference": {
+                      "matchExpressions": [
+                        {
+                          "key": "eks.amazonaws.com/compute-type",
+                          "operator": "NotIn",
+                          "values": [
+                            "fargate",
+                            "hybrid"
+                          ]
+                        }
+                      ]
+                    },
+                    "weight": 1
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Affinity of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "logLevel": {
+          "default": 0,
+          "description": "Log verbosity level for the controller (0-6)",
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format for the driver container on the node pod",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "default": "controller",
+          "description": "Operating mode of the controller (e.g., 'controller')",
+          "type": "string"
+        },
+        "nodeSelector": {
+          "description": "Node labels for controller pod assignment",
+          "properties": {},
+          "type": "object"
+        },
+        "podAnnotations": {
+          "description": "Annotations applied to the node pod",
+          "type": "object"
+        },
+        "podDisruptionBudget": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": true,
+              "description": "Enables/Disables the FSx CSI Controller Pod's PodDisruptionBudget which ensures that at least 1 controller Pod is always able to Attach/Detach/Create/Delete volumes. Warning: Disabling PodDisruptionBudget may lead to delays in stateful workloads starting due to controller pod restarts or evictions.",
+              "type": "boolean"
+            },
+            "unhealthyPodEvictionPolicy": {
+              "default": null,
+              "description": "Unhealthy pod eviction policy for the FSx CSI Controller Pod's PodDisruptionBudget",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "podLabels": {
+          "default": null,
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "replicaCount": {
+          "description": "Number of controller pod replicas to deploy",
+          "type": "integer"
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          },
+          "description": "Resource requests and limits for the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "CriticalAddonsOnly",
+              "operator": "Exists"
+            },
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the controller pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "default": [],
+          "description": "Topology spread constraints for the controller pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "csidriver": {
+      "additionalProperties": false,
+      "description": "CSI Driver specific configuration options",
+      "properties": {
+        "fsGroupPolicy": {
+          "default": "ReadWriteOnceWithFSType",
+          "description": "Defines how the FSx CSI Driver handles file system permissions and ownership",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "node": {
+      "additionalProperties": false,
+      "description": "Configuration for the FSx CSI Driver node component",
+      "properties": {
+        "affinity": {
+          "default": {
+            "nodeAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": {
+                "nodeSelectorTerms": [
+                  {
+                    "matchExpressions": [
+                      {
+                        "key": "eks.amazonaws.com/compute-type",
+                        "operator": "NotIn",
+                        "values": [
+                          "fargate",
+                          "hybrid"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Affinity of the node pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "logLevel": {
+          "default": 2,
+          "description": "Log verbosity level for the node plugin (0-5)",
+          "type": "integer"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format for the driver container on the node pod",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "default": "node",
+          "description": "Operating mode of the node plugin (e.g., 'node')",
+          "type": "string"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "Node labels for node plugin pod assignment",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "description": "Annotations applied to the node pod",
+          "type": "object"
+        },
+        "podLabels": {
+          "default": null,
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "resources": {
+          "default": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          },
+          "description": "Resource requests and limits for the node plugin pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "tolerations": {
+          "default": [
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the node pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
