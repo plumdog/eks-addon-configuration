@@ -28,6 +28,7 @@
   "datadog_operator",
   "datree_engine-pro",
   "dynatrace_dynatrace-operator",
+  "eg-innovations_eg-universal-agent-operator",
   "eks-node-monitoring-agent",
   "eks-pod-identity-agent",
   "elastic_elastic-agent",
