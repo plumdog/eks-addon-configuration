@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for AWS Network Flow Monitor Agent v1.1.3-eksbuild.1",
+  "properties": {
+    "additionalLabels": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional labels that will be applied to every object",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "affinity": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "env": {
+      "additionalProperties": false,
+      "description": "Fields defined here will be fed to the agent as environment variables",
+      "properties": {
+        "CUSTOM_INGESTION_ENDPOINT": {
+          "description": "Custom endpoint URL for the agent to send the reports to, instead of sending to default NFM endpoint https://networkflowmonitorreports.$region.api.aws/publish. Useful for sending reports to self managed OTLP collectors.",
+          "type": "string"
+        },
+        "OPEN_METRICS": {
+          "description": "Enable or disable open metrics. Disabled if not supplied",
+          "enum": [
+            "on",
+            "off"
+          ],
+          "type": "string"
+        },
+        "OPEN_METRICS_ADDRESS": {
+          "description": "IP address for open metrics endpoint. Defaults to 127.0.0.1 if not supplied",
+          "type": "string"
+        },
+        "OPEN_METRICS_PORT": {
+          "description": "Port number for open metrics endpoint. Defaults to 80 if not supplied",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "RUST_LOG": {
+          "description": "Log level for the Rust application https://docs.rs/env_logger/latest/env_logger",
+          "enum": [
+            "off",
+            "trace",
+            "debug",
+            "info",
+            "warn",
+            "error"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "Environment Variables",
+      "type": "object"
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional annotations for daemonset Pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "not": {
+          "type": [
+            "object",
+            "array",
+            "null"
+          ]
+        }
+      },
+      "description": "Additional labels for daemonset Pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "priorityClassName": {
+      "description": "Priority class for the NetworkFlowMonitorAgent Daemonset",
+      "type": "string"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "title": "Resource Limits",
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "title": "Resource Requests",
+          "type": "object"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Root Schema",
+  "type": "object"
+}
