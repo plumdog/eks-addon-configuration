@@ -355,6 +355,12 @@
         "extraEnv": {
           "type": "array"
         },
+        "extraVolumeMounts": {
+          "type": "array"
+        },
+        "extraVolumes": {
+          "type": "array"
+        },
         "init": {
           "$ref": "#/definitions/Init"
         },
