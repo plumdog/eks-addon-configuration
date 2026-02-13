@@ -1,0 +1,57 @@
+{
+  "addonName": "amazon-sagemaker-hyperpod-inference",
+  "type": "inference",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.0.0-eksbuild.1",
+      "architecture": [
+        "amd64"
+      ],
+      "computeTypes": [
+        "hyperpod"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": true,
+      "requiresIamPermissions": true
+    }
+  ],
+  "publisher": "sagemaker",
+  "owner": "aws",
+  "defaultNamespace": "hyperpod-inference-system"
+}
