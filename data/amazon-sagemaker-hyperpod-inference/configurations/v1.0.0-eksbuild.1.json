@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Addon for Amazon SageMaker Hyperpod Inference Operator",
+  "properties": {
+    "alb": {
+      "description": "AWS Load Balancer Controller configuration",
+      "properties": {
+        "affinity": {
+          "description": "Affinity of the ALB pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "enabled": {
+          "default": true,
+          "description": "Whether to enable ALB controller",
+          "type": "boolean"
+        },
+        "nodeSelector": {
+          "description": "Node selector of the ALB pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional annotations to add to the ALB deployment pods",
+          "type": "object"
+        },
+        "podDisruptionBudget": {
+          "additionalProperties": false,
+          "description": "Settings for the PodDisruptionBudget",
+          "enabled": {
+            "default": false,
+            "description": "the option to enable managed PDB",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          },
+          "minAvailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          },
+          "type": "object"
+        },
+        "podLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional labels to add to the ALB deployment pods",
+          "type": "object"
+        },
+        "resources": {
+          "description": "Resource requests/limits of the ALB container",
+          "type": "object"
+        },
+        "serviceAccount": {
+          "properties": {
+            "create": {
+              "default": true,
+              "description": "Whether to create the service account",
+              "type": "boolean"
+            },
+            "roleArn": {
+              "description": "IAM role ARN for ALB controller service account",
+              "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "tolerations": {
+          "additionalProperties": false,
+          "description": "Tolerations for ALB pods",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "description": "The coredns pod topology spread constraints",
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "executionRoleArn": {
+      "description": "ARN of the execution role for the inference operator",
+      "pattern": "^arn:aws:iam::[0-9]{12}:role/SageMakerHyperPodInference.+$",
+      "type": "string"
+    },
+    "hyperpodClusterArn": {
+      "description": "ARN of the HyperPod cluster",
+      "pattern": "^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:cluster/.+$",
+      "type": "string"
+    },
+    "jumpstartGatedModelDownloadRoleArn": {
+      "description": "ARN of the role for JumpStart gated model downloads",
+      "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+      "type": "string"
+    },
+    "keda": {
+      "description": "KEDA configuration",
+      "properties": {
+        "affinity": {
+          "description": "Affinity of the KEDA pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "auth": {
+          "properties": {
+            "aws": {
+              "properties": {
+                "irsa": {
+                  "properties": {
+                    "enabled": {
+                      "default": true,
+                      "description": "Whether to enable IRSA for KEDA",
+                      "type": "boolean"
+                    },
+                    "roleArn": {
+                      "description": "IAM role ARN for KEDA",
+                      "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "enabled": {
+          "default": true,
+          "description": "Whether to enable KEDA",
+          "type": "boolean"
+        },
+        "nodeSelector": {
+          "description": "Node selector of the KEDA pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional annotations to add to the KEDA deployment pods",
+          "type": "object"
+        },
+        "podDisruptionBudget": {
+          "additionalProperties": false,
+          "description": "Settings for the PodDisruptionBudget",
+          "enabled": {
+            "default": false,
+            "description": "the option to enable managed PDB",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          },
+          "minAvailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          },
+          "type": "object"
+        },
+        "podLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional labels to add to the KEDA deployment pods",
+          "type": "object"
+        },
+        "resources": {
+          "description": "Resource requests/limits of the KEDA container",
+          "type": "object"
+        },
+        "tolerations": {
+          "additionalProperties": false,
+          "description": "Tolerations for KEDA pods",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "description": "The coredns pod topology spread constraints",
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "tlsCertificateS3Bucket": {
+      "description": "S3 bucket name for storing TLS certificates",
+      "pattern": "^[a-z0-9][a-z0-9.-]*tls[a-z0-9.-]*[a-z0-9]$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "executionRoleArn",
+    "tlsCertificateS3Bucket"
+  ],
+  "title": "Amazon SageMaker HyperPod Inference Configuration Schema",
+  "type": "object"
+}
