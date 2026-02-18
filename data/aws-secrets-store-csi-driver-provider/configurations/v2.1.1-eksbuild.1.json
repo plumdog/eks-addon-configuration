@@ -18,10 +18,10 @@
       "additionalProperties": false,
       "properties": {
         "limits": {
-          "$ref": "#/$defs/Limits"
+          "$ref": "#/$defs/limits"
         },
         "requests": {
-          "$ref": "#/$defs/Limits"
+          "$ref": "#/$defs/limits"
         }
       },
       "type": "object"
