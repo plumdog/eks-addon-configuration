@@ -1,0 +1,87 @@
+{
+  "$ref": "#/definitions/EKSNodeMonitoringAgent",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DCGMAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "tolerations": {
+          "$ref": "#/definitions/Tolerations"
+        }
+      },
+      "title": "DCGMAgent",
+      "type": "object"
+    },
+    "EKSNodeMonitoringAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "dcgmAgent": {
+          "$ref": "#/definitions/DCGMAgent"
+        },
+        "monitoringAgent": {
+          "$ref": "#/definitions/MonitoringAgent"
+        }
+      },
+      "title": "EKSNodeMonitoringAgent",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "MonitoringAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalArgs": {
+          "default": [],
+          "description": "Additional arguments passed to the eks node monitoring agent pod",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "tolerations": {
+          "$ref": "#/definitions/Tolerations"
+        }
+      },
+      "title": "MonitoringAgent",
+      "type": "object"
+    },
+    "Resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/Limits"
+        },
+        "requests": {
+          "$ref": "#/definitions/Limits"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    },
+    "Tolerations": {
+      "items": {
+        "type": "object"
+      },
+      "title": "Tolerations",
+      "type": "array"
+    }
+  },
+  "description": "Configurable parameters for the eks-node-monitoring-agent"
+}
