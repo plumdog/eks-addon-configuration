@@ -94,7 +94,7 @@ function App() {
                 }
             }
         }
-    }, [searchParams, selectedAddonData]);
+    }, [searchParams, selectedAddonData, setSearchParams]);
 
     const handleAddonSelect = (addonName: string | null) => {
         setSelectedAddonData(null);
