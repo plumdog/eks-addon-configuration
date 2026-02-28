@@ -83,7 +83,6 @@ const getValidator = (schema: AddonVersionConfiguration): { validator: any, stri
 };
 
 // A JSX component that takes a JSONSchema POJO as input and contains a text area input and a "Validate" button. When pressed, the input is validated against the schema and the result, success or error, is displayed below the text area.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const JSONSchemaValidator = ({ schema }: { schema: AddonVersionConfiguration }) => {
     const [input, setInput] = React.useState('');
     const [result, setResult] = React.useState<ValidateResult | null>(null);
