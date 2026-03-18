@@ -3,7 +3,7 @@
   "type": "observability",
   "addonVersions": [
     {
-      "addonVersion": "v1.6.0-eksbuild.1",
+      "addonVersion": "v1.6.1-eksbuild.1",
       "architecture": [
         "amd64",
         "arm64"
