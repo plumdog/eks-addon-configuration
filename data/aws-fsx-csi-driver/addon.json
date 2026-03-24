@@ -10,7 +10,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "auto"
+        "auto",
+        "hybrid"
       ],
       "compatibilities": [
         {
@@ -74,7 +75,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "auto"
+        "auto",
+        "hybrid"
       ],
       "compatibilities": [
         {
@@ -138,7 +140,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "auto"
+        "auto",
+        "hybrid"
       ],
       "compatibilities": [
         {
@@ -202,7 +205,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "auto"
+        "auto",
+        "hybrid"
       ],
       "compatibilities": [
         {
