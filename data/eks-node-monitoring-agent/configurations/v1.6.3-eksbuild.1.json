@@ -1,0 +1,222 @@
+{
+  "$ref": "#/definitions/EKSNodeMonitoringAgent",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DCGMAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "affinity": {
+          "description": "Map of dcgm pod affinities",
+          "type": "object"
+        },
+        "podAnnotations": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Annotations applied to the eks node monitoring agent pod. These annotations are merged with any global pod annotations, with component specific annotations taking precedence in the case of a conflict."
+        },
+        "podLabels": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Labels applied to the eks node monitoring agent pod. These labels are merged with any global pod labels, with component specific labels taking precedence in the case of a conflict."
+        },
+        "resizePolicy": {
+          "$ref": "#/definitions/ResizePolicy"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "tolerations": {
+          "$ref": "#/definitions/Tolerations"
+        }
+      },
+      "title": "DCGMAgent",
+      "type": "object"
+    },
+    "EKSNodeMonitoringAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "dcgmAgent": {
+          "$ref": "#/definitions/DCGMAgent"
+        },
+        "global": {
+          "$ref": "#/definitions/Global"
+        },
+        "nodeAgent": {
+          "$ref": "#/definitions/NodeAgent"
+        }
+      },
+      "title": "EKSNodeMonitoringAgent",
+      "type": "object"
+    },
+    "Global": {
+      "additionalProperties": false,
+      "properties": {
+        "podAnnotations": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Annotations applied to all pods deployed by the eks-node-monitoring-agent chart. These annotations are merged with any component specific pod annotations, with component specific annotations taking precedence in the case of a conflict."
+        },
+        "podLabels": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Labels applied to all pods deployed by the eks-node-monitoring-agent chart. These labels are merged with any component specific pod labels, with component specific labels taking precedence in the case of a conflict."
+        }
+      },
+      "title": "Global",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "MonitorSettings": {
+      "additionalProperties": false,
+      "description": "Per-monitor settings",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Whether this monitor is enabled",
+          "type": "boolean"
+        }
+      },
+      "title": "MonitorSettings",
+      "type": "object"
+    },
+    "NodeAgent": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalArgs": {
+          "default": [],
+          "description": "Additional arguments passed to the eks node monitoring agent pod",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "affinity": {
+          "description": "Map of pod affinities for the eks-node-monitoring-agent",
+          "type": "object"
+        },
+        "monitors": {
+          "additionalProperties": false,
+          "description": "Per-monitor configuration keyed by plugin name",
+          "properties": {
+            "kernel-monitor": {
+              "$ref": "#/definitions/MonitorSettings"
+            },
+            "networking": {
+              "$ref": "#/definitions/MonitorSettings"
+            },
+            "neuron": {
+              "$ref": "#/definitions/MonitorSettings"
+            },
+            "nvidia": {
+              "$ref": "#/definitions/MonitorSettings"
+            },
+            "runtime": {
+              "$ref": "#/definitions/MonitorSettings"
+            },
+            "storage-monitor": {
+              "$ref": "#/definitions/MonitorSettings"
+            }
+          },
+          "type": "object"
+        },
+        "podAnnotations": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Annotations applied to the eks node monitoring agent pod. These annotations are merged with any global pod annotations, with component specific annotations taking precedence in the case of a conflict."
+        },
+        "podLabels": {
+          "$ref": "#/definitions/StringMap",
+          "default": {},
+          "description": "Labels applied to the eks node monitoring agent pod. These labels are merged with any global pod labels, with component specific labels taking precedence in the case of a conflict."
+        },
+        "probePort": {
+          "default": 8002,
+          "description": "Health probe port for the eks node monitoring agent. Used for both the --probe-address arg and the liveness probe.",
+          "type": "integer"
+        },
+        "resizePolicy": {
+          "$ref": "#/definitions/ResizePolicy"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "tolerations": {
+          "$ref": "#/definitions/Tolerations"
+        }
+      },
+      "title": "NodeAgent",
+      "type": "object"
+    },
+    "ResizePolicy": {
+      "default": [],
+      "description": "Container resize policy for in-place pod vertical scaling (requires Kubernetes 1.33+)",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "resourceName": {
+            "enum": [
+              "cpu",
+              "memory"
+            ],
+            "type": "string"
+          },
+          "restartPolicy": {
+            "enum": [
+              "NotRequired",
+              "RestartContainer"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "resourceName",
+          "restartPolicy"
+        ],
+        "type": "object"
+      },
+      "title": "ResizePolicy",
+      "type": "array"
+    },
+    "Resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/Limits"
+        },
+        "requests": {
+          "$ref": "#/definitions/Limits"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    },
+    "StringMap": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value pairs of strings",
+      "title": "StringMap",
+      "type": "object"
+    },
+    "Tolerations": {
+      "items": {
+        "type": "object"
+      },
+      "title": "Tolerations",
+      "type": "array"
+    }
+  },
+  "description": "Configurable parameters for the eks-node-monitoring-agent"
+}
