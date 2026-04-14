@@ -60,7 +60,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "^10.0.0",
     "@eslint-react/eslint-plugin": "^2.13.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.1.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^17.0.0",
     "typescript-eslint": "^8.56.1"
