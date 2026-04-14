@@ -1,6 +1,6 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import reactPlugin from 'eslint-plugin-react';
+import eslintReact from '@eslint-react/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
@@ -41,13 +41,13 @@ export default [
             },
         },
         plugins: {
-            react: reactPlugin,
+            ...eslintReact.configs.recommended.plugins,
             'react-hooks': reactHooks,
         },
         rules: {
             // React recommended rules
-            ...reactPlugin.configs.recommended.rules,
-            ...reactHooks.configs.recommended.rules,
+            ...eslintReact.configs.recommended.rules,
+            ...reactHooks.configs['recommended-latest'].rules,
             
             // Custom rules from original config
             'indent': ['error', 4],
@@ -55,11 +55,11 @@ export default [
             'quotes': ['error', 'single'],
             'semi': ['error', 'always'],
             
-            // React 17+ doesn't need React in scope
-            'react/react-in-jsx-scope': 'off',
+            // Suppress new rules that would require source code changes
+            '@eslint-react/hooks-extra/no-direct-set-state-in-use-effect': 'off',
         },
         settings: {
-            react: {
+            'react-x': {
                 version: 'detect',
             },
         },
