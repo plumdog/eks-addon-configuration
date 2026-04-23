@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters for the aws-efs-csi-driver",
+  "properties": {
+    "controller": {
+      "additionalProperties": false,
+      "properties": {
+        "adaptiveRetryMode": {
+          "default": true,
+          "description": "Control if adaptive retry mode will be used to more heavily client side rate limit EFS API requests",
+          "type": "boolean"
+        },
+        "affinity": {
+          "default": {},
+          "description": "Affinity scheduling rules for the CSI controller service Deployment",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "containerSecurityContext": {
+          "default": {
+            "privileged": true
+          },
+          "description": "securityContext on the controller container",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "deleteAccessPointRootDir": {
+          "description": "For dynamic provisioning, control whether the access point directory is deleted on unmount",
+          "type": "boolean"
+        },
+        "env": {
+          "default": [],
+          "type": "array"
+        },
+        "logLevel": {
+          "description": "The log level of the driver's controller service",
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "The nodeSelector Schema for the CSI controller service Deployment",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": {},
+          "description": "The podAnnotations Schema for the CSI controller service Deployment",
+          "properties": {},
+          "type": "object"
+        },
+        "podLabels": {
+          "default": {},
+          "description": "The podLabels Schema for the CSI controller service Deployment",
+          "properties": {},
+          "type": "object"
+        },
+        "replicaCount": {
+          "description": "The number of replicas for the CSI controller service Deployment",
+          "type": "integer"
+        },
+        "resources": {
+          "default": {},
+          "description": "Resource requests/limits of the controller pod",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "rollingUpdate": {
+          "default": {},
+          "description": "Rolling update configuration for the CSI controller service Deployment strategy",
+          "properties": {},
+          "type": "object"
+        },
+        "timeout": {
+          "default": "15s",
+          "description": "Timeout for Create/DeleteVolume calls to Controller",
+          "type": "string"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "",
+              "operator": "Exists"
+            }
+          ],
+          "items": {},
+          "title": "The tolerations Schema for the CSI controller service Deployment",
+          "type": "array"
+        },
+        "topologySpreadConstraints": {
+          "default": [],
+          "description": "Topology spread constraints for the controller pod",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "volumeMounts": {
+          "default": [],
+          "description": "Add additional volume mounts on the controller",
+          "type": "array"
+        },
+        "volumes": {
+          "default": [],
+          "description": "Add additional volumes to be mounted onto the controller",
+          "type": "array"
+        },
+        "workerThreads": {
+          "default": 100,
+          "description": "Number of concurrent threads controller will handle at once",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "debugLogs": {
+      "default": false,
+      "description": "Set klog verbosity to level 5 and enable debug logging in efs-utils.",
+      "type": "boolean"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "env": {
+          "default": [],
+          "type": "array"
+        },
+        "kubeletPath": {
+          "default": "/var/lib/kubelet",
+          "description": "Kubelet path of the node",
+          "type": "string"
+        },
+        "logLevel": {
+          "description": "The log level of the driver's node service",
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "maxInflightMountCalls": {
+          "default": -1,
+          "description": "New NodePublishVolume operation will be blocked if maximum number of inflight calls is reached. If maxInflightMountCallsOptIn is true, it has to be set to a positive value.",
+          "type": "integer"
+        },
+        "maxInflightMountCallsOptIn": {
+          "default": false,
+          "description": "Opt in to use max inflight mount calls limit.",
+          "type": "boolean"
+        },
+        "nodeSelector": {
+          "default": null,
+          "description": "The nodeSelector Schema for the CSI node service Dameonset",
+          "properties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "default": {
+            "example_node_annotation": "annotation"
+          },
+          "description": "The podAnnotations Schema for the CSI node service Dameonset",
+          "properties": {},
+          "type": "object"
+        },
+        "podLabels": {
+          "default": {},
+          "description": "The podLabels Schema for the CSI node service DaemonSet",
+          "properties": {},
+          "type": "object"
+        },
+        "resources": {
+          "default": {},
+          "description": "Resource requests/limits of the node DaemonSet",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "rollingUpdate": {
+          "default": {},
+          "description": "Rolling update configuration for the CSI node service DaemonSet updateStrategy",
+          "properties": {},
+          "type": "object"
+        },
+        "tolerations": {
+          "default": [
+            {
+              "key": "",
+              "operator": "Exists"
+            }
+          ],
+          "items": {},
+          "title": "The tolerations Schema for the CSI node service Deployment",
+          "type": "array"
+        },
+        "updateStrategy": {
+          "default": {},
+          "description": "Override default strategy (RollingUpdate) to speed up deployment",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "volMetricsOptIn": {
+          "default": false,
+          "description": "Control whether or not to expose CSI volume usage metrics",
+          "type": "boolean"
+        },
+        "volumeAttachLimit": {
+          "default": -1,
+          "description": "Maximum number of volumes that can be attached to a node. If volumeAttachLimitOptIn is true, it has to be set to a positive value.",
+          "type": "integer"
+        },
+        "volumeAttachLimitOptIn": {
+          "default": false,
+          "description": "Opt in to use volume attach limit.",
+          "type": "boolean"
+        },
+        "volumeMounts": {
+          "default": [],
+          "type": "array"
+        },
+        "volumes": {
+          "default": [],
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sidecars": {
+      "additionalProperties": false,
+      "description": "Resource configuration for sidecar containers shared across controller and node pods",
+      "properties": {
+        "csiProvisioner": {
+          "additionalProperties": false,
+          "description": "Configuration for the csi-provisioner sidecar container",
+          "properties": {
+            "resources": {
+              "default": {},
+              "description": "Resource requests/limits for the csi-provisioner sidecar",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "livenessProbe": {
+          "additionalProperties": false,
+          "description": "Configuration for the liveness-probe sidecar container",
+          "properties": {
+            "resources": {
+              "default": {},
+              "description": "Resource requests/limits for the liveness-probe sidecar",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodeDriverRegistrar": {
+          "additionalProperties": false,
+          "description": "Configuration for the csi-node-driver-registrar sidecar container",
+          "properties": {
+            "resources": {
+              "default": {},
+              "description": "Resource requests/limits for the csi-node-driver-registrar sidecar",
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "useFIPS": {
+      "description": "Assert whether or not the driver uses FIPS enabled endpoints",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}
