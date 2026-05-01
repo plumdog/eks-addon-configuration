@@ -1,0 +1,48 @@
+{
+  "addonName": "chainguard_kube-proxy-fips",
+  "type": "networking",
+  "addonVersions": [
+    {
+      "addonVersion": "v0.0.20009020260425-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Chainguard",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-d6hoxvzcw4b6w",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=96ho5gugebqwj6duzgiwntku4"
+  },
+  "defaultNamespace": "kube-system"
+}
