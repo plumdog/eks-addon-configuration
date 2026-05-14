@@ -229,6 +229,13 @@
             "*"
           ],
           "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.30",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -277,6 +284,13 @@
         },
         {
           "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.30",
           "platformVersions": [
             "*"
           ],
@@ -339,7 +353,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
