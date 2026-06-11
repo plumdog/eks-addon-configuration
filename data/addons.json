@@ -18,6 +18,7 @@
   "aws-network-flow-monitoring-agent",
   "aws-privateca-connector-for-kubernetes",
   "aws-secrets-store-csi-driver-provider",
+  "buoyant-enterprise-for-linkerd_buoyant-enterprise-for-linkerd",
   "calyptia_fluent-bit",
   "catalogic-software_cloudcasa",
   "cert-manager",
