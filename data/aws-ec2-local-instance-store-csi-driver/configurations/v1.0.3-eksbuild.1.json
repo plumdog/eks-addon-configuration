@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters of the AWS EC2 Local Instance Store CSI Driver",
+  "properties": {
+    "driver": {
+      "additionalProperties": false,
+      "properties": {
+        "deviceModel": {
+          "default": "Amazon EC2 NVMe Instance Storage",
+          "description": "Expected NVMe device model",
+          "type": "string"
+        },
+        "devicePattern": {
+          "default": "/dev/nvme*n*",
+          "description": "Pattern to match NVMe devices",
+          "type": "string"
+        },
+        "disableNodeLabeling": {
+          "description": "Disable automatic node labeling with NVMe device information",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "metrics": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "description": "Enable metrics collection for the CSI driver",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "properties": {
+            "memory": {
+              "description": "Memory limit for driver pods",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "description": "CPU request for driver pods",
+              "type": "string"
+            },
+            "memory": {
+              "description": "Memory request for driver pods",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "storageClass": {
+      "additionalProperties": false,
+      "properties": {
+        "create": {
+          "description": "Create default storage class",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the storage class",
+          "type": "string"
+        },
+        "reclaimPolicy": {
+          "description": "Reclaim policy for volumes",
+          "enum": [
+            "Delete",
+            "Retain"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
