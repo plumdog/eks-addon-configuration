@@ -10,7 +10,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -32,7 +33,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -54,7 +56,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -76,7 +79,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -98,7 +102,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -127,7 +132,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -156,7 +162,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -185,7 +192,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -214,7 +222,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -243,7 +252,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -272,7 +282,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -301,7 +312,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -337,7 +349,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -373,7 +386,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -409,7 +423,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -445,7 +460,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -481,7 +497,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -517,7 +534,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -553,7 +571,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -589,7 +608,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -625,7 +645,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -661,7 +682,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -697,7 +719,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -740,7 +763,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -783,7 +807,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -826,7 +851,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -869,7 +895,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -912,7 +939,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -955,7 +983,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -998,7 +1027,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1041,7 +1071,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1084,7 +1115,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1127,7 +1159,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1170,7 +1203,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1213,7 +1247,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1256,7 +1291,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1299,7 +1335,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1342,7 +1379,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1385,7 +1423,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1428,7 +1467,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1471,7 +1511,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1514,7 +1555,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1557,7 +1599,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1600,7 +1643,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1643,7 +1687,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1686,7 +1731,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1729,7 +1775,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1772,7 +1819,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1815,7 +1863,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1858,7 +1907,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1901,7 +1951,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1944,7 +1995,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -1987,7 +2039,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2030,7 +2083,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2073,7 +2127,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2116,7 +2171,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2159,7 +2215,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2202,7 +2259,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2245,7 +2303,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2288,7 +2347,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2331,7 +2391,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2374,7 +2435,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2417,7 +2479,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2460,7 +2523,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2503,7 +2567,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2546,7 +2611,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2589,7 +2655,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2632,7 +2699,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2675,7 +2743,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2718,7 +2787,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2761,7 +2831,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2804,7 +2875,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2847,7 +2919,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2890,7 +2963,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2933,7 +3007,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -2976,7 +3051,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3019,7 +3095,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3062,7 +3139,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3105,7 +3183,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3148,7 +3227,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3191,7 +3271,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3234,7 +3315,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3277,7 +3359,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3320,7 +3403,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3363,7 +3447,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3406,7 +3491,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3449,7 +3535,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3492,7 +3579,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3535,7 +3623,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3578,7 +3667,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3621,7 +3711,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3664,7 +3755,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3707,7 +3799,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3750,7 +3843,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3793,7 +3887,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3836,7 +3931,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3879,7 +3975,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3922,7 +4019,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -3965,7 +4063,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4008,7 +4107,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4051,7 +4151,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4094,7 +4195,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4137,7 +4239,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4180,7 +4283,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4223,7 +4327,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4266,7 +4371,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4309,7 +4415,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4352,7 +4459,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4395,7 +4503,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4438,7 +4547,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4481,7 +4591,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4524,7 +4635,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4567,7 +4679,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4610,7 +4723,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4653,7 +4767,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4696,7 +4811,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4739,7 +4855,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4782,7 +4899,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4825,7 +4943,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4868,7 +4987,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4911,7 +5031,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4954,7 +5075,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -4997,7 +5119,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5040,7 +5163,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5083,7 +5207,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5126,7 +5251,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5169,7 +5295,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5212,7 +5339,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5255,7 +5383,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5298,7 +5427,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5341,7 +5471,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5384,7 +5515,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5427,7 +5559,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5470,7 +5603,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5513,7 +5647,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5556,7 +5691,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5599,7 +5735,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5642,7 +5779,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5685,7 +5823,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5728,7 +5867,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5771,7 +5911,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5814,7 +5955,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5857,7 +5999,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5900,7 +6043,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5943,7 +6087,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -5986,7 +6131,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6029,7 +6175,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6072,7 +6219,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6115,7 +6263,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6158,7 +6307,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6201,7 +6351,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6244,7 +6395,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6287,7 +6439,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6330,7 +6483,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6373,7 +6527,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6416,7 +6571,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6459,7 +6615,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6502,7 +6659,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6545,7 +6703,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6588,7 +6747,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6631,7 +6791,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6674,7 +6835,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6717,7 +6879,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6760,7 +6923,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6803,7 +6967,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6846,7 +7011,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6889,7 +7055,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6932,7 +7099,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -6975,7 +7143,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7018,7 +7187,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7061,7 +7231,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7104,7 +7275,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7147,7 +7319,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7190,7 +7363,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7233,7 +7407,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7276,7 +7451,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7319,7 +7495,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7362,7 +7539,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7405,7 +7583,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7448,7 +7627,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7491,7 +7671,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7534,7 +7715,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7577,7 +7759,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7620,7 +7803,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7663,7 +7847,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7706,7 +7891,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7749,7 +7935,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7792,7 +7979,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7835,7 +8023,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7878,7 +8067,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7921,7 +8111,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -7964,7 +8155,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8007,7 +8199,8 @@
       ],
       "computeTypes": [
         "ec2",
-        "hybrid"
+        "hybrid",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8049,7 +8242,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8091,7 +8285,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8133,7 +8328,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8175,7 +8371,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8217,7 +8414,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8252,7 +8450,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8287,7 +8486,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8322,7 +8522,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8357,7 +8558,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8392,7 +8594,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8427,7 +8630,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8462,7 +8666,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8497,7 +8702,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8532,7 +8738,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8567,7 +8774,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8595,7 +8803,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8623,7 +8832,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8658,7 +8868,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8693,7 +8904,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8728,7 +8940,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8763,7 +8976,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8798,7 +9012,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8833,7 +9048,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8868,7 +9084,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8903,7 +9120,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8938,7 +9156,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -8973,7 +9192,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9001,7 +9221,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9036,7 +9257,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9057,7 +9279,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9092,7 +9315,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9127,7 +9351,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9162,7 +9387,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9197,7 +9423,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9232,7 +9459,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9267,7 +9495,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9295,7 +9524,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9330,7 +9560,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9365,7 +9596,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9400,7 +9632,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9435,7 +9668,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9470,7 +9704,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9505,7 +9740,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9540,7 +9776,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9575,7 +9812,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9610,7 +9848,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9645,7 +9884,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9673,7 +9913,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9701,7 +9942,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
@@ -9729,7 +9971,8 @@
         "arm64"
       ],
       "computeTypes": [
-        "ec2"
+        "ec2",
+        "local-cluster"
       ],
       "compatibilities": [
         {
