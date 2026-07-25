@@ -3,7 +3,7 @@
   "type": "ml-operator",
   "addonVersions": [
     {
-      "addonVersion": "v0.1.6-eksbuild.1",
+      "addonVersion": "v0.1.7-eksbuild.1",
       "architecture": [
         "amd64",
         "arm64"
@@ -13,6 +13,13 @@
         "ec2"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
         {
           "clusterVersion": "1.35",
           "platformVersions": [
@@ -47,6 +54,56 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": true
+    },
+    {
+      "addonVersion": "v0.1.6-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "hyperpod",
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         },
         {
           "clusterVersion": "1.30",
