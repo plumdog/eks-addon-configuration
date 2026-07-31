@@ -3,6 +3,29 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.36.0-eksbuild.14",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
       "addonVersion": "v1.36.0-eksbuild.13",
       "architecture": [
         "amd64",
