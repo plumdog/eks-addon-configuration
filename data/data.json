@@ -73044,7 +73044,7 @@
     "type": "inference",
     "addonVersions": [
       {
-        "addonVersion": "v1.3.1-eksbuild.2",
+        "addonVersion": "v1.4.0-eksbuild.1",
         "architecture": [
           "amd64"
         ],
@@ -73100,6 +73100,68 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.3.1-eksbuild.2",
+        "architecture": [
+          "amd64"
+        ],
+        "computeTypes": [
+          "hyperpod"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -75892,6 +75954,262 @@
     "type": "object"
   },
   "./amazon-sagemaker-hyperpod-inference/configurations/v1.3.1-eksbuild.2.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Addon for Amazon SageMaker Hyperpod Inference Operator",
+    "properties": {
+      "alb": {
+        "description": "AWS Load Balancer Controller configuration",
+        "properties": {
+          "affinity": {
+            "description": "Affinity of the ALB pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "enabled": {
+            "default": true,
+            "description": "Whether to enable ALB controller",
+            "type": "boolean"
+          },
+          "nodeSelector": {
+            "description": "Node selector of the ALB pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional annotations to add to the ALB deployment pods",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "additionalProperties": false,
+            "description": "Settings for the PodDisruptionBudget",
+            "enabled": {
+              "default": false,
+              "description": "the option to enable managed PDB",
+              "type": "boolean"
+            },
+            "maxUnavailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "minAvailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional labels to add to the ALB deployment pods",
+            "type": "object"
+          },
+          "resources": {
+            "description": "Resource requests/limits of the ALB container",
+            "type": "object"
+          },
+          "serviceAccount": {
+            "properties": {
+              "create": {
+                "default": true,
+                "description": "Whether to create the service account",
+                "type": "boolean"
+              },
+              "roleArn": {
+                "description": "IAM role ARN for ALB controller service account",
+                "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "tolerations": {
+            "additionalProperties": false,
+            "description": "Tolerations for ALB pods",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "enableCustomServiceAccounts": {
+        "default": false,
+        "description": "Whether to enable custom service account usage in InferenceEndpointConfigs",
+        "type": "boolean"
+      },
+      "executionRoleArn": {
+        "description": "ARN of the execution role for the inference operator",
+        "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "hyperpodClusterArn": {
+        "description": "ARN of the HyperPod cluster",
+        "pattern": "^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:cluster/.+$",
+        "type": "string"
+      },
+      "jumpstartGatedModelDownloadRoleArn": {
+        "description": "ARN of the role for JumpStart gated model downloads",
+        "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "keda": {
+        "description": "KEDA configuration",
+        "properties": {
+          "affinity": {
+            "description": "Affinity of the KEDA pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "auth": {
+            "properties": {
+              "aws": {
+                "properties": {
+                  "irsa": {
+                    "properties": {
+                      "enabled": {
+                        "default": true,
+                        "description": "Whether to enable IRSA for KEDA",
+                        "type": "boolean"
+                      },
+                      "roleArn": {
+                        "description": "IAM role ARN for KEDA",
+                        "pattern": "^arn:aws:iam::[0-9]{12}:role/.+$",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "default": true,
+            "description": "Whether to enable KEDA",
+            "type": "boolean"
+          },
+          "nodeSelector": {
+            "description": "Node selector of the KEDA pod",
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "podAnnotations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional annotations to add to the KEDA deployment pods",
+            "type": "object"
+          },
+          "podDisruptionBudget": {
+            "additionalProperties": false,
+            "description": "Settings for the PodDisruptionBudget",
+            "enabled": {
+              "default": false,
+              "description": "the option to enable managed PDB",
+              "type": "boolean"
+            },
+            "maxUnavailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "minAvailable": {
+              "anyOf": [
+                {
+                  "pattern": ".*%$",
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+            },
+            "type": "object"
+          },
+          "podLabels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional labels to add to the KEDA deployment pods",
+            "type": "object"
+          },
+          "resources": {
+            "description": "Resource requests/limits of the KEDA container",
+            "type": "object"
+          },
+          "tolerations": {
+            "additionalProperties": false,
+            "description": "Tolerations for KEDA pods",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "description": "The coredns pod topology spread constraints",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "tlsCertificateS3Bucket": {
+        "description": "S3 bucket name for storing TLS certificates",
+        "pattern": "^[a-z0-9][a-z0-9.-]*tls[a-z0-9.-]*[a-z0-9]$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "executionRoleArn",
+      "tlsCertificateS3Bucket"
+    ],
+    "title": "Amazon SageMaker HyperPod Inference Configuration Schema",
+    "type": "object"
+  },
+  "./amazon-sagemaker-hyperpod-inference/configurations/v1.4.0-eksbuild.1.json": {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
     "description": "Addon for Amazon SageMaker Hyperpod Inference Operator",
@@ -209954,6 +210272,62 @@
     "type": "storage",
     "addonVersions": [
       {
+        "addonVersion": "v4.0.20001020260421-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v4.0.10000020260618-eksbuild.1",
         "architecture": [
           "amd64",
@@ -210010,7 +210384,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v4.0.20001020260421-eksbuild.1",
+        "addonVersion": "v4.0.10000020260730-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -210024,46 +210398,46 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.34",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.33",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.32",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.31",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": false
+            "defaultVersion": true
           }
         ],
         "requiresConfiguration": false,
-        "requiresIamPermissions": false
+        "requiresIamPermissions": true
       },
       {
         "addonVersion": "v4.0.20001020260428-eksbuild.1",
@@ -210136,42 +210510,42 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.34",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.33",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.32",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.31",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.30",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -210187,6 +210561,12 @@
     "defaultNamespace": "kube-system"
   },
   "./chainguard_aws-efs-csi-driver-fips/configurations/v4.0.10000020260618-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_aws-efs-csi-driver-fips",
+    "type": "object"
+  },
+  "./chainguard_aws-efs-csi-driver-fips/configurations/v4.0.10000020260730-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for chainguard_aws-efs-csi-driver-fips",
@@ -210214,132 +210594,6 @@
     "addonName": "chainguard_aws-vpc-cni-fips",
     "type": "networking",
     "addonVersions": [
-      {
-        "addonVersion": "v1.21.10001020260422-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.21.100000020260722-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
       {
         "addonVersion": "v1.21.10001020260618-eksbuild.1",
         "architecture": [
@@ -210405,6 +210659,132 @@
       },
       {
         "addonVersion": "v1.21.20001020260426-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.21.10001020260422-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.21.100000020260722-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -210573,7 +210953,42 @@
     "type": "networking",
     "addonVersions": [
       {
-        "addonVersion": "v1.46.10000020260618-eksbuild.1",
+        "addonVersion": "v1.0.10000020260730-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.0.100000020260723-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -210643,7 +211058,79 @@
         "requiresIamPermissions": false
       },
       {
-        "addonVersion": "v1.0.100000020260723-eksbuild.1",
+        "addonVersion": "v1.46.10000020260618-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      }
+    ],
+    "publisher": "Chainguard",
+    "owner": "aws-marketplace",
+    "marketplaceInformation": {
+      "productId": "prod-ttshqvnjya5io",
+      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=9aoeqferkhlyd6znmw78x9udi"
+    },
+    "defaultNamespace": "kube-system"
+  },
+  "./chainguard_coredns-fips/configurations/v1.0.100000020260723-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_coredns-fips",
+    "type": "object"
+  },
+  "./chainguard_coredns-fips/configurations/v1.0.10000020260730-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_coredns-fips",
+    "type": "object"
+  },
+  "./chainguard_coredns-fips/configurations/v1.45.20002020260420-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_coredns-fips",
+    "type": "object"
+  },
+  "./chainguard_coredns-fips/configurations/v1.46.10000020260618-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_coredns-fips",
+    "type": "object"
+  },
+  "./chainguard_kube-proxy-fips/addon.json": {
+    "addonName": "chainguard_kube-proxy-fips",
+    "type": "networking",
+    "addonVersions": [
+      {
+        "addonVersion": "v0.0.10000020260729-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -210676,38 +211163,42 @@
         ],
         "requiresConfiguration": false,
         "requiresIamPermissions": false
-      }
-    ],
-    "publisher": "Chainguard",
-    "owner": "aws-marketplace",
-    "marketplaceInformation": {
-      "productId": "prod-ttshqvnjya5io",
-      "productUrl": "https://aws.amazon.com/marketplace/pp?sku=9aoeqferkhlyd6znmw78x9udi"
-    },
-    "defaultNamespace": "kube-system"
-  },
-  "./chainguard_coredns-fips/configurations/v1.0.100000020260723-eksbuild.1.json": {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": false,
-    "description": "No configuration support for chainguard_coredns-fips",
-    "type": "object"
-  },
-  "./chainguard_coredns-fips/configurations/v1.45.20002020260420-eksbuild.1.json": {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": false,
-    "description": "No configuration support for chainguard_coredns-fips",
-    "type": "object"
-  },
-  "./chainguard_coredns-fips/configurations/v1.46.10000020260618-eksbuild.1.json": {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": false,
-    "description": "No configuration support for chainguard_coredns-fips",
-    "type": "object"
-  },
-  "./chainguard_kube-proxy-fips/addon.json": {
-    "addonName": "chainguard_kube-proxy-fips",
-    "type": "networking",
-    "addonVersions": [
+      },
+      {
+        "addonVersion": "v0.0.10000020260618-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
       {
         "addonVersion": "v0.0.10009020260423-eksbuild.1",
         "architecture": [
@@ -210773,76 +211264,6 @@
               "*"
             ],
             "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260618-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260729-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
           }
         ],
         "requiresConfiguration": false,
@@ -387553,7 +387974,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v0.9.0-eksbuild.4",
+        "addonVersion": "v0.9.0-eksbuild.5",
         "architecture": [
           "amd64",
           "arm64"
@@ -387585,6 +388006,44 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.9.0-eksbuild.4",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "hybrid",
+          "auto",
+          "fargate"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -396021,6 +396480,235 @@
     },
     "type": "object"
   },
+  "./metrics-server/configurations/v0.9.0-eksbuild.5.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "definitions": {
+      "limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "limits",
+        "type": "object"
+      },
+      "resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/limits"
+          }
+        },
+        "title": "resources",
+        "type": "object"
+      }
+    },
+    "description": "Configurable properties for metrics-server",
+    "properties": {
+      "addonResizer": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": false,
+            "description": "Whether or not to enable the addon-resizer",
+            "type": "boolean"
+          },
+          "resources": {
+            "$ref": "#/definitions/resources",
+            "description": "Resource requests/limits of the addon resizer container"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "type": "object"
+      },
+      "affinity": {
+        "default": {
+          "nodeAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [
+                {
+                  "matchExpressions": [
+                    {
+                      "key": "kubernetes.io/os",
+                      "operator": "In",
+                      "values": [
+                        "linux"
+                      ]
+                    },
+                    {
+                      "key": "kubernetes.io/arch",
+                      "operator": "In",
+                      "values": [
+                        "amd64",
+                        "arm64"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "podAntiAffinity": {
+            "preferredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "podAffinityTerm": {
+                  "labelSelector": {
+                    "matchExpressions": [
+                      {
+                        "key": "app.kubernetes.io/name",
+                        "operator": "In",
+                        "values": [
+                          "metrics-server"
+                        ]
+                      }
+                    ]
+                  },
+                  "topologyKey": "kubernetes.io/hostname"
+                },
+                "weight": 100
+              }
+            ]
+          }
+        },
+        "description": "Affinity of the metrics-server pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "containerPort": {
+        "default": 10251,
+        "description": "Port number of metrics-server",
+        "type": "integer"
+      },
+      "hostNetwork": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": false,
+            "description": "Whether or not metrics-server should run in host network mode",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "nodeSelector": {
+        "description": "Node selector of the metrics-server pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podAnnotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional annotations to add to the metrics-server deployment pods",
+        "type": "object"
+      },
+      "podDisruptionBudget": {
+        "additionalProperties": false,
+        "description": "Settings for the PodDisruptionBudget",
+        "properties": {
+          "enabled": {
+            "default": true,
+            "description": "the option to enable managed PDB",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "default": 1,
+            "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          },
+          "minAvailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "description": "minAvailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          }
+        },
+        "type": "object"
+      },
+      "podLabels": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional labels to add to the metrics-server deployment pods",
+        "type": "object"
+      },
+      "priorityClassName": {
+        "default": "system-cluster-critical",
+        "description": "Priority class name of the metrics-server pod",
+        "type": "string"
+      },
+      "replicas": {
+        "default": 2,
+        "description": "Number of replicas in the metrics-server deployment",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "resources": {
+        "$ref": "#/definitions/resources",
+        "description": "Resource requests/limits of the metrics-server container"
+      },
+      "tolerations": {
+        "additionalProperties": false,
+        "default": [
+          {
+            "key": "CriticalAddonsOnly",
+            "operator": "Exists"
+          }
+        ],
+        "description": "Tolerations of the metrics-server pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "topologySpreadConstraints": {
+        "default": [
+          {
+            "labelSelector": {
+              "matchLabels": {
+                "app.kubernetes.io/instance": "metrics-server",
+                "app.kubernetes.io/name": "metrics-server"
+              }
+            },
+            "maxSkew": 1,
+            "topologyKey": "topology.kubernetes.io/zone",
+            "whenUnsatisfiable": "ScheduleAnyway"
+          }
+        ],
+        "description": "The metrics-server pod topology spread constraints",
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
   "./netapp_trident-operator/addon.json": {
     "addonName": "netapp_trident-operator",
     "type": "storage",
@@ -397731,7 +398419,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.12.1-eksbuild.1",
+        "addonVersion": "v1.12.1-eksbuild.2",
         "architecture": [
           "amd64",
           "arm64"
@@ -397790,6 +398478,71 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.12.1-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "auto",
+          "ec2",
+          "hybrid"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -403302,6 +404055,211 @@
     "type": "object"
   },
   "./prometheus-node-exporter/configurations/v1.12.1-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "definitions": {
+      "limits": {
+        "additionalProperties": false,
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "title": "limits",
+        "type": "object"
+      },
+      "resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/limits"
+          },
+          "requests": {
+            "$ref": "#/definitions/limits"
+          }
+        },
+        "title": "resources",
+        "type": "object"
+      }
+    },
+    "description": "Configurable properties for prometheus-node-exporter",
+    "properties": {
+      "affinity": {
+        "default": {
+          "nodeAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [
+                {
+                  "matchExpressions": [
+                    {
+                      "key": "kubernetes.io/os",
+                      "operator": "In",
+                      "values": [
+                        "linux"
+                      ]
+                    },
+                    {
+                      "key": "kubernetes.io/arch",
+                      "operator": "In",
+                      "values": [
+                        "amd64",
+                        "arm64"
+                      ]
+                    },
+                    {
+                      "key": "eks.amazonaws.com/compute-type",
+                      "operator": "NotIn",
+                      "values": [
+                        "fargate",
+                        "hybrid"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "description": "Affinity of the prometheus-node-exporter pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "extraArgs": {
+        "additionalProperties": false,
+        "description": "Extra arguments to pass into the prometheus-node-exporter command",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "extraVolumeMounts": {
+        "description": "Extra volume mounts to add to the prometheus-node-exporter container",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "extraVolumes": {
+        "description": "Extra volumes to add to the prometheus-node-exporter pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "kubeRBACProxy": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "default": false,
+            "description": "Whether or not to enable the kubeRBACProxy",
+            "type": "boolean"
+          },
+          "extraArgs": {
+            "description": "Extra arguments to pass into the kubeRBACProxy command",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "description": "Extra volume mounts to add to the kubeRBACProxy",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "resources": {
+            "$ref": "#/definitions/resources",
+            "description": "Resource requests/limits of the kubeRBACProxy"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "type": "object"
+      },
+      "networkPolicy": {
+        "description": "Network policy for prometheus-node-exporter",
+        "type": "object"
+      },
+      "nodeSelector": {
+        "description": "Node selector of the prometheus-node-exporter pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podAnnotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional annotations to add to the prometheus-node-exporter deployment pods",
+        "type": "object"
+      },
+      "podLabels": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional labels to add to the prometheus-node-exporter deployment pods",
+        "type": "object"
+      },
+      "priorityClassName": {
+        "default": "system-node-critical",
+        "description": "Name of priority class for prometheus-node-exporter pod",
+        "type": "string"
+      },
+      "prometheus": {
+        "properties": {
+          "monitor": {
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "Enable ServiceMonitor for prometheus-node-exporter service",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "podMonitor": {
+            "properties": {
+              "enabled": {
+                "default": false,
+                "description": "Enable PodMonitor for prometheus-node-exporter pods",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "resources": {
+        "$ref": "#/definitions/resources",
+        "description": "Resource requests/limits of the prometheus-node-exporter container"
+      },
+      "tolerations": {
+        "additionalProperties": false,
+        "default": [
+          {
+            "effect": "NoSchedule",
+            "operator": "Exists"
+          }
+        ],
+        "description": "Tolerations of the prometheus-node-exporter pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./prometheus-node-exporter/configurations/v1.12.1-eksbuild.2.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "definitions": {
@@ -432363,7 +433321,7 @@
     "type": "monitoring",
     "addonVersions": [
       {
-        "addonVersion": "v0.155.0-eksbuild.1",
+        "addonVersion": "v0.157.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -432372,6 +433330,13 @@
           "ec2"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -432434,6 +433399,83 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.155.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.28",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.27",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": true,
@@ -459258,6 +460300,2175 @@
           },
           "token": {
             "description": "Splunk Platform HEC Token",
+            "type": "string"
+          },
+          "tracesEnabled": {
+            "description": "Send Traces to Splunk Platform",
+            "type": "boolean"
+          },
+          "tracesIndex": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "terminationGracePeriodSeconds": {
+        "type": "integer"
+      },
+      "tolerations": {
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "title": "Values",
+    "type": "object"
+  },
+  "./splunk_splunk-otel-collector-chart/configurations/v0.157.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "anyOf": [
+          {
+            "properties": {
+              "splunkPlatform": {
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          {
+            "properties": {
+              "splunkObservability": {
+                "properties": {
+                  "realm": {
+                    "minLength": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          {
+            "properties": {
+              "splunkPlatform": {
+                "properties": {
+                  "logsEnabled": {
+                    "const": true
+                  },
+                  "otlpIngest": {
+                    "properties": {
+                      "enabled": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "logsEnabled",
+                  "otlpIngest"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "$comment": "clusterName is optional for distributions that auto-detect it (gke, eks, eks/auto-mode, openshift). eks/fargate cannot auto-detect so clusterName is required.",
+        "else": {
+          "$comment": "The clusterName is required if the distribution doesn't start with eks, gke, or match openshift.",
+          "properties": {
+            "clusterName": {
+              "minLength": 1
+            }
+          }
+        },
+        "if": {
+          "allOf": [
+            {
+              "properties": {
+                "distribution": {
+                  "pattern": "^(gke|eks|openshift).*"
+                }
+              },
+              "required": [
+                "distribution"
+              ]
+            },
+            {
+              "not": {
+                "properties": {
+                  "distribution": {
+                    "const": "eks/fargate"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "then": {
+          "properties": {
+            "clusterName": {
+              "minLength": 0
+            }
+          }
+        }
+      },
+      {
+        "$comment": "Amazon EKS Fargate supports Linux Pods only.",
+        "if": {
+          "properties": {
+            "distribution": {
+              "const": "eks/fargate"
+            }
+          },
+          "required": [
+            "distribution"
+          ]
+        },
+        "then": {
+          "properties": {
+            "isWindows": {
+              "const": false
+            }
+          }
+        }
+      },
+      {
+        "$comment": "mountSplunkSecretAsFile is not currently supported on GKE Autopilot.",
+        "if": {
+          "properties": {
+            "distribution": {
+              "const": "gke/autopilot"
+            }
+          },
+          "required": [
+            "distribution"
+          ]
+        },
+        "then": {
+          "properties": {
+            "featureGates": {
+              "properties": {
+                "mountSplunkSecretAsFile": {
+                  "const": false
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if k8s secret resource created by the chart (default behavior)",
+          "properties": {
+            "secret": {
+              "properties": {
+                "create": {
+                  "const": true
+                }
+              }
+            }
+          }
+        },
+        "then": {
+          "$comment": "then require tokens to be provided for every enabled destination",
+          "properties": {
+            "splunkObservability": {
+              "if": {
+                "properties": {
+                  "realm": {
+                    "minLength": 1
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "accessToken": {
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "splunkPlatform": {
+              "if": {
+                "allOf": [
+                  {
+                    "properties": {
+                      "endpoint": {
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "metricsEnabled": {
+                            "const": true
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "tracesEnabled": {
+                            "const": true
+                          }
+                        }
+                      },
+                      {
+                        "allOf": [
+                          {
+                            "properties": {
+                              "logsEnabled": {
+                                "const": true
+                              }
+                            }
+                          },
+                          {
+                            "not": {
+                              "properties": {
+                                "otlpIngest": {
+                                  "properties": {
+                                    "enabled": {
+                                      "const": true
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "properties": {
+                  "token": {
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if OTLP ingest for platform logs is enabled, require platform logs",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "enabled": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "logsEnabled": {
+                  "const": true
+                }
+              },
+              "required": [
+                "logsEnabled"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if OTLP ingest for platform logs is enabled, require OTLP endpoint",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "logsEnabled": {
+                  "const": true
+                },
+                "otlpIngest": {
+                  "properties": {
+                    "enabled": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "index": {
+                  "minLength": 1
+                },
+                "otlpIngest": {
+                  "properties": {
+                    "endpoint": {
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "endpoint"
+                  ]
+                }
+              },
+              "required": [
+                "index",
+                "otlpIngest"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "OTLP insecure disables TLS, so insecureSkipVerify cannot also be true",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "insecure": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "insecure"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "insecureSkipVerify": {
+                      "const": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "OTLP gRPC exporter endpoints must be host:port without a URL scheme",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "enabled": {
+                      "const": true
+                    },
+                    "protocol": {
+                      "const": "grpc"
+                    }
+                  },
+                  "required": [
+                    "enabled",
+                    "protocol"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "endpoint": {
+                      "pattern": "^[^\\s/]+:[0-9]+$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "OTLP HTTP exporter endpoints must include an http or https scheme",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "enabled": {
+                      "const": true
+                    },
+                    "protocol": {
+                      "const": "http"
+                    }
+                  },
+                  "required": [
+                    "enabled",
+                    "protocol"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "endpoint": {
+                      "pattern": "^https?://[^\\s/]+(/.*)?$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if OTLP client certificate is provided, require its private key",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "clientCert": {
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "clientCert"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "clientKey": {
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "clientKey"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if OTLP client private key is provided, require its certificate",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "clientKey": {
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "clientKey"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "otlpIngest"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "otlpIngest": {
+                  "properties": {
+                    "clientCert": {
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "clientCert"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if splunkPlatform.metricsEnabled is true",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "metricsEnabled": {
+                  "const": true
+                }
+              },
+              "required": [
+                "metricsEnabled"
+              ]
+            }
+          },
+          "required": [
+            "splunkPlatform"
+          ]
+        },
+        "then": {
+          "$comment": "then splunkPlatform.endpoint and splunkPlatform.metricsIndex must be provided",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "endpoint": {
+                  "minLength": 1
+                },
+                "metricsIndex": {
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "endpoint",
+                "metricsIndex"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if splunkPlatform.tracesEnabled is true",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "tracesEnabled": {
+                  "const": true
+                }
+              },
+              "required": [
+                "tracesEnabled"
+              ]
+            }
+          },
+          "required": [
+            "splunkPlatform"
+          ]
+        },
+        "then": {
+          "$comment": "then splunkPlatform.endpoint must be provided",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "endpoint": {
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "endpoint"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "$comment": "if splunkPlatform endpoint is provided",
+          "properties": {
+            "splunkPlatform": {
+              "properties": {
+                "endpoint": {
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "then": {
+          "$comment": "then splunkPlatform.index must be provided only when logs are sent via HEC",
+          "properties": {
+            "splunkPlatform": {
+              "if": {
+                "allOf": [
+                  {
+                    "properties": {
+                      "logsEnabled": {
+                        "const": true
+                      }
+                    }
+                  },
+                  {
+                    "not": {
+                      "properties": {
+                        "otlpIngest": {
+                          "properties": {
+                            "enabled": {
+                              "const": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "then": {
+                "properties": {
+                  "index": {
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "affinity": {
+        "description": "Defines node affinity to restrict deployment of the o11y collector daemonset.",
+        "type": "object"
+      },
+      "agent": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector agent configuration.",
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "controlPlaneEnabled": {
+            "deprecated": true,
+            "type": "boolean"
+          },
+          "controlPlaneMetrics": {
+            "additionalProperties": false,
+            "properties": {
+              "apiserver": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "controllerManager": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "coredns": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "etcd": {
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "$comment": "if secret.create is true, require clientCert and clientKey",
+                      "properties": {
+                        "secret": {
+                          "properties": {
+                            "create": {
+                              "const": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "secret": {
+                          "properties": {
+                            "clientCert": {
+                              "minLength": 1
+                            },
+                            "clientKey": {
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "port": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "secret": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "annotations": {
+                        "type": "object"
+                      },
+                      "caFile": {
+                        "type": "string"
+                      },
+                      "clientCert": {
+                        "type": "string"
+                      },
+                      "clientKey": {
+                        "type": "string"
+                      },
+                      "create": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "skipVerify": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "proxy": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "scheduler": {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
+              "scrapeInterval": {
+                "description": "Scrape interval for control plane Prometheus receivers (Prometheus duration, e.g. 10s, 1m). Also applies to the EKS apiserver receiver in the cluster receiver.",
+                "pattern": "^[0-9]+(ms|s|m|h)$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "discovery": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "properties": {
+                "additionalProperties": false,
+                "properties": {
+                  "extensions": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "receivers": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "hostNetwork": {
+            "description": "Host network allows container to use networking stack of the host machine",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "podSecurityContext": {
+            "description": "Pod security context applied to the agent. When mounting group-readable Splunk Secret files on Linux, set fsGroup here to override the chart default. On OpenShift, use an fsGroup allowed by the SCC if the chart-created SCC is disabled or overridden.",
+            "type": "object"
+          },
+          "ports": {
+            "patternProperties": {
+              ".*": {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "type": "integer"
+                  },
+                  "enabled_for": {
+                    "items": {
+                      "enum": [
+                        "traces",
+                        "metrics",
+                        "logs",
+                        "profiling"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "hostPort": {
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "type": "object"
+          },
+          "service": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "description": "Annotations for the agent service.",
+                "type": "object"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "type": {
+                "description": "Service type for the agent service. Defaults to ClusterIP.",
+                "enum": [
+                  "ClusterIP",
+                  "NodePort",
+                  "LoadBalancer",
+                  "ExternalName"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "skipInitContainers": {
+            "description": "Skip init containers",
+            "type": "boolean"
+          },
+          "tokenPassthrough": {
+            "description": "Enable passthrough of the client's authentication token for Splunk Observability and Splunk Platform backends and OpAMP.",
+            "type": "boolean"
+          },
+          "updateStrategy": {
+            "enum": [
+              "OnDelete",
+              "RollingUpdate"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "autodetect": {
+        "additionalProperties": false,
+        "description": "Automatic detection of additional metric sources.",
+        "properties": {
+          "controlPlane": {
+            "deprecated": true,
+            "type": "boolean"
+          },
+          "istio": {
+            "type": "boolean"
+          },
+          "prometheus": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "cloudProvider": {
+        "description": "Cloud provider where the collector is running",
+        "enum": [
+          "aws",
+          "gcp",
+          "azure",
+          " ",
+          ""
+        ],
+        "type": "string"
+      },
+      "clusterName": {
+        "description": "Cluster name that will be used as metadata attributes for all telemetry data",
+        "type": "string"
+      },
+      "clusterReceiver": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector cluster receiver configuration.",
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "containerSecurityContext": {
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "eventsEnabled": {
+            "deprecated": true,
+            "description": "[DEPRECATED] Use k8sObjects instead.",
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "hostNetwork": {
+            "description": "Host network allows container to use networking stack of the host machine",
+            "optional": true,
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "k8sEventsEnabled": {
+            "deprecated": true,
+            "description": "[DEPRECATED] Use eventsEnabled instead.",
+            "type": "boolean"
+          },
+          "k8sObjects": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "podSecurityContext": {
+            "description": "Pod security context applied to the cluster receiver. When mounting group-readable Splunk Secret files on Linux, set fsGroup here to override the chart default. On OpenShift, use an fsGroup allowed by the SCC if the chart-created SCC is disabled or overridden.",
+            "type": "object"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "description": "[DEPRECATED] Use podSecurityContext instead.",
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "integer"
+          },
+          "tolerations": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "distribution": {
+        "$comment": "Please ensure clusterName is set to the proper required/optional value when modifying this list",
+        "description": "Kubernetes distribution where the collector is running",
+        "enum": [
+          "eks",
+          "eks/auto-mode",
+          "eks/fargate",
+          "gke",
+          "gke/autopilot",
+          "aks",
+          "openshift",
+          " ",
+          ""
+        ],
+        "type": "string"
+      },
+      "environment": {
+        "description": "Parameter that will be added to all the telemetry data (traces/logs/metrics) as an attribute.",
+        "type": "string"
+      },
+      "extraAttributes": {
+        "additionalProperties": false,
+        "description": "Additional metadata that will be added to all the telemetry as extra attributes.",
+        "properties": {
+          "custom": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "fromAnnotations": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "fromLabels": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "featureGates": {
+        "additionalProperties": true,
+        "description": "Helm Chart Feature Gates.",
+        "type": "object"
+      },
+      "fullnameOverride": {
+        "description": "Override fully qualified app name.",
+        "type": "string"
+      },
+      "gateway": {
+        "additionalProperties": false,
+        "description": "Splunk OpenTelemetry Collector gateway workload configuration.",
+        "properties": {
+          "affinity": {
+            "type": "object"
+          },
+          "annotations": {
+            "type": "object"
+          },
+          "config": {
+            "type": "object"
+          },
+          "containerSecurityContext": {
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraEnvs": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumeMounts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "extraVolumes": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "featureGates": {
+            "type": "string"
+          },
+          "headlessService": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "type": "object"
+              },
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "deployment",
+              "statefulset"
+            ],
+            "type": "string"
+          },
+          "nodeSelector": {
+            "type": "object"
+          },
+          "podAnnotations": {
+            "type": "object"
+          },
+          "podLabels": {
+            "type": "object"
+          },
+          "podSecurityContext": {
+            "description": "Pod security context applied to the gateway. When mounting group-readable Splunk Secret files on Linux, set fsGroup here to override the chart default. On OpenShift, use an fsGroup allowed by the SCC if the chart-created SCC is disabled or overridden.",
+            "type": "object"
+          },
+          "ports": {
+            "patternProperties": {
+              ".*": {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "type": "integer"
+                  },
+                  "enabled_for": {
+                    "items": {
+                      "enum": [
+                        "traces",
+                        "metrics",
+                        "logs",
+                        "profiling"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "hostPort": {
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "priorityClassName": {
+            "type": "string"
+          },
+          "replicaCount": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "resources": {
+            "additionalProperties": false,
+            "properties": {
+              "limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "requests": {
+                "additionalProperties": false,
+                "properties": {
+                  "cpu": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ]
+                  },
+                  "memory": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "securityContext": {
+            "description": "[DEPRECATED] Use podSecurityContext instead.",
+            "type": "object"
+          },
+          "service": {
+            "additionalProperties": false,
+            "properties": {
+              "annotations": {
+                "description": "Annotations for the gateway service.",
+                "type": "object"
+              },
+              "trafficDistribution": {
+                "enum": [
+                  "",
+                  "PreferClose",
+                  "PreferSameZone",
+                  "PreferSameNode"
+                ],
+                "type": "string"
+              },
+              "type": {
+                "description": "Service type for the gateway service. Defaults to ClusterIP.",
+                "enum": [
+                  "ClusterIP",
+                  "NodePort",
+                  "LoadBalancer",
+                  "ExternalName"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "statefulsetSpec": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "integer"
+          },
+          "tokenPassthrough": {
+            "description": "Enable passthrough of the client's authentication token for Splunk Observability and Splunk Platform backends and OpAMP.",
+            "type": "boolean"
+          },
+          "tolerations": {
+            "type": "array"
+          },
+          "topologySpreadConstraints": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "global": {
+        "type": "object"
+      },
+      "image": {
+        "additionalProperties": false,
+        "description": "Docker image configuration.",
+        "properties": {
+          "imagePullSecrets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "initPatchLogDirs": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "otelcol": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "validateSecret": {
+            "additionalProperties": false,
+            "properties": {
+              "pullPolicy": {
+                "enum": [
+                  "IfNotPresent",
+                  "Always",
+                  "Never"
+                ],
+                "type": "string"
+              },
+              "repository": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "isWindows": {
+        "description": "Apply for k8s cluster with windows worker node.",
+        "type": "boolean"
+      },
+      "k8sVersion": {
+        "description": "Required for EKS Add-on compatibility. Not used by the chart.",
+        "type": "string"
+      },
+      "livenessProbe": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "httpGet"
+              ]
+            },
+            {
+              "required": [
+                "exec"
+              ]
+            },
+            {
+              "required": [
+                "tcpSocket"
+              ]
+            },
+            {
+              "required": [
+                "grpc"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "failureThreshold": {
+            "type": "integer"
+          },
+          "initialDelaySeconds": {
+            "type": "integer"
+          },
+          "periodSeconds": {
+            "type": "integer"
+          },
+          "successThreshold": {
+            "type": "integer"
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "integer"
+          },
+          "timeoutSeconds": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "logsCollection": {
+        "additionalProperties": false,
+        "description": "Native OpenTelemetry logs collection configuration.",
+        "properties": {
+          "checkpointPath": {
+            "type": "string"
+          },
+          "containers": {
+            "additionalProperties": false,
+            "properties": {
+              "containerRuntime": {
+                "enum": [
+                  "",
+                  "docker",
+                  "containerd",
+                  "crio"
+                ],
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "excludeAgentLogs": {
+                "type": "boolean"
+              },
+              "excludePaths": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "extraOperators": {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "maxRecombineLogSize": {
+                "type": "integer"
+              },
+              "multilineConfigs": {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "useSplunkIncludeAnnotation": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "extraFileLogs": {
+            "type": "object"
+          },
+          "journald": {
+            "additionalProperties": false,
+            "description": "Configuration to collect journald logs",
+            "properties": {
+              "directory": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "index": {
+                "type": "string"
+              },
+              "journalctl_path": {
+                "type": "string"
+              },
+              "mnts": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "root_path": {
+                "type": "string"
+              },
+              "units": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": [
+                        "string",
+                        "integer"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "useHostJournalctl": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "logsEngine": {
+        "description": "Logs collection engine (deprecated, only otel is supported)",
+        "enum": [
+          "otel"
+        ],
+        "type": "string"
+      },
+      "nameOverride": {
+        "description": "Override name of the chart used in Kubernetes object names.",
+        "type": "string"
+      },
+      "namespaceOverride": {
+        "description": "Override the deployment namespace of chart resources; default namespace is .Release.Namespace",
+        "type": "string"
+      },
+      "nodeSelector": {
+        "type": "object"
+      },
+      "obi": {
+        "additionalProperties": true,
+        "description": "OpenTelemetry eBPF Instrumentation configuration. A subchart that is used to install the eBPF instrumentation, see https://github.com/open-telemetry/opentelemetry-helm-charts/blob/main/charts/opentelemetry-ebpf-instrumentation/values.schema.json for more info.",
+        "type": "object"
+      },
+      "opentelemetry-ebpf-instrumentation": {
+        "additionalProperties": true,
+        "description": "OpenTelemetry eBPF Instrumentation configuration. Prefer using the 'obi' alias for new installations. This field is provided for compatibility with the original subchart name, see https://github.com/open-telemetry/opentelemetry-helm-charts/blob/main/charts/opentelemetry-ebpf-instrumentation/values.schema.json for more info.",
+        "type": "object"
+      },
+      "opentelemetry-operator-crds": {
+        "description": "Configuration for opentelemetry-operator-crds. Prefer using the 'operatorcrds' alias for new installations. Deploys Operator related CRDs from https://github.com/open-telemetry/opentelemetry-operator/tree/main/config/crd via a Helm subchart and using the chart crds/ directory.",
+        "properties": {
+          "install": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "podDisruptionBudget": {
+        "additionalProperties": false,
+        "description": "Limits number of pods may be unavailable due to voluntary disruptions.",
+        "properties": {
+          "maxUnavailable": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          },
+          "minAvailable": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "priorityClassName": {
+        "type": "string"
+      },
+      "rbac": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          },
+          "customRules": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "readinessProbe": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "httpGet"
+              ]
+            },
+            {
+              "required": [
+                "exec"
+              ]
+            },
+            {
+              "required": [
+                "tcpSocket"
+              ]
+            },
+            {
+              "required": [
+                "grpc"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "failureThreshold": {
+            "type": "integer"
+          },
+          "initialDelaySeconds": {
+            "type": "integer"
+          },
+          "periodSeconds": {
+            "type": "integer"
+          },
+          "successThreshold": {
+            "type": "integer"
+          },
+          "timeoutSeconds": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "secret": {
+        "additionalProperties": false,
+        "description": "Kubernetes secret resource configuration",
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "create": {
+            "type": "boolean"
+          },
+          "defaultMode": {
+            "description": "File mode for files mounted from the Splunk secret.",
+            "oneOf": [
+              {
+                "maximum": 511,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "pattern": "^0[0-7]{3}$",
+                "type": "string"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "validateSecret": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "securityContextConstraints": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "securityContextConstraintsOverwrite": {
+        "description": "Openshift SecurityContextConstraints can be overridden in this field.",
+        "type": "object"
+      },
+      "service": {
+        "additionalProperties": false,
+        "deprecated": true,
+        "description": "[DEPRECATED] OpenTelemetry collector service configuration. Please use agent.service and gateway.service instead.",
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "trafficDistribution": {
+            "enum": [
+              "",
+              "PreferClose",
+              "PreferSameZone",
+              "PreferSameNode"
+            ],
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "ClusterIP",
+              "NodePort",
+              "LoadBalancer",
+              "ExternalName"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "serviceAccount": {
+        "additionalProperties": false,
+        "properties": {
+          "annotations": {
+            "type": "object"
+          },
+          "create": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "splunkObservability": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "properties": {
+              "metricsEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "tracesEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "profilingEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "secureAppEnabled": {
+                "const": true
+              }
+            }
+          }
+        ],
+        "description": "Splunk Observability configuration",
+        "properties": {
+          "accessToken": {
+            "description": "Splunk Observability Access Token. The token is stored in a Kubernetes Secret. When featureGates.mountSplunkSecretAsFile is enabled, the token is mounted as a file in the collector pods.",
+            "type": "string"
+          },
+          "apiUrl": {
+            "type": "string"
+          },
+          "infrastructureMonitoringEventsEnabled": {
+            "description": "Send Kubernetes events to Splunk Observability Infrastructure Monitoring",
+            "type": "boolean"
+          },
+          "ingestUrl": {
+            "type": "string"
+          },
+          "metricsEnabled": {
+            "description": "Send Metrics to Splunk Observability",
+            "type": "boolean"
+          },
+          "profilingEnabled": {
+            "description": "Whether profiling data is enabled for Splunk Observability",
+            "type": "boolean"
+          },
+          "realm": {
+            "description": "Splunk Observability Realm",
+            "example": "us0",
+            "type": "string"
+          },
+          "secureAppEnabled": {
+            "description": "Whether Secure Application features are enabled for Splunk Observability",
+            "type": "boolean"
+          },
+          "tracesEnabled": {
+            "description": "Send Traces to Splunk Observability",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "splunkPlatform": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "properties": {
+              "logsEnabled": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "metricsEnabled": {
+                "const": true
+              }
+            }
+          }
+        ],
+        "description": "Splunk Cloud / Splunk Enterprise configuration",
+        "properties": {
+          "caFile": {
+            "type": "string"
+          },
+          "clientCert": {
+            "type": "string"
+          },
+          "clientKey": {
+            "type": "string"
+          },
+          "disableCompression": {
+            "type": "boolean"
+          },
+          "endpoint": {
+            "description": "Splunk Platform Endpoint",
+            "example": "http://localhost:8088/services/collector",
+            "type": "string"
+          },
+          "fieldNameConvention": {
+            "additionalProperties": false,
+            "properties": {
+              "keepOtelConvention": {
+                "type": "boolean"
+              },
+              "renameFieldsSck": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "fsyncEnabled": {
+            "type": "boolean"
+          },
+          "idleConnTimeout": {
+            "type": "string"
+          },
+          "index": {
+            "description": "Name of Splunk index targeted.",
+            "type": "string"
+          },
+          "insecureSkipVerify": {
+            "type": "boolean"
+          },
+          "logsEnabled": {
+            "description": "Send Logs to Splunk Platform",
+            "type": "boolean"
+          },
+          "maxConnections": {
+            "type": "integer"
+          },
+          "metricsEnabled": {
+            "description": "Send Metrics to Splunk Platform",
+            "type": "boolean"
+          },
+          "metricsIndex": {
+            "type": "string"
+          },
+          "metricsSourcetype": {
+            "type": "string"
+          },
+          "otlpIngest": {
+            "additionalProperties": false,
+            "description": "Send logs via OTLP to Splunk Connect for OTLP instead of HEC",
+            "properties": {
+              "caFile": {
+                "type": "string"
+              },
+              "clientCert": {
+                "type": "string"
+              },
+              "clientKey": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "endpoint": {
+                "type": "string"
+              },
+              "insecure": {
+                "type": "boolean"
+              },
+              "insecureSkipVerify": {
+                "type": "boolean"
+              },
+              "protocol": {
+                "enum": [
+                  "grpc",
+                  "http"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "retryOnFailure": {
+            "additionalProperties": false,
+            "description": "Retry configurations",
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "initialInterval": {
+                "type": "string"
+              },
+              "maxElapsedTime": {
+                "type": "string"
+              },
+              "maxInterval": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "sendingQueue": {
+            "additionalProperties": false,
+            "description": "Batching configurations for logs/traces/metrics",
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "numConsumers": {
+                "type": "integer"
+              },
+              "persistentQueue": {
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "storagePath": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "queueSize": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourcetype": {
+            "type": "string"
+          },
+          "timeout": {
+            "type": "string"
+          },
+          "token": {
+            "description": "Splunk Platform HEC Token. The token is stored in a Kubernetes Secret. When featureGates.mountSplunkSecretAsFile is enabled, the token is mounted as a file in the collector pods.",
             "type": "string"
           },
           "tracesEnabled": {
