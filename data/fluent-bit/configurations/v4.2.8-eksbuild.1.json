@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "default": {
+        "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "kubernetes.io/os",
+                    "operator": "In",
+                    "values": [
+                      "linux"
+                    ]
+                  },
+                  {
+                    "key": "kubernetes.io/arch",
+                    "operator": "In",
+                    "values": [
+                      "amd64",
+                      "arm64"
+                    ]
+                  },
+                  {
+                    "key": "eks.amazonaws.com/compute-type",
+                    "operator": "NotIn",
+                    "values": [
+                      "fargate",
+                      "hybrid"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "description": "Affinity of the fluent-bit pod",
+      "properties": {},
+      "type": "object"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional annotations to add to the fluent-bit resources",
+      "properties": {},
+      "type": "object"
+    },
+    "autoscaling": {
+      "description": "Configure autoscaling for CPU and memory resources of fluent-bit pods",
+      "properties": {
+        "behavior": {
+          "properties": {},
+          "type": "object"
+        },
+        "customRules": {
+          "items": {},
+          "type": "array"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "maxReplicas": {
+          "type": "integer"
+        },
+        "minReplicas": {
+          "type": "integer"
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": "integer"
+        },
+        "vpa": {
+          "properties": {
+            "annotations": {
+              "properties": {},
+              "type": "object"
+            },
+            "controlledResources": {
+              "items": {},
+              "type": "array"
+            },
+            "controlledValues": {},
+            "enabled": {
+              "type": "boolean"
+            },
+            "maxAllowed": {
+              "properties": {},
+              "type": "object"
+            },
+            "minAllowed": {
+              "properties": {},
+              "type": "object"
+            },
+            "updatePolicy": {
+              "properties": {
+                "updateMode": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "config": {
+      "description": "Main configuration for fluent-bit",
+      "properties": {
+        "customParsers": {
+          "type": "string"
+        },
+        "extraFiles": {
+          "properties": {},
+          "type": "object"
+        },
+        "filters": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "upstream": {
+          "properties": {},
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "dnsPolicy": {
+      "description": "DNS policy for the fluent-bit pod",
+      "type": "string"
+    },
+    "env": {
+      "description": "Environment variables for fluent-bit",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "extraPorts": {
+      "description": "Extra ports to add to the fluent-bit container",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "extraVolumeMounts": {
+      "description": "Extra volume mounts to add to the fluent-bit container",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "extraVolumes": {
+      "description": "Extra volumes to add to the fluent-bit pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "hostNetwork": {
+      "description": "Enable host networking for the fluent-bit pod",
+      "type": "boolean"
+    },
+    "ingress": {
+      "description": "ingress configuration for fluent-bit HTTP server",
+      "properties": {
+        "annotations": {
+          "properties": {},
+          "type": "object"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "extraHosts": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "hosts": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "ingressClassName": {
+          "type": "string"
+        },
+        "tls": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kind": {
+      "default": "DaemonSet",
+      "description": "Controller kind for fluent-bit, either Deployment or DaemonSet",
+      "enum": [
+        "Deployment",
+        "DaemonSet"
+      ],
+      "type": "string"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional labels to add to the fluent-bit resources",
+      "properties": {},
+      "type": "object"
+    },
+    "logLevel": {
+      "type": "string"
+    },
+    "luaScripts": {
+      "description": "Build filter to modify the incoming records using custom Lua scripts.",
+      "properties": {},
+      "type": "object"
+    },
+    "metricsPort": {
+      "description": "Metrics port exposed by fluent-bit container",
+      "type": "integer"
+    },
+    "networkPolicy": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "nodeSelector": {
+      "description": "Node selector of the fluent-bit pod",
+      "properties": {},
+      "type": "object"
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional annotations to add to the fluent-bit deployment pods",
+      "properties": {},
+      "type": "object"
+    },
+    "podDisruptionBudget": {
+      "additionalProperties": false,
+      "description": "Settings for the PodDisruptionBudget",
+      "properties": {
+        "annotations": {},
+        "enabled": {
+          "default": true,
+          "description": "the option to enable managed PDB",
+          "type": "boolean"
+        },
+        "maxUnavailable": {
+          "anyOf": [
+            {
+              "pattern": ".*%$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "default": 1,
+          "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional labels to add to the fluent-bit deployment pods",
+      "properties": {},
+      "type": "object"
+    },
+    "priorityClassName": {
+      "default": "system-node-critical",
+      "description": "Name of priority class for fluent-bit pod",
+      "type": "string"
+    },
+    "prometheusRule": {
+      "description": "Prometheus resource configuration for fluent-bit",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "rbac": {
+      "properties": {
+        "eventsAccess": {
+          "type": "boolean"
+        },
+        "nodeAccess": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": 1,
+      "description": "Number of replicas in the fluent-bit deployment",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "memory": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "service": {
+      "properties": {
+        "annotations": {
+          "properties": {},
+          "type": "object"
+        },
+        "externalIPs": {
+          "items": {},
+          "type": "array"
+        },
+        "internalTrafficPolicy": {},
+        "labels": {
+          "properties": {},
+          "type": "object"
+        },
+        "loadBalancerClass": {},
+        "loadBalancerIP": {},
+        "loadBalancerSourceRanges": {
+          "items": {},
+          "type": "array"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serviceMonitor": {
+      "description": "Prometheus ServiceMonitor resource configuration for fluent-bit",
+      "properties": {
+        "additionalEndpoints": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "default": [
+        {
+          "effect": "NoSchedule",
+          "operator": "Exists"
+        }
+      ],
+      "description": "Tolerations of the fluent-bit pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
