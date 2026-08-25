@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters of the sriov-network-metrics-exporter",
+  "properties": {
+    "affinity": {
+      "default": {
+        "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "kubernetes.io/os",
+                    "operator": "In",
+                    "values": [
+                      "linux"
+                    ]
+                  },
+                  {
+                    "key": "kubernetes.io/arch",
+                    "operator": "In",
+                    "values": [
+                      "amd64"
+                    ]
+                  },
+                  {
+                    "key": "eks.amazonaws.com/compute-type",
+                    "operator": "NotIn",
+                    "values": [
+                      "fargate",
+                      "hybrid",
+                      "auto"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "description": "Affinity of the sriov-network-metrics-exporter pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "args": {
+      "default": [
+        "--path.kubecgroup=/host/kubecgroup",
+        "--path.sysbuspci=/host/sys/bus/pci/devices/",
+        "--path.sysclassnet=/host/sys/class/net/",
+        "--path.cpucheckpoint=/host/cpu_manager_state",
+        "--path.kubeletsocket=/host/kubelet.sock",
+        "--path.nodecpuinfo=/host/sys/devices/system/node/",
+        "--collector.kubepoddevice=true",
+        "--collector.kubepodcpu=true",
+        "--collector.vfstats=true",
+        "--collector.vfstatspriority=sysfs,netlink",
+        "--web.rate-limit=1",
+        "--web.rate-burst=10",
+        "--web.listen-address=:9808"
+      ],
+      "description": "Arguments to pass to the sriov network metrics exporter",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "hostPaths": {
+      "additionalProperties": false,
+      "description": "Host path mappings for the sriov network metrics exporter",
+      "properties": {
+        "cpucheckpoint": {
+          "default": "/var/lib/kubelet/cpu_manager_state",
+          "description": "Path to the CPU manager state file on the host",
+          "type": "string"
+        },
+        "kubecgroup": {
+          "default": "/sys/fs/cgroup/kubepods.slice/",
+          "description": "Path to the kubepods cgroup directory on the host",
+          "type": "string"
+        },
+        "kubeletsocket": {
+          "default": "/var/lib/kubelet/pod-resources/kubelet.sock",
+          "description": "Path to the kubelet socket on the host",
+          "type": "string"
+        },
+        "sysbuspcidevices": {
+          "default": "/sys/bus/pci/devices",
+          "description": "Path to the PCI devices directory on the host",
+          "type": "string"
+        },
+        "sysclassnet": {
+          "default": "/sys/class/net",
+          "description": "Path to the network class directory on the host",
+          "type": "string"
+        },
+        "sysdevices": {
+          "default": "/sys/devices",
+          "description": "Path to the system devices directory on the host",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "nodeSelector": {
+      "default": {
+        "feature.node.kubernetes.io/network-sriov.capable": "true"
+      },
+      "description": "Kubernetes selector for the nodes on which to install the sriov network metrics exporter",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podAnnotations": {
+      "default": null,
+      "description": "Additional annotations to add to the sriov-network-metrics-exporter pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podLabels": {
+      "default": null,
+      "description": "Additional labels to add to the sriov-network-metrics-exporter pods",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "resources": {
+      "default": {
+        "limits": {
+          "cpu": "100m",
+          "memory": "100Mi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "100Mi"
+        }
+      },
+      "description": "Resource requests/limits of the sriov-network-metrics-exporter pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "service": {
+      "additionalProperties": false,
+      "description": "Service configuration for the metrics exporter",
+      "properties": {
+        "port": {
+          "default": 9808,
+          "description": "Port number for the service",
+          "type": "integer"
+        },
+        "targetPort": {
+          "default": 9808,
+          "description": "Target port number for the service to forward to the container",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "default": [
+        {
+          "operator": "Exists"
+        }
+      ],
+      "description": "Tolerations of the sriov-network-metrics-exporter pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
