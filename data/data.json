@@ -78287,7 +78287,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v1.0.10-eksbuild.3",
+        "addonVersion": "v1.1.0-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -78296,6 +78296,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78343,6 +78350,69 @@
         "requiresIamPermissions": true
       },
       {
+        "addonVersion": "v1.0.10-eksbuild.3",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "hyperpod"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": true,
+        "requiresIamPermissions": true
+      },
+      {
         "addonVersion": "v1.0.10-eksbuild.2",
         "architecture": [
           "amd64",
@@ -78352,6 +78422,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78409,6 +78486,13 @@
         ],
         "compatibilities": [
           {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
             "clusterVersion": "1.35",
             "platformVersions": [
               "*"
@@ -78464,6 +78548,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78521,6 +78612,13 @@
         ],
         "compatibilities": [
           {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
             "clusterVersion": "1.35",
             "platformVersions": [
               "*"
@@ -78576,6 +78674,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78633,6 +78738,13 @@
         ],
         "compatibilities": [
           {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
             "clusterVersion": "1.35",
             "platformVersions": [
               "*"
@@ -78688,6 +78800,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78745,6 +78864,13 @@
         ],
         "compatibilities": [
           {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
             "clusterVersion": "1.35",
             "platformVersions": [
               "*"
@@ -78800,6 +78926,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -78857,6 +78990,13 @@
         ],
         "compatibilities": [
           {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
             "clusterVersion": "1.35",
             "platformVersions": [
               "*"
@@ -78912,6 +79052,13 @@
           "hyperpod"
         ],
         "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
           {
             "clusterVersion": "1.35",
             "platformVersions": [
@@ -81860,6 +82007,242 @@
           }
         },
         "type": "object"
+      }
+    },
+    "required": [
+      "ampWorkspace"
+    ],
+    "type": "object"
+  },
+  "./amazon-sagemaker-hyperpod-observability/configurations/v1.1.0-eksbuild.1.json": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+      "metricConfig": {
+        "description": "Configuration for a specific metric type",
+        "properties": {
+          "level": {
+            "description": "The collection level for the metric type",
+            "enum": [
+              "BASIC",
+              "ADVANCED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "scrapeInterval": {
+            "description": "The interval in seconds between metric scrapes",
+            "maximum": 300,
+            "minimum": 30,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "level"
+        ],
+        "type": "object"
+      },
+      "resourceValues": {
+        "additionalProperties": false,
+        "description": "CPU and memory quantities (Kubernetes resource quantity strings, e.g. \"500m\", \"512Mi\")",
+        "properties": {
+          "cpu": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Configuration schema for Amazon SageMaker HyperPod Observability AddOn for EKS",
+    "properties": {
+      "affinity": {
+        "description": "Affinity rules for the observability operator pod, deep-merged with the operator's built-in affinity (its default node-affinity preference is retained unless the same keys are overridden). https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity",
+        "type": "object"
+      },
+      "amgWorkspace": {
+        "description": "Amazon Managed Grafana (AMG) workspace configuration",
+        "properties": {
+          "arn": {
+            "description": "The ARN of the AMG workspace",
+            "pattern": "^arn:aws[-a-z]*:grafana:[-a-z0-9]+:[0-9]{12}:/workspaces/g-[0-9a-f]{10}$",
+            "type": "string"
+          },
+          "workspaceName": {
+            "description": "The name of the AMG workspace",
+            "pattern": "^[a-zA-Z0-9-._~]{1,255}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ampWorkspace": {
+        "description": "Amazon Managed Service for Prometheus (AMP) workspace configuration",
+        "properties": {
+          "arn": {
+            "description": "The ARN of the AMP workspace",
+            "pattern": "^arn:aws[-a-z]*:aps:[-a-z0-9]+:[0-9]{12}:workspace/.+$",
+            "type": "string"
+          },
+          "prometheusEndpoint": {
+            "description": "The endpoint URL for the AMP workspace",
+            "pattern": "^https://aps-workspaces.(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-[0-9].amazonaws.com/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prometheusEndpoint"
+        ],
+        "type": "object"
+      },
+      "customServiceScrapeTargets": {
+        "description": "Custom service scrape targets configuration",
+        "items": {
+          "properties": {
+            "metricsPath": {
+              "description": "HTTP path to scrape metrics from (default: /metrics)",
+              "type": "string"
+            },
+            "scrapeInterval": {
+              "description": "Override default scrape interval in seconds (30–300)",
+              "maximum": 300,
+              "minimum": 30,
+              "type": "integer"
+            },
+            "target": {
+              "description": "The endpoint to scrape (hostname:port format)",
+              "pattern": "^[a-zA-Z0-9.-]+:[0-9]{1,5}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "target"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "metricsProvider": {
+        "description": "Configuration for different types of metrics collection",
+        "properties": {
+          "acceleratedComputeMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for accelerated compute (GPU) metrics collection"
+          },
+          "clusterMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for cluster-level metrics collection"
+          },
+          "inferenceMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for inference metrics collection"
+          },
+          "logging": {
+            "description": "Logging configuration for cluster logs",
+            "properties": {
+              "enabled": {
+                "description": "Enable or disable logging",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "networkMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for network metrics collection"
+          },
+          "nodeMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for node-level metrics collection"
+          },
+          "rayMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for Ray metrics collection"
+          },
+          "scalingMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for scaling metrics collection"
+          },
+          "taskGovernanceMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for task governance metrics collection"
+          },
+          "trainingMetrics": {
+            "$ref": "#/definitions/metricConfig",
+            "description": "Configuration for training metrics collection"
+          }
+        },
+        "type": "object"
+      },
+      "nodeSelector": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Node selector constraining the observability operator pod to nodes carrying the specified labels. https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector",
+        "type": "object"
+      },
+      "podAnnotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Custom annotations merged onto the observability operator pod. https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+        "type": "object"
+      },
+      "podLabels": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Custom labels merged onto the observability operator pod. https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+        "type": "object"
+      },
+      "priorityClassName": {
+        "description": "PriorityClass assigned to the observability operator pod. The named class must already exist on the cluster. https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
+        "type": "string"
+      },
+      "resources": {
+        "additionalProperties": false,
+        "description": "Compute resource requests and limits for the observability operator container. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+        "properties": {
+          "limits": {
+            "$ref": "#/definitions/resourceValues"
+          },
+          "requests": {
+            "$ref": "#/definitions/resourceValues"
+          }
+        },
+        "type": "object"
+      },
+      "tolerations": {
+        "description": "Additional tolerations applied to the observability operator pod, allowing it to schedule onto nodes with matching taints. These are appended to the operator's built-in tolerations (which are always present). https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "effect": {
+              "enum": [
+                "NoSchedule",
+                "PreferNoSchedule",
+                "NoExecute"
+              ],
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "operator": {
+              "enum": [
+                "Exists",
+                "Equal"
+              ],
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
       }
     },
     "required": [
@@ -145410,7 +145793,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v1.0.5-eksbuild.1",
+        "addonVersion": "v1.0.5-eksbuild.2",
         "architecture": [
           "amd64",
           "arm64"
@@ -145446,6 +145829,48 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.0.5-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -146716,6 +147141,142 @@
     "type": "object"
   },
   "./aws-ec2-local-instance-store-csi-driver/configurations/v1.0.5-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the AWS EC2 Local Instance Store CSI Driver",
+    "properties": {
+      "affinity": {
+        "default": null,
+        "description": "Attract or repel the driver pods relative to nodes or other pods using node and pod affinity rules. See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "driver": {
+        "additionalProperties": false,
+        "properties": {
+          "deviceModel": {
+            "default": "Amazon EC2 NVMe Instance Storage",
+            "description": "Expected NVMe device model",
+            "type": "string"
+          },
+          "devicePattern": {
+            "default": "/dev/nvme*n*",
+            "description": "Pattern to match NVMe devices",
+            "type": "string"
+          },
+          "disableNodeLabeling": {
+            "description": "Disable automatic node labeling with NVMe device information",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "metrics": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "description": "Enable metrics collection for the CSI driver",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "nodeSelector": {
+        "default": null,
+        "description": "Constrain the driver pods to run only on nodes carrying the specified labels. See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podAnnotations": {
+        "default": null,
+        "description": "Custom annotations attached to the driver pods to carry metadata for tooling and integrations. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podLabels": {
+        "default": null,
+        "description": "Custom labels attached to the driver pods for selection, grouping, and policy targeting. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "priorityClassName": {
+        "default": null,
+        "description": "Priority class assigned to the driver pods to influence scheduling and preemption order. See https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "properties": {
+              "memory": {
+                "description": "Memory limit for driver pods",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "requests": {
+            "properties": {
+              "cpu": {
+                "description": "CPU request for driver pods",
+                "type": "string"
+              },
+              "memory": {
+                "description": "Memory request for driver pods",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "storageClass": {
+        "additionalProperties": false,
+        "properties": {
+          "create": {
+            "description": "Create default storage class",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Name of the storage class",
+            "type": "string"
+          },
+          "reclaimPolicy": {
+            "description": "Reclaim policy for volumes",
+            "enum": [
+              "Delete",
+              "Retain"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "tolerations": {
+        "default": [],
+        "description": "Schedule the driver pods on nodes with matching taints. See https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./aws-ec2-local-instance-store-csi-driver/configurations/v1.0.5-eksbuild.2.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Configurable parameters of the AWS EC2 Local Instance Store CSI Driver",
@@ -219851,62 +220412,6 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v2.63.10000020260801-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
             "defaultVersion": false
           },
           {
@@ -219949,119 +220454,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v2.62.10000020260618-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v2.63.10000020260808-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v2.63.10001020260810-eksbuild.1",
+        "addonVersion": "v2.63.10000020260803-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -220229,63 +220622,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v2.59.10000020260422-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v2.63.10000020260816-eksbuild.1",
+        "addonVersion": "v2.63.10000020260801-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -220341,7 +220678,63 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v2.63.10000020260803-eksbuild.1",
+        "addonVersion": "v2.62.10000020260618-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.63.10001020260810-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -220453,6 +220846,174 @@
         "requiresIamPermissions": true
       },
       {
+        "addonVersion": "v2.63.10000020260808-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.63.10000020260816-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.59.10000020260422-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v2.59.10000020260428-eksbuild.1",
         "architecture": [
           "amd64",
@@ -220507,6 +221068,62 @@
         ],
         "requiresConfiguration": false,
         "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v2.0.10000020260823-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
       }
     ],
     "publisher": "Chainguard",
@@ -220516,6 +221133,12 @@
       "productUrl": "https://aws.amazon.com/marketplace/pp?sku=3anbrahbid63isddiigf6j5qy"
     },
     "defaultNamespace": "kube-system"
+  },
+  "./chainguard_aws-ebs-csi-driver-fips/configurations/v2.0.10000020260823-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_aws-ebs-csi-driver-fips",
+    "type": "object"
   },
   "./chainguard_aws-ebs-csi-driver-fips/configurations/v2.59.10000020260422-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -221537,132 +222160,6 @@
     "type": "networking",
     "addonVersions": [
       {
-        "addonVersion": "v1.21.100000020260722-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v1.0.10000020260728-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
         "addonVersion": "v1.21.10001020260805-eksbuild.1",
         "architecture": [
           "amd64",
@@ -221726,133 +222223,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v1.21.10001020260817-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v1.21.10001020260618-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.32",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.31",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.30",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.29",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": true
-      },
-      {
-        "addonVersion": "v1.21.20001020260426-eksbuild.1",
+        "addonVersion": "v1.21.10001020260815-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -221978,7 +222349,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v1.21.10001020260809-eksbuild.1",
+        "addonVersion": "v1.21.20001020260426-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -222041,7 +222412,7 @@
         "requiresIamPermissions": true
       },
       {
-        "addonVersion": "v1.21.10001020260815-eksbuild.1",
+        "addonVersion": "v1.21.10001020260618-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -222228,6 +222599,321 @@
         ],
         "requiresConfiguration": false,
         "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.21.10001020260817-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.21.10001020260809-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.21.100000020260722-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.0.10000020260823-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
+      },
+      {
+        "addonVersion": "v1.0.10000020260728-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.29",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": true
       }
     ],
     "publisher": "Chainguard",
@@ -222239,6 +222925,12 @@
     "defaultNamespace": "kube-system"
   },
   "./chainguard_aws-vpc-cni-fips/configurations/v1.0.10000020260728-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_aws-vpc-cni-fips",
+    "type": "object"
+  },
+  "./chainguard_aws-vpc-cni-fips/configurations/v1.0.10000020260823-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for chainguard_aws-vpc-cni-fips",
@@ -222309,7 +223001,42 @@
     "type": "networking",
     "addonVersions": [
       {
-        "addonVersion": "v1.0.10000020260808-eksbuild.1",
+        "addonVersion": "v1.0.10000020260823-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.0.10000020260810-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -222345,111 +223072,6 @@
       },
       {
         "addonVersion": "v1.0.10000020260813-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.46.10000020260618-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.47.10000020260802-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.0.10000020260810-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -222554,6 +223176,181 @@
         "requiresIamPermissions": false
       },
       {
+        "addonVersion": "v1.0.10000020260808-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.0.10000020260817-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.46.10000020260618-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.47.10000020260815-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v1.47.10000020260804-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
         "addonVersion": "v1.47.10000020260806-eksbuild.1",
         "architecture": [
           "amd64",
@@ -222624,77 +223421,7 @@
         "requiresIamPermissions": false
       },
       {
-        "addonVersion": "v1.47.10000020260815-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.0.10000020260817-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": true
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v1.47.10000020260804-eksbuild.1",
+        "addonVersion": "v1.47.10000020260802-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -222773,6 +223500,12 @@
     "description": "No configuration support for chainguard_coredns-fips",
     "type": "object"
   },
+  "./chainguard_coredns-fips/configurations/v1.0.10000020260823-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_coredns-fips",
+    "type": "object"
+  },
   "./chainguard_coredns-fips/configurations/v1.45.20002020260420-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
@@ -222814,251 +223547,6 @@
     "type": "networking",
     "addonVersions": [
       {
-        "addonVersion": "v0.0.10000020260803-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10009020260423-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.100009020260723-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260805-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260810-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260816-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
-        "addonVersion": "v0.0.10000020260729-eksbuild.1",
-        "architecture": [
-          "amd64",
-          "arm64"
-        ],
-        "computeTypes": [
-          "ec2"
-        ],
-        "compatibilities": [
-          {
-            "clusterVersion": "1.35",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.34",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          },
-          {
-            "clusterVersion": "1.33",
-            "platformVersions": [
-              "*"
-            ],
-            "defaultVersion": false
-          }
-        ],
-        "requiresConfiguration": false,
-        "requiresIamPermissions": false
-      },
-      {
         "addonVersion": "v0.0.10000020260618-eksbuild.1",
         "architecture": [
           "amd64",
@@ -223094,7 +223582,7 @@
         "requiresIamPermissions": false
       },
       {
-        "addonVersion": "v0.0.10009020260809-eksbuild.1",
+        "addonVersion": "v0.0.10009020260817-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -223178,28 +223666,28 @@
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.34",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           },
           {
             "clusterVersion": "1.33",
             "platformVersions": [
               "*"
             ],
-            "defaultVersion": true
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
         "requiresIamPermissions": false
       },
       {
-        "addonVersion": "v0.0.10009020260817-eksbuild.1",
+        "addonVersion": "v0.0.10009020260809-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -223337,6 +223825,286 @@
         ],
         "requiresConfiguration": false,
         "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260803-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260810-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260729-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10009020260423-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260816-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260823-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.10000020260805-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v0.0.100009020260723-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
       }
     ],
     "publisher": "Chainguard",
@@ -223378,6 +224146,12 @@
     "type": "object"
   },
   "./chainguard_kube-proxy-fips/configurations/v0.0.10000020260816-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "No configuration support for chainguard_kube-proxy-fips",
+    "type": "object"
+  },
+  "./chainguard_kube-proxy-fips/configurations/v0.0.10000020260823-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "No configuration support for chainguard_kube-proxy-fips",
@@ -316982,7 +317756,7 @@
     "type": "observability",
     "addonVersions": [
       {
-        "addonVersion": "v5.1.0-eksbuild.1",
+        "addonVersion": "v5.1.1-eksbuild.1",
         "architecture": [
           "amd64",
           "arm64"
@@ -317040,6 +317814,70 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v5.1.0-eksbuild.1",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "auto"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.30",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -334455,6 +335293,448 @@
     "type": "object"
   },
   "./fluent-bit/configurations/v5.1.0-eksbuild.1.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "else": {
+          "not": {
+            "required": [
+              "topologySpreadConstraints"
+            ]
+          }
+        },
+        "if": {
+          "properties": {
+            "kind": {
+              "const": "Deployment"
+            }
+          },
+          "required": [
+            "kind"
+          ]
+        }
+      }
+    ],
+    "properties": {
+      "affinity": {
+        "default": {
+          "nodeAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [
+                {
+                  "matchExpressions": [
+                    {
+                      "key": "kubernetes.io/os",
+                      "operator": "In",
+                      "values": [
+                        "linux"
+                      ]
+                    },
+                    {
+                      "key": "kubernetes.io/arch",
+                      "operator": "In",
+                      "values": [
+                        "amd64",
+                        "arm64"
+                      ]
+                    },
+                    {
+                      "key": "eks.amazonaws.com/compute-type",
+                      "operator": "NotIn",
+                      "values": [
+                        "fargate",
+                        "hybrid"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "description": "Affinity of the fluent-bit pod",
+        "properties": {},
+        "type": "object"
+      },
+      "annotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional annotations to add to the fluent-bit resources",
+        "properties": {},
+        "type": "object"
+      },
+      "autoscaling": {
+        "description": "Configure autoscaling for CPU and memory resources of fluent-bit pods",
+        "properties": {
+          "behavior": {
+            "properties": {},
+            "type": "object"
+          },
+          "customRules": {
+            "items": {},
+            "type": "array"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "maxReplicas": {
+            "type": "integer"
+          },
+          "minReplicas": {
+            "type": "integer"
+          },
+          "targetCPUUtilizationPercentage": {
+            "type": "integer"
+          },
+          "vpa": {
+            "properties": {
+              "annotations": {
+                "properties": {},
+                "type": "object"
+              },
+              "controlledResources": {
+                "items": {},
+                "type": "array"
+              },
+              "controlledValues": {},
+              "enabled": {
+                "type": "boolean"
+              },
+              "maxAllowed": {
+                "properties": {},
+                "type": "object"
+              },
+              "minAllowed": {
+                "properties": {},
+                "type": "object"
+              },
+              "updatePolicy": {
+                "properties": {
+                  "updateMode": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "config": {
+        "description": "Main configuration for fluent-bit",
+        "properties": {
+          "customParsers": {
+            "type": "string"
+          },
+          "extraFiles": {
+            "properties": {},
+            "type": "object"
+          },
+          "filters": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "string"
+          },
+          "outputs": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "upstream": {
+            "properties": {},
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "dnsPolicy": {
+        "description": "DNS policy for the fluent-bit pod",
+        "type": "string"
+      },
+      "env": {
+        "description": "Environment variables for fluent-bit",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "extraPorts": {
+        "description": "Extra ports to add to the fluent-bit container",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "extraVolumeMounts": {
+        "description": "Extra volume mounts to add to the fluent-bit container",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "extraVolumes": {
+        "description": "Extra volumes to add to the fluent-bit pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "hostNetwork": {
+        "description": "Enable host networking for the fluent-bit pod",
+        "type": "boolean"
+      },
+      "ingress": {
+        "description": "ingress configuration for fluent-bit HTTP server",
+        "properties": {
+          "annotations": {
+            "properties": {},
+            "type": "object"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extraHosts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "hosts": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "ingressClassName": {
+            "type": "string"
+          },
+          "tls": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "kind": {
+        "default": "DaemonSet",
+        "description": "Controller kind for fluent-bit, either Deployment or DaemonSet",
+        "enum": [
+          "Deployment",
+          "DaemonSet"
+        ],
+        "type": "string"
+      },
+      "labels": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional labels to add to the fluent-bit resources",
+        "properties": {},
+        "type": "object"
+      },
+      "logLevel": {
+        "type": "string"
+      },
+      "luaScripts": {
+        "description": "Build filter to modify the incoming records using custom Lua scripts.",
+        "properties": {},
+        "type": "object"
+      },
+      "metricsPort": {
+        "description": "Metrics port exposed by fluent-bit container",
+        "type": "integer"
+      },
+      "networkPolicy": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "nodeSelector": {
+        "description": "Node selector of the fluent-bit pod",
+        "properties": {},
+        "type": "object"
+      },
+      "podAnnotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional annotations to add to the fluent-bit deployment pods",
+        "properties": {},
+        "type": "object"
+      },
+      "podDisruptionBudget": {
+        "additionalProperties": false,
+        "description": "Settings for the PodDisruptionBudget",
+        "properties": {
+          "annotations": {},
+          "enabled": {
+            "default": true,
+            "description": "the option to enable managed PDB",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "anyOf": [
+              {
+                "pattern": ".*%$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "default": 1,
+            "description": "maxUnavailable value for managed PDB, can be either string or integer; if it's string, should end with %"
+          }
+        },
+        "type": "object"
+      },
+      "podLabels": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional labels to add to the fluent-bit deployment pods",
+        "properties": {},
+        "type": "object"
+      },
+      "priorityClassName": {
+        "default": "system-node-critical",
+        "description": "Name of priority class for fluent-bit pod",
+        "type": "string"
+      },
+      "prometheusRule": {
+        "description": "Prometheus resource configuration for fluent-bit",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "rbac": {
+        "properties": {
+          "eventsAccess": {
+            "type": "boolean"
+          },
+          "nodeAccess": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "replicaCount": {
+        "default": 1,
+        "description": "Number of replicas in the fluent-bit deployment",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "resources": {
+        "additionalProperties": false,
+        "properties": {
+          "limits": {
+            "additionalProperties": false,
+            "properties": {
+              "memory": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "requests": {
+            "additionalProperties": false,
+            "properties": {
+              "cpu": {
+                "type": "string"
+              },
+              "memory": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "service": {
+        "properties": {
+          "annotations": {
+            "properties": {},
+            "type": "object"
+          },
+          "externalIPs": {
+            "items": {},
+            "type": "array"
+          },
+          "internalTrafficPolicy": {},
+          "labels": {
+            "properties": {},
+            "type": "object"
+          },
+          "loadBalancerClass": {},
+          "loadBalancerIP": {},
+          "loadBalancerSourceRanges": {
+            "items": {},
+            "type": "array"
+          },
+          "port": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "serviceMonitor": {
+        "description": "Prometheus ServiceMonitor resource configuration for fluent-bit",
+        "properties": {
+          "additionalEndpoints": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "tolerations": {
+        "additionalProperties": false,
+        "default": [
+          {
+            "effect": "NoSchedule",
+            "operator": "Exists"
+          }
+        ],
+        "description": "Tolerations of the fluent-bit pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "topologySpreadConstraints": {
+        "description": "Topology spread constraints for pod scheduling; only takes effect when kind is Deployment with replicaCount greater than 1 (inert on a DaemonSet).",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./fluent-bit/configurations/v5.1.1-eksbuild.1.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "allOf": [
@@ -428208,7 +429488,7 @@
     "type": "storage",
     "addonVersions": [
       {
-        "addonVersion": "v8.6.0-eksbuild.5",
+        "addonVersion": "v8.6.0-eksbuild.6",
         "architecture": [
           "amd64",
           "arm64"
@@ -428261,6 +429541,65 @@
               "*"
             ],
             "defaultVersion": true
+          }
+        ],
+        "requiresConfiguration": false,
+        "requiresIamPermissions": false
+      },
+      {
+        "addonVersion": "v8.6.0-eksbuild.5",
+        "architecture": [
+          "amd64",
+          "arm64"
+        ],
+        "computeTypes": [
+          "ec2",
+          "hybrid",
+          "auto",
+          "fargate"
+        ],
+        "compatibilities": [
+          {
+            "clusterVersion": "1.36",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.35",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.34",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.33",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.32",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
+          },
+          {
+            "clusterVersion": "1.31",
+            "platformVersions": [
+              "*"
+            ],
+            "defaultVersion": false
           }
         ],
         "requiresConfiguration": false,
@@ -431336,6 +432675,205 @@
     "type": "object"
   },
   "./snapshot-controller/configurations/v8.6.0-eksbuild.5.json": {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Configurable parameters of the CSI Snapshot Controller EKS Addon",
+    "properties": {
+      "additionalArgs": {
+        "default": [],
+        "description": "Additional arguments passed to the CSI Snapshot Controller container",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "affinity": {
+        "default": {
+          "nodeAffinity": {
+            "preferredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "preference": {
+                  "matchExpressions": [
+                    {
+                      "key": "eks.amazonaws.com/compute-type",
+                      "operator": "NotIn",
+                      "values": [
+                        "fargate",
+                        "auto",
+                        "hybrid"
+                      ]
+                    }
+                  ]
+                },
+                "weight": 1
+              }
+            ]
+          },
+          "podAntiAffinity": {
+            "preferredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "podAffinityTerm": {
+                  "labelSelector": {
+                    "matchExpressions": [
+                      {
+                        "key": "app",
+                        "operator": "In",
+                        "values": [
+                          "snapshot-controller"
+                        ]
+                      }
+                    ]
+                  },
+                  "topologyKey": "kubernetes.io/hostname"
+                },
+                "weight": 100
+              }
+            ]
+          }
+        },
+        "description": "Affinity of the CSI Snapshot Controller pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "logLevel": {
+        "default": null,
+        "description": "Log verbosity of the CSI Snapshot Controller container",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "nodeSelector": {
+        "default": {
+          "kubernetes.io/os": "linux"
+        },
+        "description": "Node selector of the CSI Snapshot Controller pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podAnnotations": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "default": null,
+        "description": "Additional annotations for the CSI Snapshot Controller pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "podDisruptionBudget": {
+        "additionalProperties": false,
+        "description": "Pod disruption budget configurations for the CSI Snapshot Controller pods",
+        "not": {
+          "required": [
+            "maxUnavailable",
+            "minAvailable"
+          ]
+        },
+        "properties": {
+          "enabled": {
+            "default": true,
+            "description": "Enables the managed PodDisruptionBudget",
+            "type": "boolean"
+          },
+          "maxUnavailable": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9]+%$",
+                "type": "string"
+              },
+              {
+                "minimum": 0,
+                "type": "integer"
+              }
+            ],
+            "default": 1,
+            "description": "Maximum number or percentage of unavailable pods during a voluntary disruption"
+          },
+          "minAvailable": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9]+%$",
+                "type": "string"
+              },
+              {
+                "minimum": 0,
+                "type": "integer"
+              }
+            ],
+            "description": "Minimum number or percentage of available pods during a voluntary disruption"
+          }
+        },
+        "type": "object"
+      },
+      "podLabels": {
+        "default": null,
+        "description": "Additional labels for the CSI Snapshot Controller pod",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "priorityClassName": {
+        "default": null,
+        "description": "Priority class name for the CSI Snapshot Controller pod",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "resources": {
+        "default": {
+          "limits": {
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "40Mi"
+          }
+        },
+        "description": "Resource requests/limits of the CSI Snapshot Controller container",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "tolerations": {
+        "default": [
+          {
+            "key": "CriticalAddonsOnly",
+            "operator": "Exists"
+          },
+          {
+            "effect": "NoExecute",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          }
+        ],
+        "description": "Tolerations of the CSI Snapshot Controller pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "topologySpreadConstraints": {
+        "default": [],
+        "description": "Topology spread constraints for the CSI Snapshot Controller pod",
+        "items": {
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "type": "object"
+  },
+  "./snapshot-controller/configurations/v8.6.0-eksbuild.6.json": {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
     "description": "Configurable parameters of the CSI Snapshot Controller EKS Addon",
