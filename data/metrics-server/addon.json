@@ -3,7 +3,7 @@
   "type": "observability",
   "addonVersions": [
     {
-      "addonVersion": "v0.9.0-eksbuild.7",
+      "addonVersion": "v0.9.0-eksbuild.8",
       "architecture": [
         "amd64",
         "arm64"
@@ -35,6 +35,44 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v0.9.0-eksbuild.7",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "auto",
+        "fargate"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -231,7 +269,7 @@
       "requiresIamPermissions": false
     },
     {
-      "addonVersion": "v0.8.1-eksbuild.16",
+      "addonVersion": "v0.8.1-eksbuild.17",
       "architecture": [
         "amd64",
         "arm64"
@@ -284,6 +322,65 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v0.8.1-eksbuild.16",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "auto",
+        "fargate"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
