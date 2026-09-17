@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "properties": {
+    "global": {
+      "properties": {
+        "credentials": {
+          "properties": {
+            "clientId": {
+              "type": "null"
+            },
+            "clientSecret": {
+              "type": "null"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "upwind-operator": {
+      "properties": {
+        "agent": {
+          "properties": {
+            "version": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "clusterAgent": {
+          "properties": {
+            "version": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "nameOverride": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

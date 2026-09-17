@@ -139,6 +139,7 @@
         "efsUtilsConfOverrides": {
           "default": "",
           "description": "Comma-separated section:key=value pairs to override settings in efs-utils.conf. For example, --efs-utils-conf-overrides=mount-watchdog:stunnel_health_check_interval_min=1. If a key already exists in the specified section it is updated in place; otherwise it is appended to that section. These overrides take precedence over other flags that control the same config (e.g., efs-cloudwatch-log-enabled). Invalid entries (missing : or =) cause the driver to return an error on startup.",
+          "pattern": "^(?![\\s\\S]*[:,]\\s*(?:dns_name_suffix|dns_name_format|stunnel_check_cert_hostname|stunnel_check_cert_validity|stunnel_cafile)\\s*=)[\\s\\S]*$",
           "type": "string"
         },
         "env": {
@@ -218,6 +219,7 @@
         "s3filesUtilsConfOverrides": {
           "default": "",
           "description": "Comma-separated section:key=value pairs to override settings in s3files-utils.conf. Follows the same format and validation rules as efs-utils-conf-overrides. These overrides take precedence over other flags that control the same config (e.g., s3files-cloudwatch-log-enabled, s3files-cloudwatch-metrics-enabled).",
+          "pattern": "^(?![\\s\\S]*[:,]\\s*(?:dns_name_suffix|dns_name_format|stunnel_check_cert_hostname|stunnel_check_cert_validity|stunnel_cafile)\\s*=)[\\s\\S]*$",
           "type": "string"
         },
         "tolerations": {
