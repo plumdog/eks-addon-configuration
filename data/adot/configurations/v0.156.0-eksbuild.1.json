@@ -519,10 +519,6 @@
       "title": "The collector Schema",
       "type": "object"
     },
-    "extraObjects": {
-      "title": "The extraObjects Schema",
-      "type": "array"
-    },
     "kubeRBACProxy": {
       "additionalProperties": true,
       "description": "This property is deprecated and ignored. Kept for backwards compatibility with existing addon configurations.",
