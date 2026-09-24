@@ -38,9 +38,6 @@
         "dcgmAgent": {
           "$ref": "#/definitions/DCGMAgent"
         },
-        "extraObjects": {
-          "$ref": "#/definitions/ExtraObjects"
-        },
         "global": {
           "$ref": "#/definitions/Global"
         },
@@ -50,15 +47,6 @@
       },
       "title": "EKSNodeMonitoringAgent",
       "type": "object"
-    },
-    "ExtraObjects": {
-      "default": [],
-      "description": "Additional Kubernetes manifests to deploy alongside this chart. Each entry is rendered through `tpl`, so template expressions inside the manifests are evaluated against the release context.",
-      "items": {
-        "type": "object"
-      },
-      "title": "ExtraObjects",
-      "type": "array"
     },
     "Global": {
       "additionalProperties": false,
