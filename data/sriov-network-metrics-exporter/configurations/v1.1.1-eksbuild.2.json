@@ -2,28 +2,6 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "additionalProperties": false,
   "properties": {
-    "args": {
-      "default": [
-        "--path.kubecgroup=/host/kubecgroup",
-        "--path.sysbuspci=/host/sys/bus/pci/devices/",
-        "--path.sysclassnet=/host/sys/class/net/",
-        "--path.cpucheckpoint=/host/cpu_manager_state",
-        "--path.kubeletsocket=/host/kubelet.sock",
-        "--path.nodecpuinfo=/host/sys/devices/system/node/",
-        "--collector.kubepoddevice=true",
-        "--collector.kubepodcpu=true",
-        "--collector.vfstats=true",
-        "--collector.vfstatspriority=sysfs,netlink",
-        "--web.rate-limit=1",
-        "--web.rate-burst=10",
-        "--web.listen-address=:9808"
-      ],
-      "description": "Arguments to pass to the sriov network metrics exporter",
-      "items": {
-        "type": "string"
-      },
-      "type": "array"
-    },
     "hostPaths": {
       "additionalProperties": false,
       "description": "Host path mappings for the sriov network metrics exporter",
@@ -31,31 +9,49 @@
         "cpucheckpoint": {
           "default": "/var/lib/kubelet/cpu_manager_state",
           "description": "Path to the CPU manager state file on the host",
+          "enum": [
+            "/var/lib/kubelet/cpu_manager_state"
+          ],
           "type": "string"
         },
         "kubecgroup": {
           "default": "/sys/fs/cgroup/kubepods.slice/",
           "description": "Path to the kubepods cgroup directory on the host",
+          "enum": [
+            "/sys/fs/cgroup/kubepods.slice/"
+          ],
           "type": "string"
         },
         "kubeletsocket": {
           "default": "/var/lib/kubelet/pod-resources/kubelet.sock",
           "description": "Path to the kubelet socket on the host",
+          "enum": [
+            "/var/lib/kubelet/pod-resources/kubelet.sock"
+          ],
           "type": "string"
         },
         "sysbuspcidevices": {
           "default": "/sys/bus/pci/devices",
           "description": "Path to the PCI devices directory on the host",
+          "enum": [
+            "/sys/bus/pci/devices"
+          ],
           "type": "string"
         },
         "sysclassnet": {
           "default": "/sys/class/net",
           "description": "Path to the network class directory on the host",
+          "enum": [
+            "/sys/class/net"
+          ],
           "type": "string"
         },
         "sysdevices": {
           "default": "/sys/devices",
           "description": "Path to the system devices directory on the host",
+          "enum": [
+            "/sys/devices"
+          ],
           "type": "string"
         }
       },
