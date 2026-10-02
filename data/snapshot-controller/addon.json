@@ -16,6 +16,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
           "clusterVersion": "1.36",
           "platformVersions": [
             "*"
@@ -74,6 +81,13 @@
         "fargate"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.36",
           "platformVersions": [
@@ -134,6 +148,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.36",
           "platformVersions": [
             "*"
@@ -193,6 +214,13 @@
       ],
       "compatibilities": [
         {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
           "clusterVersion": "1.36",
           "platformVersions": [
             "*"
@@ -251,6 +279,13 @@
         "fargate"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.36",
           "platformVersions": [
@@ -442,6 +477,13 @@
         "fargate"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.36",
           "platformVersions": [
@@ -786,6 +828,13 @@
         "fargate"
       ],
       "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
         {
           "clusterVersion": "1.36",
           "platformVersions": [
