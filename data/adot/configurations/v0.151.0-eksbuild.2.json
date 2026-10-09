@@ -383,7 +383,7 @@
                   "additionalProperties": false,
                   "properties": {
                     "endpoint": {
-                      "pattern": "^https://aps-workspaces\\.(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-[0-9]\\.amazonaws\\.com/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-(?:[a-z0-9]{12}|[a-z0-9]{14})/api/v1/remote_write$",
+                      "pattern": "^https://aps-workspaces(-fips)?\\.[a-z]{2}(-gov)?-[a-z]+-[0-9]+\\.(amazonaws\\.com|api\\.aws)/workspaces/ws-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-(?:[a-z0-9]{12}|[a-z0-9]{14})/api/v1/remote_write$",
                       "title": "The AMP endpoint uri Schema",
                       "type": "string"
                     }

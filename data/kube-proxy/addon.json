@@ -3,6 +3,29 @@
   "type": "networking",
   "addonVersions": [
     {
+      "addonVersion": "v1.37.0-eksbuild.19",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
       "addonVersion": "v1.37.0-eksbuild.4",
       "architecture": [
         "amd64",
@@ -20,6 +43,36 @@
             "*"
           ],
           "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.36.0-eksbuild.45",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -316,6 +369,43 @@
         },
         {
           "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.35.3-eksbuild.49",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.35",
           "platformVersions": [
             "*"
           ],
@@ -797,6 +887,50 @@
         },
         {
           "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.34.6-eksbuild.49",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
           "platformVersions": [
             "*"
           ],
@@ -1545,6 +1679,50 @@
         },
         {
           "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.33.10-eksbuild.49",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.33",
           "platformVersions": [
             "*"
           ],
@@ -2381,6 +2559,50 @@
         },
         {
           "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.32.13-eksbuild.52",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
           "platformVersions": [
             "*"
           ],
@@ -3393,6 +3615,50 @@
         },
         {
           "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    },
+    {
+      "addonVersion": "v1.31.14-eksbuild.56",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2",
+        "hybrid",
+        "local-cluster"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": false
+        },
+        {
+          "clusterVersion": "1.31",
           "platformVersions": [
             "*"
           ],
