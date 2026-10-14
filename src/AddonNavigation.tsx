@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
@@ -54,25 +55,23 @@ const AddonNavigation = ({
     return (
         <Drawer variant="permanent" anchor="left" className="sidebar">
             <List>
-                <ListItem
-                    key="_home"
-                    button
-                    onClick={() => onSelectAddon(null)}
-                >
-                    <ListItemText primary="Home" />
+                <ListItem key="_home" disablePadding>
+                    <ListItemButton onClick={() => onSelectAddon(null)}>
+                        <ListItemText primary="Home" />
+                    </ListItemButton>
                 </ListItem>
                 <Divider />
                 {addonsByOwner.map((addonOwnerGroup) => (
                     <div key={addonOwnerGroup.owner}>
                         <ListSubheader key={addonOwnerGroup.owner}>{addonOwnerGroup.owner}</ListSubheader>
                         {(addonOwnerGroup.addons).map((addon: Addon) => (
-                            <ListItem
-                                key={addon.addonName}
-                                button
-                                selected={selectedAddon === addon.addonName}
-                                onClick={() => onSelectAddon(addon.addonName)}
-                            >
-                                <ListItemText primary={addon.addonName} />
+                            <ListItem key={addon.addonName} disablePadding>
+                                <ListItemButton
+                                    selected={selectedAddon === addon.addonName}
+                                    onClick={() => onSelectAddon(addon.addonName)}
+                                >
+                                    <ListItemText primary={addon.addonName} />
+                                </ListItemButton>
                             </ListItem>
                         ))}
                     </div>

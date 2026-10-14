@@ -155,8 +155,8 @@ const JSONSchemaValidator = ({ schema }: { schema: AddonVersionConfiguration }) 
     };
 
     return (
-        <Box m={1}>
-            <Box m={2}>
+        <Box sx={{ m: 1 }}>
+            <Box sx={{ m: 2 }}>
                 <CodeEditor
                     value={input}
                     language="json"
@@ -171,7 +171,7 @@ const JSONSchemaValidator = ({ schema }: { schema: AddonVersionConfiguration }) 
                 />
             </Box>
 
-            <Box m={2}>
+            <Box sx={{ m: 2 }}>
 
                 <Stack spacing={2} direction="row">
                     <Button variant="contained" onClick={validate}>Validate</Button>
@@ -179,7 +179,7 @@ const JSONSchemaValidator = ({ schema }: { schema: AddonVersionConfiguration }) 
                 </Stack>
             </Box>
 
-            <Box m={2}>
+            <Box sx={{ m: 2 }}>
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <ValidateResultViewer result={result} />
                     { schemaStrictWarning && <Alert severity="info">Schema not parsable in strict mode: { schemaStrictWarning }</Alert> }
@@ -210,7 +210,7 @@ const AddonViewer = ({ data, selectedAddonVersion, selectedAddonVersionConfigura
             { selectedAddonVersion && selectedAddonVersionConfiguration && <div>
                 <JSONSchemaValidator schema={selectedAddonVersionConfiguration} />
 
-                <Box m={3}>
+                <Box sx={{ m: 3 }}>
                     <JsonView
                         value={selectedAddonVersionConfiguration as object}
                         shortenTextAfterLength={0}
