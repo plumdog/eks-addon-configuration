@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import AddonViewer from './AddonViewer';
 import AddonNavigation from './AddonNavigation';
 import AddonVersionNavigation from './AddonVersionNavigation';
@@ -15,8 +15,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import {
-    Addon,
-    AddonVersionConfiguration,
     getAddons,
     getAddon,
     getAddonVersionConfiguration,
@@ -80,38 +78,28 @@ function App() {
     const addons = getAddons();
 
     const [searchParams, setSearchParams] = useUrlState<{addon?: string, version?: string}>({});
-    const [selectedAddonData, setSelectedAddonData] = useState<Addon | null>(null);
-    const [selectedAddonVersionConfiguration, setSelectedAddonVersionConfiguration] = useState<AddonVersionConfiguration | null>(null);
+
+    const selectedAddonData = searchParams.addon ? getAddon(searchParams.addon) : null;
+    const selectedAddonVersionConfiguration = (searchParams.addon && searchParams.version)
+        ? getAddonVersionConfiguration(searchParams.addon, searchParams.version)
+        : null;
 
     useEffect(() => {
-        if (searchParams.addon && !selectedAddonData) {
-            const addonData = getAddon(searchParams.addon);
-            setSelectedAddonData(addonData);
-            if (!searchParams.version) {
-                const firstVersion = addonData.addonVersions[0];
-                if (firstVersion) {
-                    setSearchParams({version: firstVersion.addonVersion});
-                }
+        if (selectedAddonData && !searchParams.version) {
+            const firstVersion = selectedAddonData.addonVersions[0];
+            if (firstVersion) {
+                setSearchParams({version: firstVersion.addonVersion});
             }
         }
     }, [searchParams, selectedAddonData, setSearchParams]);
 
     const handleAddonSelect = (addonName: string | null) => {
-        setSelectedAddonData(null);
         setSearchParams({addon: addonName ?? undefined, version: undefined});
-        setSelectedAddonVersionConfiguration(null);
     };
 
     const handleAddonVersionSelect = (addonVersion: string) => {
         setSearchParams({version: addonVersion});
-        setSelectedAddonVersionConfiguration(null);
     };
-
-    useEffect(() => {
-        if (searchParams.addon && searchParams.version && !selectedAddonVersionConfiguration) {
-            setSelectedAddonVersionConfiguration(getAddonVersionConfiguration(searchParams.addon, searchParams.version));
-        }
-    }, [searchParams, selectedAddonVersionConfiguration]);
 
     return (
         <div className="App">
