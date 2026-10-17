@@ -19,7 +19,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -88,7 +88,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -118,7 +118,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -208,7 +208,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -515,7 +515,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -626,7 +626,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -1114,7 +1114,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -1246,7 +1246,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -1994,7 +1994,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -2126,7 +2126,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -2962,7 +2962,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -3094,7 +3094,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
@@ -4106,7 +4106,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": false
+          "defaultVersion": true
         }
       ],
       "requiresConfiguration": false,
@@ -4238,7 +4238,7 @@
           "platformVersions": [
             "*"
           ],
-          "defaultVersion": true
+          "defaultVersion": false
         }
       ],
       "requiresConfiguration": false,
