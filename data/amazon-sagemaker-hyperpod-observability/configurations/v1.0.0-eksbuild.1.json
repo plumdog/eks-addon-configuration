@@ -1,7 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "definitions": {
     "metricConfig": {
+      "additionalProperties": false,
       "description": "Configuration for a specific metric type",
       "properties": {
         "level": {
@@ -29,6 +31,7 @@
   "description": "Configuration schema for Amazon SageMaker HyperPod Observability AddOn for EKS",
   "properties": {
     "amgWorkspace": {
+      "additionalProperties": false,
       "description": "Amazon Managed Grafana (AMG) workspace configuration",
       "properties": {
         "arn": {
@@ -45,6 +48,7 @@
       "type": "object"
     },
     "ampWorkspace": {
+      "additionalProperties": false,
       "description": "Amazon Managed Service for Prometheus (AMP) workspace configuration",
       "properties": {
         "arn": {
@@ -66,6 +70,7 @@
     "customServiceScrapeTargets": {
       "description": "Custom service scrape targets configuration",
       "items": {
+        "additionalProperties": false,
         "properties": {
           "metricsPath": {
             "description": "HTTP path to scrape metrics from (default: /metrics)",
@@ -91,6 +96,7 @@
       "type": "array"
     },
     "metricsProvider": {
+      "additionalProperties": false,
       "description": "Configuration for different types of metrics collection",
       "properties": {
         "acceleratedComputeMetrics": {
@@ -106,6 +112,7 @@
           "description": "Configuration for inference metrics collection"
         },
         "logging": {
+          "additionalProperties": false,
           "description": "Logging configuration for cluster logs",
           "properties": {
             "enabled": {
