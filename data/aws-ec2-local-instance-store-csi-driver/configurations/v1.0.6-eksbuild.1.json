@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configurable parameters of the AWS EC2 Local Instance Store CSI Driver",
+  "properties": {
+    "affinity": {
+      "default": null,
+      "description": "Attract or repel the driver pods relative to nodes or other pods using node and pod affinity rules. See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "driver": {
+      "additionalProperties": false,
+      "properties": {
+        "deviceModel": {
+          "default": "Amazon EC2 NVMe Instance Storage",
+          "description": "Expected NVMe device model",
+          "type": "string"
+        },
+        "devicePattern": {
+          "default": "/dev/nvme*n*",
+          "description": "Pattern to match NVMe devices",
+          "type": "string"
+        },
+        "disableNodeLabeling": {
+          "description": "Disable automatic node labeling with NVMe device information",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "metrics": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "description": "Enable metrics collection for the CSI driver",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "nodeSelector": {
+      "default": null,
+      "description": "Constrain the driver pods to run only on nodes carrying the specified labels. See https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podAnnotations": {
+      "default": null,
+      "description": "Custom annotations attached to the driver pods to carry metadata for tooling and integrations. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podLabels": {
+      "default": null,
+      "description": "Custom labels attached to the driver pods for selection, grouping, and policy targeting. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "priorityClassName": {
+      "default": null,
+      "description": "Priority class assigned to the driver pods to influence scheduling and preemption order. See https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "properties": {
+            "memory": {
+              "description": "Memory limit for driver pods",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "description": "CPU request for driver pods",
+              "type": "string"
+            },
+            "memory": {
+              "description": "Memory request for driver pods",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "storageClass": {
+      "additionalProperties": false,
+      "properties": {
+        "create": {
+          "description": "Create default storage class",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the storage class",
+          "type": "string"
+        },
+        "reclaimPolicy": {
+          "description": "Reclaim policy for volumes",
+          "enum": [
+            "Delete",
+            "Retain"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tolerations": {
+      "default": [],
+      "description": "Schedule the driver pods on nodes with matching taints. See https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
