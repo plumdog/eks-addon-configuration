@@ -1,0 +1,2731 @@
+{
+  "$defs": {
+    "absolutePath": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?![\\s\\S]*/\\.\\.(/|$))/",
+      "type": "string"
+    },
+    "affinity": {
+      "additionalProperties": false,
+      "properties": {
+        "nodeAffinity": {
+          "$ref": "#/$defs/nodeAffinity",
+          "description": "Node affinity"
+        },
+        "podAffinity": {
+          "$ref": "#/$defs/podAffinity",
+          "description": "Pod affinity"
+        },
+        "podAntiAffinity": {
+          "$ref": "#/$defs/podAffinity",
+          "description": "Pod anti-affinity"
+        }
+      },
+      "type": "object"
+    },
+    "annotationKey": {
+      "maxLength": 317,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?!(container\\.apparmor\\.security\\.beta|seccomp\\.security\\.alpha|container\\.seccomp\\.security\\.alpha)\\.kubernetes\\.io/)((?=[^/]{1,253}/)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?[A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?$",
+      "type": "string"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "$ref": "#/$defs/multiLineText"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/annotationKey"
+      },
+      "type": "object"
+    },
+    "braceFreeText": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])",
+      "type": "string"
+    },
+    "braceFreeTextList": {
+      "items": {
+        "$ref": "#/$defs/braceFreeText"
+      },
+      "type": "array"
+    },
+    "configMapKey": {
+      "maxLength": 253,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!\\.\\.)(?!\\.$)[-._a-zA-Z0-9]+$",
+      "type": "string"
+    },
+    "containerEnvVarName": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/envVarName"
+        },
+        {
+          "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!AWS_(ROLE_ARN|WEB_IDENTITY_TOKEN_FILE|ROLE_SESSION_NAME|ACCESS_KEY(_ID)?|SECRET(_ACCESS)?_KEY|SESSION_TOKEN|CONTAINER_CREDENTIALS_(FULL|RELATIVE)_URI|CONTAINER_AUTHORIZATION_TOKEN(_FILE)?|(DEFAULT_)?PROFILE|SHARED_CREDENTIALS_FILE|CONFIG_FILE)$)",
+          "type": "string"
+        }
+      ]
+    },
+    "customLabels": {
+      "additionalProperties": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "propertyNames": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/labelKey"
+          }
+        ],
+        "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?!(app|app\\.kubernetes\\.io/(name|instance|managed-by|component|version)|helm\\.sh/chart)$)(?!rbac\\.authorization\\.k8s\\.io/)(?!([^/]*/)?aggregate-to-)"
+      },
+      "type": "object"
+    },
+    "descendingPath": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!/)(?!\\.\\.(/|$))(?![\\s\\S]*/\\.\\.(/|$))",
+      "type": "string"
+    },
+    "dns1123Label": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?$",
+      "type": "string"
+    },
+    "dns1123Subdomain": {
+      "maxLength": 253,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
+      "type": "string"
+    },
+    "dnsConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "nameservers": {
+          "description": "DNS server IP addresses, at most 3",
+          "items": {
+            "$ref": "#/$defs/ipAddress"
+          },
+          "maxItems": 3,
+          "type": "array"
+        },
+        "options": {
+          "description": "Resolver options",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "Option name"
+              },
+              "value": {
+                "$ref": "#/$defs/freeText",
+                "description": "Option value"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "searches": {
+          "description": "DNS search domains, at most 32",
+          "items": {
+            "description": "A DNS subdomain, with an optional trailing dot",
+            "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?=[\\s\\S]{1,253}\\.?$)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\\.?$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "downwardAPIVolumeFile": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "fieldRef"
+          ]
+        },
+        {
+          "required": [
+            "resourceFieldRef"
+          ]
+        }
+      ],
+      "properties": {
+        "fieldRef": {
+          "$ref": "#/$defs/objectFieldSelector",
+          "description": "Pod field"
+        },
+        "mode": {
+          "$ref": "#/$defs/fileMode",
+          "description": "File mode bits, 0 to 0777"
+        },
+        "path": {
+          "$ref": "#/$defs/relativePath",
+          "description": "Relative file path"
+        },
+        "resourceFieldRef": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/resourceFieldSelector"
+            }
+          ],
+          "description": "Resource of the named container",
+          "required": [
+            "containerName"
+          ]
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "type": "object"
+    },
+    "env": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "$ref": "#/$defs/containerEnvVarName",
+            "description": "Variable name, other than an AWS credential or identity variable such as AWS_ROLE_ARN"
+          },
+          "value": {
+            "$ref": "#/$defs/multiLineText",
+            "description": "Variable value; may span lines"
+          },
+          "valueFrom": {
+            "additionalProperties": false,
+            "description": "Source of the value, exactly one",
+            "maxProperties": 1,
+            "minProperties": 1,
+            "properties": {
+              "configMapKeyRef": {
+                "additionalProperties": false,
+                "description": "Key of a ConfigMap",
+                "properties": {
+                  "key": {
+                    "$ref": "#/$defs/configMapKey",
+                    "description": "Key to read"
+                  },
+                  "name": {
+                    "$ref": "#/$defs/dns1123Subdomain",
+                    "description": "Name of the ConfigMap"
+                  },
+                  "optional": {
+                    "description": "Allow the ConfigMap or key to be missing",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "key"
+                ],
+                "type": "object"
+              },
+              "fieldRef": {
+                "$ref": "#/$defs/objectFieldSelector",
+                "description": "Pod field"
+              },
+              "resourceFieldRef": {
+                "$ref": "#/$defs/resourceFieldSelector",
+                "description": "Container resource"
+              },
+              "secretKeyRef": {
+                "additionalProperties": false,
+                "description": "Key of a Secret, by name; the schema never takes the value",
+                "properties": {
+                  "key": {
+                    "$ref": "#/$defs/configMapKey",
+                    "description": "Key to read"
+                  },
+                  "name": {
+                    "$ref": "#/$defs/dns1123Subdomain",
+                    "description": "Name of the Secret"
+                  },
+                  "optional": {
+                    "description": "Allow the Secret or key to be missing",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "key"
+                ],
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "envFrom": {
+      "items": {
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "configMapRef"
+            ]
+          },
+          {
+            "required": [
+              "secretRef"
+            ]
+          }
+        ],
+        "properties": {
+          "configMapRef": {
+            "additionalProperties": false,
+            "description": "ConfigMap whose keys become variables",
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/dns1123Subdomain",
+                "description": "Name of the ConfigMap"
+              },
+              "optional": {
+                "description": "Allow the ConfigMap to be missing",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/envVarName"
+              },
+              {
+                "const": ""
+              }
+            ],
+            "description": "Prefix added to every variable name"
+          },
+          "secretRef": {
+            "additionalProperties": false,
+            "description": "Secret whose keys become variables, by name",
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/dns1123Subdomain",
+                "description": "Name of the Secret"
+              },
+              "optional": {
+                "description": "Allow the Secret to be missing",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "envVarName": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!\\.\\.)(?!\\.$)[-._a-zA-Z][-._a-zA-Z0-9]*$",
+      "type": "string"
+    },
+    "fileMode": {
+      "maximum": 511,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "freeText": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+      "type": "string"
+    },
+    "freeTextList": {
+      "items": {
+        "$ref": "#/$defs/freeText"
+      },
+      "type": "array"
+    },
+    "ipAddress": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])(\\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])){3}|([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|([0-9A-Fa-f]{1,4}:){1,7}:|([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4}|([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2}|([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3}|([0-9A-Fa-f]{1,4}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4}|([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5}|[0-9A-Fa-f]{1,4}:(:[0-9A-Fa-f]{1,4}){1,6}|:((:[0-9A-Fa-f]{1,4}){1,7}|:))$",
+      "type": "string"
+    },
+    "keyToPath": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "$ref": "#/$defs/nonEmptyText",
+          "description": "Key to project"
+        },
+        "mode": {
+          "$ref": "#/$defs/fileMode",
+          "description": "File mode bits, 0 to 0777"
+        },
+        "path": {
+          "$ref": "#/$defs/relativePath",
+          "description": "Relative file path"
+        }
+      },
+      "required": [
+        "key",
+        "path"
+      ],
+      "type": "object"
+    },
+    "labelKey": {
+      "maxLength": 317,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])((?=[^/]{1,253}/)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?[A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?$",
+      "type": "string"
+    },
+    "labelKeyList": {
+      "items": {
+        "$ref": "#/$defs/labelKey"
+      },
+      "type": "array"
+    },
+    "labelSelector": {
+      "additionalProperties": false,
+      "properties": {
+        "matchExpressions": {
+          "description": "Label requirements, all of which must match",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "$ref": "#/$defs/labelKey",
+                "description": "Label key"
+              },
+              "operator": {
+                "description": "In, NotIn, Exists, or DoesNotExist",
+                "enum": [
+                  "In",
+                  "NotIn",
+                  "Exists",
+                  "DoesNotExist"
+                ]
+              },
+              "values": {
+                "$ref": "#/$defs/labelValueList",
+                "description": "Label values for In and NotIn"
+              }
+            },
+            "required": [
+              "key",
+              "operator"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "matchLabels": {
+          "$ref": "#/$defs/labels",
+          "description": "Labels that an object must carry, all of them"
+        }
+      },
+      "type": "object"
+    },
+    "labelValue": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])([A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?)?$",
+      "type": "string"
+    },
+    "labelValueList": {
+      "items": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "type": "array"
+    },
+    "labels": {
+      "additionalProperties": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/labelKey"
+      },
+      "type": "object"
+    },
+    "localObjectReference": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/freeText",
+          "description": "Name of the object"
+        }
+      },
+      "type": "object"
+    },
+    "multiLineText": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x08\\x0b-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+      "type": "string"
+    },
+    "nodeAffinity": {
+      "additionalProperties": false,
+      "properties": {
+        "preferredDuringSchedulingIgnoredDuringExecution": {
+          "description": "Weighted node preferences",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "preference": {
+                "$ref": "#/$defs/nodeSelectorTerm",
+                "description": "Node selector term; all of its requirements must match"
+              },
+              "weight": {
+                "description": "Weight from 1 to 100",
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "weight"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "requiredDuringSchedulingIgnoredDuringExecution": {
+          "additionalProperties": false,
+          "description": "Nodes the pod must run on",
+          "properties": {
+            "nodeSelectorTerms": {
+              "description": "Terms, any one of which must match",
+              "items": {
+                "$ref": "#/$defs/requiredNodeSelectorTerm"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "nodeSelectorRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "$ref": "#/$defs/labelKey",
+          "description": "Node label key"
+        },
+        "operator": {
+          "description": "In, NotIn, Exists, DoesNotExist, Gt, or Lt",
+          "enum": [
+            "In",
+            "NotIn",
+            "Exists",
+            "DoesNotExist",
+            "Gt",
+            "Lt"
+          ]
+        },
+        "values": {
+          "$ref": "#/$defs/braceFreeTextList",
+          "description": "Values to compare with"
+        }
+      },
+      "required": [
+        "key",
+        "operator"
+      ],
+      "type": "object"
+    },
+    "nodeSelectorTerm": {
+      "additionalProperties": false,
+      "properties": {
+        "matchExpressions": {
+          "description": "Requirements on node labels",
+          "items": {
+            "$ref": "#/$defs/nodeSelectorRequirement"
+          },
+          "type": "array"
+        },
+        "matchFields": {
+          "description": "Requirements on node fields",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "description": "Node field; only metadata.name",
+                "enum": [
+                  "metadata.name"
+                ]
+              },
+              "operator": {
+                "description": "In or NotIn",
+                "enum": [
+                  "In",
+                  "NotIn"
+                ]
+              },
+              "values": {
+                "description": "The one node name to compare with",
+                "items": {
+                  "$ref": "#/$defs/dns1123Subdomain"
+                },
+                "maxItems": 1,
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "key",
+              "operator",
+              "values"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "nonEmptyText": {
+      "minLength": 1,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+      "type": "string"
+    },
+    "objectFieldSelector": {
+      "additionalProperties": false,
+      "properties": {
+        "apiVersion": {
+          "$ref": "#/$defs/freeText",
+          "description": "Schema version of fieldPath, v1 by default"
+        },
+        "fieldPath": {
+          "$ref": "#/$defs/nonEmptyText",
+          "description": "Path of the field, such as metadata.name"
+        }
+      },
+      "required": [
+        "fieldPath"
+      ],
+      "type": "object"
+    },
+    "podAffinity": {
+      "additionalProperties": false,
+      "properties": {
+        "preferredDuringSchedulingIgnoredDuringExecution": {
+          "description": "Weighted terms the scheduler tries to satisfy",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "podAffinityTerm": {
+                "$ref": "#/$defs/podAffinityTerm",
+                "description": "Pod affinity term"
+              },
+              "weight": {
+                "description": "Weight from 1 to 100",
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "weight",
+              "podAffinityTerm"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "requiredDuringSchedulingIgnoredDuringExecution": {
+          "description": "Terms that must all hold for the pod to be scheduled on a node",
+          "items": {
+            "$ref": "#/$defs/podAffinityTerm"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "podAffinityTerm": {
+      "additionalProperties": false,
+      "properties": {
+        "labelSelector": {
+          "$ref": "#/$defs/labelSelector",
+          "description": "Pods that the term matches"
+        },
+        "namespaceSelector": {
+          "$ref": "#/$defs/labelSelector",
+          "description": "Namespaces whose pods the term matches, by label"
+        },
+        "namespaces": {
+          "description": "Namespaces whose pods the term matches",
+          "items": {
+            "$ref": "#/$defs/dns1123Label"
+          },
+          "type": "array"
+        },
+        "topologyKey": {
+          "$ref": "#/$defs/labelKey",
+          "description": "Node label whose value defines the topology domain"
+        }
+      },
+      "required": [
+        "topologyKey"
+      ],
+      "type": "object"
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "propertyNames": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/labelKey"
+          }
+        ],
+        "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?!(app|app\\.kubernetes\\.io/(name|instance|managed-by|component|version)|helm\\.sh/chart)$)"
+      },
+      "type": "object"
+    },
+    "priorityClassName": {
+      "maxLength": 253,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$",
+      "type": "string"
+    },
+    "quantity": {
+      "minimum": 0,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([KMGTPE]i|[numkMGTPE]|[eE][+-]?[0-9]+)?$",
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "relativePath": {
+      "minLength": 1,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!/)(?!\\.\\.)(?![\\s\\S]*/\\.\\.(/|$))",
+      "type": "string"
+    },
+    "requiredNodeSelectorTerm": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/nodeSelectorTerm"
+        }
+      ],
+      "properties": {
+        "matchExpressions": {
+          "description": "Requirements on node labels",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/nodeSelectorRequirement"
+              }
+            ],
+            "properties": {
+              "values": {
+                "$ref": "#/$defs/labelValueList",
+                "description": "Label values to compare with"
+              }
+            }
+          },
+          "type": "array"
+        }
+      }
+    },
+    "resourceFieldSelector": {
+      "additionalProperties": false,
+      "properties": {
+        "containerName": {
+          "$ref": "#/$defs/freeText",
+          "description": "Container whose resource to read"
+        },
+        "divisor": {
+          "$ref": "#/$defs/quantity",
+          "description": "Unit to express the value in"
+        },
+        "resource": {
+          "$ref": "#/$defs/nonEmptyText",
+          "description": "Resource to read, such as limits.cpu"
+        }
+      },
+      "required": [
+        "resource"
+      ],
+      "type": "object"
+    },
+    "resourceList": {
+      "additionalProperties": {
+        "$ref": "#/$defs/quantity"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/labelKey"
+      },
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/$defs/resourceList",
+          "description": "Resource limits, keyed by resource name, such as cpu or memory"
+        },
+        "requests": {
+          "$ref": "#/$defs/resourceList",
+          "description": "Resource requests, keyed by resource name, such as cpu or memory"
+        }
+      },
+      "type": "object"
+    },
+    "tolerations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "effect": {
+            "description": "Taint effect to match: NoSchedule, PreferNoSchedule, or NoExecute; empty matches all",
+            "enum": [
+              "",
+              "NoSchedule",
+              "PreferNoSchedule",
+              "NoExecute"
+            ]
+          },
+          "key": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/labelKey"
+              },
+              {
+                "const": ""
+              }
+            ],
+            "description": "Taint key that the toleration applies to; empty with Exists matches every key"
+          },
+          "operator": {
+            "description": "Exists or Equal; empty means Equal",
+            "enum": [
+              "",
+              "Equal",
+              "Exists"
+            ]
+          },
+          "tolerationSeconds": {
+            "description": "Seconds the pod stays bound after a NoExecute taint appears",
+            "type": "integer"
+          },
+          "value": {
+            "$ref": "#/$defs/labelValue",
+            "description": "Taint value to match with Equal"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "topologySpreadConstraints": {
+      "items": {
+        "additionalProperties": false,
+        "dependentRequired": {
+          "matchLabelKeys": [
+            "labelSelector"
+          ]
+        },
+        "properties": {
+          "labelSelector": {
+            "$ref": "#/$defs/labelSelector",
+            "description": "Pods to count"
+          },
+          "matchLabelKeys": {
+            "$ref": "#/$defs/labelKeyList",
+            "description": "Pod label keys whose values also select the pods to count"
+          },
+          "maxSkew": {
+            "description": "Largest allowed difference in pod count between topology domains",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "minDomains": {
+            "description": "Minimum number of eligible domains",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "nodeAffinityPolicy": {
+            "description": "Honor or Ignore: whether node affinity limits the domains",
+            "enum": [
+              "Honor",
+              "Ignore"
+            ]
+          },
+          "nodeTaintsPolicy": {
+            "description": "Honor or Ignore: whether node taints limit the domains",
+            "enum": [
+              "Honor",
+              "Ignore"
+            ]
+          },
+          "topologyKey": {
+            "description": "Node label whose value defines the topology domain",
+            "minLength": 1,
+            "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])",
+            "type": "string"
+          },
+          "whenUnsatisfiable": {
+            "description": "DoNotSchedule or ScheduleAnyway",
+            "enum": [
+              "DoNotSchedule",
+              "ScheduleAnyway"
+            ]
+          }
+        },
+        "required": [
+          "maxSkew",
+          "topologyKey",
+          "whenUnsatisfiable"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "tplAnnotations": {
+      "additionalProperties": {
+        "maximum": 999999,
+        "minimum": -999999,
+        "multipleOf": 1,
+        "pattern": "^(?![\\s\\S]*[\\x00-\\x08\\x0b-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?![\\s\\S]*\\{\\{)",
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/annotationKey"
+      },
+      "type": "object"
+    },
+    "volumeMounts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "mountPath": {
+            "$ref": "#/$defs/nonEmptyText",
+            "description": "Path in the container"
+          },
+          "mountPropagation": {
+            "description": "None, HostToContainer, or Bidirectional",
+            "enum": [
+              "None",
+              "HostToContainer",
+              "Bidirectional"
+            ]
+          },
+          "name": {
+            "$ref": "#/$defs/nonEmptyText",
+            "description": "Name of the volume to mount"
+          },
+          "readOnly": {
+            "description": "Mount read-only",
+            "type": "boolean"
+          },
+          "subPath": {
+            "$ref": "#/$defs/descendingPath",
+            "description": "Path within the volume to mount"
+          },
+          "subPathExpr": {
+            "$ref": "#/$defs/descendingPath",
+            "description": "subPath with environment variables expanded"
+          }
+        },
+        "required": [
+          "name",
+          "mountPath"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "volumes": {
+      "items": {
+        "additionalProperties": false,
+        "maxProperties": 2,
+        "properties": {
+          "awsElasticBlockStore": {
+            "additionalProperties": false,
+            "description": "AWS EBS volume, deprecated in-tree driver",
+            "properties": {
+              "fsType": {
+                "$ref": "#/$defs/freeText",
+                "description": "Filesystem type to mount"
+              },
+              "partition": {
+                "description": "Partition to mount, 0 to 255; 0 mounts the whole volume",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              },
+              "volumeID": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "EBS volume ID"
+              }
+            },
+            "required": [
+              "volumeID"
+            ],
+            "type": "object"
+          },
+          "configMap": {
+            "additionalProperties": false,
+            "description": "ConfigMap whose keys become files",
+            "properties": {
+              "defaultMode": {
+                "$ref": "#/$defs/fileMode",
+                "description": "Default file mode bits, 0 to 0777"
+              },
+              "items": {
+                "description": "Keys to project; all keys when empty",
+                "items": {
+                  "$ref": "#/$defs/keyToPath"
+                },
+                "type": "array"
+              },
+              "name": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "Name of the ConfigMap"
+              },
+              "optional": {
+                "description": "Allow the ConfigMap to be missing",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          },
+          "csi": {
+            "additionalProperties": false,
+            "description": "Inline volume from a CSI driver",
+            "properties": {
+              "driver": {
+                "description": "Name of the CSI driver",
+                "maxLength": 63,
+                "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])[A-Za-z0-9]([-A-Za-z0-9]*[A-Za-z0-9])?(\\.[A-Za-z0-9]([-A-Za-z0-9]*[A-Za-z0-9])?)*$",
+                "type": "string"
+              },
+              "fsType": {
+                "$ref": "#/$defs/freeText",
+                "description": "Filesystem type to mount"
+              },
+              "nodePublishSecretRef": {
+                "$ref": "#/$defs/localObjectReference",
+                "description": "Secret passed to the driver's NodePublishVolume, by name"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              },
+              "volumeAttributes": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/freeText"
+                },
+                "description": "Driver-specific attributes",
+                "propertyNames": {
+                  "$ref": "#/$defs/freeText"
+                },
+                "type": "object"
+              }
+            },
+            "required": [
+              "driver"
+            ],
+            "type": "object"
+          },
+          "downwardAPI": {
+            "additionalProperties": false,
+            "description": "Pod and container fields as files",
+            "properties": {
+              "defaultMode": {
+                "$ref": "#/$defs/fileMode",
+                "description": "Default file mode bits, 0 to 0777"
+              },
+              "items": {
+                "description": "Files to create",
+                "items": {
+                  "$ref": "#/$defs/downwardAPIVolumeFile"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "emptyDir": {
+            "additionalProperties": false,
+            "description": "Empty directory that lives as long as the pod",
+            "properties": {
+              "medium": {
+                "$ref": "#/$defs/freeText",
+                "description": "Empty for the node's default medium, or Memory"
+              },
+              "sizeLimit": {
+                "$ref": "#/$defs/quantity",
+                "description": "Largest size the directory may use"
+              }
+            },
+            "type": "object"
+          },
+          "ephemeral": {
+            "additionalProperties": false,
+            "description": "Volume from a PersistentVolumeClaim that lives as long as the pod",
+            "properties": {
+              "volumeClaimTemplate": {
+                "additionalProperties": false,
+                "description": "Template for the claim",
+                "properties": {
+                  "metadata": {
+                    "additionalProperties": false,
+                    "description": "Labels and annotations copied to the claim",
+                    "properties": {
+                      "annotations": {
+                        "$ref": "#/$defs/annotations",
+                        "description": "Annotations of the claim"
+                      },
+                      "labels": {
+                        "$ref": "#/$defs/labels",
+                        "description": "Labels of the claim"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "spec": {
+                    "additionalProperties": false,
+                    "description": "PersistentVolumeClaim spec",
+                    "properties": {
+                      "accessModes": {
+                        "description": "Access modes: ReadWriteOnce, ReadOnlyMany, ReadWriteMany, or ReadWriteOncePod",
+                        "items": {
+                          "enum": [
+                            "ReadWriteOnce",
+                            "ReadOnlyMany",
+                            "ReadWriteMany",
+                            "ReadWriteOncePod"
+                          ]
+                        },
+                        "minItems": 1,
+                        "type": "array"
+                      },
+                      "dataSource": {
+                        "additionalProperties": false,
+                        "description": "Object to populate the volume from",
+                        "properties": {
+                          "apiGroup": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "API group of the object"
+                          },
+                          "kind": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "Kind of the object"
+                          },
+                          "name": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "Name of the object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "dataSourceRef": {
+                        "additionalProperties": false,
+                        "description": "Object to populate the volume from, any kind",
+                        "properties": {
+                          "apiGroup": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "API group of the object"
+                          },
+                          "kind": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "Kind of the object"
+                          },
+                          "name": {
+                            "$ref": "#/$defs/freeText",
+                            "description": "Name of the object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "resources": {
+                        "additionalProperties": false,
+                        "description": "Requested storage",
+                        "properties": {
+                          "limits": {
+                            "$ref": "#/$defs/resourceList",
+                            "description": "Storage limits"
+                          },
+                          "requests": {
+                            "allOf": [
+                              {
+                                "$ref": "#/$defs/resourceList"
+                              }
+                            ],
+                            "description": "Storage requests, such as storage: 10Gi",
+                            "required": [
+                              "storage"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "requests"
+                        ],
+                        "type": "object"
+                      },
+                      "selector": {
+                        "$ref": "#/$defs/labelSelector",
+                        "description": "PersistentVolumes the claim may bind to"
+                      },
+                      "storageClassName": {
+                        "$ref": "#/$defs/freeText",
+                        "description": "StorageClass of the claim"
+                      },
+                      "volumeMode": {
+                        "description": "Filesystem or Block",
+                        "enum": [
+                          "Filesystem",
+                          "Block"
+                        ]
+                      },
+                      "volumeName": {
+                        "$ref": "#/$defs/freeText",
+                        "description": "PersistentVolume to bind to"
+                      }
+                    },
+                    "required": [
+                      "accessModes",
+                      "resources"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "spec"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "volumeClaimTemplate"
+            ],
+            "type": "object"
+          },
+          "fc": {
+            "additionalProperties": false,
+            "description": "Fibre Channel volume",
+            "properties": {
+              "fsType": {
+                "$ref": "#/$defs/freeText",
+                "description": "Filesystem type to mount"
+              },
+              "lun": {
+                "description": "Target LUN, 0 to 255",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              },
+              "targetWWNs": {
+                "$ref": "#/$defs/freeTextList",
+                "description": "Target worldwide names"
+              },
+              "wwids": {
+                "$ref": "#/$defs/freeTextList",
+                "description": "Volume worldwide identifiers"
+              }
+            },
+            "type": "object"
+          },
+          "hostPath": {
+            "additionalProperties": false,
+            "description": "Directory or file on the node",
+            "properties": {
+              "path": {
+                "description": "Path on the node, with no .. element",
+                "minLength": 1,
+                "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?!\\.\\.(/|$))(?![\\s\\S]*/\\.\\.(/|$))",
+                "type": "string"
+              },
+              "type": {
+                "description": "Empty, DirectoryOrCreate, Directory, FileOrCreate, File, Socket, CharDevice, or BlockDevice",
+                "enum": [
+                  "",
+                  "DirectoryOrCreate",
+                  "Directory",
+                  "FileOrCreate",
+                  "File",
+                  "Socket",
+                  "CharDevice",
+                  "BlockDevice"
+                ]
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          },
+          "iscsi": {
+            "additionalProperties": false,
+            "description": "iSCSI volume",
+            "properties": {
+              "chapAuthDiscovery": {
+                "description": "Use CHAP authentication for discovery",
+                "type": "boolean"
+              },
+              "chapAuthSession": {
+                "description": "Use CHAP authentication for the session",
+                "type": "boolean"
+              },
+              "fsType": {
+                "$ref": "#/$defs/freeText",
+                "description": "Filesystem type to mount"
+              },
+              "initiatorName": {
+                "$ref": "#/$defs/freeText",
+                "description": "Custom iSCSI initiator name"
+              },
+              "iqn": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "Target iSCSI qualified name"
+              },
+              "iscsiInterface": {
+                "$ref": "#/$defs/freeText",
+                "description": "iSCSI interface name"
+              },
+              "lun": {
+                "description": "Target LUN, 0 to 255",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "portals": {
+                "$ref": "#/$defs/freeTextList",
+                "description": "Additional target portal addresses"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              },
+              "secretRef": {
+                "$ref": "#/$defs/localObjectReference",
+                "description": "Secret with the CHAP credentials, by name"
+              },
+              "targetPortal": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "Target portal address"
+              }
+            },
+            "required": [
+              "targetPortal",
+              "iqn"
+            ],
+            "type": "object"
+          },
+          "name": {
+            "$ref": "#/$defs/dns1123Label",
+            "description": "Volume name, used by volumeMounts"
+          },
+          "nfs": {
+            "additionalProperties": false,
+            "description": "NFS export",
+            "properties": {
+              "path": {
+                "description": "Exported path; absolute",
+                "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])/",
+                "type": "string"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              },
+              "server": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "NFS server"
+              }
+            },
+            "required": [
+              "server",
+              "path"
+            ],
+            "type": "object"
+          },
+          "persistentVolumeClaim": {
+            "additionalProperties": false,
+            "description": "Existing PersistentVolumeClaim",
+            "properties": {
+              "claimName": {
+                "$ref": "#/$defs/nonEmptyText",
+                "description": "Name of the claim"
+              },
+              "readOnly": {
+                "description": "Mount read-only",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "claimName"
+            ],
+            "type": "object"
+          },
+          "projected": {
+            "additionalProperties": false,
+            "description": "Several sources projected into one directory",
+            "properties": {
+              "defaultMode": {
+                "$ref": "#/$defs/fileMode",
+                "description": "Default file mode bits, 0 to 0777"
+              },
+              "sources": {
+                "description": "Sources to project, one per entry",
+                "items": {
+                  "additionalProperties": false,
+                  "maxProperties": 1,
+                  "properties": {
+                    "configMap": {
+                      "additionalProperties": false,
+                      "description": "ConfigMap to project",
+                      "properties": {
+                        "items": {
+                          "description": "Keys to project",
+                          "items": {
+                            "$ref": "#/$defs/keyToPath"
+                          },
+                          "type": "array"
+                        },
+                        "name": {
+                          "$ref": "#/$defs/nonEmptyText",
+                          "description": "Name of the ConfigMap"
+                        },
+                        "optional": {
+                          "description": "Allow the ConfigMap to be missing",
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ],
+                      "type": "object"
+                    },
+                    "downwardAPI": {
+                      "additionalProperties": false,
+                      "description": "Downward API fields to project",
+                      "properties": {
+                        "items": {
+                          "description": "Files to create",
+                          "items": {
+                            "$ref": "#/$defs/downwardAPIVolumeFile"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configuration values for the Chainguard EBS CSI driver add-on",
+  "examples": [
+    {
+      "useAwsAddonSelectors": true
+    },
+    {
+      "controller": {
+        "extraVolumeTags": {
+          "team": "storage"
+        },
+        "nodeSelector": {
+          "kubernetes.io/arch": "arm64"
+        },
+        "podDisruptionBudget": {
+          "maxUnavailable": 1
+        },
+        "replicaCount": 3,
+        "tolerations": [
+          {
+            "effect": "NoSchedule",
+            "key": "dedicated",
+            "operator": "Equal",
+            "value": "storage"
+          }
+        ]
+      }
+    },
+    {
+      "controller": {
+        "volumeModificationFeature": {
+          "enabled": true
+        }
+      },
+      "sidecars": {
+        "snapshotter": {
+          "forceEnable": true
+        }
+      }
+    },
+    {
+      "additionalDaemonSets": {
+        "c5": {
+          "nodeSelector": {
+            "node.kubernetes.io/instance-type": "c5.large"
+          },
+          "volumeAttachLimit": 15
+        }
+      }
+    },
+    {
+      "proxy": {
+        "http_proxy": "http://proxy.example.com:3128",
+        "no_proxy": "localhost,127.0.0.1,169.254.169.254,.svc,.cluster.local"
+      }
+    },
+    {
+      "controller": {
+        "enableMetrics": true,
+        "logLevel": 4,
+        "loggingFormat": "json"
+      },
+      "node": {
+        "enableMetrics": true,
+        "loggingFormat": "json"
+      }
+    },
+    {
+      "node": {
+        "resources": {
+          "limits": {
+            "memory": "256Mi"
+          },
+          "requests": {
+            "cpu": "20m",
+            "memory": "64Mi"
+          }
+        },
+        "tolerateAllTaints": false,
+        "volumeAttachLimit": 25
+      }
+    },
+    {
+      "defaultStorageClass": {
+        "enabled": true
+      }
+    }
+  ],
+  "properties": {
+    "additionalDaemonSets": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "description": "Node settings for one extra DaemonSet",
+        "properties": {
+          "additionalArgs": {
+            "$ref": "#/$defs/freeTextList",
+            "description": "Extra command-line arguments for the driver container of this entry's pods. An empty list replaces node.additionalArgs too."
+          },
+          "affinity": {
+            "$ref": "#/$defs/affinity",
+            "description": "Affinity of this entry's pods. It merges over node.affinity key by key at every level; an empty map does not override it."
+          },
+          "daemonSetAnnotations": {
+            "$ref": "#/$defs/annotations",
+            "description": "Annotations on this entry's DaemonSets. It merges over node.daemonSetAnnotations key by key at every level; an empty map does not override it."
+          },
+          "dnsConfig": {
+            "$ref": "#/$defs/dnsConfig",
+            "description": "DNS configuration of this entry's pods. It merges over node.dnsConfig key by key at every level; an empty map does not override it."
+          },
+          "enableLinux": {
+            "description": "Create the Linux DaemonSet for this entry. It replaces node.enableLinux, which defaults to true.",
+            "type": "boolean"
+          },
+          "enableMetrics": {
+            "description": "Serve metrics from this entry's pods. It replaces node.enableMetrics. The chart creates no metrics Service for these pods, because the node metrics Service follows node.enableMetrics and selects only the ebs-csi-node pods.",
+            "type": "boolean"
+          },
+          "enableWindows": {
+            "description": "Create the Windows DaemonSet for this entry. It replaces node.enableWindows, which defaults to true.",
+            "type": "boolean"
+          },
+          "env": {
+            "$ref": "#/$defs/env",
+            "description": "Extra environment variables for the driver container of this entry's pods, as Kubernetes EnvVar objects. An empty list replaces node.env too."
+          },
+          "hostNetwork": {
+            "description": "Run this entry's pods on the host network. It replaces node.hostNetwork.",
+            "type": "boolean"
+          },
+          "kubeletPath": {
+            "$ref": "#/$defs/absolutePath",
+            "description": "Kubelet root directory on the nodes, which this entry's pods mount from the host: an absolute path with no .. element. It replaces node.kubeletPath."
+          },
+          "legacyXFS": {
+            "description": "Format XFS volumes with bigtime=0,inobtcount=0,reflink=0 so that nodes with Linux kernel 5.4 or older can mount them. Such volumes record timestamps only until 2038. Upstream plans to remove this setting. It replaces node.legacyXFS.",
+            "type": "boolean"
+          },
+          "logLevel": {
+            "description": "Log verbosity of the driver container of this entry's pods. 0 replaces node.logLevel too.",
+            "maximum": 999999,
+            "minimum": -999999,
+            "type": "integer"
+          },
+          "loggingFormat": {
+            "description": "Log format of the driver container of this entry's pods",
+            "enum": [
+              "text",
+              "json"
+            ],
+            "type": "string"
+          },
+          "metadataSources": {
+            "description": "Comma-separated metadata sources that replace the driver's default. Valid sources are imds (the EC2 instance metadata service), kubernetes, and metadata-labeler (alpha). An empty string replaces node.metadataSources too.",
+            "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+            "type": "string"
+          },
+          "nodeSelector": {
+            "$ref": "#/$defs/labels",
+            "description": "Node selector of this entry's pods, added to the operating system selector of each DaemonSet. It merges over node.nodeSelector key by key at every level; an empty map does not override it."
+          },
+          "otelTracing": {
+            "additionalProperties": false,
+            "description": "OpenTelemetry tracing for this entry's pods. Setting it turns tracing on. It merges over node.otelTracing key by key at every level; an empty map does not override it.",
+            "properties": {
+              "otelExporterEndpoint": {
+                "$ref": "#/$defs/freeText",
+                "description": "OpenTelemetry Protocol (OTLP) endpoint that receives the traces (OTEL_EXPORTER_OTLP_ENDPOINT). An empty string replaces node.otelTracing.otelExporterEndpoint too."
+              },
+              "otelServiceName": {
+                "$ref": "#/$defs/freeText",
+                "description": "Service name reported in the traces (OTEL_SERVICE_NAME). An empty string replaces node.otelTracing.otelServiceName too."
+              }
+            },
+            "type": "object"
+          },
+          "podAnnotations": {
+            "$ref": "#/$defs/annotations",
+            "description": "Annotations on this entry's pods. It merges over node.podAnnotations key by key at every level; an empty map does not override it."
+          },
+          "podLabels": {
+            "$ref": "#/$defs/podLabels",
+            "description": "Labels on this entry's pods. It merges over node.podLabels key by key at every level; an empty map does not override it. Rejects the keys app, app.kubernetes.io/name, and app.kubernetes.io/instance, which the chart's selectors use, and app.kubernetes.io/managed-by, app.kubernetes.io/component, app.kubernetes.io/version, and helm.sh/chart, which the chart sets itself."
+          },
+          "priorityClassName": {
+            "$ref": "#/$defs/priorityClassName",
+            "description": "PriorityClass of this entry's pods. When unset, the pods use system-node-critical. An empty string replaces node.priorityClassName too."
+          },
+          "reservedVolumeAttachments": {
+            "description": "Number of attachment slots to reserve for system use rather than CSI volumes. When unset or -1, the driver estimates it. Cannot be set together with volumeAttachLimit. 0 replaces node.reservedVolumeAttachments too.",
+            "maximum": 999999,
+            "minimum": -1,
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/$defs/resources",
+            "description": "Resource requests and limits of the driver container of this entry's pods. It merges over node.resources key by key at every level; an empty map does not override it."
+          },
+          "revisionHistoryLimit": {
+            "description": "Number of old revisions that each of this entry's DaemonSets keeps. 0 replaces node.revisionHistoryLimit too.",
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "selinux": {
+            "description": "Turn on SELinux-only optimizations in this entry's pods. Set it only if every Linux node in the DaemonSet has SELinux enabled. It replaces node.selinux.",
+            "type": "boolean"
+          },
+          "serviceAccount": {
+            "additionalProperties": false,
+            "description": "Service account settings that apply to this entry's pods",
+            "properties": {
+              "disableMutation": {
+                "description": "Turn off the taint watcher in this entry's pods. It replaces node.serviceAccount.disableMutation. The node service account's permissions follow node.serviceAccount.disableMutation.",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "terminationGracePeriodSeconds": {
+            "description": "Seconds to wait before a stopping node pod is forcefully terminated. 0 replaces node.terminationGracePeriodSeconds too.",
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "tolerateAllTaints": {
+            "description": "Let this entry's pods tolerate every taint. It replaces node.tolerateAllTaints, which defaults to true. Set it to false to use this entry's tolerations.",
+            "type": "boolean"
+          },
+          "tolerations": {
+            "$ref": "#/$defs/tolerations",
+            "description": "Tolerations of this entry's pods, used only when tolerateAllTaints is false for this entry, set here or taken from node. An empty list replaces node.tolerations too."
+          },
+          "volumeAttachLimit": {
+            "description": "Maximum number of volumes that can be attached to each node. Cannot be set together with reservedVolumeAttachments. 0 replaces node.volumeAttachLimit too.",
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "default": null,
+      "description": "Extra node DaemonSets, keyed by a name that becomes part of the DaemonSet names (ebs-csi-node-<name> and ebs-csi-node-<name>-windows): lowercase letters, digits, - and ., at most 50 characters, not windows and not ending in -windows. Each entry takes node settings and merges over node: maps merge key by key at every level, a setting that the entry leaves out or sets to an empty map keeps its value from node, and any other value replaces it, including false, 0, an empty string, and an empty list. Null is rejected, because it deletes the value from node.",
+      "propertyNames": {
+        "maxLength": 50,
+        "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?![\\s\\S]*(^|-)windows$)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
+        "type": "string"
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "controller": {
+      "additionalProperties": false,
+      "description": "Settings for the controller Deployment (ebs-csi-controller)",
+      "properties": {
+        "additionalArgs": {
+          "$ref": "#/$defs/freeTextList",
+          "default": [],
+          "description": "Extra command-line arguments for the driver container of the controller pods"
+        },
+        "affinity": {
+          "$ref": "#/$defs/affinity",
+          "default": {
+            "nodeAffinity": {
+              "preferredDuringSchedulingIgnoredDuringExecution": [
+                {
+                  "preference": {
+                    "matchExpressions": [
+                      {
+                        "key": "eks.amazonaws.com/compute-type",
+                        "operator": "NotIn",
+                        "values": [
+                          "fargate",
+                          "auto",
+                          "hybrid"
+                        ]
+                      }
+                    ]
+                  },
+                  "weight": 1
+                }
+              ]
+            },
+            "podAntiAffinity": {
+              "preferredDuringSchedulingIgnoredDuringExecution": [
+                {
+                  "podAffinityTerm": {
+                    "labelSelector": {
+                      "matchExpressions": [
+                        {
+                          "key": "app",
+                          "operator": "In",
+                          "values": [
+                            "ebs-csi-controller"
+                          ]
+                        }
+                      ]
+                    },
+                    "topologyKey": "kubernetes.io/hostname"
+                  },
+                  "weight": 100
+                }
+              ]
+            }
+          },
+          "description": "Affinity of the controller pods"
+        },
+        "batching": {
+          "default": true,
+          "description": "Batch EC2 API calls. Improves performance in workloads that are sensitive to EC2 rate limits.",
+          "type": "boolean"
+        },
+        "defaultFsType": {
+          "$ref": "#/$defs/freeText",
+          "default": "ext4",
+          "description": "Filesystem type of new volumes whose StorageClass sets no fstype. If this is empty too, no fstype is set."
+        },
+        "deploymentAnnotations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/annotations"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Annotations on the controller Deployment"
+        },
+        "dnsConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dnsConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "DNS configuration of the controller pods"
+        },
+        "enableMetrics": {
+          "default": false,
+          "description": "Serve metrics from the controller pods and create Services for them",
+          "type": "boolean"
+        },
+        "enableNodeLocalVolumes": {
+          "default": false,
+          "description": "Support node-local volumes that use pre-attached EBS volumes",
+          "type": "boolean"
+        },
+        "enablePrometheusAnnotations": {
+          "default": true,
+          "description": "When metrics are on, add the prometheus.io/scrape and prometheus.io/port annotations to the controller metrics Services",
+          "type": "boolean"
+        },
+        "env": {
+          "$ref": "#/$defs/env",
+          "default": [],
+          "description": "Extra environment variables for the driver container of the controller pods, as Kubernetes EnvVar objects"
+        },
+        "envFrom": {
+          "$ref": "#/$defs/envFrom",
+          "default": [],
+          "description": "Kubernetes EnvFromSource entries, which name ConfigMaps or Secrets, for every container of the controller pods and the Linux node pods"
+        },
+        "extraVolumeTags": {
+          "additionalProperties": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?![\\s\\S]*,)",
+            "type": "string"
+          },
+          "default": {},
+          "description": "Tags added to every EBS volume that the driver creates. The chart passes them to the driver as one comma-separated list of key=value pairs, so a key cannot contain , or = and a value cannot contain ,. A key cannot start or end with a space, because the driver trims it. The driver refuses to start with the keys CSIVolumeName and CSIVolumeSnapshotName, or a key that starts with kubernetes.io or ebs.csi.aws.com/, so those are rejected too.",
+          "examples": [
+            {
+              "cost-center": "1234",
+              "team": "storage"
+            }
+          ],
+          "propertyNames": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(?![\\s\\S]*[,=])(?![ \\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000])(?![\\s\\S]*[ \\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000]$)(?!(CSIVolumeName|CSIVolumeSnapshotName)$)(?!kubernetes\\.io)(?!ebs\\.csi\\.aws\\.com/)",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "logLevel": {
+          "default": 2,
+          "description": "Log verbosity of the driver container of the controller pods",
+          "maximum": 999999,
+          "minimum": -999999,
+          "type": "integer"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format of the driver container of the controller pods",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "examples": [
+            "json"
+          ],
+          "type": "string"
+        },
+        "nodeSelector": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/labels"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Node selector of the controller pods, added to kubernetes.io/os: linux"
+        },
+        "otelTracing": {
+          "additionalProperties": false,
+          "default": {},
+          "description": "OpenTelemetry tracing for the controller pods. Setting it turns tracing on.",
+          "properties": {
+            "otelExporterEndpoint": {
+              "$ref": "#/$defs/freeText",
+              "description": "OpenTelemetry Protocol (OTLP) endpoint that receives the traces (OTEL_EXPORTER_OTLP_ENDPOINT)"
+            },
+            "otelServiceName": {
+              "$ref": "#/$defs/freeText",
+              "description": "Service name reported in the traces (OTEL_SERVICE_NAME)"
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/tplAnnotations"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Annotations on the controller pods. The chart runs each key and value through Helm's tpl function, so keys must be Kubernetes annotation keys with a lowercase prefix, other than the deprecated AppArmor and seccomp keys, and values must be strings with no {{ and no control characters other than tab and line feed, integers from -999999 to 999999, or booleans.",
+          "examples": [
+            {
+              "cluster-autoscaler.kubernetes.io/safe-to-evict": true,
+              "example.com/owner": "storage-team",
+              "prometheus.io/port": 3301,
+              "prometheus.io/scrape": "true"
+            }
+          ]
+        },
+        "podDisruptionBudget": {
+          "additionalProperties": false,
+          "description": "PodDisruptionBudget of the controller pods",
+          "properties": {
+            "enabled": {
+              "default": true,
+              "description": "Create a PodDisruptionBudget that keeps at least one controller pod able to attach, detach, create, and delete volumes. Turning it off can delay stateful workloads while controller pods restart or are evicted.",
+              "type": "boolean"
+            },
+            "maxUnavailable": {
+              "description": "Maximum number or percentage of controller pods that may be unavailable. Set this or minAvailable, not both. With neither set, the budget allows 1 unavailable pod for 2 or fewer replicas and requires 2 available pods otherwise. To set 0, pass the string \"0\": the chart ignores the integer 0 and uses that default.",
+              "maximum": 999999,
+              "minimum": 1,
+              "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(0|[1-9][0-9]{0,5}|(100|[1-9]?[0-9])%)$",
+              "type": [
+                "integer",
+                "string",
+                "null"
+              ]
+            },
+            "minAvailable": {
+              "description": "Minimum number or percentage of controller pods that must stay available. Set this or maxUnavailable, not both. With neither set, the budget allows 1 unavailable pod for 2 or fewer replicas and requires 2 available pods otherwise. To set 0, pass the string \"0\": the chart ignores the integer 0 and uses that default.",
+              "maximum": 999999,
+              "minimum": 1,
+              "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])(0|[1-9][0-9]{0,5}|(100|[1-9]?[0-9])%)$",
+              "type": [
+                "integer",
+                "string",
+                "null"
+              ]
+            },
+            "unhealthyPodEvictionPolicy": {
+              "description": "Unhealthy pod eviction policy of the PodDisruptionBudget, IfHealthyBudget or AlwaysAllow",
+              "enum": [
+                "IfHealthyBudget",
+                "AlwaysAllow",
+                null
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "podLabels": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/podLabels"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Labels on the controller pods. Rejects the keys app, app.kubernetes.io/name, and app.kubernetes.io/instance, which the chart's selectors use, and app.kubernetes.io/managed-by, app.kubernetes.io/component, app.kubernetes.io/version, and helm.sh/chart, which the chart sets itself."
+        },
+        "priorityClassName": {
+          "$ref": "#/$defs/priorityClassName",
+          "default": "system-cluster-critical",
+          "description": "PriorityClass of the controller pods"
+        },
+        "replicaCount": {
+          "default": 2,
+          "description": "Number of replicas of the controller Deployment",
+          "examples": [
+            3
+          ],
+          "maximum": 999999,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "resources": {
+          "$ref": "#/$defs/resources",
+          "default": {
+            "limits": {
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "40Mi"
+            }
+          },
+          "description": "Resource requests and limits of the driver container of the controller pods"
+        },
+        "revisionHistoryLimit": {
+          "default": 10,
+          "description": "Number of old ReplicaSets that the controller Deployment keeps",
+          "maximum": 999999,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sdkDebugLog": {
+          "default": false,
+          "description": "Turn on AWS SDK debug logging in the controller (--aws-sdk-debug-log=true)",
+          "type": "boolean"
+        },
+        "serviceAccount": {
+          "additionalProperties": false,
+          "description": "Settings for the controller service account (ebs-csi-controller-sa)",
+          "properties": {
+            "automountServiceAccountToken": {
+              "default": true,
+              "description": "Set automountServiceAccountToken: true on the controller service account. Only true, the default, is accepted: the chart writes the field only when it is true, so false would leave it unset and Kubernetes would still mount the token.",
+              "enum": [
+                true
+              ],
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "serviceMonitor": {
+          "additionalProperties": false,
+          "description": "Settings for the ServiceMonitor of the controller pods",
+          "properties": {
+            "forceEnable": {
+              "default": false,
+              "description": "Create the ServiceMonitor even when the cluster does not report the monitoring.coreos.com/v1 API",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "tolerations": {
+          "$ref": "#/$defs/tolerations",
+          "default": [
+            {
+              "key": "CriticalAddonsOnly",
+              "operator": "Exists"
+            },
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the controller pods"
+        },
+        "topologySpreadConstraints": {
+          "$ref": "#/$defs/topologySpreadConstraints",
+          "default": [],
+          "description": "Topology spread constraints of the controller pods. The chart adds a label selector for the controller pods to each one."
+        },
+        "volumeModificationFeature": {
+          "additionalProperties": false,
+          "description": "Settings for volume modification",
+          "properties": {
+            "enabled": {
+              "default": false,
+              "description": "Run the volume-modifier-for-k8s sidecar, which changes a volume's type, input/output operations per second (IOPS), and throughput from PersistentVolumeClaim annotations",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "volumeMounts": {
+          "$ref": "#/$defs/volumeMounts",
+          "default": [],
+          "description": "Extra volume mounts for the driver container of the controller pods"
+        },
+        "volumes": {
+          "$ref": "#/$defs/volumes",
+          "default": [],
+          "description": "Extra volumes for the controller pods"
+        }
+      },
+      "type": "object"
+    },
+    "customLabels": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/customLabels"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": {},
+      "description": "Labels added to every object the chart creates, its ClusterRoles included. Keys must be Kubernetes label keys other than app, app.kubernetes.io/name, and app.kubernetes.io/instance, which the chart's selectors use, and app.kubernetes.io/managed-by, app.kubernetes.io/component, app.kubernetes.io/version, and helm.sh/chart, which the chart sets itself. Keys under rbac.authorization.k8s.io/ and keys named aggregate-to-* are rejected, because on a ClusterRole they would add its rules to other roles.",
+      "examples": [
+        {
+          "team": "storage"
+        }
+      ]
+    },
+    "debugLogs": {
+      "default": false,
+      "description": "Set the highest log verbosity on every container and turn on AWS SDK debug logging",
+      "type": "boolean"
+    },
+    "defaultStorageClass": {
+      "additionalProperties": false,
+      "description": "Settings for the default StorageClass",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Create a StorageClass named ebs-csi-default-sc that uses this driver and is marked as the cluster default",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "fips": {
+      "default": false,
+      "description": "Turn on FIPS 140-3 mode: the driver uses AWS FIPS endpoints (AWS_USE_FIPS_ENDPOINT) and Go's FIPS 140-3 module (GODEBUG=fips140=on)",
+      "type": "boolean"
+    },
+    "node": {
+      "additionalProperties": false,
+      "description": "Settings for the node DaemonSets (ebs-csi-node and ebs-csi-node-windows)",
+      "properties": {
+        "additionalArgs": {
+          "$ref": "#/$defs/freeTextList",
+          "default": [],
+          "description": "Extra command-line arguments for the driver container of the node pods"
+        },
+        "affinity": {
+          "$ref": "#/$defs/affinity",
+          "default": {
+            "nodeAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": {
+                "nodeSelectorTerms": [
+                  {
+                    "matchExpressions": [
+                      {
+                        "key": "eks.amazonaws.com/compute-type",
+                        "operator": "NotIn",
+                        "values": [
+                          "fargate",
+                          "auto",
+                          "hybrid"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Affinity of the node pods"
+        },
+        "daemonSetAnnotations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/annotations"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Annotations on the node DaemonSets"
+        },
+        "dnsConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dnsConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "DNS configuration of the node pods"
+        },
+        "enableLinux": {
+          "default": true,
+          "description": "Create the Linux node DaemonSet",
+          "type": "boolean"
+        },
+        "enableMetrics": {
+          "default": false,
+          "description": "Serve metrics from the node pods and create a Service for them",
+          "type": "boolean"
+        },
+        "enablePrometheusAnnotations": {
+          "default": true,
+          "description": "When metrics are on, add the prometheus.io/scrape and prometheus.io/port annotations to the node metrics Service",
+          "type": "boolean"
+        },
+        "enableWindows": {
+          "default": true,
+          "description": "Create the Windows node DaemonSet",
+          "type": "boolean"
+        },
+        "env": {
+          "$ref": "#/$defs/env",
+          "default": [],
+          "description": "Extra environment variables for the driver container of the node pods, as Kubernetes EnvVar objects"
+        },
+        "hostNetwork": {
+          "default": false,
+          "description": "Run the node pods on the host network",
+          "type": "boolean"
+        },
+        "kubeletPath": {
+          "$ref": "#/$defs/absolutePath",
+          "default": "/var/lib/kubelet",
+          "description": "Kubelet root directory on the nodes, which the node pods mount from the host: an absolute path with no .. element"
+        },
+        "legacyXFS": {
+          "default": false,
+          "description": "Format XFS volumes with bigtime=0,inobtcount=0,reflink=0 so that nodes with Linux kernel 5.4 or older can mount them. Such volumes record timestamps only until 2038. Upstream plans to remove this setting.",
+          "type": "boolean"
+        },
+        "logLevel": {
+          "default": 2,
+          "description": "Log verbosity of the driver container of the node pods",
+          "maximum": 999999,
+          "minimum": -999999,
+          "type": "integer"
+        },
+        "loggingFormat": {
+          "default": "text",
+          "description": "Log format of the driver container of the node pods",
+          "enum": [
+            "text",
+            "json"
+          ],
+          "type": "string"
+        },
+        "metadataSources": {
+          "default": null,
+          "description": "Comma-separated metadata sources that replace the driver's default. Valid sources are imds (the EC2 instance metadata service), kubernetes, and metadata-labeler (alpha).",
+          "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nodeSelector": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/labels"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Node selector of the node pods, added to the operating system selector of each DaemonSet"
+        },
+        "otelTracing": {
+          "additionalProperties": false,
+          "default": {},
+          "description": "OpenTelemetry tracing for the node pods. Setting it turns tracing on.",
+          "properties": {
+            "otelExporterEndpoint": {
+              "$ref": "#/$defs/freeText",
+              "description": "OpenTelemetry Protocol (OTLP) endpoint that receives the traces (OTEL_EXPORTER_OTLP_ENDPOINT)"
+            },
+            "otelServiceName": {
+              "$ref": "#/$defs/freeText",
+              "description": "Service name reported in the traces (OTEL_SERVICE_NAME)"
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "podAnnotations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/annotations"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Annotations on the node pods"
+        },
+        "podLabels": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/podLabels"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": {},
+          "description": "Labels on the node pods. Rejects the keys app, app.kubernetes.io/name, and app.kubernetes.io/instance, which the chart's selectors use, and app.kubernetes.io/managed-by, app.kubernetes.io/component, app.kubernetes.io/version, and helm.sh/chart, which the chart sets itself."
+        },
+        "priorityClassName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/priorityClassName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "PriorityClass of the node pods. When unset, the pods use system-node-critical."
+        },
+        "reservedVolumeAttachments": {
+          "default": null,
+          "description": "Number of attachment slots to reserve for system use rather than CSI volumes. When unset or -1, the driver estimates it. Cannot be set together with volumeAttachLimit.",
+          "maximum": 999999,
+          "minimum": -1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "resources": {
+          "$ref": "#/$defs/resources",
+          "default": {
+            "limits": {
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "40Mi"
+            }
+          },
+          "description": "Resource requests and limits of the driver container of the node pods"
+        },
+        "revisionHistoryLimit": {
+          "default": 10,
+          "description": "Number of old revisions that each node DaemonSet keeps",
+          "maximum": 999999,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "selinux": {
+          "default": false,
+          "description": "Turn on SELinux-only optimizations in the node pods. Set it only if every Linux node in the DaemonSet has SELinux enabled.",
+          "type": "boolean"
+        },
+        "serviceAccount": {
+          "additionalProperties": false,
+          "description": "Settings for the node service account (ebs-csi-node-sa)",
+          "properties": {
+            "automountServiceAccountToken": {
+              "default": true,
+              "description": "Set automountServiceAccountToken: true on the node service account. Only true, the default, is accepted: the chart writes the field only when it is true, so false would leave it unset and Kubernetes would still mount the token.",
+              "enum": [
+                true
+              ],
+              "type": "boolean"
+            },
+            "disableMutation": {
+              "default": false,
+              "description": "Remove the node service account's permissions to patch, list, and watch nodes and to get CSINodes, and turn off the taint watcher that needs them. Features such as removal of the agent-not-ready taint stop working. Useful in security-sensitive clusters, or on multi-tenant clusters that isolate tenants by node.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "serviceMonitor": {
+          "additionalProperties": false,
+          "description": "Settings for the ServiceMonitor of the node pods",
+          "properties": {
+            "forceEnable": {
+              "default": false,
+              "description": "Create the ServiceMonitor even when the cluster does not report the monitoring.coreos.com/v1 API",
+              "type": "boolean"
+            },
+            "labels": {
+              "$ref": "#/$defs/labels",
+              "default": {},
+              "description": "Extra labels on the node ServiceMonitor"
+            }
+          },
+          "type": "object"
+        },
+        "terminationGracePeriodSeconds": {
+          "default": 30,
+          "description": "Seconds to wait before a stopping node pod is forcefully terminated",
+          "maximum": 999999,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tolerateAllTaints": {
+          "default": true,
+          "description": "Let the node pods tolerate every taint. When false, the pods use tolerations plus the chart's own DaemonSet tolerations.",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "tolerations": {
+          "$ref": "#/$defs/tolerations",
+          "default": [
+            {
+              "effect": "NoExecute",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "description": "Tolerations of the node pods, used when tolerateAllTaints is false"
+        },
+        "volumeAttachLimit": {
+          "default": null,
+          "description": "Maximum number of volumes that can be attached to each node. Cannot be set together with reservedVolumeAttachments.",
+          "maximum": 999999,
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "nodeAllocatableUpdatePeriodSeconds": {
+      "anyOf": [
+        {
+          "enum": [
+            -1,
+            0
+          ]
+        },
+        {
+          "maximum": 999999,
+          "minimum": 10
+        }
+      ],
+      "default": -1,
+      "description": "How often, in seconds, kubelet asks the driver for the node's maximum number of attachable volumes. -1 picks a value based on the metadata sources, 0 leaves the field unset, and any other value must be at least 10, as Kubernetes requires. The chart sets the field only on Kubernetes 1.33 or later. Kubernetes keeps it on 1.35, where the MutableCSINodeAllocatableCount feature gate is on by default, and on 1.33 and 1.34 only with that gate turned on in kubelet and kube-apiserver.",
+      "type": "integer"
+    },
+    "proxy": {
+      "additionalProperties": false,
+      "description": "HTTP proxy settings for the driver and sidecar containers",
+      "properties": {
+        "http_proxy": {
+          "default": null,
+          "description": "Value of the HTTP_PROXY and HTTPS_PROXY environment variables",
+          "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "no_proxy": {
+          "default": null,
+          "description": "Value of the NO_PROXY environment variable. It applies only when http_proxy is set.",
+          "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "sidecars": {
+      "additionalProperties": false,
+      "description": "Settings for the CSI sidecar containers",
+      "properties": {
+        "attacher": {
+          "additionalProperties": false,
+          "description": "Settings for the csi-attacher sidecar of the controller pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the csi-attacher sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the csi-attacher sidecar, as Kubernetes EnvVar objects"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the csi-attacher sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the csi-attacher sidecar. When empty, the sidecar uses controller.resources; a non-empty value replaces it as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "livenessProbe": {
+          "additionalProperties": false,
+          "description": "Settings for the liveness-probe sidecar of the controller and node pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the liveness-probe sidecar"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the liveness-probe sidecar. When empty, the sidecar uses the chart's built-in values: 10m CPU and 32Mi memory requested and a 32Mi memory limit, with 150Mi in place of 32Mi on Windows. A non-empty value replaces them as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "nodeDriverRegistrar": {
+          "additionalProperties": false,
+          "description": "Settings for the node-driver-registrar sidecar of the node pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the node-driver-registrar sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the node-driver-registrar sidecar, as Kubernetes EnvVar objects"
+            },
+            "healthPort": {
+              "default": 9809,
+              "description": "Port that the node-driver-registrar health endpoint listens on",
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the node-driver-registrar sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the node-driver-registrar sidecar. When empty, the sidecar uses the chart's built-in values: 10m CPU and 32Mi memory requested and a 32Mi memory limit, with 150Mi in place of 32Mi on Windows. A non-empty value replaces them as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "provisioner": {
+          "additionalProperties": false,
+          "description": "Settings for the csi-provisioner sidecar of the controller pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the csi-provisioner sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the csi-provisioner sidecar, as Kubernetes EnvVar objects"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the csi-provisioner sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the csi-provisioner sidecar. When empty, the sidecar uses controller.resources; a non-empty value replaces it as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "resizer": {
+          "additionalProperties": false,
+          "description": "Settings for the csi-resizer sidecar of the controller pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the csi-resizer sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the csi-resizer sidecar, as Kubernetes EnvVar objects"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the csi-resizer sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the csi-resizer sidecar. When empty, the sidecar uses controller.resources; a non-empty value replaces it as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "snapshotter": {
+          "additionalProperties": false,
+          "description": "Settings for the csi-snapshotter sidecar of the controller pods",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the csi-snapshotter sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the csi-snapshotter sidecar, as Kubernetes EnvVar objects"
+            },
+            "forceEnable": {
+              "default": false,
+              "description": "Run the csi-snapshotter sidecar even when the cluster does not report the snapshot.storage.k8s.io API",
+              "type": "boolean"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the csi-snapshotter sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the csi-snapshotter sidecar. When empty, the sidecar uses controller.resources; a non-empty value replaces it as a whole, so set every request and limit that the sidecar needs."
+            }
+          },
+          "type": "object"
+        },
+        "volumemodifier": {
+          "additionalProperties": false,
+          "description": "Settings for the volume-modifier-for-k8s sidecar of the controller pods, which runs when controller.volumeModificationFeature.enabled is true",
+          "properties": {
+            "additionalArgs": {
+              "$ref": "#/$defs/freeTextList",
+              "default": [],
+              "description": "Extra command-line arguments for the volume-modifier-for-k8s sidecar"
+            },
+            "env": {
+              "$ref": "#/$defs/env",
+              "default": [],
+              "description": "Extra environment variables for the volume-modifier-for-k8s sidecar, as Kubernetes EnvVar objects"
+            },
+            "logLevel": {
+              "default": 2,
+              "description": "Log verbosity of the volume-modifier-for-k8s sidecar",
+              "maximum": 999999,
+              "minimum": -999999,
+              "type": "integer"
+            },
+            "resources": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/resources"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": {},
+              "description": "Resource requests and limits of the volume-modifier-for-k8s sidecar. When empty, the sidecar uses controller.resources; a non-empty value replaces it as a whole, so set every request and limit that the sidecar needs."
+            },
+            "volumeMounts": {
+              "$ref": "#/$defs/volumeMounts",
+              "default": [],
+              "description": "Extra volume mounts for the volume-modifier-for-k8s sidecar"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "useAwsAddonSelectors": {
+      "default": false,
+      "description": "Use the label selectors of AWS's own EBS CSI add-on, which have no app.kubernetes.io/instance label, so that this add-on can take over the Deployment and DaemonSets that AWS's add-on created. Set it on the first install that replaces AWS's add-on and keep it set: selectors cannot change on an existing object, so changing this setting later fails the update.",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}
