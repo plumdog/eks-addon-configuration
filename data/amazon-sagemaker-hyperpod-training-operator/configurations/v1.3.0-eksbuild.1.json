@@ -1,10 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "properties": {
     "hpTrainingControllerManager": {
+      "additionalProperties": false,
       "description": "Configuration for the HyperPod Training Controller Manager",
       "properties": {
         "manager": {
+          "additionalProperties": false,
           "description": "Configuration for the manager component",
           "properties": {
             "nodeSelector": {
@@ -18,9 +21,11 @@
               "type": "object"
             },
             "resources": {
+              "additionalProperties": false,
               "description": "Resource requirements for the manager",
               "properties": {
                 "limits": {
+                  "additionalProperties": false,
                   "description": "Resource limits for the manager",
                   "properties": {
                     "cpu": {
@@ -37,6 +42,7 @@
                   "type": "object"
                 },
                 "requests": {
+                  "additionalProperties": false,
                   "description": "Resource requests for the manager",
                   "properties": {
                     "cpu": {
@@ -62,12 +68,19 @@
       "type": "object"
     },
     "podLabels": {
+      "additionalProperties": {
+        "type": "string"
+      },
       "default": {
         "app": "hyperpod-training-operator",
         "role": "controller"
       },
       "description": "Pod labels for the controller pods",
       "type": "object"
+    },
+    "resolveConflicts": {
+      "description": "Not applied. Accepted for backward compatibility only; set resolveConflicts on the CreateAddon/UpdateAddon request instead",
+      "type": "string"
     }
   },
   "type": "object"
