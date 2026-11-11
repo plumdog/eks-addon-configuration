@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "annotationKey": {
+      "maxLength": 317,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])(?!(container\\.apparmor\\.security\\.beta|seccomp\\.security\\.alpha|container\\.seccomp\\.security\\.alpha)\\.kubernetes\\.io/)((?=[^/]{1,253}/)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?[A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?$",
+      "type": "string"
+    },
+    "cpuMemoryResources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "description": "Resource limits",
+          "properties": {
+            "cpu": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/quantity"
+                }
+              ],
+              "description": "CPU limit, such as 500m",
+              "type": "string"
+            },
+            "memory": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/quantity"
+                }
+              ],
+              "description": "Memory limit, such as 256Mi",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "description": "Resource requests",
+          "properties": {
+            "cpu": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/quantity"
+                }
+              ],
+              "description": "CPU request, such as 100m",
+              "type": "string"
+            },
+            "memory": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/quantity"
+                }
+              ],
+              "description": "Memory request, such as 128Mi",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "freeText": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+      "type": "string"
+    },
+    "labelKey": {
+      "maxLength": 317,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])((?=[^/]{1,253}/)[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?[A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?$",
+      "type": "string"
+    },
+    "labelValue": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])([A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?)?$",
+      "type": "string"
+    },
+    "labels": {
+      "additionalProperties": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/labelKey"
+      },
+      "type": "object"
+    },
+    "multiLineText": {
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x08\\x0b-\\x1f\\x7f-\\x9f\\u2028\\u2029])",
+      "type": "string"
+    },
+    "quantity": {
+      "minimum": 0,
+      "pattern": "^(?![\\s\\S]*[\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029{}])\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([KMGTPE]i|[numkMGTPE]|[eE][+-]?[0-9]+)?$",
+      "type": [
+        "string",
+        "number"
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "description": "Configuration values for the kube-proxy EKS add-on. It accepts the settings of AWS's own kube-proxy add-on, plus selectorLabelsOverride for taking over the objects that add-on created.",
+  "examples": [
+    {
+      "mode": "iptables"
+    },
+    {
+      "podAnnotations": {
+        "example.com/owner": "networking"
+      },
+      "podLabels": {
+        "team": "networking"
+      },
+      "resources": {
+        "limits": {
+          "memory": "128Mi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "64Mi"
+        }
+      }
+    },
+    {
+      "ipvs": {
+        "scheduler": "rr"
+      },
+      "mode": "ipvs"
+    }
+  ],
+  "properties": {
+    "conntrack": {
+      "additionalProperties": false,
+      "description": "Connection tracking settings.",
+      "properties": {
+        "tcpBeLiberal": {
+          "description": "If true, conntrack runs in liberal mode for TCP, so packets with out-of-window sequence numbers are not marked invalid. When unset, kube-proxy uses false.",
+          "examples": [
+            true
+          ],
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ipvs": {
+      "additionalProperties": false,
+      "description": "IPVS settings, used when mode is ipvs.",
+      "properties": {
+        "scheduler": {
+          "$ref": "#/$defs/freeText",
+          "description": "IPVS scheduler, such as rr (round robin), lc (least connection), or sh (source hashing). The node must load the matching ip_vs kernel module. When unset or empty, kube-proxy uses rr."
+        }
+      },
+      "type": "object"
+    },
+    "mode": {
+      "description": "Proxy mode: iptables, ipvs, or nftables. When unset, this add-on uses nftables, while AWS's own kube-proxy add-on uses iptables. kube-proxy 1.37 deprecates ipvs.",
+      "enum": [
+        "iptables",
+        "ipvs",
+        "nftables"
+      ],
+      "examples": [
+        "iptables"
+      ],
+      "type": "string"
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "$ref": "#/$defs/multiLineText"
+      },
+      "default": {},
+      "description": "Annotations to add to the kube-proxy pods. Keys use the Kubernetes annotation key syntax with a lowercase prefix. AppArmor and seccomp annotation keys are rejected, and so is checksum/config, which the chart sets to roll the pods when the kube-proxy configuration changes.",
+      "propertyNames": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/annotationKey"
+          },
+          {
+            "not": {
+              "const": "checksum/config"
+            }
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "$ref": "#/$defs/labelValue"
+      },
+      "default": {},
+      "description": "Labels to add to the kube-proxy pods. Keys and values use the Kubernetes label syntax. The keys app.kubernetes.io/name, app.kubernetes.io/instance, and k8s-app are rejected, because the DaemonSet's selector can use them.",
+      "propertyNames": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/labelKey"
+          },
+          {
+            "not": {
+              "enum": [
+                "app.kubernetes.io/name",
+                "app.kubernetes.io/instance",
+                "k8s-app"
+              ]
+            }
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "resources": {
+      "$ref": "#/$defs/cpuMemoryResources",
+      "default": {},
+      "description": "CPU and memory requests and limits for the kube-proxy containers. When unset, the add-on sets none."
+    },
+    "selectorLabelsOverride": {
+      "$ref": "#/$defs/labels",
+      "default": {},
+      "description": "Labels that replace the add-on's selector labels (app.kubernetes.io/name and app.kubernetes.io/instance) on the DaemonSet selector, its pods, and every object the chart creates. To take over the kube-proxy DaemonSet that AWS's own add-on created, set k8s-app to kube-proxy. A DaemonSet selector cannot change, so set this at install and keep it on every update. Keys and values use the Kubernetes label syntax.",
+      "examples": [
+        {
+          "k8s-app": "kube-proxy"
+        }
+      ]
+    }
+  },
+  "type": "object"
+}
