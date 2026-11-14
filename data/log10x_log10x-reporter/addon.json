@@ -1,0 +1,69 @@
+{
+  "addonName": "log10x_log10x-reporter",
+  "type": "monitoring",
+  "addonVersions": [
+    {
+      "addonVersion": "v1.3.4-eksbuild.1",
+      "architecture": [
+        "amd64",
+        "arm64"
+      ],
+      "computeTypes": [
+        "ec2"
+      ],
+      "compatibilities": [
+        {
+          "clusterVersion": "1.37",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.36",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.35",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.34",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.33",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        },
+        {
+          "clusterVersion": "1.32",
+          "platformVersions": [
+            "*"
+          ],
+          "defaultVersion": true
+        }
+      ],
+      "requiresConfiguration": false,
+      "requiresIamPermissions": false
+    }
+  ],
+  "publisher": "Log10x",
+  "owner": "aws-marketplace",
+  "marketplaceInformation": {
+    "productId": "prod-xjdxlprzerkye",
+    "productUrl": "https://aws.amazon.com/marketplace/pp?sku=2cl0uqd2fmujqv7ywy7whvdil"
+  },
+  "defaultNamespace": "log10x"
+}
