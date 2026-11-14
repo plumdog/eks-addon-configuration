@@ -55,6 +55,7 @@
   "kube-state-metrics",
   "kubecost_kubecost",
   "leaksignal_leakagent",
+  "log10x_log10x-reporter",
   "metrics-server",
   "netapp_trident-operator",
   "new-relic_kubernetes-operator",
