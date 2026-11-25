@@ -67,7 +67,7 @@ export default [
     
     // Configuration for config files (Node environment)
     {
-        files: ['*.config.{js,mjs,cjs}'],
+        files: ['*.config.{js,mjs,cjs,ts,mts,cts}'],
         languageOptions: {
             globals: {
                 ...globals.node,

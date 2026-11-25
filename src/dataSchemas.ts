@@ -32,8 +32,9 @@ export const addonVersionConfigurationSchema = jsonSchema;
 
 export type AddonVersionConfiguration = z.infer<typeof addonVersionConfigurationSchema>;
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const data = rootSchema.parse(require('./data.json'));
+import rawData from './data.json';
+
+const data = rootSchema.parse(rawData);
 
 export const getAddons = (): Array<Addon> => {
     const addons: Array<Addon> = [];
